@@ -4,15 +4,18 @@ public class EngageSphere
 {
     public float range;
     private Transform origin;
+    public LayerMask layer;
     public Collider[] enemies;
 
 
-    private EngageSphere(float range, Transform origin){
+    public EngageSphere(float range, Transform origin, LayerMask layer){
         this.range = range;
         this.origin = origin;
+        this.layer = layer;
+
     }
 
-    public void CastRange(){
-        enemies = Physics.OverlapSphere(origin.position, range);
+    public void AggroRange(){
+        enemies = Physics.OverlapSphere(origin.position, range, layer);
     }
 }

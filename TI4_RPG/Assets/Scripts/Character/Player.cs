@@ -1,30 +1,23 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
-    public float moveSpeed = 1.0f;
-    public Vector2 moveDir = new Vector2();
     public CharacterController cc;
     public CCGravity gravity;
-    public Animator animator;
-    public AnimationController animationController;
-    public CCMovement movement;
+    public Vector2 moveDir = new Vector2();
 
     #region Unity default methods
     
-    private void Awake(){
+    protected override void Awake(){
+        base.Awake();
         cc = GetComponent<CharacterController>();
         gravity = GetComponent<CCGravity>();
-    }
-    private void Start(){
-        animationController = new AnimationController(this);
-        movement = new CCMovement(this);
     }
 
     private void Update(){
         movement.Moving(moveDir);
-        animationController.WalkAnimation();
+        animationController.SetAnimations();
     }
 
     private void FixedUpdate(){
@@ -32,7 +25,13 @@ public class Player : MonoBehaviour
     }
 
     #endregion
+    #region Methods
 
+    public override void Die(){
+
+    }
+
+    #endregion
     #region Input System Methods
 
     private void OnMovement(InputValue value){

@@ -1,8 +1,20 @@
+using UnityEngine;
+
 public class ExploringState : PlayerState
 {
-    public override void OnEnterState(Player agent)
+    AnimationController animation;
+    IMovement movement;
+
+
+    public ExploringState(Player agent) : base(agent){
+        animation = new DefaultController(agent);
+        movement = new CCMovement(agent);
+    }
+
+    public override void OnEnterState()
     {
-        agent.animationController = new AnimationController(agent);
-        agent.movement = new CCMovement(agent);
+        agent.animationController = animation;
+        agent.movement = movement;
+        Debug.Log("Entering exploration state.");
     }
 }
