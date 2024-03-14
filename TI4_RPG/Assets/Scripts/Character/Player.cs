@@ -3,9 +3,11 @@ using UnityEngine.InputSystem;
 
 public class Player : Character
 {
+    public float moveSpeed;
     public CharacterController cc;
     public CCGravity gravity;
     public Vector2 moveDir = new Vector2();
+    public AnimationController animationController;
 
     #region Unity default methods
     
