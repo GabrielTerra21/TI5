@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEngine;
 
 public class EnemyDisplay : HealthDisplay
 {
@@ -14,5 +15,14 @@ public class EnemyDisplay : HealthDisplay
 
     public void UpdateInfo(){
         UpdateValues(owner.curHp);
+        if(owner.curHp <= 0){
+            
+        }
+    }
+
+    public void Sleep(){
+        owner = null;
+        nameText.text = null;
+        gameObject.SetActive(false);
     }
 }
