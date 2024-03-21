@@ -94,9 +94,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d48cb3682030c3a4bbe6f829618e6fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cc: {fileID: 1540866807865023395}
+  data: {fileID: 11400000, guid: 672b05e0383e68346a07d95ff22c5098, type: 2}
+  curHp: 0
   animator: {fileID: 7226343713312955877}
   moveSpeed: 5
+  cc: {fileID: 1540866807865023395}
   gravity: {fileID: 4801376255113574642}
   moveDir: {x: 0, y: 0}
 --- !u!114 &4263276814843993137
@@ -230,6 +232,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   cc: {fileID: 1540866807865023395}
+  falling: 0
   gravityMod: 0.25
   gravityAcc: {x: 0, y: 0, z: 0}
 --- !u!1001 &3829103102404190324
