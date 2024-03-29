@@ -7,6 +7,7 @@ public class Player : Character
     public CharacterController cc;
     public CCGravity gravity;
     public Vector2 moveDir = new Vector2();
+    public IMovement movement;
     public AnimationController animationController;
 
     #region Unity default methods

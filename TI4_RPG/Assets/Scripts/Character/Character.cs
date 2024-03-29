@@ -5,7 +5,6 @@ public abstract class Character : MonoBehaviour
     public CharacterDataSO data;
     public int curHp;
     public Animator animator;
-    public IMovement movement;
 
     protected virtual void Awake(){
         curHp = data.MaxHp;
