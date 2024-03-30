@@ -9,13 +9,13 @@ public class EnemyDisplay : HealthDisplay
 
     public void OnEnterCharacter(Character agent){
         owner = agent;
-        nameText.text = owner.data.CharName;
+        nameText.text = owner.data.charName;
         SetValues(owner);
     }
 
     public void UpdateInfo(){
-        UpdateValues(owner.curHp);
-        if(owner.curHp <= 0){
+        UpdateValues(owner.life);
+        if(owner.life <= 0){
             
         }
     }

@@ -10,10 +10,10 @@ public abstract class HealthDisplay : MonoBehaviour
 
 
     public virtual void SetValues(Character agent){
-        maxHealth = agent.data.MaxHp;
+        maxHealth = agent.data.maxHp;
 
-        healthBar.fillAmount = agent.curHp/maxHealth;
-        healthText.text = $"{agent.curHp} / {maxHealth}";
+        healthBar.fillAmount = agent.life/maxHealth;
+        healthText.text = $"{agent.life} / {maxHealth}";
     }
 
     public virtual void UpdateValues(float currentHp){
