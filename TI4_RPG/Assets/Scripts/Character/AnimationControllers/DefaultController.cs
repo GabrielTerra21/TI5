@@ -3,22 +3,15 @@ using UnityEngine;
 public class DefaultController : AnimationController
 {
 
-    public DefaultController(Player agent) : base(agent){}
+    public DefaultController(Animator animator) : base(animator){}
 
-    public override void SetAnimations(){
+    public override void SetAnimations(Vector3 moveDir){
         //Set Walking animation according to player's current movement speed
-        WalkAnimation();
-
-        //Set player's rotation to look towards last/current movement input direction
-        RotationAnimation();
+        WalkAnimation(moveDir);
     }
 
-    private void RotationAnimation(){
-        agent.transform.LookAt(agent.transform.position + new Vector3(agent.moveDir.x, 0, agent.moveDir.y));
-    }
-
-    private void WalkAnimation(){
-        agent.animator.SetFloat("Movement", agent.moveDir.magnitude);
+    private void WalkAnimation(Vector2 moveDir){
+        animator.SetFloat("Movement", moveDir.magnitude);
     }
 
 }

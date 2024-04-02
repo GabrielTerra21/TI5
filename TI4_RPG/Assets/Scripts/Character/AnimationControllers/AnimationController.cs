@@ -2,12 +2,10 @@ using UnityEngine;
 
 public abstract class AnimationController
 {
-    public Player agent;
+    public Animator animator;
 
 
-    public AnimationController(Player agent){
-        this.agent = agent;
-    }   
+    public AnimationController(Animator animator) => this.animator = animator;
 
-    public abstract void SetAnimations();
+    public abstract void SetAnimations(Vector3 moveDir);
 }
