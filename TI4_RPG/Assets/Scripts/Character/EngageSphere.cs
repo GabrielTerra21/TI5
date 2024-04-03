@@ -1,21 +1,23 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class EngageSphere
+public class EngageSphere : MonoBehaviour
 {
-    public float range;
-    private Transform origin;
-    public LayerMask layer;
-    public Collider[] enemies;
+    public string checkTag;
+    public List<Character> inRange;
 
 
-    public EngageSphere(float range, Transform origin, LayerMask layer){
-        this.range = range;
-        this.origin = origin;
-        this.layer = layer;
-
+    public List<Character> GetEList() => inRange;
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(checkTag))
+        {
+            inRange.Add(other.GetComponent<Character>());
+            inRange.Sort();
+        }
     }
 
-    public void AggroRange(){
-        enemies = Physics.OverlapSphere(origin.position, range, layer);
+    public void OnTriggerExit(Collider other) {
+        if (other.CompareTag(checkTag)) inRange.Remove(other.GetComponent<Character>());
     }
 }
