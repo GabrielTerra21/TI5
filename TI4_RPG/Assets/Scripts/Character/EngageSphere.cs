@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -22,5 +23,11 @@ public class EngageSphere : MonoBehaviour {
     public void OnTriggerExit(Collider other) {
         if (other.CompareTag(checkTag)) inRange.Remove(other.GetComponent<Character>());
         if (inRange.Count == 0) OnDisengage.Invoke();
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.color = new Vector4(1, 0, 0, .05f);
+        SphereCollider col = GetComponent<SphereCollider>();
+        Gizmos.DrawSphere(transform.position, col.radius);
     }
 }

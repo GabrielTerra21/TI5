@@ -31,6 +31,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 635160307134157089}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4558066305227641047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8351251196796763296}
+  - component: {fileID: 4961704387997806718}
+  - component: {fileID: 1798108369039753418}
+  m_Layer: 0
+  m_Name: EngageSphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8351251196796763296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558066305227641047}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 635160307134157089}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4961704387997806718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558066305227641047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecec5bd20e523524c8b5ac8a4dcbfcbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkTag: Enemy
+  inRange: []
+  OnEngage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDisengage:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!135 &1798108369039753418
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4558066305227641047}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7818865403518282481
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,7 +118,6 @@ GameObject:
   - component: {fileID: 9062437899243554258}
   - component: {fileID: 4139405859714588825}
   - component: {fileID: 6868731313111781445}
-  - component: {fileID: 5380579723012081259}
   - component: {fileID: 4801376255113574642}
   - component: {fileID: 4263276814843993137}
   - component: {fileID: 1540866807865023395}
@@ -70,6 +143,7 @@ Transform:
   m_Children:
   - {fileID: 3461784357241650710}
   - {fileID: 3650463844512860063}
+  - {fileID: 8351251196796763296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8210166929270741491
@@ -88,6 +162,7 @@ MonoBehaviour:
   Combat: {fileID: 9062437899243554258}
   Cinematic: {fileID: 0}
   current: {fileID: 0}
+  eDetection: {fileID: 4961704387997806718}
 --- !u!114 &9062437899243554258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,50 +215,6 @@ MonoBehaviour:
   defense: 0
   attack: 0
   gravity: {fileID: 4801376255113574642}
---- !u!114 &5380579723012081259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7818865403518282481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecec5bd20e523524c8b5ac8a4dcbfcbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  checkTag: Enemy
-  inRange: []
-  OnEngage:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8210166929270741491}
-        m_TargetAssemblyTypeName: PStateController, Assembly-CSharp
-        m_MethodName: EnterState
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 9062437899243554258}
-          m_ObjectArgumentAssemblyTypeName: PState, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnDisengage:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8210166929270741491}
-        m_TargetAssemblyTypeName: PStateController, Assembly-CSharp
-        m_MethodName: EnterState
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 4139405859714588825}
-          m_ObjectArgumentAssemblyTypeName: PState, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &4801376255113574642
 MonoBehaviour:
   m_ObjectHideFlags: 0

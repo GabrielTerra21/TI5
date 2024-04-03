@@ -8,7 +8,7 @@ public class Room : MonoBehaviour
 
     private void OnDrawGizmos(){
         Collider col = GetComponent<Collider>();
-        Gizmos.color = new Color(0, 0, 1, .15f);
-        Gizmos.DrawCube(col.bounds.center, col.bounds.extents * 2);
+        Gizmos.color = new Color(0, 0, 1, .8f);
+        Gizmos.DrawWireCube(col.bounds.center, col.bounds.extents * 2);
     }
 }
