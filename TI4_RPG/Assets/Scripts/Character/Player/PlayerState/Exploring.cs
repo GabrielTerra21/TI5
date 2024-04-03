@@ -8,6 +8,7 @@ public class Exploring : PState
     public Character agent;
     public IMovement movement;
     public AnimationController animationController;
+    public RotationBehaviour rotator;
     public CharacterController cc;
     public Animator animator;
     public Vector2 moveDir;
@@ -17,18 +18,14 @@ public class Exploring : PState
         movement = new CCMovement(cc);
         animationController = new DefaultController(animator);
         enabled = false;
+        rotator = new LookAtMoveDir(transform);
     }
 
     private void Update()
     {
         movement.Moving(moveDir, agent.moveSpeed);
         animationController.SetAnimations(moveDir);
-        LookAtMoveDir();
-    }
-    
-    private void LookAtMoveDir() //Set player's rotation to look towards last/current movement input direction
-    {
-        transform.LookAt(agent.transform.position + new Vector3(moveDir.x, 0, moveDir.y));
+        rotator.SetRotation(moveDir);
     }
 
     private void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
