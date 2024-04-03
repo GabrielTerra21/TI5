@@ -17,8 +17,8 @@ public class Exploring : PState
     private void Awake(){
         movement = new CCMovement(cc);
         animationController = new DefaultController(animator);
-        enabled = false;
         rotator = new LookAtMoveDir(transform);
+        enabled = false;
     }
 
     private void Update()
@@ -32,11 +32,11 @@ public class Exploring : PState
 
     public override PState OnEnterState()
     {
-        Debug.Log("Entered exploration state");   
+        Debug.Log("Entered Exploring state");   
         return this;
     }
 
     public override void OnExitState() {
-        Debug.Log("Exiting ExploringState");
+        Debug.Log("Exiting Exploring State");
     }
 }

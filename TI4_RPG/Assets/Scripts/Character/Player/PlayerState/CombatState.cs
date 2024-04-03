@@ -32,12 +32,13 @@ public class CombatState : PState
     
     public override PState OnEnterState()
     {
+        Debug.Log("Entered Combat State");
         return this;
     }
 
     public override void OnExitState()
     {
-        
+        Debug.Log("Exiting Combat State");
     }
     
 }

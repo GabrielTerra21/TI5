@@ -5,7 +5,7 @@ public class Player : Character
 {
     [Space(10)]
     [Header("Player Components")]
-    public CCGravity gravity; 
+    public CCGravity gravity;
 
     
     protected override void Awake(){
@@ -17,8 +17,7 @@ public class Player : Character
         gravity.Gravity();
     }
 
-    public override void Die()
-    {
+    public override void Die() {
         throw new NotImplementedException();
     }
 

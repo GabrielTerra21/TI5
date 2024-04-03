@@ -13,7 +13,7 @@ public abstract class Character : MonoBehaviour
     public int defense;
     public int attack;
 
-    protected virtual void Awake(){
+    protected virtual void Awake() {
         GetData();
     }
 
