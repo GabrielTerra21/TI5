@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class CombatState : PState
 {
-    [Header("StateProperties")]
+    [Space(10)]
+    [Header("State Properties")]
     public Character agent;
     public Character target;
+    
+    [Space(5)]
+    [Header("Movement Properties")]
     public IMovement movement;
-    public AnimationController animationController;
-    private RotationBehaviour targetLock, rotator;
     public CharacterController cc;
-    public Animator animator;
     public Vector2 moveDir;
+    
+    [Space(5)]
+    [Header("Animation Atributes")]
+    public AnimationController animationController;
+    public Animator animator;
+    public RuntimeAnimatorController ac;
+    private RotationBehaviour targetLock, rotator;
 
 
     private void Awake()
@@ -33,6 +41,7 @@ public class CombatState : PState
     public override PState OnEnterState()
     {
         Debug.Log("Entered Combat State");
+        animator.runtimeAnimatorController = ac;
         return this;
     }
 

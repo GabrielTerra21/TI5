@@ -4,14 +4,22 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class Exploring : PState
 {
-    [Header("StateProperties")]
+    [Space(10)]
+    [Header("State Properties")]
     public Character agent;
+    
+    [Space(5)]
+    [Header("Movement Properties")]
     public IMovement movement;
-    public AnimationController animationController;
-    public RotationBehaviour rotator;
     public CharacterController cc;
-    public Animator animator;
     public Vector2 moveDir;
+    
+    [Space(5)]
+    [Header("Animation Properties")]
+    public AnimationController animationController;
+    public Animator animator;
+    public RuntimeAnimatorController ac;
+    public RotationBehaviour rotator;
     
 
     private void Awake(){
@@ -32,7 +40,8 @@ public class Exploring : PState
 
     public override PState OnEnterState()
     {
-        Debug.Log("Entered Exploring state");   
+        Debug.Log("Entered Exploring state");
+        animator.runtimeAnimatorController = ac;
         return this;
     }
 
