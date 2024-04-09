@@ -1,24 +1,27 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CombatState : PState
 {
     [Space(10)]
     [Header("State Properties")]
-    public Character agent;
-    public Character target;
+    [SerializeField] private Character agent;
+    [SerializeField] private Character target;
+    [SerializeField] private EngageSphere eDetect;
+    [SerializeField] private SkillContainer skillManager;
     
     [Space(5)]
     [Header("Movement Properties")]
-    public IMovement movement;
-    public CharacterController cc;
-    public Vector2 moveDir;
+    private IMovement movement;
+    [SerializeField] private CharacterController cc;
+    [SerializeField] private Vector2 moveDir;
     
     [Space(5)]
     [Header("Animation Atributes")]
-    public AnimationController animationController;
-    public Animator animator;
     public RuntimeAnimatorController ac;
-    private RotationBehaviour targetLock, rotator;
+    [SerializeField] private Animator animator;
+    private AnimationController animationController;
+    private RotationBehaviour targetLock;
 
 
     private void Awake()
@@ -26,7 +29,6 @@ public class CombatState : PState
         movement = new CCMovement(cc);
         animationController = new DefaultController(animator);
         targetLock = new LookAtTarget(transform);
-        rotator = new LookAtMoveDir(transform);
         enabled = false;
     }
 
@@ -34,19 +36,22 @@ public class CombatState : PState
     {
         movement.Moving(moveDir, agent.moveSpeed);
         animationController.SetAnimations(moveDir);
-        if (target != null) targetLock.SetRotation(target.transform.position);
-        else rotator.SetRotation(moveDir);
+        targetLock.SetRotation(target.transform.position);
+        if(moveDir.magnitude < 0.05f) skillManager.AutoAttack(target);
     }
+
+    private void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
     
     public override PState OnEnterState()
     {
         Debug.Log("Entered Combat State");
         animator.runtimeAnimatorController = ac;
+        target = eDetect.GetNextTarget();
         return this;
     }
 
-    public override void OnExitState()
-    {
+    public override void OnExitState() {
+        target = null;
         Debug.Log("Exiting Combat State");
     }
     

@@ -1,17 +1,21 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Character : MonoBehaviour
 {
     [Header("Character Components")]
     public Animator animator;
 
+    public UnityEvent OnDeath;
+
     [Space(5)]
     [Header("Character Sheet")]
     public CharacterDataSO data;
     public float moveSpeed;
-    public int life;
-    public int defense;
-    public int attack;
+    public int life { get; private set; }
+    public int defense { get; private set; }
+    public int attack { get; private set; }
+    public bool actionable;
 
     protected virtual void Awake() {
         GetData();
@@ -22,6 +26,19 @@ public abstract class Character : MonoBehaviour
         life = data.maxHp;
         defense = data.armor;
         attack = data.power;
+    }
+
+    public virtual void TakeDamage(int dmg) {
+        life -= dmg;
+        if (life == 0) {
+            life = 0;
+            Die();
+        }
+    }
+
+    public virtual void Heal(int heal) {
+        life += heal;
+        if (life > data.maxHp) life = data.maxHp;
     }
 
     public abstract void Die();

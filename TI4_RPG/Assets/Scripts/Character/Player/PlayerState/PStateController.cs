@@ -2,8 +2,12 @@ using UnityEngine;
 
 public class PStateController : MonoBehaviour
 {
-    public PState Exploration, Combat, Cinematic, current;
-    public EngageSphere eDetection;
+    [Header("States")]
+    [SerializeField] private PState Exploration, Combat, Cinematic, current;
+    
+    [Space(10)]
+    [Header("Components")]
+    [SerializeField] private EngageSphere eDetection;
     
     
     private void Start()

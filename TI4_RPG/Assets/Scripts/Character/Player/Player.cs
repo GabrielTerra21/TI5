@@ -5,12 +5,12 @@ public class Player : Character
 {
     [Space(10)]
     [Header("Player Components")]
-    public CCGravity gravity;
+    [SerializeField] private CCGravity gravity;
 
     
     protected override void Awake(){
         base.Awake();
-        gravity = GetComponent<CCGravity>();
+        if(gravity == null)gravity = GetComponent<CCGravity>();
     }
     
     private void FixedUpdate(){

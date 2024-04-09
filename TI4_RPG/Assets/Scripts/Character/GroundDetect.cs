@@ -8,7 +8,6 @@ public abstract class GroundDetect : MonoBehaviour
 
     public virtual bool IsGrounded(){
         bool onGround = Physics.BoxCast(transform.position + Vector3.up, boxSize, Vector3.down, transform.rotation, castDistance, hitLayer);
-        Debug.Log(onGround);
         return onGround;
     }
 }

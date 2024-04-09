@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class AnimationController
 {
-    public Animator animator;
+    protected Animator animator;
 
 
     public AnimationController(Animator animator) => this.animator = animator;
