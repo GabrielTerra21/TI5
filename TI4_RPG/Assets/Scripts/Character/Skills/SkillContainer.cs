@@ -12,4 +12,8 @@ public class SkillContainer : MonoBehaviour {
     public void AutoAttack(Character target) {
         autoAttack.OnCast(owner, target);
     }
+
+    public void Cast(int slot, Character target) {
+        skills[slot].OnCast(owner,target);
+    }
 }

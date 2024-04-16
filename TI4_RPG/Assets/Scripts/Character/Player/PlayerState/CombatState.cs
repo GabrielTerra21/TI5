@@ -41,6 +41,10 @@ public class CombatState : PState
     }
 
     private void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
+
+    public void Cast(int slot) {
+        skillManager.Cast(slot, target);
+    }
     
     public override PState OnEnterState()
     {
