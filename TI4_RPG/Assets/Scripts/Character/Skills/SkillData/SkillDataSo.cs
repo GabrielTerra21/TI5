@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class SkillDataSo : ScriptableObject 
 {
-    public float CoolDown, CastTime;
+    public float CoolDown, CastTime, Range;
     public int Power;
     public string Description, SkillName;
     public Image Icon;

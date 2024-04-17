@@ -18,10 +18,19 @@ public class Skill : MonoBehaviour {
     }
 
     public void OnCast(Character owner, Character target) {
+        if (data.Range != 0) {
+            if(!InRange(owner.transform, target.transform, data.Range)) return;
+        }  
         if (owner.actionable && ready) {
             Debug.Log("here");
             StartCoroutine(Casting(owner, target));
         }
+    }
+
+    private bool InRange(Transform from, Transform to, float range) {
+        Vector3 offset = to.position - from.position;
+        float sqrLength = offset.sqrMagnitude;
+        return sqrLength <= range * range;
     }
     
     IEnumerator Casting( Character owner, Character target) {
