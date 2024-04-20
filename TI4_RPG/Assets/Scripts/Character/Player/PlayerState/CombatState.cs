@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CombatState : PState
+public class CombatState : State
 {
     [Space(10)]
     [Header("State Properties")]
@@ -46,7 +46,7 @@ public class CombatState : PState
         skillManager.Cast(slot, target);
     }
     
-    public override PState OnEnterState()
+    public override State OnEnterState()
     {
         Debug.Log("Entered Combat State");
         animator.runtimeAnimatorController = ac;

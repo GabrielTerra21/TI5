@@ -1,27 +1,21 @@
 using UnityEngine;
 
-public class PStateController : MonoBehaviour
+public class PStateController : StateMachine
 {
+    [Space(10)]
     [Header("States")]
-    [SerializeField] private PState Exploration, Combat, Cinematic, current;
+    [SerializeField] private State Exploration, Combat, Cinematic;
     
     [Space(10)]
     [Header("Components")]
     [SerializeField] private EngageSphere eDetection;
     
     
-    private void Start()
+    protected override void Start()
     {
-        EnterState(Exploration);
+        base.Start();
         eDetection.OnEngage.AddListener(() => EnterState(Combat));
         eDetection.OnDisengage.AddListener(() => EnterState(Exploration));
     }
-
-    public void EnterState(PState state)
-    {
-        current.OnExitState();
-        current.enabled = false;
-        state.enabled = true;
-        current = state.OnEnterState();
-    }
+    
 }

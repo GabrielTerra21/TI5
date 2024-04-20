@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
-public class Exploring : PState
+public class Exploring : State
 {
     [Space(10)]
     [Header("State Properties")]
@@ -38,7 +38,7 @@ public class Exploring : PState
 
     private void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
 
-    public override PState OnEnterState()
+    public override State OnEnterState()
     {
         Debug.Log("Entered Exploring state");
         animator.runtimeAnimatorController = ac;
