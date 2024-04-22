@@ -27,6 +27,7 @@ public class UISkillWheel : MonoBehaviour {
         if (context.canceled) {
             wheel.SetActive(false);
             if(selected != null)Cast(selected);
+            selected = null;
         }
     }
 

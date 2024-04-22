@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -27,6 +28,13 @@ public class UISkillSlot : EventTrigger {
 
     private void OnEnable() {
         image.sprite = skill.data.Icon;
+    }
+
+    private void OnDisable() {
+        if (resized) {
+            rect.sizeDelta -= new Vector2(25, 25);
+            resized = false;
+        }
     }
 
     private void FixedUpdate() {
