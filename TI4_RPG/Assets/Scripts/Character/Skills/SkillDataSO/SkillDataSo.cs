@@ -6,7 +6,7 @@ public abstract class SkillDataSo : ScriptableObject
     public float CoolDown, CastTime, Range;
     public int Power;
     public string Description, SkillName;
-    public Image Icon;
+    public Sprite Icon;
     public GameObject Prefab;
     public RuntimeAnimatorController animationOverride;    
     

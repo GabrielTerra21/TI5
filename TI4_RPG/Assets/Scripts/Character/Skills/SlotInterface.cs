@@ -29,7 +29,7 @@ public class SlotInterface : MonoBehaviour
     {
         slotSlider.value = skill.cdLeft;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         UpdateUI();
     }

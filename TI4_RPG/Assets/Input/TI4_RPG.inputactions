@@ -2,14 +2,23 @@
     "name": "TI4_RPG",
     "maps": [
         {
-            "name": "Player",
-            "id": "67117f9c-eada-4c5d-94e0-5f382b25d1ea",
+            "name": "Exploring",
+            "id": "e7065a03-39f6-4ad4-96c7-68835ac1e15b",
             "actions": [
                 {
                     "name": "Movement",
                     "type": "Value",
-                    "id": "faacbf96-3def-4e9c-af28-37c35dd3a8f4",
+                    "id": "f8d72adb-9851-4717-8daf-d3ee0aadafa7",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SkillWheel",
+                    "type": "Value",
+                    "id": "6ee61885-d4a5-472e-a44b-3139aacec0ca",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -18,7 +27,7 @@
             "bindings": [
                 {
                     "name": "Keyboard Movement",
-                    "id": "31270f79-0dfb-4ac7-99ba-bac17b14a87f",
+                    "id": "426d8c30-126e-4043-ae7a-27788a7129ac",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -29,7 +38,7 @@
                 },
                 {
                     "name": "Up",
-                    "id": "6383fc56-50a6-43aa-8f31-c48836d7252d",
+                    "id": "021c890b-957e-4688-b5a8-d8ce446fcfc9",
                     "path": "<Keyboard>/#(W)",
                     "interactions": "",
                     "processors": "",
@@ -40,7 +49,7 @@
                 },
                 {
                     "name": "Down",
-                    "id": "ebf5681f-5346-426d-9df6-1c27f5c12c80",
+                    "id": "8587de32-55f7-4375-8945-d950e14410a5",
                     "path": "<Keyboard>/#(S)",
                     "interactions": "",
                     "processors": "",
@@ -51,7 +60,7 @@
                 },
                 {
                     "name": "Left",
-                    "id": "84c50223-e6b2-4972-b63f-625077c0ee65",
+                    "id": "81425726-7e2a-4759-9168-3266824b6e3b",
                     "path": "<Keyboard>/#(A)",
                     "interactions": "",
                     "processors": "",
@@ -62,7 +71,7 @@
                 },
                 {
                     "name": "Right",
-                    "id": "8054c4a9-1ccc-4ba9-b72f-8ac763732f34",
+                    "id": "82c2194d-55ca-4a13-86c3-9d49efb05a7f",
                     "path": "<Keyboard>/#(D)",
                     "interactions": "",
                     "processors": "",
@@ -73,7 +82,7 @@
                 },
                 {
                     "name": "",
-                    "id": "f6844c35-6eea-4fae-a5d0-f1ea43592660",
+                    "id": "65660ea1-00cf-47ea-818a-0ecdeece13b0",
                     "path": "<Gamepad>/dpad",
                     "interactions": "",
                     "processors": "",
@@ -84,12 +93,23 @@
                 },
                 {
                     "name": "",
-                    "id": "b7805852-378b-49c8-be8a-0573bb5059bf",
+                    "id": "412eca37-10ba-4524-8810-df11607bf593",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9078364-b167-4b94-9164-e11013663346",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SkillWheel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

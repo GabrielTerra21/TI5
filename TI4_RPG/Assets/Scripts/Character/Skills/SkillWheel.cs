@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class SkillWheel : MonoBehaviour
 {
@@ -18,7 +16,7 @@ public class SkillWheel : MonoBehaviour
     {
         canvas = FindFirstObjectByType<Canvas>();
         combatState = GetComponent<CombatState>();
-        owner = GetComponent<Character>();
+        owner = combatState.GetComponent<Character>();
         instance = this;
     }
     public void SetCasting(int i)

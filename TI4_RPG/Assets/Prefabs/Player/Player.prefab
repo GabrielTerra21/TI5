@@ -78,7 +78,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkTag: Enemy
   inRange: []
-  index: 0
   OnEngage:
     m_PersistentCalls:
       m_Calls: []
@@ -115,6 +114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 635160307134157089}
+  - component: {fileID: 8903811849916235330}
   - component: {fileID: 8210166929270741491}
   - component: {fileID: 9062437899243554258}
   - component: {fileID: 4139405859714588825}
@@ -147,6 +147,25 @@ Transform:
   - {fileID: 8351251196796763296}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8903811849916235330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818865403518282481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f88ac9c310d22c41bc5296f43b8cb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 6868731313111781445}
+  autoAttack: {fileID: 0}
+  skills:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &8210166929270741491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,10 +178,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c08f9b64120e494cb307042925d5972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  current: {fileID: 4139405859714588825}
+  start: {fileID: 4139405859714588825}
   Exploration: {fileID: 4139405859714588825}
   Combat: {fileID: 9062437899243554258}
   Cinematic: {fileID: 0}
-  current: {fileID: 4139405859714588825}
   eDetection: {fileID: 4961704387997806718}
 --- !u!114 &9062437899243554258
 MonoBehaviour:
@@ -179,10 +199,11 @@ MonoBehaviour:
   agent: {fileID: 6868731313111781445}
   target: {fileID: 0}
   eDetect: {fileID: 4961704387997806718}
+  skillManager: {fileID: 0}
   cc: {fileID: 1540866807865023395}
   moveDir: {x: 0, y: 0}
-  animator: {fileID: 7226343713312955877}
   ac: {fileID: 22100000, guid: aba9b61e9bd27d9469b0e87a0f3db15e, type: 2}
+  animator: {fileID: 7226343713312955877}
 --- !u!114 &4139405859714588825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,11 +234,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7226343713312955877}
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
   data: {fileID: 11400000, guid: 672b05e0383e68346a07d95ff22c5098, type: 2}
   moveSpeed: 5
-  life: 0
-  defense: 0
-  attack: 0
+  actionable: 0
   gravity: {fileID: 4801376255113574642}
 --- !u!114 &4801376255113574642
 MonoBehaviour:

@@ -8,7 +8,7 @@ public class CombatState : State
     [SerializeField] private Character agent;
     [SerializeField] private Character target;
     [SerializeField] private EngageSphere eDetect;
-    [SerializeField] private SkillContainer skillManager;
+    public SkillContainer skillManager;
     
     [Space(5)]
     [Header("Movement Properties")]
@@ -44,6 +44,10 @@ public class CombatState : State
 
     public void Cast(int slot) {
         skillManager.Cast(slot, target);
+    }
+
+    public void Cast(Skill skill) {
+        skillManager.Cast(skill, target);
     }
     
     public override State OnEnterState()

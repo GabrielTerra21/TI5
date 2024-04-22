@@ -16,4 +16,8 @@ public class SkillContainer : MonoBehaviour {
     public void Cast(int slot, Character target) {
         skills[slot].OnCast(owner,target);
     }
+
+    public void Cast(Skill skill, Character target) {
+        skill.OnCast(owner, target);
+    }
 }
