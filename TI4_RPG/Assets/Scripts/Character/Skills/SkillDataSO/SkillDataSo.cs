@@ -7,6 +7,7 @@ public abstract class SkillDataSo : ScriptableObject
     public int Power;
     public string Description, SkillName;
     public Image Icon;
+    public GameObject Prefab;
     public RuntimeAnimatorController animationOverride;    
     
     public abstract void OnCast ( Character from, Character target);
