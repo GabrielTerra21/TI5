@@ -40,7 +40,8 @@ public class CombatState : State
         if(moveDir.magnitude < 0.05f) skillManager.AutoAttack(target);
     }
 
-    private void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
+    // private void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
+    public void OnMovement(InputAction.CallbackContext context) => moveDir = context.ReadValue<Vector2>();
 
     public void Cast(int slot) {
         skillManager.Cast(slot, target);

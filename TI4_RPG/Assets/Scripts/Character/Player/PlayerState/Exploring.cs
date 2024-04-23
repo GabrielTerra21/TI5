@@ -37,9 +37,7 @@ public class Exploring : State
     }
 
     // public void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
-    public void OnMovement(InputAction.CallbackContext context) {
-        moveDir = context.ReadValue<Vector2>();
-    }
+    public void OnMovement(InputAction.CallbackContext context) => moveDir = context.ReadValue<Vector2>();
 
     public override State OnEnterState()
     {
