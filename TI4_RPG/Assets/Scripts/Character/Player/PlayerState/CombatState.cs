@@ -9,6 +9,7 @@ public class CombatState : State
     [SerializeField] private Character target;
     [SerializeField] private EngageSphere eDetect;
     public SkillContainer skillManager;
+    public GameObject skillWheel;
     
     [Space(5)]
     [Header("Movement Properties")]
@@ -54,12 +55,14 @@ public class CombatState : State
     public override State OnEnterState()
     {
         Debug.Log("Entered Combat State");
+        skillWheel.SetActive(true);
         animator.runtimeAnimatorController = ac;
         target = eDetect.GetNextTarget();
         return this;
     }
 
     public override void OnExitState() {
+        skillWheel.SetActive(false);
         target = null;
         Debug.Log("Exiting Combat State");
     }
