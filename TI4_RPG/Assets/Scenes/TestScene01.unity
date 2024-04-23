@@ -277,6 +277,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abb8ab2c0e5b2848ab4ce89222100d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &125871820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125871776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e7d9dad2874bc4a99411f38ba885de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: adadf02debb12eb44bdda3a836b5ffee, type: 2}
+  cdLeft: 0
+  timeToCast: 0
+  ready: 0
 --- !u!114 &131183228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1391,9 +1407,24 @@ PrefabInstance:
       objectReference: {fileID: 125871786}
     - target: {fileID: 8903811849916235330, guid: 4db4443576d43fd45b5b0cc18c6ed9b8,
         type: 3}
+      propertyPath: skills.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8903811849916235330, guid: 4db4443576d43fd45b5b0cc18c6ed9b8,
+        type: 3}
       propertyPath: skills.Array.data[0]
       value: 
       objectReference: {fileID: 125871802}
+    - target: {fileID: 8903811849916235330, guid: 4db4443576d43fd45b5b0cc18c6ed9b8,
+        type: 3}
+      propertyPath: skills.Array.data[1]
+      value: 
+      objectReference: {fileID: 125871820}
+    - target: {fileID: 8903811849916235330, guid: 4db4443576d43fd45b5b0cc18c6ed9b8,
+        type: 3}
+      propertyPath: skills.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9062437899243554258, guid: 4db4443576d43fd45b5b0cc18c6ed9b8,
         type: 3}
       propertyPath: skillWheel
@@ -1406,10 +1437,14 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7818865403518282481, guid: 4db4443576d43fd45b5b0cc18c6ed9b8,
         type: 3}
       insertIndex: 1
-      addedObject: {fileID: 125871786}
+      addedObject: {fileID: 125871820}
     - targetCorrespondingSourceObject: {fileID: 7818865403518282481, guid: 4db4443576d43fd45b5b0cc18c6ed9b8,
         type: 3}
       insertIndex: 2
+      addedObject: {fileID: 125871786}
+    - targetCorrespondingSourceObject: {fileID: 7818865403518282481, guid: 4db4443576d43fd45b5b0cc18c6ed9b8,
+        type: 3}
+      insertIndex: 3
       addedObject: {fileID: 125871802}
   m_SourcePrefab: {fileID: 100100000, guid: 4db4443576d43fd45b5b0cc18c6ed9b8, type: 3}
 --- !u!1 &1422613001
