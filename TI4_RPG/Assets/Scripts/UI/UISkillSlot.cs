@@ -28,6 +28,7 @@ public class UISkillSlot : EventTrigger {
 
     private void OnEnable() {
         image.sprite = skill.data.Icon;
+        image.type = Image.Type.Filled;
     }
 
     private void OnDisable() {
@@ -38,7 +39,7 @@ public class UISkillSlot : EventTrigger {
     }
 
     private void FixedUpdate() {
-        if (isActiveAndEnabled) image.fillAmount = skill.cdLeft / skill.data.CoolDown;
+        if (isActiveAndEnabled) image.fillAmount =  (skill.data.CoolDown - skill.cdLeft)/skill.data.CoolDown;
     }
 
     public override void OnPointerEnter(PointerEventData data) {

@@ -36,7 +36,10 @@ public class Exploring : State
         rotator.SetRotation(moveDir);
     }
 
-    private void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
+    // public void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
+    public void OnMovement(InputAction.CallbackContext context) {
+        moveDir = context.ReadValue<Vector2>();
+    }
 
     public override State OnEnterState()
     {
