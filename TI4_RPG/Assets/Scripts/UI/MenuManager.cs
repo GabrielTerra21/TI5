@@ -7,8 +7,5 @@ public class MenuManager : Sigleton<MenuManager> {
 
     
     public void OpenMenu(Menu menu) {
-        CurrentMenu.OnCloseMenu();
-        menu.OnOpenMenu();
-        CurrentMenu = menu;
     }
 }
