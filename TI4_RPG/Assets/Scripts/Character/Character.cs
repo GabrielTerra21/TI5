@@ -6,7 +6,7 @@ public abstract class Character : MonoBehaviour
     [Header("Character Components")]
     public Animator animator;
 
-    public UnityEvent OnDeath;
+    public UnityEvent OnDeath, OnDamage;
 
     [Space(5)]
     [Header("Character Sheet")]
@@ -30,6 +30,7 @@ public abstract class Character : MonoBehaviour
 
     public virtual void TakeDamage(int dmg) {
         life -= dmg;
+        OnDamage.Invoke();
         if (life == 0) {
             life = 0;
             Die();
