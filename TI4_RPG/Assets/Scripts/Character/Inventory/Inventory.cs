@@ -1,14 +1,30 @@
 using System.Collections.Generic;
-using UnityEngine;
 
-public class Inventory : MonoBehaviour {
-    public List<Collectable> inventory = new List<Collectable>();
+public class Inventory{
+    //public List<Collectable> inventory = new List<Collectable>(30);
+    public Dictionary<CollectableSO, int> inventory = new Dictionary<CollectableSO, int>();
 
+    
+    public virtual void Add(CollectableSO got, int amount = 1) {
+        if (got.stack) {
+            if (inventory.ContainsKey(got))  inventory[got] += amount;
+            else inventory.Add(got, amount);
+        }
+    }
 
-    public void Add(Collectable got) {
+    public virtual bool Remove(CollectableSO item, int amount = 1) {
+        if (inventory.ContainsKey(item)) {
+            if (inventory[item] <= amount) inventory.Remove(item);
+            else inventory[item] -= amount;
+            return true;
+        }
+        return false;
+    }
+    
+    /*public virtual void Add(Collectable got) {
         if (got.data.stack) {
             foreach (var data in inventory) {
-                if (data.data.Type == got.data.Type) {
+                if (data.data.type == got.data.type) {
                     data.Stack(got.amount);
                     return;
                 }
@@ -16,11 +32,11 @@ public class Inventory : MonoBehaviour {
         }
         inventory.Add(got);
         inventory.Sort();
-    }
+    }*/
 
-    public void Remove(string type, int removeAmount = -1) {
+    /*public virtual void Remove(string type, int removeAmount = -1) {
         foreach (var data in inventory) {
-            if (data.data.Type == type) {
+            if (data.data.type == type) {
                 if (removeAmount == -1) {
                     inventory.Remove(data);
                     inventory.Sort();
@@ -36,5 +52,5 @@ public class Inventory : MonoBehaviour {
             }
         }
         Debug.Log("Item a ser removido não foi encontrado");
-    }
+    }*/
 }
