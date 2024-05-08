@@ -27,7 +27,7 @@ public class UISkillSlot : EventTrigger {
     }
 
     private void OnEnable() {
-        image.sprite = skill.data.Icon;
+        image.sprite = skill.data.icon;
         image.type = Image.Type.Filled;
     }
 
