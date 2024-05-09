@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -13,18 +11,18 @@ public class skillSelectButton : EventTrigger {
     [Space(10)]
     [Header("Functional Components")]
     public SkillDataSo skill;
-    public SkillContainer SkillContainer;
     public bool resized;
 
 
     private void Awake() {
-        icon = GetComponent<Image>();
         rect = GetComponent<RectTransform>();
+        icon = GetComponent<Image>();
         resized = false;
     }
     
-    private void OnEnable() {
-        icon.sprite = skill.Icon;
+    public void UpdateButton(SkillDataSo skill) {
+        this.skill = skill;
+        icon.sprite = this.skill.Icon;
     }
 
     private void OnDisable() {
