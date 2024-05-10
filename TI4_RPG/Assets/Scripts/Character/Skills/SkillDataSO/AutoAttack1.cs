@@ -1,11 +1,17 @@
+using System.Collections;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName ="ScriptableObjects/Skills/AutoAttack", order = 2)]
-public class AutoAttack1 : SkillDataSo
-{
+[CreateAssetMenu(fileName = "Data", menuName ="ScriptableObjects/Skills/Attack", order = 2)]
+public class AutoAttack1 : SkillDataSo {
+    public float timeUntilHit;
     public override void OnCast(Character from, Character target) {
-        Debug.Log("AutoAttack hit");
+        from.StartCoroutine(Attack(from, target));
+    }
+
+    IEnumerator Attack(Character from, Character target) {
         from.animator.SetTrigger("Attack");
+        yield return new WaitForSeconds(timeUntilHit);
+        Debug.Log("AutoAttack hit");
         target.TakeDamage(Power);
     }
 }

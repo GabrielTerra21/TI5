@@ -16,11 +16,11 @@ public class CameraFollow : MonoBehaviour
             if(cam.transform.position == new Vector3 (xCamPre, yCamPre, zCamPre))
             {
                 cam.transform.position = new Vector3 (xCamPos, yCamPos , zCamPos);
-                Debug.Log("Foi para o pós");
+                Debug.Log("Foi para o pï¿½s");
             } else if(cam.transform.position == new Vector3 (xCamPos, yCamPos, zCamPos))
             {
                 cam.transform.position = new Vector3 (xCamPre, yCamPre, zCamPre);
-                Debug.Log("Foi para a pré");
+                Debug.Log("Foi para a prï¿½");
             }
         }
         if(cam.transform.position == new Vector3(30, -22, -45))
