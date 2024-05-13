@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class EquipSlot : EventTrigger {
     [Space(10)] [Header("EquipSlot Components")]
     public Image icon;
-    public SkillDataSo skill;
+    public SkillDataSO skill;
 
     [Space(10)] [Header("EquipSlot Functional Properties")]
     public Color baseColor, selectedColor;
@@ -23,7 +23,7 @@ public class EquipSlot : EventTrigger {
         active = false;
     }
     
-    public void UpdateSkillSlot(SkillDataSo setSkill) {
+    public void UpdateSkillSlot(SkillDataSO setSkill) {
         skill = setSkill;
         icon.sprite = skill.Icon;
     }

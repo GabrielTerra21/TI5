@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Skills/FireBall", order = 2)]
-public class FireBall : SkillDataSo
+public class FireBall : SkillDataSO
 {
     public override void OnCast(Character from, Character target)
     {

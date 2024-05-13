@@ -1,7 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 
-public abstract class SkillDataSo : ScriptableObject
+public abstract class SkillDataSO : ScriptableObject
 {
     [Space(10)]
     [Header("SkillData Properties")]

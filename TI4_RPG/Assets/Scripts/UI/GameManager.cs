@@ -2,6 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Menu : MonoBehaviour {
-    private GameObject menuScreen;
+public class GameManager : Singleton<GameManager> {
+    public SkillDataSO empty;
 }

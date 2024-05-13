@@ -31,7 +31,7 @@ public abstract class Character : MonoBehaviour
     public virtual void TakeDamage(int dmg) {
         life -= dmg;
         OnDamage.Invoke();
-        if (life == 0) {
+        if (life <= 0) {
             life = 0;
             Die();
         }

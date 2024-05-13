@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Sigleton<T> : MonoBehaviour where T: MonoBehaviour {
+public abstract class Singleton<T> : MonoBehaviour where T: MonoBehaviour {
     public static T Insatance;
 
     private void Awake() {

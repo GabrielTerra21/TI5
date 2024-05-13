@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Skills/Dash", order = 2)]
-public class Dash : SkillDataSo
+public class Dash : SkillDataSO
 {
     public override void OnCast(Character from, Character target)
     {

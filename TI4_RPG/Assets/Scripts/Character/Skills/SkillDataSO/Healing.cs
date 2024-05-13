@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Skills/Heal", order = 2)]
-public class Healing : SkillDataSo
+public class Healing : SkillDataSO
 {
     public override void OnCast(Character from, Character target)
     {

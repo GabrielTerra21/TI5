@@ -4,16 +4,17 @@ public class SkillOrganizer : MonoBehaviour {
     [Space(10)]
     [Header("Organizer Components")]
     public SkillInventory inventory;
-    public skillSelectButton[] slots;
+    public SkillSelectButton[] slots;
     public bool ready;
+    [SerializeField] private int length, count;
     
     [Space(10)]
     [Header("Functional Properties")]
-    public skillSelectButton selected;
+    public SkillSelectButton selected;
     
 
     private void Awake() {
-        slots = GetComponentsInChildren<skillSelectButton>();
+        slots = GetComponentsInChildren<SkillSelectButton>();
     }
     
     private void OnEnable() {
@@ -21,7 +22,7 @@ public class SkillOrganizer : MonoBehaviour {
             if (i < inventory.skills.Count) {
                 slots[i].gameObject.SetActive(true);
                 slots[i].UpdateButton(inventory.skills[i]);
-                slots[i].onSelection += OnSelect;
+                //slots[i].onSelection += OnSelect;
             }
             else slots[i].gameObject.SetActive(false);
         }
@@ -32,12 +33,12 @@ public class SkillOrganizer : MonoBehaviour {
         if (ready) ready = false;
     }
 
-    private void Deselect() {
+    public void Deselect() {
         selected.SetDeselected();
         selected = null;
     }
     
-    private void OnSelect(skillSelectButton selection) {
+    public void OnSelect(SkillSelectButton selection) {
         if (selected != null) selected.SetDeselected();
         selected = selection;
     }

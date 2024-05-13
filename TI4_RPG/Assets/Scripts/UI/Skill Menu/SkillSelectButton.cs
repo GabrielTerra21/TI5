@@ -2,35 +2,37 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
-public class skillSelectButton : EventTrigger {
+public class SkillSelectButton : EventTrigger {
     [Space(10)]
     [Header("UI Components")]
-    public Image icon;
+    public Image icon, background;
     public RectTransform rect;
     
     [Space(10)]
     [Header("Functional Components")]
-    public SkillDataSo skill;
+    public SkillDataSO skill;
     public bool resized, selected;
     public Color normalCol, selectedCol;
-    public Action<skillSelectButton> onSelection;
+    public Action<SkillSelectButton> onSelection;
 
 
     private void Awake() {
         rect = GetComponent<RectTransform>();
         icon = GetComponent<Image>();
+        background = GetComponentInChildren<Image>();
         normalCol = icon.color;
         resized = false;
         selected = false;
     }
     
-    public void UpdateButton(SkillDataSo skill) {
+    public void UpdateButton(SkillDataSO skill) {
         this.skill = skill;
+        if(icon == null) icon = GetComponent<Image>();
         icon.sprite = this.skill.Icon;
+        if(selected) SetDeselected();
     }
-
+    
     private void OnDisable() {
         Shrink();
         onSelection = null;
@@ -46,8 +48,9 @@ public class skillSelectButton : EventTrigger {
 
     public override void OnPointerClick(PointerEventData eventData) {
         if(selected) return;
-        onSelection?.Invoke(this);
+        //onSelection?.Invoke(this);
         SetSelected();
+        SkillMenuManager.OnSelection?.Invoke(this);
     }
 
     public void Grow() {
@@ -63,14 +66,24 @@ public class skillSelectButton : EventTrigger {
     }
 
     public void SetSelected() {
+        if(background == null) background = GetComponentInChildren<Image>();
+        if (icon == null) icon = GetComponent<Image>();
         selected = true;
-        icon.color = selectedCol;
+        background.color = Color.yellow;
+        icon.color = Color.yellow;
     }
 
     public void SetDeselected() {
+        if(background == null) background = GetComponentInChildren<Image>();
+        if (icon == null) icon = GetComponent<Image>();
         Shrink();
         selected = false;
         icon.color = normalCol;
+        background.color = normalCol;
+    }
+
+    public void SetEmpty() {
+        
     }
     
 }

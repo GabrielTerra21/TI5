@@ -4,7 +4,7 @@ using UnityEngine;
 public class Skill : MonoBehaviour {
     [Space(10)]
     [Header("SourceSkill")]
-    public SkillDataSo data;
+    public SkillDataSO data;
     
     [Space(10)]
     [Header("Skill info")]
