@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SkillMenuManager : MonoBehaviour {
     public SkillOrganizer organizer;
@@ -14,11 +15,15 @@ public class SkillMenuManager : MonoBehaviour {
             Equip();
         };
     }
-
+    
     private void OnDisable() {
         OnSelection = null;
     }
 
+    public void Cancel() {
+        gameObject.SetActive(false);
+    }
+    
     public void Equip() {
         if (organizer.selected && equipper.setTo) {
             equipper.setTo.UpdateButton(organizer.selected.skill);
