@@ -10,6 +10,6 @@ public class FireBall : SkillDataSO
         GameObject g = Instantiate(Prefab,from.transform.position,from.transform.rotation);
         Projectile p = g.GetComponent<Projectile>();
         p.damage = Power;
-        p.target = target.transform;
+        p.target = target;
     }
 }
