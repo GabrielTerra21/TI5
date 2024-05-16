@@ -15,7 +15,7 @@ public abstract class Character : MonoBehaviour
     public int life;
     public int defense { get; private set; }
     public int attack { get; private set; }
-    public bool actionable;
+    public bool actionable = true;
 
     protected virtual void Awake() {
         GetData();
@@ -29,12 +29,14 @@ public abstract class Character : MonoBehaviour
     }
 
     public virtual int TakeDamage(int dmg) {
+        Debug.Log("Taking Damgae");
         life -= dmg;
         OnDamage.Invoke();
         if (life <= 0) {
             life = 0;
             Die();
         }
+        Debug.Log("ouchie");
         return dmg;
     }
 

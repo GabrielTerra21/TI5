@@ -1,14 +1,13 @@
 using System;
-using System.Collections;
+
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 public class ECombatState : State {
     public Character target;
     public EngageSphere eDetect;
     public SkillContainer sc;
-    public IMovement movement;
+    public InRangeMovement movement;
     public bool inAction;
 
 
@@ -17,21 +16,26 @@ public class ECombatState : State {
         if ( !sc ) sc = GetComponent<SkillContainer>();
         if ( !eDetect ) eDetect = GetComponent<EngageSphere>();
     }
-
-    public void Start() {
-        inAction = false;
-    }
-
+    
     private void FixedUpdate() {
-        AutoAttack();
+        if (AttackReady(sc.autoAttack)) {
+            if (InDistance(sc.autoAttack, target.transform)) {
+                Debug.Log("AutoAttacking");
+                sc.AutoAttack(target);
+                inAction = false;
+            }
+            else if(!inAction) {
+                inAction = true;
+                Debug.Log("Moving");
+                movement.Moving(target, sc.autoAttack);
+            }
+        }
     }
     
     public override State OnEnterState() {
         Debug.Log($"{gameObject.name} has entered combat state");
         target = eDetect.GetNextTarget();
-        if (target == null) {
-            throw new Exception($"{gameObject.name} has entered state without a target");
-        }
+        if (target == null) throw new Exception($"{gameObject.name} has entered state without a target");
         return this;
     }
 
@@ -41,12 +45,36 @@ public class ECombatState : State {
         StopAllCoroutines();
     }
 
-    public void AutoAttack() {
-        sc.AutoAttack(target);
-        if (Vector3.Distance(transform.position, target.transform.position) > sc.autoAttack.data.Range && !inAction) StartCoroutine(GetInRange(sc.autoAttack));
+    public void Cast(Skill skill) {
+        sc.Cast(skill, target);
     }
 
-    IEnumerator GetInRange(Skill skill) {
+    public void Cast(int index) {
+        sc.Cast(index, target);
+    }
+
+    public bool AttackReady(Skill skill) {
+        if (skill.ready) return true;
+        else return false;
+    }
+
+    public bool InDistance(Skill skill, Transform targetPos) {
+        if ((targetPos.position - transform.position).sqrMagnitude > skill.data.Range * skill.data.Range) {
+            Debug.Log("Not in distance");
+            return false;
+        }
+        return true;
+    }
+
+    // public void AutoAttack() {
+    //     if (Vector3.Distance(transform.position, target.transform.position) > sc.autoAttack.data.Range && !inAction) StartCoroutine(GetInRange(sc.autoAttack));
+    //     else {
+    //         Debug.Log("In range");
+    //         sc.AutoAttack(target);
+    //     }
+    // }
+
+    /*IEnumerator GetInRange(Skill skill) {
         inAction = true;
         Debug.Log("Get in range start");
         Vector3 offset = target.transform.position - transform.position;
@@ -62,5 +90,7 @@ public class ECombatState : State {
         }
         Debug.Log("Skill casted successfully, coroutine ended");
         inAction = false;
-    }
+        Debug.Log("GetInRange has ended");
+        yield break;
+    }*/
 }
