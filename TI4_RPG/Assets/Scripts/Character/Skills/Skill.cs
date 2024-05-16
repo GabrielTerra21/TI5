@@ -19,7 +19,10 @@ public class Skill : MonoBehaviour {
 
     public void OnCast(Character owner, Character target) {
         if (data.Range != 0) {
-            if(!InRange(owner.transform, target.transform, data.Range)) return;
+            if (!InRange(owner.transform, target.transform, data.Range)) {
+                Debug.Log("gay");
+                return;
+            }
         }  
         if (owner.actionable && ready) {
             Debug.Log("here");

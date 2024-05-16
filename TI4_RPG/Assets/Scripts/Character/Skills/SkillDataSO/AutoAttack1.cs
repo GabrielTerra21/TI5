@@ -9,7 +9,7 @@ public class AutoAttack1 : SkillDataSO {
     }
 
     IEnumerator Attack(Character from, Character target) {
-        from.animator.SetTrigger("Attack");
+        //from.animator.SetTrigger("Attack");
         yield return new WaitForSeconds(timeUntilHit);
         Debug.Log("AutoAttack hit");
         target.TakeDamage(Power);

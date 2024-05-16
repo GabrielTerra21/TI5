@@ -12,7 +12,7 @@ public abstract class Character : MonoBehaviour
     [Header("Character Sheet")]
     public CharacterDataSO data;
     public float moveSpeed;
-    public int life { get; private set; }
+    public int life;
     public int defense { get; private set; }
     public int attack { get; private set; }
     public bool actionable;
