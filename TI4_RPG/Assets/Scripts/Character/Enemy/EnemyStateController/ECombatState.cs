@@ -9,12 +9,14 @@ public class ECombatState : State {
     public SkillContainer sc;
     public InRangeMovement movement;
     public bool inAction;
+    public EnemyPack ePack;
 
 
     private void Awake() {
         movement = new InRangeMovement(GetComponent<NavMeshAgent>());
         if ( !sc ) sc = GetComponent<SkillContainer>();
         if ( !eDetect ) eDetect = GetComponent<EngageSphere>();
+        if (ePack) ePack.attack.AddListener(Aggro);
     }
     
     private void FixedUpdate() {
@@ -34,8 +36,11 @@ public class ECombatState : State {
     
     public override State OnEnterState() {
         Debug.Log($"{gameObject.name} has entered combat state");
-        target = eDetect.GetNextTarget();
-        if (target == null) throw new Exception($"{gameObject.name} has entered state without a target");
+        if (ePack) {
+            ePack.attack.Invoke(target);
+            return this;
+        }
+        else Aggro(eDetect.GetNextTarget());
         return this;
     }
 
@@ -43,6 +48,10 @@ public class ECombatState : State {
         Debug.Log($"{gameObject.name} is exiting combat state");
         target = null;
         StopAllCoroutines();
+    }
+
+    public void Aggro(Character target) {
+        this.target = target;
     }
 
     public void Cast(Skill skill) {
