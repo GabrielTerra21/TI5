@@ -18,12 +18,18 @@ public class Skill : MonoBehaviour {
     }
 
     public void OnCast(Character owner, Character target) {
+        Debug.Log("Starting casting");
         if (data.Range != 0) {
-            if(!InRange(owner.transform, target.transform, data.Range)) return;
+            if (!InRange(owner.transform, target.transform, data.Range)) {
+                Debug.Log("Casting failed");
+                return;
+            }
+            Debug.Log("Casting hasn't failed");
         }  
         if (owner.actionable && ready) {
-            Debug.Log("here");
+            Debug.Log("Casting...");
             StartCoroutine(Casting(owner, target));
+            Debug.Log("Casted");
         }
     }
 

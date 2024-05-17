@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyStateController : StateMachine {
      [Space(10)]
      [Header("States")]
-     [SerializeField] private State Iddle, Combat, Fleeing;
+     [SerializeField] public State Iddle, Combat, Fleeing;
     
      [Space(10)]
      [Header("Components")]
@@ -14,6 +14,5 @@ public class EnemyStateController : StateMachine {
      {
           base.Start();
           eDetection.OnEngage.AddListener(() => EnterState(Combat));
-          eDetection.OnDisengage.AddListener(() => EnterState(Fleeing));
      }
 }
