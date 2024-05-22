@@ -18,7 +18,7 @@ public class Inventory{
             else inventory[item] -= amount;
             return true;
         }
-        return false;
+        return false; 
     }
     
     /*public virtual void Add(Collectable got) {

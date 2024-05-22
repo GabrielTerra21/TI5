@@ -66,5 +66,8 @@ public class CombatState : State
         target = null;
         Debug.Log("Exiting Combat State");
     }
-    
+    public Character ReturnTarget()
+    {
+        return target;
+    }
 }

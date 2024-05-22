@@ -11,5 +11,6 @@ public class Faca : SkillDataSO
         Projectile p = g.GetComponent<Projectile>();
         p.damage = Power;
         p.target = target;
+        p.from = from;
     }
 }

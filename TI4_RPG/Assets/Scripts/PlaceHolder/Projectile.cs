@@ -7,8 +7,10 @@ public class Projectile : MonoBehaviour
     enum Type { AreaDamage, SingleTarget }
     [SerializeField]Type type;
     public Character target;
+    public Character from;
     public float speed;
     Collider[] hits;
+    
     public int damage;
     private void Update()
     {
@@ -23,7 +25,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            target = from.GetComponent<CombatState>().ReturnTarget();
         }
     }
     private void OnDestroy()
