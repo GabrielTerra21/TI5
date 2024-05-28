@@ -26,6 +26,10 @@ public class Projectile : MonoBehaviour
         else
         {
             target = from.GetComponent<CombatState>().ReturnTarget();
+            if(target == null)
+            {
+                Destroy(gameObject);
+            }
         }
     }
     private void OnDestroy()
