@@ -11,6 +11,7 @@ public abstract class SkillDataSO : ScriptableObject
     public Sprite Icon;
     public string SkillName ,Description;
     public GameObject Prefab;
+    public int Price;
     public RuntimeAnimatorController animationOverride;    
     
     public abstract void OnCast ( Character from, Character target);

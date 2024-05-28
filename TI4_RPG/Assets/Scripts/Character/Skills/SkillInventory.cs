@@ -11,6 +11,6 @@ public class SkillInventory : MonoBehaviour {
     
     public void Learn(SkillDataSO learned) {
         skills.Add(learned);
-        skills.Sort();
+        //skills.Sort();
     }
 }
