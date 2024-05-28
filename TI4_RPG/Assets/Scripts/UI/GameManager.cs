@@ -13,4 +13,9 @@ public class GameManager : Singleton<GameManager> {
         money -= i;
         dinheiro.text = "Dinheiro:" + money;
     }
+    public void GanhaDinheiro(int i)
+    {
+        money += i;
+        dinheiro.text = "Dinheiro:" + money;
+    }
 }

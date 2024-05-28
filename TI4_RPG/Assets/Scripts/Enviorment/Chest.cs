@@ -6,6 +6,7 @@ public class Chest : MonoBehaviour
 {
     public void OpenChest()
     {
-
+        GameManager.Insatance.GanhaDinheiro(100);
+        Destroy(gameObject);
     }
 }
