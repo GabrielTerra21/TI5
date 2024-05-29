@@ -317,6 +317,12 @@ Transform:
   - {fileID: 1654022385}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!195 &791209026 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 240199790215464818, guid: 03fbbcaa5915ead43859297f57cd2971,
+    type: 3}
+  m_PrefabInstance: {fileID: 1729188060}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &815598094
 GameObject:
   m_ObjectHideFlags: 0
@@ -3206,6 +3212,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 453949818868594171, guid: 03fbbcaa5915ead43859297f57cd2971,
+        type: 3}
+      propertyPath: ai
+      value: 
+      objectReference: {fileID: 791209026}
     - target: {fileID: 453949818868594171, guid: 03fbbcaa5915ead43859297f57cd2971,
         type: 3}
       propertyPath: roamingDistance
