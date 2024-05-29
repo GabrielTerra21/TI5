@@ -18,6 +18,7 @@ public class WaitingTrigger : Trigger
         if (waiting && Input.GetKeyDown(KeyCode.E))
         {
             action.Invoke();
+            Debug.Log("apertou");
         }
     }
 
