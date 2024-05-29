@@ -40,7 +40,8 @@ public class ECombatState : State {
             ePack.attack.Invoke(target);
             return this;
         }
-        else Aggro(eDetect.GetNextTarget());
+        Debug.Log("here");
+        Aggro(eDetect.GetNextTarget());
         return this;
     }
 

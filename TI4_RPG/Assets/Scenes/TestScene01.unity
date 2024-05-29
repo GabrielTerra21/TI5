@@ -245,6 +245,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Asset: {fileID: -944628639613478452, guid: d20d65eb9d6c8f8419a0556ca5493989, type: 3}
   m_ActionId: 94ec4027-babb-4aa6-90a2-9c8f5fffbf89
+--- !u!114 &472154795 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4055541186546488980, guid: 03fbbcaa5915ead43859297f57cd2971,
+    type: 3}
+  m_PrefabInstance: {fileID: 1729188060}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f88ac9c310d22c41bc5296f43b8cb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &501425776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3194,10 +3206,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 453949818868594171, guid: 03fbbcaa5915ead43859297f57cd2971,
+        type: 3}
+      propertyPath: roamingDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 453949818868594171, guid: 03fbbcaa5915ead43859297f57cd2971,
+        type: 3}
+      propertyPath: reachingDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1393766262212077594, guid: 03fbbcaa5915ead43859297f57cd2971,
         type: 3}
       propertyPath: m_Name
-      value: Enemy1 1
+      value: Enemy With AI
       objectReference: {fileID: 0}
     - target: {fileID: 2776775888690929432, guid: 03fbbcaa5915ead43859297f57cd2971,
         type: 3}
@@ -3249,6 +3271,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5929105700121558319, guid: 03fbbcaa5915ead43859297f57cd2971,
+        type: 3}
+      propertyPath: checkTag
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6377252371494457551, guid: 03fbbcaa5915ead43859297f57cd2971,
+        type: 3}
+      propertyPath: sc
+      value: 
+      objectReference: {fileID: 472154795}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3583,6 +3615,16 @@ PrefabInstance:
         type: 3}
       propertyPath: checkTag
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922343560083640167, guid: 039211467925f104ab48f6710f08a44e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15.142136
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922343560083640167, guid: 039211467925f104ab48f6710f08a44e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -28.252136
       objectReference: {fileID: 0}
     - target: {fileID: 8616000895633122610, guid: 039211467925f104ab48f6710f08a44e,
         type: 3}

@@ -55,10 +55,10 @@ public class IddleState : State {
     }
  
     IEnumerator Walking() {
-        if (!ready) {
-            Debug.Log("Multiple invocations of walking are occuring.");
-            yield break;
-        }
+        // if (!ready) {
+        //     Debug.Log("Multiple invocations of walking are occuring.");
+        //     yield break;
+        // }
         ready = false; 
         
         DesiredPos = SampleNewPosition(agent.homePos); 
