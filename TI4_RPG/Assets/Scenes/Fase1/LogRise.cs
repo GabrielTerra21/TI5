@@ -7,6 +7,12 @@ public class LogRise : MonoBehaviour
     public GameObject logBefore;
     public GameObject logAfter;
     List<GameObject> controller = new List<GameObject>();
+
+    private void Start()
+    {
+        logBefore.SetActive(true);
+        logAfter.SetActive(false);
+    }
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Enemy"))
         {
