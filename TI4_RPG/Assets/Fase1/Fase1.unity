@@ -28820,19 +28820,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1406656979173931671}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2098991673 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8357356892700440929, guid: c7331a8452c23f14bb98fa3fdbcb9b1f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1406656979173931671}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098991671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb8fff143b5251e4fb4c41c8ba19a630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2098991677
+--- !u!114 &2098991672
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28841,24 +28829,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2098991671}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32a189cb4ea89e540ace45345d9142d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 479d3647a3d45b64da735e9f03b7fcf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2098991673}
-        m_TargetAssemblyTypeName: Teleport, Assembly-CSharp
-        m_MethodName: Teleportation
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 30185861}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  player: {fileID: 30185861}
+  x: 56
+  y: -10
+  z: -63
 --- !u!1001 &2102824265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30184,6 +30161,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 413862926}
     m_Modifications:
+    - target: {fileID: 1257700667201160361, guid: c7331a8452c23f14bb98fa3fdbcb9b1f,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.49999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257700667201160361, guid: c7331a8452c23f14bb98fa3fdbcb9b1f,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.0000009536743
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257700667201160361, guid: c7331a8452c23f14bb98fa3fdbcb9b1f,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257700667201160361, guid: c7331a8452c23f14bb98fa3fdbcb9b1f,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.00000047683716
+      objectReference: {fileID: 0}
+    - target: {fileID: 1257700667201160361, guid: c7331a8452c23f14bb98fa3fdbcb9b1f,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1520538888135481226, guid: c7331a8452c23f14bb98fa3fdbcb9b1f,
         type: 3}
       propertyPath: m_Name
@@ -30239,6 +30241,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4678605589170578554, guid: c7331a8452c23f14bb98fa3fdbcb9b1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6233405750376384103, guid: c7331a8452c23f14bb98fa3fdbcb9b1f,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -30264,14 +30271,15 @@ PrefabInstance:
       propertyPath: point
       value: 
       objectReference: {fileID: 456047876}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8357356892700440929, guid: c7331a8452c23f14bb98fa3fdbcb9b1f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 481352525955674446, guid: c7331a8452c23f14bb98fa3fdbcb9b1f,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2098991677}
+      addedObject: {fileID: 2098991672}
   m_SourcePrefab: {fileID: 100100000, guid: c7331a8452c23f14bb98fa3fdbcb9b1f, type: 3}
 --- !u!1 &1414768007778927162
 GameObject:
