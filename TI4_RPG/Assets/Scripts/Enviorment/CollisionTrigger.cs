@@ -4,8 +4,10 @@ using UnityEngine;
 public class CollisionTrigger : Trigger
 {
 
-    protected void OnTriggerEnter(){
-        action.Invoke();
+    protected void OnTriggerEnter(Collider other){
+        if (other.CompareTag("Player")) {
+            action.Invoke();
+        }
     }
 
     protected void OnDrawGizmos(){
