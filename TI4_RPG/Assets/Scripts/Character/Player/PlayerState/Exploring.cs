@@ -17,6 +17,7 @@ public class Exploring : State
     [Space(5)]
     [Header("Animation Properties")]
     public AnimationController animationController;
+    [SerializeField] private int animationLayerIndex;
     public Animator animator;
     public RuntimeAnimatorController ac;
     public RotationBehaviour rotator;
@@ -25,6 +26,7 @@ public class Exploring : State
     private void Awake(){
         movement = new CCMovement(cc);
         animationController = new DefaultController(animator);
+        animationLayerIndex = animator.GetLayerIndex("Exploration");
         rotator = new LookAtMoveDir(transform);
         enabled = false;
     }
@@ -42,11 +44,13 @@ public class Exploring : State
     public override State OnEnterState()
     {
         Debug.Log("Entered Exploring state");
+        animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;
         return this;
     }
 
     public override void OnExitState() {
+        animator.SetLayerWeight(animationLayerIndex, 0);
         Debug.Log("Exiting Exploring State");
     }
 }

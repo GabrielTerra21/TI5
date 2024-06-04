@@ -209,6 +209,8 @@ MonoBehaviour:
   sc: {fileID: 4055541186546488980}
   inAction: 0
   ePack: {fileID: 0}
+  animator: {fileID: 3079971583745406185}
+  animationLayerIndex: 0
 --- !u!114 &453949818868594171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +224,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 6668460823287861690}
-  ai: {fileID: 0}
+  ai: {fileID: 240199790215464818}
+  animationLayerIndex: 0
+  animator: {fileID: 3079971583745406185}
   idleTimeLimit: 4
   idleTimer: 0
   DesiredPos: {x: 0, y: 0, z: 0}
@@ -686,7 +690,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: c7a352ea22d10104cb7cf726ceeef75d, type: 2}
+      objectReference: {fileID: 9100000, guid: 10cf19ac66ad1414a9091aa7b82e862f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

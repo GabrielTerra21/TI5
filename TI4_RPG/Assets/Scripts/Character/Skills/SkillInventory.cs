@@ -6,7 +6,8 @@ public class SkillInventory : MonoBehaviour {
 
 
     private void Awake() {
-        skills.Sort();
+        try { skills.Sort(); }
+        catch { }
     }
     
     public void Learn(SkillDataSO learned) {

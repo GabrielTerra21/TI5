@@ -1,3 +1,4 @@
+using UnityEditor.Media;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,13 +23,15 @@ public class CombatState : State
     public RuntimeAnimatorController ac;
     [SerializeField] private Animator animator;
     private AnimationController animationController;
+    [SerializeField] private int animationLayerIndex;
     private RotationBehaviour targetLock;
 
 
     private void Awake()
     {
         movement = new CCMovement(cc);
-        animationController = new DefaultController(animator);
+        animationController = new CombatController(animator);
+        animationLayerIndex = animator.GetLayerIndex("Combat");
         targetLock = new LookAtTarget(transform);
         enabled = false;
     }
@@ -56,6 +59,7 @@ public class CombatState : State
     {
         Debug.Log("Entered Combat State");
         // skillWheel.SetActive(true);
+        animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;
         target = eDetect.GetNextTarget();
         return this;
@@ -64,6 +68,7 @@ public class CombatState : State
     public override void OnExitState() {
         // skillWheel.SetActive(false);
         target = null;
+        animator.SetLayerWeight(animationLayerIndex, 0);
         Debug.Log("Exiting Combat State");
     }
     public Character ReturnTarget()

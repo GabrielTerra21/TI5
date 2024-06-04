@@ -11,8 +11,17 @@ public class ECombatState : State {
     public bool inAction;
     public EnemyPack ePack;
 
+    [Space(10)] [Header("Animation Components")]
+    [SerializeField] private Animator animator;
+    private AnimationController ac;
+    [SerializeField] private int animationLayerIndex;
+    
+    
+
 
     private void Awake() {
+        ac = new CombatController(animator);
+        animationLayerIndex = animator.GetLayerIndex("Combat");
         movement = new InRangeMovement(GetComponent<NavMeshAgent>());
         if ( !sc ) sc = GetComponent<SkillContainer>();
         if ( !eDetect ) eDetect = GetComponent<EngageSphere>();
@@ -41,12 +50,14 @@ public class ECombatState : State {
             return this;
         }
         Debug.Log("here");
+        animator.SetLayerWeight(animationLayerIndex, 1);
         Aggro(eDetect.GetNextTarget());
         return this;
     }
 
     public override void OnExitState() {
         Debug.Log($"{gameObject.name} is exiting combat state");
+        animator.SetLayerWeight(animationLayerIndex, 0);
         target = null;
         StopAllCoroutines();
     }

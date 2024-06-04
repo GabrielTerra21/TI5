@@ -1,7 +1,6 @@
 using System.Collections; 
 using UnityEngine; 
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random; 
  
 public class IddleState : State {
@@ -9,6 +8,11 @@ public class IddleState : State {
     [SerializeField] private Enemy agent;
     [SerializeField] private NavMeshAgent ai;
     public IMovement movement;
+    
+    [Space(10)][Header("Animation Components")]
+    private AnimationController ac;
+    [SerializeField] private int animationLayerIndex;
+    [SerializeField] private Animator animator;
     
     [Space(10)][Header("State Data")]
     [SerializeField] private float idleTimeLimit, idleTimer; 
@@ -18,6 +22,8 @@ public class IddleState : State {
  
     private void Awake() {
         movement = new RoamingMovement();
+        ac = new DefaultController(animator);
+        animationLayerIndex = animator.GetLayerIndex("Exploration");
         if (!agent) agent = GetComponent<Enemy>();
         if (!ai) ai = GetComponent<NavMeshAgent>(); 
     }
@@ -27,22 +33,28 @@ public class IddleState : State {
     }
  
     private void FixedUpdate() { 
-        Roaming(); 
+        Roaming();
     } 
  
     public override State OnEnterState() { 
+        animator.SetLayerWeight(animationLayerIndex, 1);
         Debug.Log($"{gameObject.name} has entered Iddle state");
         return this; 
     } 
  
     public override void OnExitState() { 
+        animator.SetLayerWeight(animationLayerIndex, 0);
         StopAllCoroutines(); 
     } 
  
     public void Roaming() {
         if (ready) {
             idleTimer -= Time.fixedDeltaTime;
-            if (idleTimer <= 0) StartCoroutine(Walking());
+            if (idleTimer <= 0) {
+                StartCoroutine(Walking());
+                animator.SetFloat("Movement", ai.speed / 5);
+            }
+            else animator.SetFloat("Movement", 0);
         }
     }
 
