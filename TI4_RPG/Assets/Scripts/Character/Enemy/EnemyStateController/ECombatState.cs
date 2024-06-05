@@ -1,14 +1,18 @@
-using System;
-
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class ECombatState : State {
-    public Character target;
+    [Space(10)][Header("Components")]
+    public Character self;
     public EngageSphere eDetect;
     public SkillContainer sc;
-    public InRangeMovement movement;
-    public bool inAction;
+    
+    [Space(10)][Header("Data")]
+    public Character target;
+    [SerializeField] private bool Moving, casting, rebound;
+    [SerializeField] private float reboundTime, reboundTimer;
+    private InRangeMovement movement;
     public EnemyPack ePack;
 
     [Space(10)] [Header("Animation Components")]
@@ -20,6 +24,7 @@ public class ECombatState : State {
 
 
     private void Awake() {
+        if(!self) self = GetComponent<Character>();
         ac = new CombatController(animator);
         animationLayerIndex = animator.GetLayerIndex("Combat");
         movement = new InRangeMovement(GetComponent<NavMeshAgent>());
@@ -29,18 +34,26 @@ public class ECombatState : State {
     }
     
     private void FixedUpdate() {
-        if (AttackReady(sc.autoAttack)) {
+        if (rebound) {
             if (InDistance(sc.autoAttack, target.transform)) {
                 Debug.Log("AutoAttacking");
                 sc.AutoAttack(target);
-                inAction = false;
+                Moving = false;
             }
-            else if(!inAction) {
-                inAction = true;
+            else if (!Moving) {
+                Moving = true;
                 Debug.Log("Moving");
+                animator.SetFloat("MovementY", self.moveSpeed);
                 movement.Moving(target, sc.autoAttack);
             }
-        }
+
+            reboundTimer -= Time.fixedDeltaTime;
+            if (reboundTimer <= 0) {
+                rebound = false;
+                reboundTimer = reboundTime;
+            }
+        } 
+        else if(!casting && !Moving) SelectAttack();
     }
     
     public override State OnEnterState() {
@@ -49,7 +62,6 @@ public class ECombatState : State {
             ePack.attack.Invoke(target);
             return this;
         }
-        Debug.Log("here");
         animator.SetLayerWeight(animationLayerIndex, 1);
         Aggro(eDetect.GetNextTarget());
         return this;
@@ -62,56 +74,55 @@ public class ECombatState : State {
         StopAllCoroutines();
     }
 
-    public void Aggro(Character target) {
-        this.target = target;
+    public void Aggro(Character target) { this.target = target; }
+
+    public void SelectAttack() {
+        if(casting) return;
+        foreach (var data in sc.skills) {
+            if (data.ready) {
+                StartCoroutine(MakeAttack(data));
+                return;
+            }
+        }
     }
 
-    public void Cast(Skill skill) {
-        sc.Cast(skill, target);
-    }
+    public void Cast(Skill skill) => sc.Cast(skill, target); 
 
-    public void Cast(int index) {
-        sc.Cast(index, target);
-    }
+    /*public void Cast(int index) => sc.Cast(index, target);*/ 
 
-    public bool AttackReady(Skill skill) {
-        if (skill.ready) return true;
-        else return false;
-    }
+    // public bool AttackReady(Skill skill) { return (skill.ready); }
 
+    IEnumerator MakeAttack(Skill selected) {
+        Debug.Log($"{selected.data.SkillName} chosen");
+        if (casting) {
+            Debug.Log("Casting overlap, breaking new casting");
+            yield break;
+        }
+        casting = true;
+        if (selected.data.Range != 0 &&!InDistance(selected, target.transform)) {
+            Moving = true;
+            movement.Moving(target, selected);
+            animator.SetFloat("MovementY", self.moveSpeed );
+            Debug.Log("moving in range");
+            yield return new WaitUntil(() => InDistance(selected, target.transform));
+            Debug.Log("Reached range for attack");
+            Moving = false;
+        }
+        Debug.Log($"Casting {selected.data.SkillName}"); 
+        Cast(selected);
+        Debug.Log($"{selected.data.SkillName} casted successfully");
+        casting = false;
+        rebound = true;
+    }
+    
     public bool InDistance(Skill skill, Transform targetPos) {
         if ((targetPos.position - transform.position).sqrMagnitude > skill.data.Range * skill.data.Range) {
-            Debug.Log("Not in distance");
+            Debug.Log($"Not in distance : {skill.data.Range}");
             return false;
         }
+        Debug.Log("in distance");
+        animator.SetFloat("MovementY", 0);
         return true;
     }
-
-    // public void AutoAttack() {
-    //     if (Vector3.Distance(transform.position, target.transform.position) > sc.autoAttack.data.Range && !inAction) StartCoroutine(GetInRange(sc.autoAttack));
-    //     else {
-    //         Debug.Log("In range");
-    //         sc.AutoAttack(target);
-    //     }
-    // }
-
-    /*IEnumerator GetInRange(Skill skill) {
-        inAction = true;
-        Debug.Log("Get in range start");
-        Vector3 offset = target.transform.position - transform.position;
-        float sqrLen = offset.sqrMagnitude;
-        float desiredDistance = skill.data.Range * skill.data.Range;
-        desiredDistance *= .95f;
-        Debug.Log("Calculation complete");
-        if (desiredDistance  < sqrLen) {
-            Debug.Log("Initiating movement");
-            movement.Moving(new Vector2(target.transform.position.x, target.transform.position.z), skill.data.Range);
-            yield return new WaitUntil(() => desiredDistance >= (target.transform.position - transform.position).sqrMagnitude);
-            Debug.Log("Attacking range achieved");
-        }
-        Debug.Log("Skill casted successfully, coroutine ended");
-        inAction = false;
-        Debug.Log("GetInRange has ended");
-        yield break;
-    }*/
+    
 }
