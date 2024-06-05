@@ -7,12 +7,13 @@ public class ECombatState : State {
     public Character self;
     public EngageSphere eDetect;
     public SkillContainer sc;
+    [SerializeField] private NavMeshAgent ai;
     
     [Space(10)][Header("Data")]
     public Character target;
     [SerializeField] private bool Moving, casting, rebound;
     [SerializeField] private float reboundTime, reboundTimer;
-    private InRangeMovement movement;
+    //private InRangeMovement movement;
     public EnemyPack ePack;
 
     [Space(10)] [Header("Animation Components")]
@@ -23,11 +24,12 @@ public class ECombatState : State {
     
 
 
-    private void Awake() {
+    private void Awake() { 
+        if (!ai) ai = GetComponent<NavMeshAgent>();
         if(!self) self = GetComponent<Character>();
         ac = new CombatController(animator);
         animationLayerIndex = animator.GetLayerIndex("Combat");
-        movement = new InRangeMovement(GetComponent<NavMeshAgent>());
+        //movement = new InRangeMovement(GetComponent<NavMeshAgent>());
         if ( !sc ) sc = GetComponent<SkillContainer>();
         if ( !eDetect ) eDetect = GetComponent<EngageSphere>();
         if (ePack) ePack.attack.AddListener(Aggro);
@@ -42,9 +44,9 @@ public class ECombatState : State {
             }
             else if (!Moving) {
                 Moving = true;
-                Debug.Log("Moving");
+                Debug.Log("Moving has failed");
                 animator.SetFloat("MovementY", self.moveSpeed);
-                movement.Moving(target, sc.autoAttack);
+                StartCoroutine(Movement(sc.autoAttack));
             }
 
             reboundTimer -= Time.fixedDeltaTime;
@@ -53,7 +55,7 @@ public class ECombatState : State {
                 reboundTimer = reboundTime;
             }
         } 
-        else if(!casting && !Moving) SelectAttack();
+        else if(!casting) SelectAttack();
     }
     
     public override State OnEnterState() {
@@ -101,7 +103,9 @@ public class ECombatState : State {
         casting = true;
         if (selected.data.Range != 0 &&!InDistance(selected, target.transform)) {
             Moving = true;
-            movement.Moving(target, selected);
+            //movement.Moving(target, selected);
+            StartCoroutine(Movement(selected));
+            Debug.Log("Make Attack failed");
             animator.SetFloat("MovementY", self.moveSpeed );
             Debug.Log("moving in range");
             yield return new WaitUntil(() => InDistance(selected, target.transform));
@@ -123,6 +127,22 @@ public class ECombatState : State {
         Debug.Log("in distance");
         animator.SetFloat("MovementY", 0);
         return true;
+    }
+    IEnumerator Movement ( Skill skill ) {
+        Vector3 targetPos = target.transform.position;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(targetPos, out hit, skill.data.Range - 1 , -1); 
+        Vector3 desiredPos = hit.position;
+        ai.SetDestination(desiredPos);
+        while (!InDistance(skill, target.transform)) {
+            if (target.transform.position != targetPos) {
+                StartCoroutine(Movement(skill));
+                yield break;
+            }
+            yield return null;
+        }
+        ai.ResetPath();
+        Debug.Log("New destination set");
     }
     
 }
