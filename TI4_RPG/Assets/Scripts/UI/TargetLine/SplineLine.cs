@@ -1,61 +1,53 @@
 using UnityEngine;
 
 public class SplineLine : MonoBehaviour {
-    [Header("Line")]
+    [Header("Line")] 
+    
+    [SerializeField] private float heightOffset;
+    [SerializeField] private int verts;
     public GameObject source, target;
+    private float step;
+    private Vector3 keyPos;
+    private Vector3[] positions;
 
     [Header("Components")]
     public LineRenderer line;
 
-    [Header("data")] 
-    public float heightOffset;
-
-    public int halfSegments, verts;
-
 
     private void Awake() {
         if (!line) line = GetComponent<LineRenderer>();
+        step = (float) 1 / (verts - 1);// Calculate step between vertices
+        positions = new Vector3[verts];
     }
 
     private void FixedUpdate() {
         SetLine();
     }
 
-    private void SetLine() {
-        Debug.Log("uai");
-        Vector3[] spline = GetPositions(verts);
-        line.positionCount = spline.Length;
-        line.SetPositions(spline);
+    public void Target(GameObject nTarget) {
+        target = nTarget;
     }
 
-    private Vector3[] GetPositions(int segments) {
+    public void SetOrigin(GameObject origin) {
+        source = origin;
+    }
+    
+    private void SetLine() {
+        GetPositions();
+        line.positionCount = positions.Length;
+        line.SetPositions(positions);
+    }
+
+    private void GetPositions() {
         //Get 3 key positions to guide the line
-        Vector3[] keyPos = new Vector3[3];
-        for (int i = 0; i < keyPos.Length; i++) {
-            keyPos[i] = Vector3.Lerp(source.transform.position, target.transform.position, 0.5f * i);
-        }
-        keyPos[1] += Vector3.up * heightOffset;// set the middle point to be at the determined height offset from the other points
+        keyPos = Vector3.Lerp(source.transform.position, target.transform.position, 0.5f); // middle point is halfway point between origin and target
+        keyPos += Vector3.up * heightOffset;// set the middle point to be at the determined height offset from the other points
 
-        float step = (float) 1 / segments;// Calculate step between vertices
-        Vector3[] pos = new Vector3[segments];
-
-        for (int i = 0; i < segments; i++) {
-            Vector3 a = Vector3.Lerp(keyPos[0], keyPos[1], step * i);
-            Vector3 b = Vector3.Lerp(keyPos[1], keyPos[2], step * i);
+        for (int i = 0; i < verts; i++) {
+            Vector3 a = Vector3.Lerp(source.transform.position, keyPos, step * i);
+            Vector3 b = Vector3.Lerp(keyPos, target.transform.position, step * i);
             Vector3 c = Vector3.Lerp(a, b, step * i);
-            pos[i] = c;
+            positions[i] = c;
         }
-
-        // Vector3[] pos = new Vector3[ (halfSegments * 2)];
-        // // Calculate positions for the first half of the spline
-        // for (int i = 0; i < halfSegments; i++) {
-        //     pos[i] = Vector3.Lerp(keyPos[0], keyPos[1], step * i);
-        // }
-        // // Calculate positions for the second half of the spline
-        // for (int i = 1; i < halfSegments; i++) {
-        //     pos[i + halfSegments] = Vector3.Lerp(keyPos[1], keyPos[2], step * i);
-        // }
-
-        return pos;
     }
 }

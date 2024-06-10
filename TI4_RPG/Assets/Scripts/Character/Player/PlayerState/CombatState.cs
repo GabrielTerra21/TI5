@@ -1,11 +1,9 @@
-using UnityEditor.Media;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CombatState : State
-{
-    [Space(10)]
-    [Header("State Properties")]
+public class CombatState : State {
+    [Space(10)] [Header("State Components")] 
+    [SerializeField] private SplineLine line;
     [SerializeField] private Character agent;
     [SerializeField] private Character target;
     [SerializeField] private EngageSphere eDetect;
@@ -34,6 +32,7 @@ public class CombatState : State
         animationLayerIndex = animator.GetLayerIndex("Combat");
         targetLock = new LookAtTarget(transform);
         enabled = false;
+        if (!line) line = GetComponentInChildren<SplineLine>();
     }
 
     private void Update()
@@ -62,13 +61,21 @@ public class CombatState : State
         animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;
         target = eDetect.GetNextTarget();
+        line.gameObject.SetActive(true);
+        line.Target(target.LockOnTarget);
         return this;
     }
 
+    public void TargetNext() {
+        target = eDetect.GetNextTarget(target);
+        line.Target(target.gameObject);
+    }
+    
     public override void OnExitState() {
         // skillWheel.SetActive(false);
         target = null;
         animator.SetLayerWeight(animationLayerIndex, 0);
+        line.gameObject.SetActive(false);
         Debug.Log("Exiting Combat State");
     }
     public Character ReturnTarget()

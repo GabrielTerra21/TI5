@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public abstract class Character : MonoBehaviour
 {
     [Header("Character Components")]
     public Animator animator;
-
+    public GameObject LockOnTarget;
     public UnityEvent OnDeath, OnDamage;
 
     [Space(5)]

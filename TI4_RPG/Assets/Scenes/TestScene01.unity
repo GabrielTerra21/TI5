@@ -181,12 +181,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6591d06fafadc43846a4961e42f796, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 1901660708}
-  target: {fileID: 765803266}
-  line: {fileID: 97766616}
   heightOffset: 2
-  halfSegments: 0
   verts: 7
+  source: {fileID: 0}
+  target: {fileID: 0}
+  line: {fileID: 97766616}
 --- !u!120 &97766616
 LineRenderer:
   serializedVersion: 2
@@ -241,7 +240,25 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.50145054
         value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -300,8 +317,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97766614}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3406,6 +3423,11 @@ PrefabInstance:
       propertyPath: reboundTimer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6668460823287861690, guid: 03fbbcaa5915ead43859297f57cd2971,
+        type: 3}
+      propertyPath: LockOnTarget
+      value: 
+      objectReference: {fileID: 765803266}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -3878,6 +3900,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 57c4360e28caa2745a43fc97ad33f004,
         type: 2}
+    - target: {fileID: 5497291001537649904, guid: 039211467925f104ab48f6710f08a44e,
+        type: 3}
+      propertyPath: line
+      value: 
+      objectReference: {fileID: 97766615}
+    - target: {fileID: 5715856817878920745, guid: 039211467925f104ab48f6710f08a44e,
+        type: 3}
+      propertyPath: line
+      value: 
+      objectReference: {fileID: 97766615}
+    - target: {fileID: 5715856817878920745, guid: 039211467925f104ab48f6710f08a44e,
+        type: 3}
+      propertyPath: lineOrigin
+      value: 
+      objectReference: {fileID: 1901660708}
+    - target: {fileID: 5715856817878920745, guid: 039211467925f104ab48f6710f08a44e,
+        type: 3}
+      propertyPath: LockOnTarget
+      value: 
+      objectReference: {fileID: 1901660708}
     - target: {fileID: 7282164488796508166, guid: 039211467925f104ab48f6710f08a44e,
         type: 3}
       propertyPath: checkTag
