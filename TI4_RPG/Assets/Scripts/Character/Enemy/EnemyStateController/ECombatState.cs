@@ -24,8 +24,8 @@ public class ECombatState : State {
     
 
 
-    private void Awake() { 
-        if (!ai) ai = GetComponent<NavMeshAgent>();
+    protected override void Awake() {
+        //base.Awake();
         if(!self) self = GetComponent<Character>();
         ac = new CombatController(animator);
         animationLayerIndex = animator.GetLayerIndex("Combat");
@@ -35,7 +35,8 @@ public class ECombatState : State {
         if (ePack) ePack.attack.AddListener(Aggro);
     }
     
-    private void FixedUpdate() {
+    protected void FixedUpdate() {
+        base.FixedUpdate();
         if (rebound) {
             if (InDistance(sc.autoAttack, target.transform)) {
                 Debug.Log("AutoAttacking");

@@ -20,7 +20,7 @@ public class IddleState : State {
     [SerializeField] private bool ready; 
  
  
-    private void Awake() {
+    protected override void Awake() {
         movement = new RoamingMovement();
         ac = new DefaultController(animator);
         animationLayerIndex = animator.GetLayerIndex("Exploration");
@@ -32,7 +32,8 @@ public class IddleState : State {
         ai.speed = agent.moveSpeed;
     }
  
-    private void FixedUpdate() { 
+    protected override void FixedUpdate() {
+        base.FixedUpdate();
         Roaming();
     } 
  

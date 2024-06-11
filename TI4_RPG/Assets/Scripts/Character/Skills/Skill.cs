@@ -44,6 +44,7 @@ public class Skill : MonoBehaviour {
         float count = 0;
 
         while (count < data.CastTime) {
+            yield return new WaitWhile((() => GameManager.Instance.paused)); // Pauses Coroutine if game is paused;
             timeToCast = Mathf.Lerp(0, data.CastTime, count / data.CastTime);
             count += Time.deltaTime;
             yield return null;
@@ -59,6 +60,7 @@ public class Skill : MonoBehaviour {
         float count = 0;
 
         while (count < data.CoolDown) {
+            yield return new WaitWhile((() => GameManager.Instance.paused));
             cdLeft = Mathf.Lerp(data.CoolDown, 0, count / data.CoolDown);
             count += Time.deltaTime;
             yield return null;

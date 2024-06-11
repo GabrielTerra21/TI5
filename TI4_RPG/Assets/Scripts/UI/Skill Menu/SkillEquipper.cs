@@ -27,7 +27,7 @@ public class SkillEquipper : MonoBehaviour {
         for (int i = 0; i < sc.skills.Length; i++) {
             slots[i].gameObject.SetActive(true);
             if (sc.skills[i].data != null) slots[i].UpdateButton(sc.skills[i].data);
-            else slots[i].UpdateButton(GameManager.Insatance.empty);
+            else slots[i].UpdateButton(GameManager.Instance.empty);
            // slots[i].onSelection += OnSelectSlot;
         }
     }

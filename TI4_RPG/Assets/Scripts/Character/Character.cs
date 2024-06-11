@@ -20,6 +20,7 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Awake() {
         GetData();
+        //GameManager.Instance.pauseGame.AddListener(Pause);
     }
 
     public void GetData(){
@@ -37,6 +38,14 @@ public abstract class Character : MonoBehaviour
             Die();
         }
         return dmg;
+    }
+
+    public virtual void Pause() {
+        animator.speed = 0;
+    }
+
+    public virtual void Unpause() {
+        animator.speed = 0;
     }
 
     public virtual void Heal(int heal) {

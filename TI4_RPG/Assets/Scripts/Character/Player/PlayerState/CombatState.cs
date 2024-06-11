@@ -25,8 +25,9 @@ public class CombatState : State {
     private RotationBehaviour targetLock;
 
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         movement = new CCMovement(cc);
         animationController = new CombatController(animator);
         animationLayerIndex = animator.GetLayerIndex("Combat");
@@ -35,8 +36,9 @@ public class CombatState : State {
         if (!line) line = GetComponentInChildren<SplineLine>();
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         movement.Moving(moveDir, agent.moveSpeed);
         animationController.SetAnimations(moveDir);
         targetLock.SetRotation(target.transform.position);
@@ -68,7 +70,7 @@ public class CombatState : State {
 
     public void TargetNext() {
         target = eDetect.GetNextTarget(target);
-        line.Target(target.gameObject);
+        line.Target(target.LockOnTarget.gameObject);
     }
     
     public override void OnExitState() {
@@ -78,6 +80,7 @@ public class CombatState : State {
         line.gameObject.SetActive(false);
         Debug.Log("Exiting Combat State");
     }
+    
     public Character ReturnTarget()
     {
         return target;

@@ -1,13 +1,13 @@
 using UnityEngine;
 
 public abstract class Singleton<T> : MonoBehaviour where T: MonoBehaviour {
-    public static T Insatance;
+    public static T Instance;
 
-    private void Awake() {
-        if (Insatance != null) {
+    protected virtual void Awake() {
+        if (Instance != null) {
             Destroy(gameObject);
         }
-        Insatance = this as T;
+        Instance = this as T;
         DontDestroyOnLoad(gameObject);
     }
 }

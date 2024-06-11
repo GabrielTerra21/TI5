@@ -31,6 +31,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchEnemy",
+                    "type": "Button",
+                    "id": "dfeb2c02-af83-4877-8e35-8bbcb34524d4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interagir",
+                    "type": "Button",
+                    "id": "9c9455a6-8afa-43b7-907e-010a7ab1e5a9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -130,6 +148,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "557d5c55-ee9f-4487-aef7-5cc133fa8d30",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SwitchEnemy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c131a522-5152-4a45-9f06-5ef1991680c5",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Interagir",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
