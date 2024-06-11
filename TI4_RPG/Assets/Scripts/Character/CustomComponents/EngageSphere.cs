@@ -38,7 +38,7 @@ public class EngageSphere : MonoBehaviour {
     private void GetEnemy(Character enemy){
         inRange.Add(enemy);
         enemy.OnDeath.AddListener(() => RemoveFromList(enemy));
-        inRange.Sort();
+        //inRange.Sort();
     }
 
     public void RemoveFromList(Character enemy) {
