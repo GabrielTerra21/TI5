@@ -13,9 +13,8 @@ public class GameManager : Singleton<GameManager> {
     public SkillDataSO empty;
 
     
-    public void Compra(int price) {
-        money -= price;
-    }
+    public void SpendMoney(int price) { money -= price; }
+    public void GainMoney(int amount) { money += amount; }
 
     public void LoadNewScene(string sceneName) {
         pauseGame.RemoveAllListeners();
@@ -25,7 +24,6 @@ public class GameManager : Singleton<GameManager> {
         SceneManager.LoadScene("LoadingScreen");
 
     }
-
     public void LoadNewScene(Scene newScene) {
         pauseGame.RemoveAllListeners();
         unpauseGame.RemoveAllListeners();
@@ -33,9 +31,9 @@ public class GameManager : Singleton<GameManager> {
         currentScene = newScene;
         SceneManager.LoadScene("LoadingScreen");
     }
-    public void GanhaDinheiro(int amount)
-    {
-        money += amount;
+
+    public void PauseGame() {
+        pauseGame.Invoke();
+        paused = true;
     }
-    
 }
