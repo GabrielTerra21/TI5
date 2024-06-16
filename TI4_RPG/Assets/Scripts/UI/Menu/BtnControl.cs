@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class BtnControl : MonoBehaviour
 {
-    public string nomeCena;
-    public void BtnMudaCena(){
+    public void BtnMudaCena(string nomeCena){
         SceneManager.LoadScene(nomeCena);
     }
 
