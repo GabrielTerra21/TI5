@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
     public int damage;
     private void Update()
     {
+        if(GameManager.Instance.paused) return;
         if (target != null)
         {
             Vector3 dir = target.transform.position - transform.position;

@@ -1,6 +1,6 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 
 public abstract class Character : MonoBehaviour
 {
@@ -21,7 +21,11 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Awake() {
         GetData();
-        //GameManager.Instance.pauseGame.AddListener(Pause);
+    }
+
+    protected virtual void Start() {
+        GameManager.Instance.pauseGame.AddListener(Pause);
+        GameManager.Instance.unpauseGame.AddListener(Unpause);
     }
 
     public void GetData(){
@@ -47,7 +51,7 @@ public abstract class Character : MonoBehaviour
     }
 
     public virtual void Unpause() {
-        animator.speed = 0;
+        animator.speed = 1;
     }
 
     public virtual void Heal(int heal) {

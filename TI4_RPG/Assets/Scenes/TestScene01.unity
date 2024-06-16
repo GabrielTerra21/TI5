@@ -769,6 +769,11 @@ PrefabInstance:
       propertyPath: skills.Array.data[3]
       value: 
       objectReference: {fileID: 1609861509}
+    - target: {fileID: 4971416144849711420, guid: 03fbbcaa5915ead43859297f57cd2971,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 6377252371494457551, guid: 03fbbcaa5915ead43859297f57cd2971,
         type: 3}
       propertyPath: ai
@@ -4323,6 +4328,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3706539794441228579}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3706539794441228582 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1111696704709198170, guid: 039211467925f104ab48f6710f08a44e,
+    type: 3}
+  m_PrefabInstance: {fileID: 3706539794441228579}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3706539794441228580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65e24f84c0e25143b8e63905697500e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4139405861046474369 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2916605610954524218, guid: 039211467925f104ab48f6710f08a44e,
@@ -4370,6 +4387,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_ActionId
+      value: 3d2b8b42-2184-45cc-a8c6-f33330cf6096
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionId
+      value: 03c41350-7aaf-4a15-af29-59d2815e9192
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_ActionName
       value: Exploring/SwitchEnemy[/Keyboard/tab]
       objectReference: {fileID: 0}
@@ -4377,6 +4404,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_ActionName
       value: Exploring/Interagir[/Keyboard/f]
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_ActionName
+      value: Exploring/OpenMenu[/Keyboard/e]
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_ActionName
+      value: Exploring/PauseGame[/Keyboard/escape]
       objectReference: {fileID: 0}
     - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
         type: 3}
@@ -4390,12 +4427,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[14].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
@@ -4436,6 +4483,11 @@ PrefabInstance:
     - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[15].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[17].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,

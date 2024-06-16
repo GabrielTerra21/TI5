@@ -32,8 +32,8 @@ public class IddleState : State {
         ai.speed = agent.moveSpeed;
     }
  
-    protected override void FixedUpdate() {
-        base.FixedUpdate();
+    private void FixedUpdate() {
+        if(paused) return;
         Roaming();
     } 
  

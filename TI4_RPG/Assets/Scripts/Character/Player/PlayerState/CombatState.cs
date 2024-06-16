@@ -36,9 +36,9 @@ public class CombatState : State {
         if (!line) line = GetComponentInChildren<SplineLine>();
     }
 
-    protected override void Update()
+    private void Update()
     {
-        base.Update();
+        if(paused) return;
         movement.Moving(moveDir, agent.moveSpeed);
         animationController.SetAnimations(moveDir);
         targetLock.SetRotation(target.transform.position);
@@ -70,6 +70,7 @@ public class CombatState : State {
 
     public void TargetNext() {
         target = eDetect.GetNextTarget(target);
+        Debug.Log($"target is now {target}");
         line.Target(target.LockOnTarget.gameObject);
     }
     

@@ -21,7 +21,8 @@ public class Enemy : Character {
         base.Unpause();
         ai.isStopped = false;
     }
-    private void Start() {
+    protected override void Start() {
+        base.Start();
         if (homePos == Vector3.zero) homePos = transform.position;
         if (reachingDistance == 0) reachingDistance = .2f;
     }

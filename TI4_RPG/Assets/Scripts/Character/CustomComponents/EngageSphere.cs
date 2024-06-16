@@ -50,7 +50,8 @@ public class EngageSphere : MonoBehaviour {
         if (current == null) return inRange[0];
         Debug.Log("fase 2");
         int i = inRange.IndexOf(current);
-        return inRange[ i++ % inRange.Count ];
+        Debug.Log($"Targeted {inRange[(i + 1) % inRange.Count]}");
+        return inRange[ (i + 1) % inRange.Count ];
     }
     
 }

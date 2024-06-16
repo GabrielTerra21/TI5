@@ -35,8 +35,8 @@ public class ECombatState : State {
         if (ePack) ePack.attack.AddListener(Aggro);
     }
     
-    protected void FixedUpdate() {
-        base.FixedUpdate();
+    private void FixedUpdate() {
+        if(paused) return;
         if (rebound) {
             if (InDistance(sc.autoAttack, target.transform)) {
                 Debug.Log("AutoAttacking");

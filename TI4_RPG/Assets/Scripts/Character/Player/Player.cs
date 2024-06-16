@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Player : Character
@@ -15,7 +14,8 @@ public class Player : Character
         if (!line) line = GetComponentInChildren<SplineLine>();
     }
 
-    private void Start() {
+    protected override void Start() {
+        base.Start();
         line.SetOrigin(LockOnTarget);
         line.gameObject.SetActive(false);
     }

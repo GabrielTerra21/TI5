@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Store : MonoBehaviour
@@ -8,6 +6,6 @@ public class Store : MonoBehaviour
 
     public void AbreLoja()
     {
-        lojaMenu.SetActive(!lojaMenu.active);
+        lojaMenu.SetActive(!lojaMenu.activeInHierarchy);
     }
 }

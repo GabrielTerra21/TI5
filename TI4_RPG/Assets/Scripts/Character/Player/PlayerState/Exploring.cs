@@ -26,7 +26,8 @@ public class Exploring : State
     public RotationBehaviour rotator;
     
 
-    private void Awake(){
+    protected override void Awake(){
+        base.Awake();
         movement = new CCMovement(cc);
         animationController = new DefaultController(animator);
         animationLayerIndex = animator.GetLayerIndex("Exploration");
@@ -36,6 +37,7 @@ public class Exploring : State
 
     private void Update()
     {
+        if(paused) return;
         movement.Moving(moveDir, agent.moveSpeed);
         animationController.SetAnimations(moveDir);
         rotator.SetRotation(moveDir);
