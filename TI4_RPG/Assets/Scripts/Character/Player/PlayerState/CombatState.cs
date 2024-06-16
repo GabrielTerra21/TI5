@@ -69,6 +69,7 @@ public class CombatState : State {
     }
 
     public void TargetNext() {
+        Debug.Log("entered targeting");
         target = eDetect.GetNextTarget(target);
         Debug.Log($"target is now {target}");
         line.Target(target.LockOnTarget.gameObject);
