@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(CharacterController))]
 public class Exploring : State
@@ -7,7 +8,9 @@ public class Exploring : State
     [Space(10)]
     [Header("State Properties")]
     public Character agent;
-    
+    public List<WaitingTrigger> waitingTriggers;
+    private WaitingTrigger near;
+
     [Space(5)]
     [Header("Movement Properties")]
     public IMovement movement;
@@ -52,5 +55,18 @@ public class Exploring : State
     public override void OnExitState() {
         animator.SetLayerWeight(animationLayerIndex, 0);
         Debug.Log("Exiting Exploring State");
+    }
+    public void Interect()
+    {
+        
+        foreach(WaitingTrigger w in waitingTriggers)
+        {
+            if (near == null || (transform.position - w.transform.position).magnitude < (transform.position - near.transform.position).magnitude)
+            {
+                near = w;
+            }
+            w.Activate();
+            waitingTriggers.Remove(w);
+        }
     }
 }

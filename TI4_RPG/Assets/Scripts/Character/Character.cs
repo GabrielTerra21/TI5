@@ -8,6 +8,7 @@ public abstract class Character : MonoBehaviour
     public Animator animator;
     public GameObject LockOnTarget;
     public UnityEvent OnDeath, OnDamage;
+    public GameObject hitMark;
 
     [Space(5)]
     [Header("Character Sheet")]
@@ -37,6 +38,7 @@ public abstract class Character : MonoBehaviour
             life = 0;
             Die();
         }
+        Instantiate(hitMark, transform.position, transform.rotation);
         return dmg;
     }
 

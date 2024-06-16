@@ -204,12 +204,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c84c04c63ad3c449874658fbba4761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paused: 0
   self: {fileID: 6668460823287861690}
   eDetect: {fileID: 5929105700121558319}
   sc: {fileID: 4055541186546488980}
+  ai: {fileID: 0}
   target: {fileID: 0}
   Moving: 0
   casting: 0
+  rebound: 0
+  reboundTime: 0
+  reboundTimer: 0
   ePack: {fileID: 0}
   animator: {fileID: 3079971583745406185}
   animationLayerIndex: 0
@@ -225,6 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c0e27e29667bc4e8be00002ea9192b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paused: 0
   agent: {fileID: 6668460823287861690}
   ai: {fileID: 240199790215464818}
   animationLayerIndex: 0
@@ -299,12 +305,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3079971583745406185}
+  LockOnTarget: {fileID: 0}
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
+  hitMark: {fileID: 8378049728435400075, guid: ec504b50626469c4e86573842663703e, type: 3}
   data: {fileID: 11400000, guid: ef5a787d9ef406f44822703ac97490fd, type: 2}
   moveSpeed: 5
   life: 0
@@ -312,6 +320,7 @@ MonoBehaviour:
   homePos: {x: 0, y: 0, z: 0}
   roamingDistance: 10
   reachingDistance: 0.25
+  ai: {fileID: 0}
 --- !u!54 &4971416144849711420
 Rigidbody:
   m_ObjectHideFlags: 0

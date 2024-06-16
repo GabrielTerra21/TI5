@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour
             hits = Physics.OverlapSphere(transform.position, 4f);
             foreach (Collider c in hits)
             {
-                if (c.gameObject.TryGetComponent<Character>(out Character character))
+                if (c.gameObject.TryGetComponent<Character>(out Character character) && character != from)
                 {
                     character.TakeDamage(damage);
                 }
