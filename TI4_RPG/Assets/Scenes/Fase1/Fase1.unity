@@ -17593,7 +17593,7 @@ PrefabInstance:
     - target: {fileID: 1045054911829590942, guid: 039211467925f104ab48f6710f08a44e,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1068471869987222897, guid: 039211467925f104ab48f6710f08a44e,
         type: 3}
@@ -17864,17 +17864,17 @@ PrefabInstance:
     - target: {fileID: 7276165235754925598, guid: 039211467925f104ab48f6710f08a44e,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7276165235754925598, guid: 039211467925f104ab48f6710f08a44e,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7276165235754925598, guid: 039211467925f104ab48f6710f08a44e,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.68206245
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7276165235754925598, guid: 039211467925f104ab48f6710f08a44e,
         type: 3}
@@ -54527,6 +54527,7 @@ GameObject:
   - component: {fileID: 8638841952591205156}
   - component: {fileID: 4633235799821769857}
   - component: {fileID: 7469352063293401163}
+  - component: {fileID: 8982574938678397343}
   m_Layer: 0
   m_Name: Fase1
   m_TagString: Untagged
@@ -54534,6 +54535,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &8982574938678397343
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8982574938678397342}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4545278805577978178, guid: 96e17288973378746956b65fbe944511, type: 3}
 --- !u!33 &9038679473147710864
 MeshFilter:
   m_ObjectHideFlags: 0
