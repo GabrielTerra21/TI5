@@ -4,22 +4,17 @@ using UnityEngine;
 
 public class WaitingTrigger : Trigger
 {
-    private bool waiting = false;
-    protected void OnTriggerEnter()
+    private void OnTriggerEnter(Collider other)
     {
-        waiting = true;
+        other.GetComponent<Exploring>().waitingTriggers.Add(this);
     }
     private void OnTriggerExit(Collider other)
     {
-        waiting = false;
+        other.GetComponent<Exploring>().waitingTriggers.Remove(this);
     }
-    private void Update()
+    public void Activate()
     {
-        if (waiting && Input.GetKeyDown(KeyCode.E))
-        {
-            action.Invoke();
-            Debug.Log("apertou");
-        }
+        action.Invoke();
     }
 
     protected void OnDrawGizmos()

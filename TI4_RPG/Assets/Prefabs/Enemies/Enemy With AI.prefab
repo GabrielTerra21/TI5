@@ -257,11 +257,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c84c04c63ad3c449874658fbba4761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  paused: 0
+  self: {fileID: 0}
   eDetect: {fileID: 5426656319177009943}
   sc: {fileID: 4526332353363287678}
-  inAction: 0
+  ai: {fileID: 0}
+  target: {fileID: 0}
+  Moving: 0
+  casting: 0
+  rebound: 0
+  reboundTime: 0
+  reboundTimer: 0
   ePack: {fileID: 0}
+  animator: {fileID: 0}
+  animationLayerIndex: 0
 --- !u!114 &3149899221973489951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,8 +283,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c0e27e29667bc4e8be00002ea9192b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  paused: 0
   agent: {fileID: 5578878872570702755}
   ai: {fileID: 0}
+  animationLayerIndex: 0
+  animator: {fileID: 0}
   idleTimeLimit: 4
   idleTimer: 0
   DesiredPos: {x: 0, y: 0, z: 0}
@@ -346,12 +358,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2859580815161595005}
+  LockOnTarget: {fileID: 0}
   OnDeath:
     m_PersistentCalls:
       m_Calls: []
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
+  hitMark: {fileID: 8378049728435400075, guid: ec504b50626469c4e86573842663703e, type: 3}
   data: {fileID: 11400000, guid: ef5a787d9ef406f44822703ac97490fd, type: 2}
   moveSpeed: 5
   life: 0
@@ -359,6 +373,7 @@ MonoBehaviour:
   homePos: {x: 0, y: 0, z: 0}
   roamingDistance: 10
   reachingDistance: 0.25
+  ai: {fileID: 0}
 --- !u!54 &8966775586696819581
 Rigidbody:
   m_ObjectHideFlags: 0

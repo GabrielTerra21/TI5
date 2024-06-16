@@ -26,6 +26,7 @@ public class Player : Character
 
     public override void Die() {
         Destroy(gameObject);
+        GameManager.Instance.LoadNewScene("Derrota");
     }
 
 }
