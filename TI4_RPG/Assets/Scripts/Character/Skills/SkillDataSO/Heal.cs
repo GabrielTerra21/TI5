@@ -8,6 +8,6 @@ public class Heal : SkillDataSO
     public override void OnCast(Character from, Character target)
     {
         Instantiate(Prefab, from.transform);
-        from.Heal(20);
+        from.Heal(Power);
     }
 }

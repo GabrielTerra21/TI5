@@ -10,7 +10,7 @@ public class FireSplash : SkillDataSO
         Collider[] hits = Physics.OverlapSphere(from.transform.position, 3);
         foreach(Collider col in hits)
         {
-            if(col.gameObject.TryGetComponent<Character>(out Character character) && !character.CompareTag("Player"))
+            if(col.gameObject.TryGetComponent<Character>(out Character character) && character != from)
             {
                 character.TakeDamage(Power);
                 col.GetComponent<Rigidbody>().AddForce(-col.transform.forward.normalized * 6,ForceMode.Impulse);

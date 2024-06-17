@@ -67,7 +67,6 @@ public class Exploring : State
                 near = w;
             }
             w.Activate();
-            waitingTriggers.Remove(w);
         }
     }
 }
