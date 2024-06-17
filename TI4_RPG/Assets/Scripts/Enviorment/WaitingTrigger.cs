@@ -6,11 +6,17 @@ public class WaitingTrigger : Trigger
 {
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<Exploring>().waitingTriggers.Add(this);
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<Exploring>().waitingTriggers.Add(this);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        other.GetComponent<Exploring>().waitingTriggers.Remove(this);
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<Exploring>().waitingTriggers.Remove(this);
+        }
     }
     public void Activate()
     {
