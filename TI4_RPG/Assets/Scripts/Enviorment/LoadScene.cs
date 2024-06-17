@@ -2,7 +2,8 @@ using UnityEngine;
 
 
 public class LoadScene : MonoBehaviour {
-    public void LoadNewScene(string scene) {
+    public string scene;
+    public void LoadNewScene() {
         GameManager.Instance.LoadNewScene(scene);
     }
 }

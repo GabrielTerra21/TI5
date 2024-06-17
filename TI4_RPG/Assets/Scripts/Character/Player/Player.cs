@@ -29,4 +29,7 @@ public class Player : Character
         GameManager.Instance.LoadNewScene("Derrota");
     }
 
+    public void PauseGame() {
+        GameManager.Instance.PauseGame();
+    }
 }

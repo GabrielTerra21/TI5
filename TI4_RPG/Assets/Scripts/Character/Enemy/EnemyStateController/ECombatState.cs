@@ -24,7 +24,7 @@ public class ECombatState : State {
     
 
 
-    protected override void Awake() {
+    private void Awake() {
         //base.Awake();
         if(!self) self = GetComponent<Character>();
         ac = new CombatController(animator);

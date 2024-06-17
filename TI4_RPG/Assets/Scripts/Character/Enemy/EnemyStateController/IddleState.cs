@@ -20,7 +20,7 @@ public class IddleState : State {
     [SerializeField] private bool ready; 
  
  
-    protected override void Awake() {
+    private void Awake() {
         movement = new RoamingMovement();
         ac = new DefaultController(animator);
         animationLayerIndex = animator.GetLayerIndex("Exploration");
@@ -28,7 +28,8 @@ public class IddleState : State {
         if (!ai) ai = GetComponent<NavMeshAgent>(); 
     }
 
-    private void Start() {
+    protected override void Start() {
+        base.Start();
         ai.speed = agent.moveSpeed;
     }
  

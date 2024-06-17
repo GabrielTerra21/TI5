@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,9 +15,16 @@ public class GameManager : MonoBehaviour{
 
 
     private void Awake() {
-        if (GameManager.Instance == null) GameManager.Instance = this;
-        else Destroy(gameObject); 
-        DontDestroyOnLoad(gameObject);
+        if (Instance == null) {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            return;
+        }
+        Destroy(gameObject);
+    }
+
+    private void Start() {
+        currentScene = SceneManager.GetActiveScene().name;
     }
 
     public void SpendMoney(int price) {
@@ -44,6 +52,7 @@ public class GameManager : MonoBehaviour{
     // }
 
     public void PauseGame() {
+        if (currentScene == "Menu") return;
         Debug.Log("Pausing Game");
         pauseGame.Invoke();
         paused = true;

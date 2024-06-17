@@ -25,9 +25,8 @@ public class CombatState : State {
     private RotationBehaviour targetLock;
 
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         movement = new CCMovement(cc);
         animationController = new CombatController(animator);
         animationLayerIndex = animator.GetLayerIndex("Combat");
