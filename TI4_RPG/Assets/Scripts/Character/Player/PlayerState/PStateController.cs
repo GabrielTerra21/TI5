@@ -14,8 +14,8 @@ public class PStateController : StateMachine
     protected override void Start()
     {
         base.Start();
-        eDetection.OnEngage.AddListener(() => EnterState(Combat));
-        eDetection.OnDisengage.AddListener(() => EnterState(Exploration));
+        eDetection.OnEngage.AddListener(() => { EnterState(Combat); });
+        eDetection.OnDisengage.AddListener(() => { EnterState(Exploration); });
     }
     
 }

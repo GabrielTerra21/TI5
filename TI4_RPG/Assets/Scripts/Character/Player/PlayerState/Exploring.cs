@@ -45,8 +45,8 @@ public class Exploring : State
     // public void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
     public void OnMovement(InputAction.CallbackContext context) => moveDir = context.ReadValue<Vector2>();
 
-    public override State OnEnterState()
-    {
+    public override State OnEnterState() {
+        GameManager.Instance.state = GameManager.GameState.EXPLORATION;
         Debug.Log("Entered Exploring state");
         animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;

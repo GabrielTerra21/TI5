@@ -57,6 +57,7 @@ public class CombatState : State {
     
     public override State OnEnterState()
     {
+        GameManager.Instance.state = GameManager.GameState.COMBAT;
         Debug.Log("Entered Combat State");
         // skillWheel.SetActive(true);
         animator.SetLayerWeight(animationLayerIndex, 1);

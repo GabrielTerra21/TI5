@@ -13,26 +13,20 @@ public class ECombatState : State {
     public Character target;
     [SerializeField] private bool Moving, casting, rebound;
     [SerializeField] private float reboundTime, reboundTimer;
-    //private InRangeMovement movement;
     public EnemyPack ePack;
 
     [Space(10)] [Header("Animation Components")]
     [SerializeField] private Animator animator;
-    private AnimationController ac;
     [SerializeField] private int animationLayerIndex;
     
     
 
 
     private void Awake() {
-        //base.Awake();
         if(!self) self = GetComponent<Character>();
-        ac = new CombatController(animator);
         animationLayerIndex = animator.GetLayerIndex("Combat");
-        //movement = new InRangeMovement(GetComponent<NavMeshAgent>());
         if ( !sc ) sc = GetComponent<SkillContainer>();
         if ( !eDetect ) eDetect = GetComponent<EngageSphere>();
-        if (ePack) ePack.attack.AddListener(Aggro);
     }
     
     private void FixedUpdate() {
@@ -61,10 +55,6 @@ public class ECombatState : State {
     
     public override State OnEnterState() {
         Debug.Log($"{gameObject.name} has entered combat state");
-        if (ePack) {
-            ePack.attack.Invoke(target);
-            return this;
-        }
         animator.SetLayerWeight(animationLayerIndex, 1);
         Aggro(eDetect.GetNextTarget());
         return this;
@@ -79,6 +69,10 @@ public class ECombatState : State {
 
     public void Aggro(Character target) { this.target = target; }
 
+    public void Alert() {
+        
+    }
+    
     public void SelectAttack() {
         if(casting) return;
         foreach (var data in sc.skills) {

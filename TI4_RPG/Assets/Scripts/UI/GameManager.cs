@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,6 +11,8 @@ public class GameManager : MonoBehaviour{
     public string currentScene;
     public SkillDataSO empty;
     public static GameManager Instance;
+    public enum GameState {COMBAT, EXPLORATION, CINEMATIC}
+    public GameState state;
 
 
     private void Awake() {
