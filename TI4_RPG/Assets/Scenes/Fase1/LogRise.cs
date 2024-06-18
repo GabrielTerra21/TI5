@@ -1,39 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class LogRise : MonoBehaviour
-{
-    public GameObject logBefore;
-    public GameObject logAfter;
-    List<GameObject> controller = new List<GameObject>();
+public class LogRise : CollisionTrigger{
 
-    private void Start()
-    {
-        logBefore.SetActive(true);
-        logAfter.SetActive(false);
-    }
-    private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Enemy"))
-        {
-            return;
-        }
-        controller.Add(other.gameObject);
-        logBefore.SetActive(false);
-        logAfter.SetActive(true);
-    }
-
-    private void OnTriggerExit(Collider other) {
-        if (other.CompareTag("Enemy"))
-        {
-            return;
-        }
-        controller.Remove(other.gameObject);
-        if(controller.Count == 0){
-            logAfter.SetActive(false);
-            logBefore.SetActive(true);
+    public UnityEvent secondaryEvent;
+    private void  OnTriggerExit(Collider other) {
+        if(other.CompareTag("Player")){
+            secondaryEvent.Invoke();
         }
     }
-
-
 }
