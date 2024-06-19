@@ -3,12 +3,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SkillMenuManager : MonoBehaviour {
+    public GameObject skillMenuUI;
     public SkillOrganizer organizer;
     public SkillEquipper equipper;
     public static Action<SkillSelectButton> OnSelection;
 
 
-    private void OnEnable() {
+    public void OpenSkillMenu() {
+        GameManager.Instance.EnterUI();
+        skillMenuUI.SetActive(true);
+        GameManager.Instance.playerInput.actions["Cancel"].performed += CloseSkillMenu;
+        
         OnSelection += (Selected) => {
             if(Selected.transform.parent == equipper.transform)equipper.OnSelectSlot(Selected);
             else organizer.OnSelect(Selected);
@@ -16,12 +21,11 @@ public class SkillMenuManager : MonoBehaviour {
         };
     }
     
-    private void OnDisable() {
+    public void CloseSkillMenu(InputAction.CallbackContext context) {
         OnSelection = null;
-    }
-
-    public void Cancel() {
-        gameObject.SetActive(false);
+        GameManager.Instance.playerInput.actions["Cancel"].performed -= CloseSkillMenu;
+        GameManager.Instance.ExitUI();
+        skillMenuUI.SetActive(false);
     }
     
     public void Equip() {

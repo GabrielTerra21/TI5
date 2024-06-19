@@ -66,6 +66,7 @@ public class SkillSelectButton : EventTrigger {
     }
 
     public void SetSelected() {
+        Debug.Log("selected");
         if(background == null) background = GetComponentInChildren<Image>();
         if (icon == null) icon = GetComponent<Image>();
         selected = true;
@@ -74,6 +75,7 @@ public class SkillSelectButton : EventTrigger {
     }
 
     public void SetDeselected() {
+        Debug.Log("Deselected");
         if(background == null) background = GetComponentInChildren<Image>();
         if (icon == null) icon = GetComponent<Image>();
         Shrink();

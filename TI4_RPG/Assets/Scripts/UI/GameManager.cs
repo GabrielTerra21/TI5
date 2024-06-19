@@ -1,6 +1,6 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour{
@@ -10,8 +10,9 @@ public class GameManager : MonoBehaviour{
     public UnityEvent gameOver, pauseGame, unpauseGame;
     public string currentScene;
     public SkillDataSO empty;
+    public PlayerInput playerInput;
     public static GameManager Instance;
-    public enum GameState {COMBAT, EXPLORATION, CINEMATIC}
+    public enum GameState {COMBAT, EXPLORATION}
     public GameState state;
 
 
@@ -44,20 +45,20 @@ public class GameManager : MonoBehaviour{
         SceneManager.LoadScene("LoadingScreen");
     }
 
-    // public void LoadNewScene(Scene newScene) {
-    //     pauseGame.RemoveAllListeners();
-    //     unpauseGame.RemoveAllListeners();
-    //     paused = false;
-    //     currentScene = newScene;
-    //     SceneManager.LoadScene("LoadingScreen");
-    // }
-
     public void PauseGame() {
         if (currentScene == "Menu") return;
-        Debug.Log("Pausing Game");
         pauseGame.Invoke();
         paused = true;
-        Debug.Log("Game paused");
+    }
+
+    public void EnterUI() {
+        PauseGame();
+        playerInput.SwitchCurrentActionMap("MyUI");
+    }
+
+    public void ExitUI() {
+        UnpauseGame();
+        playerInput.SwitchCurrentActionMap("Action");
     }
 
     public void UnpauseGame() {
@@ -70,13 +71,4 @@ public class GameManager : MonoBehaviour{
         else PauseGame();
     }
     
-    IEnumerator Load() {
-        Debug.Log($"loading {GameManager.Instance.currentScene}");
-        AsyncOperation loading = SceneManager.LoadSceneAsync(GameManager.Instance.currentScene);
-        while (!loading.isDone) {
-            //bar.fillAmount = Mathf.Lerp(0f, 1f, loading.progress);
-            yield return null;
-        }
-    }
-
 }

@@ -165,8 +165,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CombatState, Assembly-CSharp
-        m_MethodName: TargetNext
+        m_TargetAssemblyTypeName: Exploring, Assembly-CSharp
+        m_MethodName: Interect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -181,8 +181,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Exploring, Assembly-CSharp
-        m_MethodName: Interect
+        m_TargetAssemblyTypeName: SkillMenuManager, Assembly-CSharp
+        m_MethodName: OpenSkillMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -195,7 +195,19 @@ MonoBehaviour:
     m_ActionId: 9c9455a6-8afa-43b7-907e-010a7ab1e5a9
     m_ActionName: Exploring/Interagir[/Keyboard/f]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PauseScreen, Assembly-CSharp
+        m_MethodName: OpenPauseMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 3d2b8b42-2184-45cc-a8c6-f33330cf6096
     m_ActionName: Exploring/OpenMenu[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
