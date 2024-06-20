@@ -54,7 +54,6 @@ public class ECombatState : State {
     }
     
     public override State OnEnterState() {
-        Debug.Log($"{gameObject.name} has entered combat state");
         animator.SetLayerWeight(animationLayerIndex, 1);
         Aggro(eDetect.GetNextTarget());
         return this;

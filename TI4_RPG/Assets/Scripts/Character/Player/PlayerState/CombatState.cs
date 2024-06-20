@@ -58,7 +58,6 @@ public class CombatState : State {
     public override State OnEnterState()
     {
         GameManager.Instance.state = GameManager.GameState.COMBAT;
-        Debug.Log("Entered Combat State");
         // skillWheel.SetActive(true);
         animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;
@@ -69,6 +68,8 @@ public class CombatState : State {
     }
 
     public void TargetNext() {
+        if (GameManager.Instance.state != GameManager.GameState.COMBAT) return; // Failsafe
+        
         Debug.Log("entered targeting");
         target = eDetect.GetNextTarget(target);
         Debug.Log($"target is now {target}");

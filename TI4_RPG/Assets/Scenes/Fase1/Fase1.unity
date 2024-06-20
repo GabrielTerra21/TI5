@@ -20278,7 +20278,7 @@ GameObject:
   - component: {fileID: 855452442}
   - component: {fileID: 855452441}
   - component: {fileID: 855452440}
-  - component: {fileID: 855452439}
+  - component: {fileID: 855452443}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -20301,18 +20301,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1341853014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &855452439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 855452437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3bfc0281ae509640b65a653a5dee147, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &855452440
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20384,6 +20372,48 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 855452437}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &855452443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855452437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07228fa29cdf04c4c9b7f4552578a56b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1341853015}
+        m_TargetAssemblyTypeName: Gate, Assembly-CSharp
+        m_MethodName: Open
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  secondaryEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1341853015}
+        m_TargetAssemblyTypeName: Gate, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &855986727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51312,6 +51342,16 @@ PrefabInstance:
       propertyPath: owner
       value: 
       objectReference: {fileID: 423439046}
+    - target: {fileID: 2092530671992487949, guid: 6410d30c2e43ff8449bc68ff2ced8d5e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -89.6001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092530671992487949, guid: 6410d30c2e43ff8449bc68ff2ced8d5e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 47.98999
+      objectReference: {fileID: 0}
     - target: {fileID: 2362686708047318316, guid: 6410d30c2e43ff8449bc68ff2ced8d5e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -51417,6 +51457,11 @@ PrefabInstance:
       propertyPath: sc
       value: 
       objectReference: {fileID: 423439050}
+    - target: {fileID: 6657110595815939160, guid: 6410d30c2e43ff8449bc68ff2ced8d5e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6755948237610300376, guid: 6410d30c2e43ff8449bc68ff2ced8d5e,
         type: 3}
       propertyPath: sc
@@ -53104,6 +53149,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8616000895621156722}
     m_Modifications:
+    - target: {fileID: 56655808247159838, guid: 95f463863c3f2c146b2d5b9d0aad6fbc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4396611464961036714, guid: 95f463863c3f2c146b2d5b9d0aad6fbc,
         type: 3}
       propertyPath: data

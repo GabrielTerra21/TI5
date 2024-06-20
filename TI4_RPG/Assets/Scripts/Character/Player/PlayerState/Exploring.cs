@@ -50,7 +50,6 @@ public class Exploring : State
 
     public override State OnEnterState() {
         GameManager.Instance.state = GameManager.GameState.EXPLORATION;
-        Debug.Log("Entered Exploring state");
         animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;
         return this;
@@ -58,7 +57,6 @@ public class Exploring : State
 
     public override void OnExitState() {
         animator.SetLayerWeight(animationLayerIndex, 0);
-        Debug.Log("Exiting Exploring State");
         interact = null;
     }
     public void Interact()

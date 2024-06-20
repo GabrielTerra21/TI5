@@ -20,6 +20,11 @@ public class SplineLine : MonoBehaviour {
         positions = new Vector3[verts];
     }
 
+    private void Start() {
+        transform.SetParent(null);
+        transform.position = Vector3.zero;
+    }
+    
     private void FixedUpdate() {
         SetLine();
     }
