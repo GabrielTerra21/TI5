@@ -1,31 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaitingTrigger : Trigger
 {
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<Exploring>().waitingTriggers.Add(this);
+    private void OnTriggerEnter(Collider other) {
+        //if (other.CompareTag("Player")) { other.GetComponent<Exploring>().waitingTriggers.Add(this); }
+        if (other.CompareTag("Player") && GameManager.Instance.state == GameManager.GameState.EXPLORATION) {
+            other.GetComponent<Exploring>().interact += () => { action.Invoke(); };
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<Exploring>().waitingTriggers.Remove(this);
+    private void OnTriggerExit(Collider other) {
+        //if (other.CompareTag("Player")) { other.GetComponent<Exploring>().waitingTriggers.Remove(this); }
+        if (other.CompareTag("Player") && GameManager.Instance.state == GameManager.GameState.EXPLORATION) {
+            other.GetComponent<Exploring>().interact -= () => { action.Invoke(); };
         }
     }
-    public void Activate()
-    {
-        action.Invoke();
-    }
-
-    protected void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(0, 1, 0, .2f);
-        Gizmos.DrawCube(transform.position, GetComponent<Collider>().bounds.extents * 2);
+    
+    protected void OnDrawGizmos() {
+        SphereCollider col = GetComponent<SphereCollider>();
+        Gizmos.color = new Color(1, 1, 0, .5f);
+        Gizmos.DrawSphere(col.center,col.radius);
     }
 }

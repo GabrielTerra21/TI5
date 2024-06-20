@@ -1,6 +1,6 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
 
 [RequireComponent(typeof(CharacterController))]
 public class Exploring : State
@@ -8,8 +8,10 @@ public class Exploring : State
     [Space(10)]
     [Header("State Properties")]
     public Character agent;
-    public List<WaitingTrigger> waitingTriggers;
-    private WaitingTrigger near;
+    public Action interact;
+    //public List<WaitingTrigger> waitingTriggers;
+    //private WaitingTrigger near;
+    
 
     [Space(5)]
     [Header("Movement Properties")]
@@ -32,6 +34,7 @@ public class Exploring : State
         animationLayerIndex = animator.GetLayerIndex("Exploration");
         rotator = new LookAtMoveDir(transform);
         enabled = false;
+        interact = null;
     }
 
     private void Update()
@@ -56,17 +59,18 @@ public class Exploring : State
     public override void OnExitState() {
         animator.SetLayerWeight(animationLayerIndex, 0);
         Debug.Log("Exiting Exploring State");
+        interact = null;
     }
-    public void Interect()
+    public void Interact()
     {
-        
-        foreach(WaitingTrigger w in waitingTriggers)
-        {
-            if (near == null || (transform.position - w.transform.position).magnitude < (transform.position - near.transform.position).magnitude)
-            {
-                near = w;
-            }
-            w.Activate();
-        }
+        // foreach(var trigger in waitingTriggers)
+        // {
+        //     if (near == null || (transform.position - trigger.transform.position).magnitude < (transform.position - near.transform.position).magnitude)
+        //     {
+        //         near = trigger;
+        //     }
+        //     trigger.Activate();
+        // }
+        interact?.Invoke();
     }
 }
