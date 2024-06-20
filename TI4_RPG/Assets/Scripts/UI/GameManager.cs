@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour{
 
     private void Start() {
         currentScene = SceneManager.GetActiveScene().name;
+        playerInput.SwitchCurrentActionMap("Action");
+        state = GameState.EXPLORATION;
     }
 
     public void SpendMoney(int price) {
