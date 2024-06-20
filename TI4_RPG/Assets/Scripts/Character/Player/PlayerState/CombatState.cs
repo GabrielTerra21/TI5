@@ -44,6 +44,10 @@ public class CombatState : State {
         if(moveDir.magnitude < 0.05f) skillManager.AutoAttack(target);
     }
 
+    private void LateUpdate() {
+        OnTargetDeath();
+    }
+
     // private void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
     public void OnMovement(InputAction.CallbackContext context) => moveDir = context.ReadValue<Vector2>();
 
@@ -83,6 +87,8 @@ public class CombatState : State {
         line.gameObject.SetActive(false);
         Debug.Log("Exiting Combat State");
     }
+
+    public void OnTargetDeath() { if (target == null) { TargetNext(); } }
     
     public Character ReturnTarget()
     {
