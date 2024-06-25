@@ -15,7 +15,6 @@ public class UISkillWheel : MonoBehaviour {
     }
 
     public void OnSkillWheel(InputAction.CallbackContext context) {
-        Debug.Log("pelo amor de deus");
         if (context.started) {
             Debug.Log("Button has been pressed");
             RectTransform rect = wheel.GetComponent<RectTransform>();

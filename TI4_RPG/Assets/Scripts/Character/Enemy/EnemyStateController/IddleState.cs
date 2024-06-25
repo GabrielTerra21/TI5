@@ -40,7 +40,6 @@ public class IddleState : State {
  
     public override State OnEnterState() { 
         animator.SetLayerWeight(animationLayerIndex, 1);
-        Debug.Log($"{gameObject.name} has entered Iddle state");
         return this; 
     } 
  

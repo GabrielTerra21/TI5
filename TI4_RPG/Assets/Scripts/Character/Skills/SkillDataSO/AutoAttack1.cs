@@ -10,7 +10,7 @@ public class AutoAttack1 : SkillDataSO {
 
     IEnumerator Attack(Character from, Character target) {
         from.animator.SetTrigger("Attack");
-        //yield return new WaitForSeconds(timeUntilHit);
+        yield return new WaitForSeconds(timeUntilHit);
         float timer = timeUntilHit;
         while (timeUntilHit > 0) {
             if (!GameManager.Instance.paused) timer -= Time.deltaTime;

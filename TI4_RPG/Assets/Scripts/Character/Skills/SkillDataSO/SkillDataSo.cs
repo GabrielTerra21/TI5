@@ -7,12 +7,13 @@ public abstract class SkillDataSO : ScriptableObject
     [Header("SkillData Properties")]
     
     public float CoolDown, CastTime, Range;
+    public bool outOfCombatCasting = false;
     public int Power;
     public Sprite Icon;
     public string SkillName ,Description;
     public GameObject Prefab;
     public int Price;
-    public RuntimeAnimatorController animationOverride;    
+    public RuntimeAnimatorController animationOverride;
     
     public abstract void OnCast ( Character from, Character target);
 }

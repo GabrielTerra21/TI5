@@ -2,7 +2,7 @@
     "name": "TI4_RPG",
     "maps": [
         {
-            "name": "Exploring",
+            "name": "Action",
             "id": "e7065a03-39f6-4ad4-96c7-68835ac1e15b",
             "actions": [
                 {
@@ -24,15 +24,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "85e02f13-4acf-4566-b65d-a7cd15492a0e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "SwitchEnemy",
                     "type": "Button",
                     "id": "dfeb2c02-af83-4877-8e35-8bbcb34524d4",
@@ -51,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "OpenMenu",
+                    "name": "OpenSkillMenu",
                     "type": "Button",
                     "id": "3d2b8b42-2184-45cc-a8c6-f33330cf6096",
                     "expectedControlType": "Button",
@@ -60,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PauseGame",
+                    "name": "OpenPauseMenu",
                     "type": "Button",
                     "id": "03c41350-7aaf-4a15-af29-59d2815e9192",
                     "expectedControlType": "Button",
@@ -160,19 +151,8 @@
                 },
                 {
                     "name": "",
-                    "id": "e46a7a11-4e22-4f79-aef4-b1c8be10e753",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "557d5c55-ee9f-4487-aef7-5cc133fa8d30",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -183,7 +163,7 @@
                 {
                     "name": "",
                     "id": "c131a522-5152-4a45-9f06-5ef1991680c5",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -194,11 +174,11 @@
                 {
                     "name": "",
                     "id": "4c429d6d-daa3-4bfd-8487-1dace14ee6b3",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "OpenMenu",
+                    "action": "OpenSkillMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -209,7 +189,35 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "PauseGame",
+                    "action": "OpenPauseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MyUI",
+            "id": "01a24dfc-ff70-49da-b340-81ca1f690e6c",
+            "actions": [
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "a315cf29-3dd6-4d12-aab6-d33ffc166519",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c7f3372d-02a2-4963-8925-26bb3197b2ce",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

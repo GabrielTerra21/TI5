@@ -44,6 +44,10 @@ public class CombatState : State {
         if(moveDir.magnitude < 0.05f) skillManager.AutoAttack(target);
     }
 
+    private void LateUpdate() {
+        OnTargetDeath();
+    }
+
     // private void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
     public void OnMovement(InputAction.CallbackContext context) => moveDir = context.ReadValue<Vector2>();
 
@@ -57,7 +61,7 @@ public class CombatState : State {
     
     public override State OnEnterState()
     {
-        Debug.Log("Entered Combat State");
+        GameManager.Instance.state = GameManager.GameState.COMBAT;
         // skillWheel.SetActive(true);
         animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;
@@ -68,6 +72,8 @@ public class CombatState : State {
     }
 
     public void TargetNext() {
+        if (GameManager.Instance.state != GameManager.GameState.COMBAT) return; // Failsafe
+        
         Debug.Log("entered targeting");
         target = eDetect.GetNextTarget(target);
         Debug.Log($"target is now {target}");
@@ -81,6 +87,8 @@ public class CombatState : State {
         line.gameObject.SetActive(false);
         Debug.Log("Exiting Combat State");
     }
+
+    public void OnTargetDeath() { if (target == null) { TargetNext(); } }
     
     public Character ReturnTarget()
     {

@@ -19,7 +19,6 @@ public class EngageSphere : MonoBehaviour {
             GetEnemy(other.GetComponent<Character>());
             if(inRange.Count == 1) OnEngage.Invoke();
         }
-        else Debug.Log(other.tag);
     }
 
     public void OnTriggerExit(Collider other) {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -42,9 +40,9 @@ public class Projectile : MonoBehaviour
         if (type == Type.AreaDamage)
         {
             hits = Physics.OverlapSphere(transform.position, 4f);
-            foreach (Collider c in hits)
+            foreach (Collider col in hits)
             {
-                if (c.gameObject.TryGetComponent<Character>(out Character character) && character != from)
+                if (col.gameObject.TryGetComponent<Character>(out Character character) && character != from)
                 {
                     character.TakeDamage(damage);
                 }
