@@ -11,7 +11,7 @@ public class WaitingTrigger : Trigger
     private void OnTriggerExit(Collider other) {
         //if (other.CompareTag("Player")) { other.GetComponent<Exploring>().waitingTriggers.Remove(this); }
         if (other.CompareTag("Player") && GameManager.Instance.state == GameManager.GameState.EXPLORATION) {
-            other.GetComponent<Exploring>().interact -= () => { action.Invoke(); };
+            other.GetComponent<Exploring>().interact = null;
         }
     }
     

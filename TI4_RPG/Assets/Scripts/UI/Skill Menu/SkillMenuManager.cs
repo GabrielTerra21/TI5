@@ -13,6 +13,7 @@ public class SkillMenuManager : MonoBehaviour {
         GameManager.Instance.EnterUI();
         skillMenuUI.SetActive(true);
         GameManager.Instance.playerInput.actions["Cancel"].performed += CloseSkillMenu;
+        GameManager.Instance.playerInput.actions["SkillMenuButton"].performed += CloseSkillMenu;
         
         OnSelection += (Selected) => {
             if(Selected.transform.parent == equipper.transform)equipper.OnSelectSlot(Selected);
@@ -24,6 +25,7 @@ public class SkillMenuManager : MonoBehaviour {
     public void CloseSkillMenu(InputAction.CallbackContext context) {
         OnSelection = null;
         GameManager.Instance.playerInput.actions["Cancel"].performed -= CloseSkillMenu;
+        GameManager.Instance.playerInput.actions["SkillMenuButton"].performed -= CloseSkillMenu;
         GameManager.Instance.ExitUI();
         skillMenuUI.SetActive(false);
     }

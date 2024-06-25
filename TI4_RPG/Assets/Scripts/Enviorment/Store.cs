@@ -11,11 +11,13 @@ public class Store : MonoBehaviour
         storeMenu.SetActive(true);
         GameManager.Instance.EnterUI();
         GameManager.Instance.playerInput.actions["Cancel"].performed += CloseStore;
+        GameManager.Instance.playerInput.actions["InteractButton"].performed += CloseStore;
         UpdateStore();
     }
 
     public void CloseStore(InputAction.CallbackContext context) {
-        GameManager.Instance.playerInput.actions["Cancel"].performed += CloseStore;
+        GameManager.Instance.playerInput.actions["Cancel"].performed -= CloseStore;
+        GameManager.Instance.playerInput.actions["InteractButton"].performed -= CloseStore;
         GameManager.Instance.ExitUI();
         storeMenu.SetActive(false);
         
