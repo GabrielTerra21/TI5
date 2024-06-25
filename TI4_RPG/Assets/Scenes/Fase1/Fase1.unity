@@ -12805,7 +12805,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 8206856852181997771}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8206856852181997772}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
@@ -57340,7 +57340,7 @@ PrefabInstance:
     - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
         type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 18
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
         type: 3}
@@ -57369,6 +57369,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
         type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_ActionId
+      value: 76db3acd-b1ba-47fb-b342-99a97de7bc7a
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionId
+      value: 070c2c83-ba6e-4f5f-bae7-33f4994616e3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
+        type: 3}
       propertyPath: m_ActionEvents.Array.data[13].m_ActionName
       value: Exploring/SwitchEnemy[/Keyboard/tab]
       objectReference: {fileID: 0}
@@ -57391,6 +57401,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ActionEvents.Array.data[17].m_ActionName
       value: MyUI/Cancel[/Keyboard/escape]
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[18].m_ActionName
+      value: MyUI/SkillMenuButton[/Keyboard/f]
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionName
+      value: MyUI/InteractButton[/Keyboard/e]
       objectReference: {fileID: 0}
     - target: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
         type: 3}
@@ -57531,8 +57551,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 606209331497042600, guid: 4946d11406dfe5047a210032e0b39d55,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8206856852181997773}
   m_SourcePrefab: {fileID: 100100000, guid: 4946d11406dfe5047a210032e0b39d55, type: 3}
+--- !u!1 &8206856852181997772 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 606209331497042600, guid: 4946d11406dfe5047a210032e0b39d55,
+    type: 3}
+  m_PrefabInstance: {fileID: 8206856852181997771}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8206856852181997773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8206856852181997772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e21fa76dfd48e94c84dc59c768c893d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8220442907795236987
 GameObject:
   m_ObjectHideFlags: 0
