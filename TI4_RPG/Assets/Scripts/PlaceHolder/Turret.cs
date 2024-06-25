@@ -12,10 +12,7 @@ public class Turret : MonoBehaviour
     {
         Destroy(gameObject, 8);
         state = from.GetComponent<CombatState>();
-        for(int i = 0; i < 8; i++)
-        {
-            Invoke("Shoot", 1 * i);
-        }
+        InvokeRepeating("Shoot", 0, 1f);
     }
     private void Shoot()
     {
