@@ -50,6 +50,7 @@ public class Exploring : State
 
     public override State OnEnterState() {
         GameManager.Instance.state = GameManager.GameState.EXPLORATION;
+        GameManager.Instance.playerInput.actions["Interact"].performed += Interact;
         animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;
         return this;
@@ -59,7 +60,7 @@ public class Exploring : State
         animator.SetLayerWeight(animationLayerIndex, 0);
         interact = null;
     }
-    public void Interact()
+    public void Interact(InputAction.CallbackContext context)
     {
         // foreach(var trigger in waitingTriggers)
         // {
