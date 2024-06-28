@@ -15,6 +15,7 @@ public class SkillOrganizer : MonoBehaviour {
 
     private void Awake() {
         slots = GetComponentsInChildren<SkillSelectButton>();
+        ready = false;
     }
     
     private void OnEnable() {
@@ -37,10 +38,11 @@ public class SkillOrganizer : MonoBehaviour {
         selected.SetDeselected();
         selected = null;
     }
-    
-    public void OnSelect(SkillSelectButton selection) {
-        if (selected != null) selected.SetDeselected();
-        selected = selection;
+
+    public void Select(SkillSelectButton button) {
+        if (selected != null) selected.SetDeselected(); 
+        selected = button;
+        ready = true;
     }
     
 }
