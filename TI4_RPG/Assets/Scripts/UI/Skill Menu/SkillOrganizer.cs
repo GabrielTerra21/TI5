@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SkillOrganizer : MonoBehaviour {
     [Space(10)]
@@ -23,7 +25,6 @@ public class SkillOrganizer : MonoBehaviour {
             if (i < inventory.skills.Count) {
                 slots[i].gameObject.SetActive(true);
                 slots[i].UpdateButton(inventory.skills[i]);
-                //slots[i].onSelection += OnSelect;
             }
             else slots[i].gameObject.SetActive(false);
         }
@@ -40,6 +41,7 @@ public class SkillOrganizer : MonoBehaviour {
     }
 
     public void Select(SkillSelectButton button) {
+        Debug.Log("A maracutaia funcionou!");
         if (selected != null) selected.SetDeselected(); 
         selected = button;
         ready = true;

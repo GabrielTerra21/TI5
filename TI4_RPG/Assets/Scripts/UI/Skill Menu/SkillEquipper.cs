@@ -45,7 +45,7 @@ public class SkillEquipper : MonoBehaviour {
         ready = false;
     }
 
-    private void Select(SkillSelectButton button) {
+    public void Select(SkillSelectButton button) {
         if (setTo != null) setTo.SetDeselected();
         setTo = button;
         ready = true;

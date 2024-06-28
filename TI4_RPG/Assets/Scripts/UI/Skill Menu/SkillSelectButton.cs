@@ -11,9 +11,8 @@ public class SkillSelectButton : EventTrigger {
     [Space(10)]
     [Header("Functional Components")]
     public SkillDataSO skill;
-    public SkillOrganizer parent;
     public bool resized, selected;
-    public Color normalCol, selectedCol;
+    public Color normalCol;
 
 
     private void Awake() {
@@ -54,8 +53,9 @@ public class SkillSelectButton : EventTrigger {
     }
 
     public void Shrink() {
+        Debug.Log("entered");
         if(selected) return;
-        
+        Debug.Log("did");
         if (resized) {
             rect.sizeDelta -= new Vector2(25, 25);
             resized = false;
@@ -75,8 +75,8 @@ public class SkillSelectButton : EventTrigger {
         Debug.Log("Deselected");
         if(background == null) background = GetComponentInChildren<Image>();
         if (icon == null) icon = GetComponent<Image>();
-        Shrink();
         selected = false;
+        Shrink();
         icon.color = normalCol;
         background.color = normalCol;
     }
