@@ -29,7 +29,7 @@ public class SkillMenuManager : MonoBehaviour {
         Debug.Log("Skill equiped");
         equipper.setTo.UpdateButton(organizer.selected.skill);
         organizer.Deselect();
-        equipper.Deactivate();
+        equipper.Deselect();
     }
     
 }

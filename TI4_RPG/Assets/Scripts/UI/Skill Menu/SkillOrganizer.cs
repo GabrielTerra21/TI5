@@ -30,13 +30,13 @@ public class SkillOrganizer : MonoBehaviour {
     }
 
     private void OnDisable() {
-        if (selected) Deselect();
-        if (ready) ready = false;
+        if (selected != null) Deselect();
     }
 
     public void Deselect() {
         selected.SetDeselected();
         selected = null;
+        ready = false;
     }
 
     public void Select(SkillSelectButton button) {

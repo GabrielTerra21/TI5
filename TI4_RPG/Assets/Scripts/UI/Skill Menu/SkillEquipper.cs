@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class SkillEquipper : MonoBehaviour {
@@ -11,6 +10,7 @@ public class SkillEquipper : MonoBehaviour {
 
     private void Awake() {
         slots = GetComponentsInChildren<SkillSelectButton>();
+        ready = false;
     }
 
     private void OnEnable() {
@@ -20,7 +20,7 @@ public class SkillEquipper : MonoBehaviour {
 
     private void OnDisable() {
         Equip();
-        if(setTo)Deactivate();
+        if(setTo != null)Deselect();
     }
 
     private void SetSlots() {
@@ -32,16 +32,23 @@ public class SkillEquipper : MonoBehaviour {
         }
     }
 
-    public void OnSelectSlot(SkillSelectButton slot) {
-        if(slot.transform.parent != transform) return;
-        //if(setTo == slot) Deactivate();
-        if (setTo != null) setTo.SetDeselected();
-        setTo = slot;
-    }
+    // public void OnSelectSlot(SkillSelectButton slot) {
+    //     if(slot.transform.parent != transform) return;
+    //     if(setTo == slot) Deactivate();
+    //     if (setTo != null) setTo.SetDeselected();
+    //     setTo = slot;
+    // }
 
-    public void Deactivate() {
+    public void Deselect() {
         setTo.SetDeselected();
         setTo = null;
+        ready = false;
+    }
+
+    private void Select(SkillSelectButton button) {
+        if (setTo != null) setTo.SetDeselected();
+        setTo = button;
+        ready = true;
     }
 
     private void Equip() {
