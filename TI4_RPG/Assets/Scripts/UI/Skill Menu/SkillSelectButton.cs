@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -12,15 +11,18 @@ public class SkillSelectButton : EventTrigger {
     [Space(10)]
     [Header("Functional Components")]
     public SkillDataSO skill;
+    public SkillOrganizer parent;
     public bool resized, selected;
     public Color normalCol, selectedCol;
-    public Action<SkillSelectButton> onSelection;
 
 
     private void Awake() {
         rect = GetComponent<RectTransform>();
         icon = GetComponent<Image>();
         background = GetComponentInChildren<Image>();
+    }
+
+    private void Start() {
         normalCol = icon.color;
         resized = false;
         selected = false;
@@ -35,30 +37,25 @@ public class SkillSelectButton : EventTrigger {
     
     private void OnDisable() {
         Shrink();
-        onSelection = null;
     }
 
-    public override void OnPointerEnter(PointerEventData eventData) {
-        if(!selected) Grow();
-    }
-
-    public override void OnPointerExit(PointerEventData eventData) {
-        if(!selected) Shrink();
-    }
-
-    public override void OnPointerClick(PointerEventData eventData) {
-        if(selected) return;
-        //onSelection?.Invoke(this);
-        SetSelected();
-        SkillMenuManager.OnSelection?.Invoke(this);
-    }
+    // public override void OnPointerClick(PointerEventData eventData) {
+    //     if(selected) return;
+    //     SetSelected();
+    //     SkillMenuManager.OnSelection?.Invoke(this);
+    //     parent.Select(this);
+    // }
 
     public void Grow() {
+        if(selected) return;
+        
         rect.sizeDelta += new Vector2(25, 25);
         resized = true;
     }
 
     public void Shrink() {
+        if(selected) return;
+        
         if (resized) {
             rect.sizeDelta -= new Vector2(25, 25);
             resized = false;
@@ -83,9 +80,4 @@ public class SkillSelectButton : EventTrigger {
         icon.color = normalCol;
         background.color = normalCol;
     }
-
-    public void SetEmpty() {
-        
-    }
-    
 }
