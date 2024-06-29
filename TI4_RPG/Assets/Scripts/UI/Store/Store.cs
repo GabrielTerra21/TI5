@@ -6,6 +6,7 @@ public class Store : MonoBehaviour
 {
     [SerializeField] private GameObject storeMenu;
     [SerializeField] private TMP_Text moneyText;
+    public GameObject buttonsTutorial;
     
     public void OpenStore() {
         storeMenu.SetActive(true);
@@ -20,7 +21,7 @@ public class Store : MonoBehaviour
         GameManager.Instance.playerInput.actions["InteractButton"].performed -= CloseStore;
         GameManager.Instance.ExitUI();
         storeMenu.SetActive(false);
-        
+        buttonsTutorial.SetActive(true);
     }
 
     public void UpdateStore() {
