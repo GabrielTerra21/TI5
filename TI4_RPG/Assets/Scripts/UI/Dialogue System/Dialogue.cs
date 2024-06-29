@@ -7,4 +7,5 @@ public class Dialogue : ScriptableObject {
    [Space(10)]
    [Tooltip("Speeches will be read from top to bottom, so first element must be on top and last on the bottom")]
    public List<Speech> dialogue = new List<Speech>();
+   public bool repeatable = true;
 }

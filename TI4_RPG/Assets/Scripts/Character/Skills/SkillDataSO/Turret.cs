@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    public GameObject prefab;
+    public GameObject projectile;
     public Character from;
     public CombatState state;
     public int power;
@@ -16,7 +14,7 @@ public class Turret : MonoBehaviour
     }
     private void Shoot()
     {
-        GameObject g = Instantiate(prefab, this.transform.position, this.transform.rotation);
+        GameObject g = Instantiate(projectile, transform.position, transform.rotation);
         Projectile p = g.GetComponent<Projectile>();
         p.damage = power;
         p.target = state.ReturnTarget();
