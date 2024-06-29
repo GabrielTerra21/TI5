@@ -4,9 +4,22 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
+    private Animator chestAnimator;
+    bool isUsed = false;
+    void Start()
+    {
+        chestAnimator = GetComponent<Animator>();
+    }
     public void OpenChest()
     {
-        GameManager.Instance.GainMoney(20);
-        Destroy(gameObject);
+        if (!isUsed)
+        {
+            if (chestAnimator != null)
+            {
+                chestAnimator.SetTrigger("OpenChest");
+            }
+            GameManager.Instance.GainMoney(20);
+            isUsed = true;
+        }
     }
 }
