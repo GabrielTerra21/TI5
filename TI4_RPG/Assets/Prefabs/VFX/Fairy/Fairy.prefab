@@ -143,6 +143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3990246822349831290}
   - component: {fileID: 871971174233967853}
+  - component: {fileID: 3741863306079376848}
   m_Layer: 0
   m_Name: Fairy
   m_TagString: Untagged
@@ -159,7 +160,7 @@ Transform:
   m_GameObject: {fileID: 4434257036245091108}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.825, y: 5.209, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -180,7 +181,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: ff2bacbecb96651448443fb58fa5f956, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -188,6 +189,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3741863306079376848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4434257036245091108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c7039561690e2c46a36ec48d17b3c11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 920934911585994149, guid: 274628cff9dfaa14894b49b3b99cdf0c, type: 3}
+  from: {fileID: 0}
+  state: {fileID: 0}
+  power: 1
 --- !u!1001 &974008642905369032
 PrefabInstance:
   m_ObjectHideFlags: 0
