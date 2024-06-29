@@ -3312,7 +3312,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4617669424227334499}
   m_Layer: 0
-  m_Name: Vendedor
+  m_Name: VendedorMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3327,8 +3327,8 @@ Transform:
   m_GameObject: {fileID: 6580899026545817261}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.6655821, z: -0, w: 0.74632466}
-  m_LocalPosition: {x: -2.01, y: 0.24, z: 1.54}
-  m_LocalScale: {x: 0.75357944, y: 0.7535795, z: 0.75357944}
+  m_LocalPosition: {x: -2.0099998, y: 0.23999998, z: 1.5400002}
+  m_LocalScale: {x: 0.7535794, y: 0.7535795, z: 0.7535794}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5930314849303893348}
@@ -3377,7 +3377,7 @@ Transform:
   - {fileID: 7069716636416251102}
   - {fileID: 3874030977141463570}
   - {fileID: 3618378053677296489}
-  m_Father: {fileID: 591898425128066704}
+  m_Father: {fileID: 1190360229426819279}
   m_LocalEulerAnglesHint: {x: 0, y: -83.454, z: 0}
 --- !u!1 &6714451577611637935
 GameObject:
@@ -3887,6 +3887,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7068176761933058556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1190360229426819279}
+  m_Layer: 0
+  m_Name: Vendedor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1190360229426819279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7068176761933058556}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4617669424227334499}
+  m_Father: {fileID: 591898425128066704}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7643115209972447796
 GameObject:
   m_ObjectHideFlags: 0
@@ -4679,8 +4711,8 @@ Transform:
   - {fileID: 3308167084468947389}
   - {fileID: 8803400695156602526}
   - {fileID: 4841856812579725173}
-  - {fileID: 4617669424227334499}
   - {fileID: 4413008178207175543}
+  - {fileID: 1190360229426819279}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4835641496772220387
