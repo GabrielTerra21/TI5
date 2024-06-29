@@ -7,13 +7,14 @@ using UnityEngine.UI;
 
 public class DialogueBox : MonoBehaviour {
     public GameObject dialogueScreen;
-    public Image profilePic;
+    public Image profilePic, arrow;
     public TMP_Text nameSpace, text;
     private int maxCharCount;
     public Queue<Speech> dialogue;
     
     
     public void Paste(Speech content) {
+        DeactivateArrow();
         text.text = null;
         nameSpace.text = content.owner.charName;
         profilePic.sprite = content.owner.profile;
@@ -27,7 +28,7 @@ public class DialogueBox : MonoBehaviour {
     }
     
     // Este metodo deve ser usado unica e exclusivamente para a primeira execução de exibir o dialogo, ja que não é possivel invocar o metodo acima sem um Callback Context adequado
-    private void Commence() { 
+    public void Commence() { 
         StopAllCoroutines();
         if (dialogue.Count > 0)  Paste(dialogue.Dequeue()); 
         else EndDialogue();
@@ -50,10 +51,19 @@ public class DialogueBox : MonoBehaviour {
         Commence();
     }
 
+    private void DeactivateArrow() {
+        arrow.gameObject.SetActive(false);
+    }
+    
+    private void ActivateArrow() {
+        arrow.gameObject.SetActive(true);
+    }
+
     IEnumerator StepPasting(string content) {
         foreach (char value in content) {
             text.text += value;
             yield return new WaitForSeconds(0.1f);
         }
+        ActivateArrow();
     }
 }
