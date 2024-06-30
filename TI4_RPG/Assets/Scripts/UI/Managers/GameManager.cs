@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour{
     [Header("Player info")] public int money = 300;
@@ -14,7 +15,7 @@ public class GameManager : MonoBehaviour{
     public static GameManager Instance;
     public enum GameState {COMBAT, EXPLORATION}
     public GameState state;
-
+    public Action UpdateUI;
 
     private void Awake() {
         if (Instance == null) {
@@ -71,5 +72,10 @@ public class GameManager : MonoBehaviour{
         if (paused) UnpauseGame();
         else PauseGame();
     }
-    
+
+    public void UIUpdate()
+    {
+        UpdateUI?.Invoke();
+    }
+
 }

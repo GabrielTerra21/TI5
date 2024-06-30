@@ -14,6 +14,7 @@ public class Store : MonoBehaviour
         GameManager.Instance.playerInput.actions["Cancel"].performed += CloseStore;
         GameManager.Instance.playerInput.actions["InteractButton"].performed += CloseStore;
         UpdateStore();
+        GameManager.Instance.UpdateUI += UpdateStore;
     }
 
     public void CloseStore(InputAction.CallbackContext context) {
@@ -22,6 +23,7 @@ public class Store : MonoBehaviour
         GameManager.Instance.ExitUI();
         storeMenu.SetActive(false);
         buttonsTutorial.SetActive(true);
+        GameManager.Instance.UpdateUI -= UpdateStore;
     }
 
     public void UpdateStore() {

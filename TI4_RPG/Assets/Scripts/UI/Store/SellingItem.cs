@@ -21,6 +21,7 @@ public class SellingItem : MonoBehaviour
         {
             Debug.Log("comprou");
             GameManager.Instance.SpendMoney(skill.Price);
+            GameManager.Instance.UIUpdate();
             FindAnyObjectByType<SkillInventory>().Learn(skill);
             Destroy(gameObject);
         }
