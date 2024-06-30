@@ -4,7 +4,8 @@ public class SkillContainer : MonoBehaviour {
     [SerializeField] private Character owner;
     public Skill autoAttack;
     public Skill[] skills = new Skill[4];
-    public Character genericTarget;
+    public GameObject genericTarget;
+    public Transform genericTransform;
     //public SkillInventory inventory;
 
     private void Awake() {
@@ -17,12 +18,26 @@ public class SkillContainer : MonoBehaviour {
         autoAttack.OnCast(owner, target);
     }
 
-    public void Cast(int slot, Character target) {
-
+    public void Cast(int slot, Character target = null) {
+        if (target == null)
+        {
+            target = Instantiate(genericTarget,genericTransform.position,genericTransform.rotation).GetComponent<Character>();
+            target.transform.parent = null;
+            skills[slot].OnCast(owner, target);
+            Destroy(target, 8f);
+        }
         skills[slot].OnCast(owner,target);
     }
 
-    public void Cast(Skill skill, Character target) {
+    public void Cast(Skill skill, Character target = null) {
+        if (target == null)
+        {
+            Debug.Log("CastGeneric");
+            target = Instantiate(genericTarget, genericTransform).GetComponent<Character>();
+            target.transform.parent = null;
+            skill.OnCast(owner, target);
+            Destroy(target,8f);
+        }
         skill.OnCast(owner, target);
     }
     

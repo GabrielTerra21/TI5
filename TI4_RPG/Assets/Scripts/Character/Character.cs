@@ -47,11 +47,13 @@ public abstract class Character : MonoBehaviour
     }
 
     public virtual void Pause() {
+        if(animator != null) 
         animator.speed = 0;
     }
 
     public virtual void Unpause() {
-        animator.speed = 1;
+        if (animator != null)
+            animator.speed = 1;
     }
 
     public virtual void Heal(int heal) {

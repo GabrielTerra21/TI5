@@ -9,9 +9,10 @@ public class Exploring : State
     [Header("State Properties")]
     public Character agent;
     public Action interact;
+    public SkillContainer skillManager;
     //public List<WaitingTrigger> waitingTriggers;
     //private WaitingTrigger near;
-    
+
 
     [Space(5)]
     [Header("Movement Properties")]
@@ -71,5 +72,13 @@ public class Exploring : State
         //     trigger.Activate();
         // }
         interact?.Invoke();
+    }
+    public void OutCombtCast(Skill skill)
+    {
+        skillManager.Cast(skill);
+    }
+    public void OutCombtCast(int slot)
+    {
+        skillManager.Cast(slot);
     }
 }

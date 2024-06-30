@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class UISkillWheel : MonoBehaviour {
     public CombatState player;
+    public Exploring exploring;
     public GameObject wheel;
     public SkillContainer sc;
     public UISkillSlot[] slots;
@@ -42,6 +43,7 @@ public class UISkillWheel : MonoBehaviour {
 
     public void Cast(Skill skill) {
         Debug.Log($"Selected {skill.data.name}");
+        exploring.OutCombtCast(skill);
         player.Cast(skill);
     }
 }
