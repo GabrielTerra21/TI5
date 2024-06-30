@@ -33,6 +33,11 @@ public class Skill : MonoBehaviour {
             Debug.Log($"Casted {data.SkillName} on {target.data.charName}");
         }
     }
+    //Passivel de mudança
+    public void OutCombtCast()
+    {
+
+    }
 
     private bool InRange(Transform from, Transform to, float range) {
         Vector3 offset = to.position - from.position;

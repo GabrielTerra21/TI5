@@ -4,6 +4,7 @@ public class SkillContainer : MonoBehaviour {
     [SerializeField] private Character owner;
     public Skill autoAttack;
     public Skill[] skills = new Skill[4];
+    public Character genericTarget;
     //public SkillInventory inventory;
 
     private void Awake() {
@@ -17,6 +18,7 @@ public class SkillContainer : MonoBehaviour {
     }
 
     public void Cast(int slot, Character target) {
+
         skills[slot].OnCast(owner,target);
     }
 

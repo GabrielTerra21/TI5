@@ -8,6 +8,7 @@ public class HintUI : MonoBehaviour
     public Image img;
     public Hint hint;
     public Sprite unlockedSprite;
+    public GameObject placa;
     private void Start()
     {
         title.text = hint.title; 
@@ -20,6 +21,7 @@ public class HintUI : MonoBehaviour
             GameManager.Instance.UIUpdate();
             hint.blocked = false;
             img.sprite = unlockedSprite;
+            placa.SetActive(true);
         }
     }
 }
