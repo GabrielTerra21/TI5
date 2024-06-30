@@ -10,6 +10,14 @@ public class AnimationTreeFalling : MonoBehaviour
         treeAnimator = GetComponent<Animator>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("FireBall"))
+        {
+            FallTree();
+        }
+    }
+
     public void FallTree()
     {
         if (treeAnimator != null)
