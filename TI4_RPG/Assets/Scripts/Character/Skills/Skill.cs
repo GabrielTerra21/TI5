@@ -30,7 +30,7 @@ public class Skill : MonoBehaviour {
         if (owner.actionable && ready) {
             Debug.Log($"Casting {data.SkillName}...");
             StartCoroutine(Casting(owner, target));
-            Debug.Log($"Casted {data.SkillName} on {target.data.charName}");
+            //Debug.Log($"Casted {data.SkillName} on {target.data.charName}");
         }
     }
     //Passivel de mudança

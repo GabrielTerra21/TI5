@@ -43,7 +43,13 @@ public class UISkillWheel : MonoBehaviour {
 
     public void Cast(Skill skill) {
         Debug.Log($"Selected {skill.data.name}");
-        exploring.OutCombtCast(skill);
-        player.Cast(skill);
+        if (GameManager.Instance.state == GameManager.GameState.EXPLORATION)
+        {
+            exploring.OutCombtCast(skill);
+        }
+        else
+        {
+            player.Cast(skill);
+        }
     }
 }
