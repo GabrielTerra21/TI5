@@ -3,5 +3,5 @@ using UnityEngine;
 public abstract class HintSO : ScriptableObject
 {
     public string title, hintText;
-    public bool blocked;
+    public bool blocked = false;
 }
