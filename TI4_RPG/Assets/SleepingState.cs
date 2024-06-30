@@ -3,7 +3,7 @@ using UnityEngine;
 public class SleepingState : State
 {
     private int animationLayerIndex;
-    private Animator animator;
+    public Animator animator;
     
     
     private void Awake(){

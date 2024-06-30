@@ -5,7 +5,9 @@ using UnityEngine;
 public class AutoAttack1 : SkillDataSO {
     public float timeUntilHit;
     public override void OnCast(Character from, Character target) {
-        from.StartCoroutine(Attack(from, target));
+        //from.StartCoroutine(Attack(from, target));
+        from.animator.SetTrigger("Attack");
+        target.TakeDamage(Power);
     }
 
     IEnumerator Attack(Character from, Character target) {
