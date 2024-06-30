@@ -18,7 +18,7 @@ public class Chest : MonoBehaviour
             {
                 chestAnimator.SetTrigger("OpenChest");
             }
-            GameManager.Instance.GainMoney(20);
+            GameManager.Instance.GainMoney(150);
             isUsed = true;
         }
     }
