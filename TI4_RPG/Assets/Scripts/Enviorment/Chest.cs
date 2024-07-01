@@ -6,6 +6,7 @@ public class Chest : MonoBehaviour
 {
     private Animator chestAnimator;
     bool isUsed = false;
+    public GameObject moneyAnim;
     void Start()
     {
         chestAnimator = GetComponent<Animator>();
@@ -18,6 +19,7 @@ public class Chest : MonoBehaviour
             {
                 chestAnimator.SetTrigger("OpenChest");
             }
+            moneyAnim.SetActive(true);
             GameManager.Instance.GainMoney(150);
             isUsed = true;
         }
