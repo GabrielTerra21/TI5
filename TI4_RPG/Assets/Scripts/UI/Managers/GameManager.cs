@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour{
     public enum GameState {COMBAT, EXPLORATION}
     public GameState state;
     public Action UpdateUI;
+    public Player player;
+    public SkillDataSO fire;
 
     private void Awake() {
         if (Instance == null) {
@@ -77,5 +79,10 @@ public class GameManager : MonoBehaviour{
     {
         UpdateUI?.Invoke();
     }
-
+    public void Cheat()
+    {
+        player.life = 999999;
+        FindAnyObjectByType<SkillInventory>().Learn(fire);
+        return;
+    }
 }
