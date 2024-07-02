@@ -23,7 +23,7 @@ public class IddleState : State {
     private void Awake() {
         movement = new RoamingMovement();
         ac = new DefaultController(animator);
-        animationLayerIndex = animator.GetLayerIndex("Exploration");
+        if(animator != null) animationLayerIndex = animator.GetLayerIndex("Exploration");
         if (!agent) agent = GetComponent<Enemy>();
         if (!ai) ai = GetComponent<NavMeshAgent>(); 
     }
@@ -39,12 +39,12 @@ public class IddleState : State {
     } 
  
     public override State OnEnterState() { 
-        animator.SetLayerWeight(animationLayerIndex, 1);
+        if(animator != null) animator.SetLayerWeight(animationLayerIndex, 1);
         return this; 
     } 
  
     public override void OnExitState() { 
-        animator.SetLayerWeight(animationLayerIndex, 0);
+        if(animator != null) animator.SetLayerWeight(animationLayerIndex, 0);
         StopAllCoroutines(); 
     } 
  
@@ -53,9 +53,9 @@ public class IddleState : State {
             idleTimer -= Time.fixedDeltaTime;
             if (idleTimer <= 0) {
                 StartCoroutine(Walking());
-                animator.SetFloat("Movement", ai.speed / 5);
+                if(animator != null) animator.SetFloat("Movement", ai.speed / 5);
             }
-            else animator.SetFloat("Movement", 0);
+            else if (animator != null) animator.SetFloat("Movement", 0);
         }
     }
 

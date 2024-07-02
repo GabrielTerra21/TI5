@@ -24,7 +24,7 @@ public class ECombatState : State {
 
     private void Awake() {
         if(!self) self = GetComponent<Character>();
-        animationLayerIndex = animator.GetLayerIndex("Combat");
+        if(animator != null) animationLayerIndex = animator.GetLayerIndex("Combat");
         if ( !sc ) sc = GetComponent<SkillContainer>();
         if ( !eDetect ) eDetect = GetComponent<EngageSphere>();
     }
@@ -40,7 +40,7 @@ public class ECombatState : State {
             else if (!Moving) {
                 Moving = true;
                 Debug.Log("Moving has failed");
-                animator.SetFloat("MovementY", self.moveSpeed);
+                if(animator != null) animator.SetFloat("MovementY", self.moveSpeed);
                 StartCoroutine(Movement(sc.autoAttack));
             }
 
@@ -54,14 +54,14 @@ public class ECombatState : State {
     }
     
     public override State OnEnterState() {
-        animator.SetLayerWeight(animationLayerIndex, 1);
+        if(animator != null) animator.SetLayerWeight(animationLayerIndex, 1);
         Aggro(eDetect.GetNextTarget());
         return this;
     }
 
     public override void OnExitState() {
         Debug.Log($"{gameObject.name} is exiting combat state");
-        animator.SetLayerWeight(animationLayerIndex, 0);
+        if(animator != null) animator.SetLayerWeight(animationLayerIndex, 0);
         target = null;
         StopAllCoroutines();
     }
@@ -119,7 +119,7 @@ public class ECombatState : State {
             return false;
         }
         Debug.Log("in distance");
-        animator.SetFloat("MovementY", 0);
+        if(animator != null) animator.SetFloat("MovementY", 0);
         return true;
     }
     IEnumerator Movement ( Skill skill ) {
