@@ -2,7 +2,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SkillMenuManager : MonoBehaviour {
+    [Header("UI Elements")]
     public GameObject skillMenuUI;
+    
+    [Header("Components")]
     public SkillOrganizer organizer;
     public SkillEquipper equipper;
 
@@ -20,8 +23,8 @@ public class SkillMenuManager : MonoBehaviour {
         if (context.performed) {
             GameManager.Instance.playerInput.actions["Cancel"].performed -= CloseSkillMenu;
             GameManager.Instance.playerInput.actions["SkillMenuButton"].performed -= CloseSkillMenu;
-            GameManager.Instance.ExitUI();
             skillMenuUI.SetActive(false);
+            GameManager.Instance.ExitUI();
         }
     }
 
@@ -31,6 +34,10 @@ public class SkillMenuManager : MonoBehaviour {
     
     private void Equip() {
         Debug.Log("Skill equiped");
+        if (equipper.Contains(organizer.selected.skill)) {
+            Debug.Log("skill is already equipped");
+            equipper.RemoveSkill(organizer.selected.skill);
+        }
         equipper.setTo.UpdateButton(organizer.selected.skill);
         organizer.Deselect();
         equipper.Deselect();

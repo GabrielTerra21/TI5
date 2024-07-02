@@ -10,7 +10,10 @@ public class GameManager : MonoBehaviour{
     [Header("Game Info")] public bool paused;
     public UnityEvent gameOver, pauseGame, unpauseGame;
     public string currentScene;
+    [Header("UI Components")]
     public SkillDataSO empty;
+    public SkillDisplayCross cross;
+    
     public PlayerInput playerInput;
     public static GameManager Instance;
     public enum GameState {COMBAT, EXPLORATION}
@@ -62,6 +65,7 @@ public class GameManager : MonoBehaviour{
 
     public void ExitUI() {
         UnpauseGame();
+        cross.UpdateSlots();
         playerInput.SwitchCurrentActionMap("Action");
     }
 

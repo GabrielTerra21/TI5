@@ -57,6 +57,22 @@ public class SkillEquipper : MonoBehaviour {
             else sc.skills[i].data = null;
         }
     }
-    
+
+    public bool Contains(SkillDataSO skill) {
+        foreach (var data in slots) {
+            if(data.skill == skill) return true;
+        }
+        return false;
+    }
+
+    public void RemoveSkill(SkillDataSO skill) {
+        Debug.Log("Removing skill");
+        foreach (var data in slots) {
+            if (data.skill == skill) {
+                data.UpdateButton(GameManager.Instance.empty);
+                return;
+            }
+        }
+    }
     
 }
