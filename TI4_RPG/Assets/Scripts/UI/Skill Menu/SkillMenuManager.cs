@@ -8,7 +8,7 @@ public class SkillMenuManager : MonoBehaviour {
 
 
     public void OpenSkillMenu(InputAction.CallbackContext context) {
-        if (context.performed) {
+        if (context.performed && GameManager.Instance.state == GameManager.GameState.EXPLORATION) {
             GameManager.Instance.EnterUI();
             skillMenuUI.SetActive(true);
             GameManager.Instance.playerInput.actions["Cancel"].performed += CloseSkillMenu;
