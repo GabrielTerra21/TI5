@@ -5,32 +5,35 @@ using UnityEngine.SceneManagement;
 using System;
 
 public class GameManager : MonoBehaviour{
-    [Header("Player info")] public int money = 300;
+    [Header("Player info")] 
+    public int money = 300;
 
-    [Header("Game Info")] public bool paused;
-    public UnityEvent gameOver, pauseGame, unpauseGame;
+    [Header("Game Info")] 
+    public GameState state;
+    public enum GameState {COMBAT, EXPLORATION}
+    public bool paused;
+    public UnityEvent pauseGame, unpauseGame; 
     public string currentScene;
+    
     [Header("UI Components")]
     public SkillDataSO empty;
     public SkillDisplayCross cross;
-    
-    public PlayerInput playerInput;
-    public static GameManager Instance;
-    public enum GameState {COMBAT, EXPLORATION}
-    public GameState state;
     public Action UpdateUI;
-    public Player player;
+    
+    //[Header("Managers Components")]
+    public PlayerInput playerInput;
+    
+    public static GameManager Instance;
 
     private void Awake() {
-        if (Instance == null) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            return;
-        }
-        Destroy(gameObject);
+        if (Instance != null) Destroy(gameObject);
+        else Instance = this;
+        DontDestroyOnLoad(this);
     }
-
+    
     private void Start() {
+        //playerInput = GetComponent<PlayerInput>();
+        SceneManager.sceneLoaded += OnLoadScene;
         currentScene = SceneManager.GetActiveScene().name;
         state = GameState.EXPLORATION;
     }
@@ -44,11 +47,22 @@ public class GameManager : MonoBehaviour{
     }
 
     public void LoadNewScene(string sceneName) {
-        pauseGame.RemoveAllListeners();
-        unpauseGame.RemoveAllListeners();
+          MonoBehaviour[] scripts = FindObjectsOfType<MonoBehaviour>();
+          foreach (var script in scripts) {
+              if(script.gameObject != gameObject) script.enabled = false;
+          }
+        
+        // pauseGame.RemoveAllListeners();
+        // unpauseGame.RemoveAllListeners();
+        // UpdateUI = null;
         paused = false;
         currentScene = sceneName;
+        //playerInput.enabled = false;
         SceneManager.LoadScene("LoadingScreen");
+    }
+
+    public void OnLoadScene(Scene scene, LoadSceneMode mode) {
+        playerInput = FindObjectOfType<PlayerInput>();
     }
 
     public void PauseGame() {

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,21 +9,30 @@ public class SkillMenuManager : MonoBehaviour {
     [Header("Components")]
     public SkillOrganizer organizer;
     public SkillEquipper equipper;
+    public PlayerInput playerInput;
 
+
+    private void OnEnable() {
+        playerInput.actions["OpenSkillMenu"].performed += OpenSkillMenu;
+    }
+
+    private void OnDisable() {
+        playerInput.actions["OpenSkillMenu"].performed -= OpenSkillMenu;
+    }
 
     public void OpenSkillMenu(InputAction.CallbackContext context) {
         if (context.performed && GameManager.Instance.state == GameManager.GameState.EXPLORATION) {
             GameManager.Instance.EnterUI();
             skillMenuUI.SetActive(true);
-            GameManager.Instance.playerInput.actions["Cancel"].performed += CloseSkillMenu;
-            GameManager.Instance.playerInput.actions["SkillMenuButton"].performed += CloseSkillMenu;
+            playerInput.actions["Cancel"].performed += CloseSkillMenu;
+            playerInput.actions["SkillMenuButton"].performed += CloseSkillMenu;
         }
     }
     
     public void CloseSkillMenu(InputAction.CallbackContext context) {
         if (context.performed) {
-            GameManager.Instance.playerInput.actions["Cancel"].performed -= CloseSkillMenu;
-            GameManager.Instance.playerInput.actions["SkillMenuButton"].performed -= CloseSkillMenu;
+            playerInput.actions["Cancel"].performed -= CloseSkillMenu;
+            playerInput.actions["SkillMenuButton"].performed -= CloseSkillMenu;
             skillMenuUI.SetActive(false);
             GameManager.Instance.ExitUI();
         }

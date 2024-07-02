@@ -8,6 +8,7 @@ public class UISkillWheel : MonoBehaviour {
     public SkillContainer sc;
     public UISkillSlot[] slots;
     public Skill selected;
+    public PlayerInput playerInput;
 
 
     private void Awake() {
@@ -19,6 +20,31 @@ public class UISkillWheel : MonoBehaviour {
         UpdateSlots();
     }
 
+    private void OnEnable() {
+        playerInput.actions["SkillWheel"].started += OnActivateSkillWheel;
+        playerInput.actions["SkillWheel"].canceled += OnReleaseSkillWheel;
+    }
+    
+    private void OnDisable(){ 
+        playerInput.actions["SkillWheel"].started -= OnActivateSkillWheel;
+        playerInput.actions["SkillWheel"].canceled -= OnReleaseSkillWheel;
+    }
+    
+    public void OnActivateSkillWheel(InputAction.CallbackContext context) {
+        Debug.Log("Button has been pressed");
+        RectTransform rect = wheel.GetComponent<RectTransform>();
+        rect.position = Mouse.current.position.ReadValue();
+        UpdateSlots();
+        wheel.SetActive(true);
+    }
+
+    public void OnReleaseSkillWheel(InputAction.CallbackContext context) {
+        wheel.SetActive(false);
+        if(selected != null)Cast(selected);
+        selected = null;
+    }
+    
+    /*
     public void OnSkillWheel(InputAction.CallbackContext context) {
         if (context.started) {
             Debug.Log("Button has been pressed");
@@ -34,6 +60,7 @@ public class UISkillWheel : MonoBehaviour {
             selected = null;
         }
     }
+    */
 
     public void UpdateSlots() {
         for (int i = 0; i < sc.skills.Length; i++) {

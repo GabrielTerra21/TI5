@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VolumeController : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
     [Header("Audio")]
     public Slider volumeSlider;
@@ -13,19 +13,20 @@ public class VolumeController : MonoBehaviour
     public string folderName = "./saves/";
     public string fileName = "settings";
 
+
+    private void Awake() {
+        LoadSettings();
+    }
+
     void Start()
     {
         volumeSlider.onValueChanged.AddListener(delegate { ChangeVolume(); });
-        LoadSettings();
     }
 
     void ChangeVolume()
     {
         audioSource.volume = volumeSlider.value;
-    }
-
-    private void OnEnable(){
-        LoadSettings();
+        SaveSettings();
     }
     
     private void OnDisable() {
@@ -44,7 +45,7 @@ public class VolumeController : MonoBehaviour
         Debug.Log("Settings have been saved");
     }
 
-    private void LoadSettings() {
+    public void LoadSettings() {
         if (!File.Exists(folderName + fileName + ".xml")) return;
         StreamReader reader = new StreamReader(folderName + fileName + ".xml");
         XmlSerializer serializer = new XmlSerializer(typeof(Settings));

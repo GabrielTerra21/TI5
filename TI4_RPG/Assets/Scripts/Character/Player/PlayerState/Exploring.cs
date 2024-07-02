@@ -27,6 +27,7 @@ public class Exploring : State
     public Animator animator;
     public RuntimeAnimatorController ac;
     public RotationBehaviour rotator;
+    public PlayerInput playerInput;
     
 
     private void Awake(){
@@ -36,6 +37,20 @@ public class Exploring : State
         rotator = new LookAtMoveDir(transform);
         enabled = false;
         interact.RemoveAllListeners();
+    }
+
+    private void OnEnable() {
+        playerInput.actions["Movement"].started += OnMovement;
+        playerInput.actions["Movement"].performed += OnMovement;
+        playerInput.actions["Movement"].canceled += OnMovement;
+    }
+    
+    private void OnDisable() {
+        playerInput.actions["Movement"].started -= OnMovement;
+        playerInput.actions["Movement"].performed -= OnMovement;
+        playerInput.actions["Movement"].canceled -= OnMovement;
+        
+        playerInput.actions["Interact"].performed -= Interact;
     }
 
     private void Update()
@@ -51,8 +66,8 @@ public class Exploring : State
 
     public override State OnEnterState() {
         GameManager.Instance.state = GameManager.GameState.EXPLORATION;
-        if(GameManager.Instance.playerInput == null) GameManager.Instance.playerInput = FindObjectOfType<PlayerInput>();
-        GameManager.Instance.playerInput.actions["Interact"].performed += Interact;
+        //if(GameManager.Instance.playerInput == null) GameManager.Instance.playerInput = FindObjectOfType<PlayerInput>();
+        playerInput.actions["Interact"].performed += Interact;
         animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;
         return this;

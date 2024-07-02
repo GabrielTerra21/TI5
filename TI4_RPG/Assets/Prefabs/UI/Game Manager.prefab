@@ -724,6 +724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseScreen: {fileID: 752472848264080031}
+  playerInput: {fileID: 0}
 --- !u!1 &4016448990841211819
 GameObject:
   m_ObjectHideFlags: 0
@@ -2878,10 +2879,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money: 150
+  state: 1
   paused: 0
-  gameOver:
-    m_PersistentCalls:
-      m_Calls: []
   pauseGame:
     m_PersistentCalls:
       m_Calls: []
@@ -2890,10 +2889,8 @@ MonoBehaviour:
       m_Calls: []
   currentScene: 
   empty: {fileID: 11400000, guid: 09cbbbaeb0f5b1d44b9167e5ba253748, type: 2}
-  playerInput: {fileID: 4693119853442311936}
-  state: 1
-  player: {fileID: 0}
-  fire: {fileID: 0}
+  cross: {fileID: 0}
+  playerInput: {fileID: 0}
 --- !u!1 &9103202786958587639
 GameObject:
   m_ObjectHideFlags: 0
@@ -9228,18 +9225,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8680749466022897472}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4693119853442311936 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4132466081643610176, guid: 4946d11406dfe5047a210032e0b39d55,
-    type: 3}
-  m_PrefabInstance: {fileID: 8680749466022897472}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &9024396656498939065
 PrefabInstance:
   m_ObjectHideFlags: 0

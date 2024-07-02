@@ -4842,6 +4842,11 @@ PrefabInstance:
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7755058880080088738, guid: 9af321e4ed8f21a4ba426e79b283fa1d,
+        type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 9069363943138238543, guid: 9af321e4ed8f21a4ba426e79b283fa1d,
         type: 3}
       propertyPath: m_Name
@@ -5778,6 +5783,7 @@ GameObject:
   - component: {fileID: 1513049354}
   - component: {fileID: 1513049353}
   - component: {fileID: 1513049356}
+  - component: {fileID: 1513049357}
   m_Layer: 5
   m_Name: Options
   m_TagString: Untagged
@@ -5915,6 +5921,22 @@ MonoBehaviour:
   objetosParaAtivarDesativar:
   - {fileID: 1954601271}
   - {fileID: 1952064012}
+--- !u!114 &1513049357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513049351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c14e8ed16d43624dbec6fab95923bdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeSlider: {fileID: 6163587281074038126}
+  audioSource: {fileID: 839397889}
+  folderName: ./saves/
+  fileName: settings
 --- !u!1 &1518421228
 GameObject:
   m_ObjectHideFlags: 0
@@ -7769,6 +7791,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio
       objectReference: {fileID: 0}
+    - target: {fileID: 589528904080662067, guid: 24a292a7589fba442946ae3b81e55cc4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088235332570481599, guid: 24a292a7589fba442946ae3b81e55cc4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3329571237021972480, guid: 24a292a7589fba442946ae3b81e55cc4,
         type: 3}
       propertyPath: m_Pivot.x
@@ -7872,27 +7904,27 @@ PrefabInstance:
     - target: {fileID: 3545678913375916406, guid: 24a292a7589fba442946ae3b81e55cc4,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3545678913375916406, guid: 24a292a7589fba442946ae3b81e55cc4,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3842820299215799422, guid: 24a292a7589fba442946ae3b81e55cc4,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3842820299215799422, guid: 24a292a7589fba442946ae3b81e55cc4,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3842820299215799422, guid: 24a292a7589fba442946ae3b81e55cc4,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8246292244776449039, guid: 24a292a7589fba442946ae3b81e55cc4,
         type: 3}
@@ -7904,6 +7936,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24a292a7589fba442946ae3b81e55cc4, type: 3}
+--- !u!114 &6163587281074038126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2135014506666210577, guid: 24a292a7589fba442946ae3b81e55cc4,
+    type: 3}
+  m_PrefabInstance: {fileID: 6163587281074038125}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952064012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,6 @@ public class CombatState : State {
     [SerializeField] private Character target;
     [SerializeField] private EngageSphere eDetect;
     public SkillContainer skillManager;
-    public GameObject skillWheel;
     
     [Space(5)]
     [Header("Movement Properties")]
@@ -23,6 +23,7 @@ public class CombatState : State {
     private AnimationController animationController;
     [SerializeField] private int animationLayerIndex;
     private RotationBehaviour targetLock;
+    public PlayerInput playerInput;
 
 
     private void Awake()
@@ -33,6 +34,16 @@ public class CombatState : State {
         targetLock = new LookAtTarget(transform);
         enabled = false;
         if (!line) line = GetComponentInChildren<SplineLine>();
+    }
+
+    private void OnEnable() {
+        playerInput.actions["Movement"].performed += OnMovement;
+        playerInput.actions["SwitchEnemy"].performed += TargetNext;
+    }
+    
+    private void OnDisable() {
+        playerInput.actions["Movement"].performed -= OnMovement;
+        playerInput.actions["SwitchEnemy"].performed -= TargetNext;
     }
 
     private void Update()
@@ -71,6 +82,15 @@ public class CombatState : State {
         return this;
     }
 
+    public void TargetNext(InputAction.CallbackContext context) {
+        if (GameManager.Instance.state != GameManager.GameState.COMBAT) return; // Failsafe
+        
+        Debug.Log("entered targeting");
+        target = eDetect.GetNextTarget(target);
+        Debug.Log($"target is now {target}");
+        line.Target(target.LockOnTarget.gameObject);
+    }
+    
     public void TargetNext() {
         if (GameManager.Instance.state != GameManager.GameState.COMBAT) return; // Failsafe
         
