@@ -27,6 +27,6 @@ public class Store : MonoBehaviour
     }
 
     public void UpdateStore() {
-        moneyText.text = GameManager.Instance.money.ToString();
+        moneyText.text = $"Money : {GameManager.Instance.money}.00";
     }
 }
