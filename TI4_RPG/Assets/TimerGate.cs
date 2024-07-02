@@ -3,12 +3,22 @@ using System.Collections;
 using UnityEngine;
 
 public class TimerGate : Gate {
-    private float time;
+    public float time;
+    public bool isOpen;
+
+    public void Start() {
+        isOpen = false;
+    }
+    
     public override void Close() {
         StartCoroutine(CloseAfter(time));
     }
 
     IEnumerator CloseAfter(float cd) {
+        if (isOpen) {
+            yield break;
+        }
+        isOpen = true;
         float timer = cd;
         while (timer > 0) {
             if (!GameManager.Instance.paused) {
@@ -17,5 +27,6 @@ public class TimerGate : Gate {
             yield return null;
         }
         base.Close();
+        isOpen = false;
     }
 }
