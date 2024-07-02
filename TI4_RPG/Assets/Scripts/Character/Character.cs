@@ -7,7 +7,7 @@ public abstract class Character : MonoBehaviour
     [Header("Character Components")]
     public Animator animator;
     public GameObject LockOnTarget;
-    public UnityEvent OnDeath, OnDamage;
+    public UnityEvent OnDeath, OnDamage,OnHeal;
     public GameObject hitMark;
 
     [Space(5)]

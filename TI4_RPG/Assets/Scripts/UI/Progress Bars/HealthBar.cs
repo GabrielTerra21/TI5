@@ -19,6 +19,7 @@ public class HealthBar : MonoBehaviour
 
     private void Start() {
         owner.OnDamage.AddListener(() => UpdateValues());
+        owner.OnHeal.AddListener(() => UpdateValues());
         SetValues(owner);
     }
     
