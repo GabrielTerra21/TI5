@@ -7,18 +7,22 @@ public class SkillMenuManager : MonoBehaviour {
     public SkillEquipper equipper;
 
 
-    public void OpenSkillMenu() {
-        GameManager.Instance.EnterUI();
-        skillMenuUI.SetActive(true);
-        GameManager.Instance.playerInput.actions["Cancel"].performed += CloseSkillMenu;
-        GameManager.Instance.playerInput.actions["SkillMenuButton"].performed += CloseSkillMenu;
+    public void OpenSkillMenu(InputAction.CallbackContext context) {
+        if (context.performed) {
+            GameManager.Instance.EnterUI();
+            skillMenuUI.SetActive(true);
+            GameManager.Instance.playerInput.actions["Cancel"].performed += CloseSkillMenu;
+            GameManager.Instance.playerInput.actions["SkillMenuButton"].performed += CloseSkillMenu;
+        }
     }
     
     public void CloseSkillMenu(InputAction.CallbackContext context) {
-        GameManager.Instance.playerInput.actions["Cancel"].performed -= CloseSkillMenu;
-        GameManager.Instance.playerInput.actions["SkillMenuButton"].performed -= CloseSkillMenu;
-        GameManager.Instance.ExitUI();
-        skillMenuUI.SetActive(false);
+        if (context.performed) {
+            GameManager.Instance.playerInput.actions["Cancel"].performed -= CloseSkillMenu;
+            GameManager.Instance.playerInput.actions["SkillMenuButton"].performed -= CloseSkillMenu;
+            GameManager.Instance.ExitUI();
+            skillMenuUI.SetActive(false);
+        }
     }
 
     public void CheckIfReady() {

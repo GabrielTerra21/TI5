@@ -9,5 +9,7 @@ public abstract class Trigger : MonoBehaviour
     [Tooltip("Determines whether or not the event can be triggered more than once")] public bool oneTime;
 
 
-    protected virtual void Start() { if (oneTime) { action.AddListener(() => { action = null; }); } } // if oneTime is true, then action is turned null after execution
+    protected virtual void Start() {
+        if(oneTime) action.AddListener(() => { action = null;});
+    } 
 }
