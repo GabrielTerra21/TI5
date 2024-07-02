@@ -51,6 +51,7 @@ public class Exploring : State
 
     public override State OnEnterState() {
         GameManager.Instance.state = GameManager.GameState.EXPLORATION;
+        if(GameManager.Instance.playerInput == null) GameManager.Instance.playerInput = FindObjectOfType<PlayerInput>();
         GameManager.Instance.playerInput.actions["Interact"].performed += Interact;
         animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;

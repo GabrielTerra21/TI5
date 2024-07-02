@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour{
     public GameState state;
     public Action UpdateUI;
     public Player player;
-    public SkillDataSO fire;
 
     private void Awake() {
         if (Instance == null) {
@@ -29,7 +28,6 @@ public class GameManager : MonoBehaviour{
     }
 
     private void Start() {
-        if(playerInput == null) playerInput = FindObjectOfType<PlayerInput>();
         currentScene = SceneManager.GetActiveScene().name;
         state = GameState.EXPLORATION;
     }
@@ -81,11 +79,5 @@ public class GameManager : MonoBehaviour{
     public void UIUpdate()
     {
         UpdateUI?.Invoke();
-    }
-    public void Cheat()
-    {
-        // player.life = 999999;
-        // FindAnyObjectByType<SkillInventory>().Learn(fire);
-        // return;
     }
 }
