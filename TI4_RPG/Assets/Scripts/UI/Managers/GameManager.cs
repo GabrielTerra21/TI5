@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour{
     private void Start() {
         //playerInput = GetComponent<PlayerInput>();
         SceneManager.sceneLoaded += OnLoadedScene;
+        playerInput = FindObjectOfType<PlayerInput>();
+        exploring = FindObjectOfType<Exploring>();
+        combatState = FindObjectOfType<CombatState>();
+        if(exploring != null) exploring.OnSubscribe();
+        if(combatState != null) combatState.OnSubscribe();
         currentScene = SceneManager.GetActiveScene().name;
         state = GameState.EXPLORATION;
     }
@@ -68,6 +73,7 @@ public class GameManager : MonoBehaviour{
     }
 
     public void OnLoadedScene(Scene scene, LoadSceneMode mode) {
+        Debug.Log("oioioioioioi");
         playerInput = FindObjectOfType<PlayerInput>();
         exploring = FindObjectOfType<Exploring>();
         combatState = FindObjectOfType<CombatState>();
