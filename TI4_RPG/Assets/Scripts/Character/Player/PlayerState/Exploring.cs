@@ -1,5 +1,5 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
@@ -8,7 +8,7 @@ public class Exploring : State
     [Space(10)]
     [Header("State Properties")]
     public Character agent;
-    public Action interact;
+    public UnityEvent interact;
     public SkillContainer skillManager;
     //public List<WaitingTrigger> waitingTriggers;
     //private WaitingTrigger near;
@@ -35,7 +35,7 @@ public class Exploring : State
         animationLayerIndex = animator.GetLayerIndex("Exploration");
         rotator = new LookAtMoveDir(transform);
         enabled = false;
-        interact = null;
+        interact.RemoveAllListeners();
     }
 
     private void Update()
@@ -59,7 +59,7 @@ public class Exploring : State
 
     public override void OnExitState() {
         animator.SetLayerWeight(animationLayerIndex, 0);
-        interact = null;
+        interact.RemoveAllListeners();
     }
     public void Interact(InputAction.CallbackContext context)
     {
@@ -71,7 +71,9 @@ public class Exploring : State
         //     }
         //     trigger.Activate();
         // }
-        interact?.Invoke();
+        if (context.performed) {
+            interact?.Invoke();
+        }
     }
     public void OutCombtCast(Skill skill)
     {

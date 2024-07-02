@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour{
     }
 
     public void PauseGame() {
+        if (paused) { throw new Exception("Game is already paused"); }
         if (currentScene == "Menu") return;
         pauseGame.Invoke();
         paused = true;
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour{
     }
 
     public void UnpauseGame() {
+        if (!paused) { throw new Exception("Is not paused"); }
         unpauseGame.Invoke();
         paused = false;
     }
