@@ -27,6 +27,7 @@ public class Player : Character
     public override void Die() {
         Destroy(gameObject);
         GameManager.Instance.LoadNewScene("Derrota");
+        GameManager.Instance.money = 150;
     }
 
     public void PauseGame() {
