@@ -49,13 +49,15 @@ public class GameManager : MonoBehaviour{
     }
 
     public void LoadNewScene(string sceneName) {
-          MonoBehaviour[] scripts = FindObjectsOfType<MonoBehaviour>();
+        MonoBehaviour[] scripts = FindObjectsOfType<MonoBehaviour>();
         foreach (var script in scripts) {
             if(script.gameObject != gameObject) script.enabled = false;
         }
         
         if(exploring != null)exploring.OnCleanup();
         if(combatState != null)combatState.OnCleanup();
+
+        if (sceneName == "fase1") money = 150;
         
         pauseGame.RemoveAllListeners(); 
         unpauseGame.RemoveAllListeners();
