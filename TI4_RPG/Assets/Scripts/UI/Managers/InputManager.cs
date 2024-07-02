@@ -3,8 +3,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
-{
+public class InputManager : MonoBehaviour {
+    private PlayerInput playerINput;
     private void Awake() {
         if (GameManager.Instance == null)
         {
@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour
                 Debug.Log($"{e.Message}");
                 StartCoroutine(SetPInput());
             }
+
+            playerINput = GetComponent<PlayerInput>();
         }
     }
 

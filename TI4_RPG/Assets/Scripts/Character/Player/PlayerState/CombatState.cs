@@ -37,12 +37,16 @@ public class CombatState : State {
     }
 
     private void OnEnable() {
+        playerInput.actions["Movement"].started += OnMovement;
         playerInput.actions["Movement"].performed += OnMovement;
+        playerInput.actions["Movement"].canceled += OnMovement;
         playerInput.actions["SwitchEnemy"].performed += TargetNext;
     }
     
-    private void OnDisable() {
+    public void OnCleanup() {
+        playerInput.actions["Movement"].started -= OnMovement;
         playerInput.actions["Movement"].performed -= OnMovement;
+        playerInput.actions["Movement"].canceled -= OnMovement;
         playerInput.actions["SwitchEnemy"].performed -= TargetNext;
     }
 

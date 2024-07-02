@@ -7,6 +7,8 @@ using System;
 public class GameManager : MonoBehaviour{
     [Header("Player info")] 
     public int money = 300;
+    private Exploring exploring;
+    private CombatState combatState;
 
     [Header("Game Info")] 
     public GameState state;
@@ -33,7 +35,7 @@ public class GameManager : MonoBehaviour{
     
     private void Start() {
         //playerInput = GetComponent<PlayerInput>();
-        SceneManager.sceneLoaded += OnLoadScene;
+        SceneManager.sceneLoaded += OnLoadedScene;
         currentScene = SceneManager.GetActiveScene().name;
         state = GameState.EXPLORATION;
     }
@@ -48,21 +50,25 @@ public class GameManager : MonoBehaviour{
 
     public void LoadNewScene(string sceneName) {
           MonoBehaviour[] scripts = FindObjectsOfType<MonoBehaviour>();
-          foreach (var script in scripts) {
-              if(script.gameObject != gameObject) script.enabled = false;
-          }
+        foreach (var script in scripts) {
+            if(script.gameObject != gameObject) script.enabled = false;
+        }
         
-        // pauseGame.RemoveAllListeners();
-        // unpauseGame.RemoveAllListeners();
-        // UpdateUI = null;
+        if(exploring != null)exploring.OnCleanup();
+        if(combatState != null)combatState.OnCleanup();
+        
+        pauseGame.RemoveAllListeners(); 
+        unpauseGame.RemoveAllListeners();
+        UpdateUI = null;
         paused = false;
         currentScene = sceneName;
-        //playerInput.enabled = false;
         SceneManager.LoadScene("LoadingScreen");
     }
 
-    public void OnLoadScene(Scene scene, LoadSceneMode mode) {
+    public void OnLoadedScene(Scene scene, LoadSceneMode mode) {
         playerInput = FindObjectOfType<PlayerInput>();
+        exploring = FindObjectOfType<Exploring>();
+        combatState = FindObjectOfType<CombatState>();
     }
 
     public void PauseGame() {
