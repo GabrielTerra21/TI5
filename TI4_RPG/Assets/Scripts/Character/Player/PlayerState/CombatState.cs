@@ -36,7 +36,7 @@ public class CombatState : State {
         if (!line) line = GetComponentInChildren<SplineLine>();
     }
 
-    private void OnEnable() {
+    public void OnSubscribe() {
         playerInput.actions["Movement"].started += OnMovement;
         playerInput.actions["Movement"].performed += OnMovement;
         playerInput.actions["Movement"].canceled += OnMovement;

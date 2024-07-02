@@ -39,7 +39,7 @@ public class Exploring : State
         interact.RemoveAllListeners();
     }
 
-    private void OnEnable() {
+    public void OnSubscribe() {
         playerInput.actions["Movement"].started += OnMovement;
         playerInput.actions["Movement"].performed += OnMovement;
         playerInput.actions["Movement"].canceled += OnMovement;

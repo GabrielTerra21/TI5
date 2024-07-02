@@ -69,6 +69,8 @@ public class GameManager : MonoBehaviour{
         playerInput = FindObjectOfType<PlayerInput>();
         exploring = FindObjectOfType<Exploring>();
         combatState = FindObjectOfType<CombatState>();
+        if(exploring != null) exploring.OnSubscribe();
+        if(combatState != null) combatState.OnSubscribe();
     }
 
     public void PauseGame() {
