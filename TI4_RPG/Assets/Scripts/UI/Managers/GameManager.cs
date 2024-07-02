@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour{
 
     private void Start() {
         currentScene = SceneManager.GetActiveScene().name;
+        playerInput = FindObjectOfType<PlayerInput>();
         state = GameState.EXPLORATION;
     }
 

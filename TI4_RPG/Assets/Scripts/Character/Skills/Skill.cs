@@ -19,7 +19,10 @@ public class Skill : MonoBehaviour {
 
     public void OnCast(Character owner, Character target) {
         //Debug.Log($"Starting casting {data.SkillName} on {target.data.charName}");
-        if (GameManager.Instance.state == GameManager.GameState.EXPLORATION && !data.outOfCombatCasting) return;
+        if (GameManager.Instance.state == GameManager.GameState.EXPLORATION && !data.outOfCombatCasting) {
+            Debug.Log("castou!!!!!!!!!");
+            return;
+        }
         if (data.Range != 0) {
             if (!InRange(owner.transform, target.transform, data.Range)) {
                 Debug.Log("Casting failed due to range");
