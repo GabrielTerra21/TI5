@@ -15,6 +15,10 @@ public class UISkillWheel : MonoBehaviour {
         foreach (var slot in slots) slot.parent = this;
     }
 
+    private void Start() {
+        UpdateSlots();
+    }
+
     public void OnSkillWheel(InputAction.CallbackContext context) {
         if (context.started) {
             Debug.Log("Button has been pressed");
