@@ -11,6 +11,7 @@ public class HintUI : MonoBehaviour
     public GameObject placa;
     private void Start()
     {
+        hint.blocked = true;
         title.text = hint.title; 
     }
     public void BuyHint()
