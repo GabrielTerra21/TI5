@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Gate : MonoBehaviour
+public abstract class Gate : MonoBehaviour
 {
     public GameObject open, close;
 
-    public void Open(){
+    public virtual void Open(){
         open.SetActive(true);
         close.SetActive(false);
     }
 
-     public void Close(){
+     public virtual void Close(){
         open.SetActive(false);
         close.SetActive(true);
     }
