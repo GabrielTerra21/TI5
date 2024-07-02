@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour{
         if(exploring != null)exploring.OnCleanup();
         if(combatState != null)combatState.OnCleanup();
 
-        if (sceneName == "fase1") money = 150;
+        if (sceneName == "Fase1") money = 150;
         
         pauseGame.RemoveAllListeners(); 
         unpauseGame.RemoveAllListeners();
