@@ -58,6 +58,7 @@ public abstract class Character : MonoBehaviour
 
     public virtual void Heal(int heal) {
         life += heal;
+        OnHeal.Invoke();
         if (life > data.maxHp) life = data.maxHp;
     }
 
