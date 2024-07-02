@@ -71,6 +71,7 @@ public class Exploring : State
         //     }
         //     trigger.Activate();
         // }
+        if(!agent.actionable)return;
         if (context.performed && GameManager.Instance.state == GameManager.GameState.EXPLORATION) {
             interact?.Invoke();
         }

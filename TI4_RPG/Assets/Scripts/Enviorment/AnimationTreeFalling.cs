@@ -13,10 +13,8 @@ public class AnimationTreeFalling : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Colidiu");
         if (other.CompareTag("FireBall"))
         {
-            Debug.Log("Com a bola de fogo");
             FallTree();
             colliderBoss.SetActive(false);
         }

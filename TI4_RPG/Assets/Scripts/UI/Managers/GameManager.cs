@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour{
     }
 
     private void Start() {
+        if(playerInput == null) playerInput = FindObjectOfType<PlayerInput>();
         currentScene = SceneManager.GetActiveScene().name;
-        playerInput = FindObjectOfType<PlayerInput>();
         state = GameState.EXPLORATION;
     }
 

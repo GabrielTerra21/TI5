@@ -20,20 +20,26 @@ public class Skill : MonoBehaviour {
     public void OnCast(Character owner, Character target) {
         //Debug.Log($"Starting casting {data.SkillName} on {target.data.charName}");
         if (GameManager.Instance.state == GameManager.GameState.EXPLORATION && !data.outOfCombatCasting) {
-            Debug.Log("castou!!!!!!!!!");
+            Debug.Log("castou fora!!!!!!!!!");
             return;
         }
-        if (data.Range != 0) {
-            if (!InRange(owner.transform, target.transform, data.Range)) {
-                Debug.Log("Casting failed due to range");
-                return;
+        else {
+
+
+            if (data.Range != 0) {
+                if (!InRange(owner.transform, target.transform, data.Range)) {
+                    Debug.Log("Casting failed due to range");
+                    return;
+                }
+
+                Debug.Log("Casting hasn't failed due to range");
             }
-            Debug.Log("Casting hasn't failed due to range");
-        }  
-        if (owner.actionable && ready) {
-            Debug.Log($"Casting {data.SkillName}...");
-            StartCoroutine(Casting(owner, target));
-            //Debug.Log($"Casted {data.SkillName} on {target.data.charName}");
+
+            if (owner.actionable && ready) {
+                Debug.Log($"Casting {data.SkillName}...");
+                StartCoroutine(Casting(owner, target));
+                //Debug.Log($"Casted {data.SkillName} on {target.data.charName}");
+            }
         }
     }
     //Passivel de mudan�a

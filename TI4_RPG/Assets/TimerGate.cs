@@ -9,6 +9,11 @@ public class TimerGate : Gate {
     public void Start() {
         isOpen = false;
     }
+
+    public override void Open() {
+        StopAllCoroutines();
+        base.Open();
+    }
     
     public override void Close() {
         StartCoroutine(CloseAfter(time));
