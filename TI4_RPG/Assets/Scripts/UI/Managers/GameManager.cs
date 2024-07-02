@@ -81,8 +81,8 @@ public class GameManager : MonoBehaviour{
     }
     public void Cheat()
     {
-        player.life = 999999;
-        FindAnyObjectByType<SkillInventory>().Learn(fire);
-        return;
+        // player.life = 999999;
+        // FindAnyObjectByType<SkillInventory>().Learn(fire);
+        // return;
     }
 }
