@@ -7,7 +7,7 @@ public abstract class StateMachine : MonoBehaviour {
 
 
     protected virtual void Start() {
-        if(current == null)EnterState(start);
+        EnterState(start);
     }
     
     public void EnterState(State state)
