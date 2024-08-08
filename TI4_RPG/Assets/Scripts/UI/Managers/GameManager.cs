@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour{
 
     public void ExitUI() {
         UnpauseGame();
-        cross.UpdateSlots();
+        //cross.UpdateSlots();
         playerInput.SwitchCurrentActionMap("Action");
     }
 

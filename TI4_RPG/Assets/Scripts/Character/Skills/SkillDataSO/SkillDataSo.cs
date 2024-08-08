@@ -1,4 +1,3 @@
-using UnityEngine.UI;
 using UnityEngine;
 
 public abstract class SkillDataSO : ScriptableObject
