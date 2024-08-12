@@ -1,13 +1,13 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CombatState : State {
     [Space(10)] [Header("State Components")] 
     [SerializeField] private SplineLine line;
-    [SerializeField] private Character agent;
+    public Character agent;
     [SerializeField] private Character target;
     [SerializeField] private EngageSphere eDetect;
+    [SerializeField] private SkillDataSO autoAttack;
     public SkillContainer skillManager;
     
     [Space(5)]
@@ -36,6 +36,7 @@ public class CombatState : State {
         if (!line) line = GetComponentInChildren<SplineLine>();
     }
 
+    //Subscreve as respectivas ações ao mapa de ações do input Manager
     public void OnSubscribe() {
         playerInput.actions["Movement"].started += OnMovement;
         playerInput.actions["Movement"].performed += OnMovement;
@@ -43,6 +44,7 @@ public class CombatState : State {
         playerInput.actions["SwitchEnemy"].performed += TargetNext;
     }
     
+    //Desubscreve as respectivas ações ao mapa de ações do input Manager
     public void OnCleanup() {
         playerInput.actions["Movement"].started -= OnMovement;
         playerInput.actions["Movement"].performed -= OnMovement;
@@ -56,12 +58,12 @@ public class CombatState : State {
         movement.Moving(moveDir, agent.moveSpeed);
         animationController.SetAnimations(moveDir);
         targetLock.SetRotation(target.transform.position);
-        if(moveDir.magnitude < 0.05f) skillManager.AutoAttack(target);
+        //if(moveDir.magnitude < 0.05f) skillManager.AutoAttack(target);
+        if(moveDir.magnitude < 0.05f) autoAttack.OnCast(agent,target);
+        
     }
 
-    private void LateUpdate() {
-        OnTargetDeath();
-    }
+    private void LateUpdate() { OnTargetDeath(); }
 
     // private void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
     public void OnMovement(InputAction.CallbackContext context) => moveDir = context.ReadValue<Vector2>();
@@ -85,22 +87,22 @@ public class CombatState : State {
         line.Target(target.LockOnTarget);
         return this;
     }
-
+    
+    // Faz chamada do eDetect para adquirir novo alvo
+    // Atualiza o alvo da linha de targeting
     public void TargetNext(InputAction.CallbackContext context) {
         if (GameManager.Instance.state != GameManager.GameState.COMBAT) return; // Failsafe
         
-        Debug.Log("entered targeting");
         target = eDetect.GetNextTarget(target);
-        Debug.Log($"target is now {target}");
         line.Target(target.LockOnTarget.gameObject);
     }
     
+    // Mesma coisa que o TargetNext mas não possui argumentos
+    // utilizado para chamar o metodo automaticamente caso não haja alvo
     public void TargetNext() {
         if (GameManager.Instance.state != GameManager.GameState.COMBAT) return; // Failsafe
         
-        Debug.Log("entered targeting");
         target = eDetect.GetNextTarget(target);
-        Debug.Log($"target is now {target}");
         line.Target(target.LockOnTarget.gameObject);
     }
     
@@ -112,6 +114,7 @@ public class CombatState : State {
         Debug.Log("Exiting Combat State");
     }
 
+    // Caso o jogador não possua alvo, automaticamente seleciona um alvo novo
     public void OnTargetDeath() { if (target == null) { TargetNext(); } }
     
     public Character ReturnTarget()

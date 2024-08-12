@@ -42,11 +42,6 @@ public class Skill : MonoBehaviour {
             }
         }
     }
-    //Passivel de mudan�a
-    public void OutCombtCast()
-    {
-
-    }
 
     private bool InRange(Transform from, Transform to, float range) {
         Vector3 offset = to.position - from.position;
