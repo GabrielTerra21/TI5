@@ -27,7 +27,7 @@ public class Exploring : State
     public Animator animator;
     public RuntimeAnimatorController ac;
     public RotationBehaviour rotator;
-    public PlayerInput playerInput;
+    //public PlayerInput playerInput;
     
 
     private void Awake(){
@@ -39,20 +39,26 @@ public class Exploring : State
         interact.RemoveAllListeners();
     }
 
+    private void OnEnable() {
+        OnSubscribe();
+    }
+
+    private void OnDisable() {
+        OnCleanup();
+    }
+    
     public void OnSubscribe() {
-        playerInput.actions["Movement"].started += OnMovement;
-        playerInput.actions["Movement"].performed += OnMovement;
-        playerInput.actions["Movement"].canceled += OnMovement;
-        
-        playerInput.actions["Interact"].performed += Interact;
+        InputManager.Instance.actions["Movement"].started += OnMovement;
+        InputManager.Instance.actions["Movement"].performed += OnMovement;
+        InputManager.Instance.actions["Movement"].canceled += OnMovement;
+        InputManager.Instance.actions["Interact"].performed += Interact;
     }
     
     public void OnCleanup() {
-        playerInput.actions["Movement"].started -= OnMovement;
-        playerInput.actions["Movement"].performed -= OnMovement;
-        playerInput.actions["Movement"].canceled -= OnMovement;
-        
-        playerInput.actions["Interact"].performed -= Interact;
+        InputManager.Instance.actions["Movement"].started -= OnMovement;
+        InputManager.Instance.actions["Movement"].performed -= OnMovement;
+        InputManager.Instance.actions["Movement"].canceled -= OnMovement;
+        InputManager.Instance.actions["Interact"].performed -= Interact;
     }
 
     private void Update()
@@ -69,7 +75,7 @@ public class Exploring : State
     public override State OnEnterState() {
         GameManager.Instance.state = GameManager.GameState.EXPLORATION;
         //if(GameManager.Instance.playerInput == null) GameManager.Instance.playerInput = FindObjectOfType<PlayerInput>();
-        playerInput.actions["Interact"].performed += Interact;
+        InputManager.Instance.actions["Interact"].performed += Interact;
         animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;
         return this;

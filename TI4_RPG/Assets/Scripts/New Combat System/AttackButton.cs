@@ -7,26 +7,27 @@ using UnityEngine.UI;
 
 public class AttackButton : MonoBehaviour {
     [Space(10)] [Header("UI Components")]
-    public GameObject buttonInterface;
-    public Image icon;
-    public TMP_Text skillName;
-    public TMP_Text description;
-    public RectTransform rect;
-    public GameObject highlight;
-    public GameObject darkened;
+    [SerializeField] private GameObject buttonInterface;
+    [SerializeField] private Image icon;
+    [SerializeField] private TMP_Text skillName;
+    [SerializeField] private TMP_Text description;
+    private RectTransform rect;
+    [SerializeField] private GameObject highlight;
+    [SerializeField] private GameObject darkened;
 
     [Space(10)] [Header("Functional Components")]
     public SkillDataSO skill;
     public EventTrigger eventT;
-    public Vector3 growthMod = new Vector3(.1f, .1f, 0);
-    public Vector3 shrinkMod = new Vector3(.2f, .2f, 0);
+    [SerializeField] private Vector3 growthMod = new Vector3(.1f, .1f, 0);
+    [SerializeField] private Vector3 shrinkMod = new Vector3(.2f, .2f, 0);
     private Vector3 defaultSize;
     public bool selected = false;
 
     // Garante que o componente EventTrigger
     // do botão esteja devidamente referenciado.
-    private void Start() {
-        if (eventT == null) eventT = GetComponent<EventTrigger>();
+    private void Awake() {
+        eventT = GetComponent<EventTrigger>();
+        rect = GetComponent<RectTransform>();
         defaultSize = rect.localScale;
     }
     
@@ -73,11 +74,6 @@ public class AttackButton : MonoBehaviour {
     // Atualiza os elementos de interface do botão
     public void UpdateButton(SkillDataSO setSkill) {
         skill = setSkill;
-        if (skill == GameManager.Instance.empty) {
-            buttonInterface.SetActive(false);
-            return;
-        }
-        if (!buttonInterface.activeInHierarchy) buttonInterface.SetActive(true); 
         icon.sprite = skill.Icon;
         skillName.text = skill.SkillName;
         description.text = skill.Description;
@@ -90,7 +86,7 @@ public class AttackButton : MonoBehaviour {
         float timer = 0;
         while (timer < 1) {
             rect.localScale = Vector3.Slerp(initialSize, targetSize, timer);
-            timer += Time.deltaTime / duration;
+            timer += Time.unscaledDeltaTime / duration;
 
             yield return null;
         }

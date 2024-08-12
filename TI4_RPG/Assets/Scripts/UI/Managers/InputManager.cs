@@ -1,11 +1,18 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour {
-    private PlayerInput playerINput;
+    public static PlayerInput Instance;
+
+
     private void Awake() {
+        if (Instance == null) {
+            Instance = GetComponent<PlayerInput>();
+        }
+        else { Destroy(gameObject); }
+    }
+    
+    /*private void Awake() {
         if (GameManager.Instance == null)
         {
             try {
@@ -23,5 +30,5 @@ public class InputManager : MonoBehaviour {
     IEnumerator SetPInput() {
             yield return new WaitUntil((() => GameManager.Instance));
             GameManager.Instance.playerInput = GetComponent<PlayerInput>();
-    }
+    }*/
 }

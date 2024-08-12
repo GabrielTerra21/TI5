@@ -36,11 +36,11 @@ public class GameManager : MonoBehaviour{
     private void Start() {
         //playerInput = GetComponent<PlayerInput>();
         SceneManager.sceneLoaded += OnLoadedScene;
-        playerInput = FindObjectOfType<PlayerInput>();
-        exploring = FindObjectOfType<Exploring>();
-        combatState = FindObjectOfType<CombatState>();
-        if(exploring != null) exploring.OnSubscribe();
-        if(combatState != null) combatState.OnSubscribe();
+        //playerInput = FindObjectOfType<PlayerInput>();
+        //exploring = FindObjectOfType<Exploring>();
+        //combatState = FindObjectOfType<CombatState>();
+        //if(exploring != null) exploring.OnSubscribe();
+        //if(combatState != null) combatState.OnSubscribe();
         currentScene = SceneManager.GetActiveScene().name;
         state = GameState.EXPLORATION;
     }
@@ -54,13 +54,13 @@ public class GameManager : MonoBehaviour{
     }
 
     public void LoadNewScene(string sceneName) {
-        MonoBehaviour[] scripts = FindObjectsOfType<MonoBehaviour>();
-        foreach (var script in scripts) {
+        //MonoBehaviour[] scripts = FindObjectsOfType<MonoBehaviour>();
+        /*foreach (var script in scripts) {
             if(script.gameObject != gameObject) script.enabled = false;
-        }
+        }*/
         
-        if(exploring != null)exploring.OnCleanup();
-        if(combatState != null)combatState.OnCleanup();
+        //if(exploring != null)exploring.OnCleanup();
+        //if(combatState != null)combatState.OnCleanup();
 
         if (sceneName == "Fase1") money = 150;
         
@@ -69,16 +69,13 @@ public class GameManager : MonoBehaviour{
         UpdateUI = null;
         paused = false;
         currentScene = sceneName;
+        playerInput.enabled = false;
         SceneManager.LoadScene("LoadingScreen");
+        playerInput.enabled = true;
     }
 
     public void OnLoadedScene(Scene scene, LoadSceneMode mode) {
-        Debug.Log("oioioioioioi");
-        playerInput = FindObjectOfType<PlayerInput>();
-        exploring = FindObjectOfType<Exploring>();
-        combatState = FindObjectOfType<CombatState>();
-        if(exploring != null) exploring.OnSubscribe();
-        if(combatState != null) combatState.OnSubscribe();
+        
     }
 
     public void PauseGame() {

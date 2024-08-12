@@ -7,8 +7,12 @@ public class CombatState : State {
     public Character agent;
     [SerializeField] private Character target;
     [SerializeField] private EngageSphere eDetect;
-    [SerializeField] private SkillDataSO autoAttack;
     public SkillContainer skillManager;
+    
+    [Space(10)][Header("New Combat System Components")]
+    [SerializeField] private SkillDataSO autoAttack;
+    public SkillDataSO[] skills = new SkillDataSO[6]; 
+    
     
     [Space(5)]
     [Header("Movement Properties")]
@@ -35,6 +39,15 @@ public class CombatState : State {
         enabled = false;
         if (!line) line = GetComponentInChildren<SplineLine>();
     }
+
+    private void OnEnable() {
+        OnSubscribe();
+    }
+
+    private void OnDisable() {
+        OnCleanup();
+    }
+    
 
     //Subscreve as respectivas ações ao mapa de ações do input Manager
     public void OnSubscribe() {
