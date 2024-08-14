@@ -1,17 +1,29 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ActionBar : MonoBehaviour {
-    public Image barFill;
-    public Color highlight = new Color(225, 200,45, 255 );
-    public Color darkened = new Color(95, 85, 20, 255 );
+    [SerializeField] private Image barFill;
+    [SerializeField] private TMP_Text text;
+    [SerializeField] private Color highlight = new Color(225, 200,45, 255 );
+    [SerializeField] private Color darkened = new Color(95, 85, 20, 255 );
+    private bool full;
 
-    public void UpdateBar(MyStat stat) {
-        barFill.fillAmount = (float)stat.currentValue / stat.maxValue;
-        if (barFill.fillAmount >= 1f) { HighlightBar(); }
+
+    private void Start() {
+        barFill.color = darkened;
     }
-
-    private void HighlightBar() {
-        barFill.color = highlight;
+    
+    public void UpdateBar(MyStat stat) {
+        text.text = $"{stat.currentValue}/{stat.maxValue}";
+        barFill.fillAmount = (float)stat.currentValue / stat.maxValue;
+        if (barFill.fillAmount >= 1 && !full) {
+            barFill.color = highlight;
+            full = true;
+        }
+        else if (full) {
+            barFill.color = darkened;
+            full = false;
+        }
     }
 }

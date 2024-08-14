@@ -7,7 +7,7 @@ using System;
 public class GameManager : MonoBehaviour{
     [Header("Player info")] 
     public int money = 300;
-    public int action = 0;
+    public MyStat ap = new MyStat(25);
     private Exploring exploring;
     private CombatState combatState;
 
@@ -17,8 +17,9 @@ public class GameManager : MonoBehaviour{
     public bool paused;
     public UnityEvent pauseGame, unpauseGame; 
     public string currentScene;
-    
-    [Header("UI Components")]
+
+    [Header("UI Components")] 
+    [SerializeField] private ActionBar actionBar;
     public SkillDataSO empty;
     public SkillDisplayCross cross;
     public Action UpdateUI;
@@ -44,14 +45,21 @@ public class GameManager : MonoBehaviour{
         //if(combatState != null) combatState.OnSubscribe();
         currentScene = SceneManager.GetActiveScene().name;
         state = GameState.EXPLORATION;
+        actionBar.UpdateBar(ap);
     }
 
-    public void SpendMoney(int price) {
-        money -= price;
+    public void SpendMoney(int price) { money -= price; }
+
+    public void GainMoney(int amount) { money += amount; }
+
+    public void GainAP(int amount) {
+        ap.currentValue += amount;
+        actionBar.UpdateBar(ap);
     }
 
-    public void GainMoney(int amount) {
-        money += amount;
+    public void SpendAP() {
+        ap.currentValue -= 25;
+        actionBar.UpdateBar(ap);
     }
 
     public void LoadNewScene(string sceneName) {

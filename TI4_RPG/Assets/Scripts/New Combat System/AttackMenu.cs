@@ -48,7 +48,7 @@ public class AttackMenu : MonoBehaviour {
     // Chama os metodos necessarios para animar o surgimento da UI de combate
     // e coloca os botões de ataque em estado ativo.
     public void OpenMenu() { 
-        // Parar o tempo
+        Debug.Log("Open menu called");
         GameManager.Instance.PauseGame(); 
         StartCoroutine(EnterScreen(leftWing, onScreenPosL.position));
         StartCoroutine(EnterScreen(rightWing, onScreenPosR.position));
@@ -59,7 +59,7 @@ public class AttackMenu : MonoBehaviour {
 
     // Metodo Para Chamar OpenMenu atraves do InputManager
     private void OpenMenu(InputAction.CallbackContext context) {
-        if(context.performed) OpenMenu();
+        if(context.performed && GameManager.Instance.ap.currentValue >= 25 ) OpenMenu();
     }
 
     // Reseta variaveis que precisam ser resetadas ao fim do uso da interface
@@ -93,7 +93,7 @@ public class AttackMenu : MonoBehaviour {
             }
             else data.SetInactive();
         }
-        // Gastar barra de ação.
+        GameManager.Instance.GainAP(-25);
         selected.skill.OnCast(player.agent, player.ReturnTarget());
         selected.SetInactive();
         selected.selected = false;

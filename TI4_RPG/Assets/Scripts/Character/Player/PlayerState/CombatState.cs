@@ -124,6 +124,14 @@ public class CombatState : State {
         target = eDetect.GetNextTarget(target);
         line.Target(target.LockOnTarget.gameObject);
     }
+
+    // Se o jogador realizar o input e possuir barra de ação o suficiente
+    // o menu de ataque sera aberto.
+    /*public void OpenActionMenu(InputAction.CallbackContext context) {
+        if (context.performed && GameManager.Instance.ap.currentValue >= 25) {
+            // abre o menu de combate
+        }
+    }*/
     
     // Mesma coisa que o TargetNext mas não possui argumentos
     // utilizado para chamar o metodo automaticamente caso não haja alvo

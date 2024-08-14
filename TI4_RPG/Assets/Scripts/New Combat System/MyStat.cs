@@ -1,12 +1,18 @@
+using System;
+
+
 public class MyStat {
-    public int maxValue { get; private set; }
+    public int maxValue { get; private set; } 
     public int currentValue {
-        get { return currentValue; }
+        get {
+            return _currentValue;
+        }
         set {
-            if (value > maxValue) currentValue = maxValue;
-            else currentValue = value;
+            Math.Clamp(value, 0, maxValue);
+            _currentValue = value;
         }
     }
+    private int _currentValue;
 
     public MyStat(int maxValue, int currentValue = 0) {
         this.maxValue = maxValue;
@@ -14,5 +20,5 @@ public class MyStat {
     }
     
     public void IncreaseStat(int increase) { maxValue += increase; }
-    
+
 }
