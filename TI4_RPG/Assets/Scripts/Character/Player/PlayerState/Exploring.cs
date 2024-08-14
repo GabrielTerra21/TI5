@@ -40,13 +40,20 @@ public class Exploring : State
     }
 
     private void OnEnable() {
-        OnSubscribe();
+        InputManager.Instance.actions["Movement"].started += OnMovement;
+        InputManager.Instance.actions["Movement"].performed += OnMovement;
+        InputManager.Instance.actions["Movement"].canceled += OnMovement;
+        InputManager.Instance.actions["Interact"].performed += Interact;
     }
 
     private void OnDisable() {
-        OnCleanup();
+        InputManager.Instance.actions["Movement"].started -= OnMovement;
+        InputManager.Instance.actions["Movement"].performed -= OnMovement;
+        InputManager.Instance.actions["Movement"].canceled -= OnMovement;
+        InputManager.Instance.actions["Interact"].performed -= Interact;
     }
     
+    /*
     public void OnSubscribe() {
         InputManager.Instance.actions["Movement"].started += OnMovement;
         InputManager.Instance.actions["Movement"].performed += OnMovement;
@@ -60,6 +67,7 @@ public class Exploring : State
         InputManager.Instance.actions["Movement"].canceled -= OnMovement;
         InputManager.Instance.actions["Interact"].performed -= Interact;
     }
+    */
 
     private void Update()
     {
@@ -75,6 +83,7 @@ public class Exploring : State
     public override State OnEnterState() {
         GameManager.Instance.state = GameManager.GameState.EXPLORATION;
         //if(GameManager.Instance.playerInput == null) GameManager.Instance.playerInput = FindObjectOfType<PlayerInput>();
+        InputManager.Instance.SwitchCurrentActionMap("Action");
         InputManager.Instance.actions["Interact"].performed += Interact;
         animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;
@@ -83,20 +92,13 @@ public class Exploring : State
 
     public override void OnExitState() {
         animator.SetLayerWeight(animationLayerIndex, 0);
+        InputManager.Instance.actions["Interact"].performed -= Interact;
         interact.RemoveAllListeners();
     }
     public void Interact(InputAction.CallbackContext context)
     {
-        // foreach(var trigger in waitingTriggers)
-        // {
-        //     if (near == null || (transform.position - trigger.transform.position).magnitude < (transform.position - near.transform.position).magnitude)
-        //     {
-        //         near = trigger;
-        //     }
-        //     trigger.Activate();
-        // }
         if(!agent.actionable)return;
-        if (context.performed && GameManager.Instance.state == GameManager.GameState.EXPLORATION) {
+        if (context.performed) {
             interact?.Invoke();
         }
     }

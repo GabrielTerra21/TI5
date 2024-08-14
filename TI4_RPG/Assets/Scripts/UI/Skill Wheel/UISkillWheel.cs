@@ -12,7 +12,7 @@ public class UISkillWheel : MonoBehaviour {
 
 
     private void Awake() {
-        sc = player.skillManager;
+        //sc = player.skillManager;
         foreach (var slot in slots) slot.parent = this;
     }
 
@@ -80,7 +80,7 @@ public class UISkillWheel : MonoBehaviour {
         }
         else
         {
-            player.Cast(skill);
+           // player.Cast(skill);
         }
     }
 }

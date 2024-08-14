@@ -7,6 +7,7 @@ using System;
 public class GameManager : MonoBehaviour{
     [Header("Player info")] 
     public int money = 300;
+    public int action = 0;
     private Exploring exploring;
     private CombatState combatState;
 

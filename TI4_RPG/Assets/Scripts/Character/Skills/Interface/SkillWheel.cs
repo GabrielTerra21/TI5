@@ -26,7 +26,7 @@ public class SkillWheel : MonoBehaviour
     private void Cast(int i)
     {
         if (i == -1) return;
-        combatState.Cast(castingSkill);
+        //combatState.Cast(castingSkill);
     }
     private void Update()
     {

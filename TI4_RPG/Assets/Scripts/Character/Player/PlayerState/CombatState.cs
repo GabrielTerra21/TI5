@@ -7,7 +7,7 @@ public class CombatState : State {
     public Character agent;
     [SerializeField] private Character target;
     [SerializeField] private EngageSphere eDetect;
-    public SkillContainer skillManager;
+    //public SkillContainer skillManager;
     
     [Space(10)][Header("New Combat System Components")]
     [SerializeField] private SkillDataSO autoAttack;
@@ -41,14 +41,20 @@ public class CombatState : State {
     }
 
     private void OnEnable() {
-        OnSubscribe();
+        playerInput.actions["Movement"].started += OnMovement;
+        playerInput.actions["Movement"].performed += OnMovement;
+        playerInput.actions["Movement"].canceled += OnMovement;
+        playerInput.actions["SwitchEnemy"].performed += TargetNext;
     }
 
     private void OnDisable() {
-        OnCleanup();
+        playerInput.actions["Movement"].started -= OnMovement;
+        playerInput.actions["Movement"].performed -= OnMovement;
+        playerInput.actions["Movement"].canceled -= OnMovement;
+        playerInput.actions["SwitchEnemy"].performed -= TargetNext;
     }
     
-
+    /*
     //Subscreve as respectivas ações ao mapa de ações do input Manager
     public void OnSubscribe() {
         playerInput.actions["Movement"].started += OnMovement;
@@ -63,7 +69,7 @@ public class CombatState : State {
         playerInput.actions["Movement"].performed -= OnMovement;
         playerInput.actions["Movement"].canceled -= OnMovement;
         playerInput.actions["SwitchEnemy"].performed -= TargetNext;
-    }
+    }*/
 
     private void Update()
     {
@@ -71,8 +77,8 @@ public class CombatState : State {
         movement.Moving(moveDir, agent.moveSpeed);
         animationController.SetAnimations(moveDir);
         targetLock.SetRotation(target.transform.position);
-        //if(moveDir.magnitude < 0.05f) skillManager.AutoAttack(target);
         if(moveDir.magnitude < 0.05f) autoAttack.OnCast(agent,target);
+        //if(moveDir.magnitude < 0.05f) skillManager.AutoAttack(target);
         
     }
 
@@ -81,6 +87,7 @@ public class CombatState : State {
     // private void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
     public void OnMovement(InputAction.CallbackContext context) => moveDir = context.ReadValue<Vector2>();
 
+    /*
     public void Cast(int slot) {
         skillManager.Cast(slot, target);
     }
@@ -88,10 +95,12 @@ public class CombatState : State {
     public void Cast(Skill skill) {
         skillManager.Cast(skill, target);
     }
+    */
     
     public override State OnEnterState()
     {
         GameManager.Instance.state = GameManager.GameState.COMBAT;
+        InputManager.Instance.SwitchCurrentActionMap("Combat");
         // skillWheel.SetActive(true);
         animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;
@@ -101,11 +110,17 @@ public class CombatState : State {
         return this;
     }
     
+    public override void OnExitState() {
+        // skillWheel.SetActive(false);
+        target = null;
+        animator.SetLayerWeight(animationLayerIndex, 0);
+        line.gameObject.SetActive(false);
+        Debug.Log("Exiting Combat State");
+    }
+    
     // Faz chamada do eDetect para adquirir novo alvo
     // Atualiza o alvo da linha de targeting
     public void TargetNext(InputAction.CallbackContext context) {
-        if (GameManager.Instance.state != GameManager.GameState.COMBAT) return; // Failsafe
-        
         target = eDetect.GetNextTarget(target);
         line.Target(target.LockOnTarget.gameObject);
     }
@@ -117,14 +132,6 @@ public class CombatState : State {
         
         target = eDetect.GetNextTarget(target);
         line.Target(target.LockOnTarget.gameObject);
-    }
-    
-    public override void OnExitState() {
-        // skillWheel.SetActive(false);
-        target = null;
-        animator.SetLayerWeight(animationLayerIndex, 0);
-        line.gameObject.SetActive(false);
-        Debug.Log("Exiting Combat State");
     }
 
     // Caso o jogador não possua alvo, automaticamente seleciona um alvo novo

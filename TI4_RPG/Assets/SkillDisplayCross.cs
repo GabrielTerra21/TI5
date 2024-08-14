@@ -10,7 +10,7 @@ public class SkillDisplayCross : MonoBehaviour {
     public DisplaySkill[] slots;
     
     private void Awake() {
-        source = player.skillManager;
+        //source = player.skillManager;
         if (GameManager.Instance == null)  StartCoroutine(SetCross()); 
         else GameManager.Instance.cross = this;
 
