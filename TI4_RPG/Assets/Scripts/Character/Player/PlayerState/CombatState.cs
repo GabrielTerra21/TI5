@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class CombatState : State {
     [Space(10)] [Header("State Components")] 
@@ -11,6 +12,7 @@ public class CombatState : State {
     
     [Space(10)][Header("New Combat System Components")]
     [SerializeField] private SkillDataSO autoAttack;
+    [SerializeField] private float coolDown;
     public SkillDataSO[] skills = new SkillDataSO[6]; 
     
     
@@ -27,7 +29,6 @@ public class CombatState : State {
     private AnimationController animationController;
     [SerializeField] private int animationLayerIndex;
     private RotationBehaviour targetLock;
-    public PlayerInput playerInput;
 
 
     private void Awake()
@@ -41,17 +42,17 @@ public class CombatState : State {
     }
 
     private void OnEnable() {
-        playerInput.actions["Movement"].started += OnMovement;
-        playerInput.actions["Movement"].performed += OnMovement;
-        playerInput.actions["Movement"].canceled += OnMovement;
-        playerInput.actions["SwitchEnemy"].performed += TargetNext;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").started += OnMovement;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").performed += OnMovement;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").canceled += OnMovement;
+        InputManager.Instance.actions["SwitchEnemy"].performed += TargetNext;
     }
 
     private void OnDisable() {
-        playerInput.actions["Movement"].started -= OnMovement;
-        playerInput.actions["Movement"].performed -= OnMovement;
-        playerInput.actions["Movement"].canceled -= OnMovement;
-        playerInput.actions["SwitchEnemy"].performed -= TargetNext;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").started += OnMovement;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").performed += OnMovement;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").canceled += OnMovement;
+        InputManager.Instance.actions["SwitchEnemy"].performed -= TargetNext;
     }
     
     /*
@@ -77,15 +78,19 @@ public class CombatState : State {
         movement.Moving(moveDir, agent.moveSpeed);
         animationController.SetAnimations(moveDir);
         targetLock.SetRotation(target.transform.position);
-        if(moveDir.magnitude < 0.05f) autoAttack.OnCast(agent,target);
-        //if(moveDir.magnitude < 0.05f) skillManager.AutoAttack(target);
-        
+        if (moveDir.magnitude < 0.05f && coolDown <= 0) {
+            autoAttack.OnCast(agent, target);
+            coolDown = autoAttack.CoolDown;
+        }
+        else if(!paused)coolDown -= Time.deltaTime;
     }
 
     private void LateUpdate() { OnTargetDeath(); }
 
     // private void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
-    public void OnMovement(InputAction.CallbackContext context) => moveDir = context.ReadValue<Vector2>();
+    public void OnMovement(InputAction.CallbackContext context) {
+        moveDir = context.ReadValue<Vector2>();
+    }
 
     /*
     public void Cast(int slot) {

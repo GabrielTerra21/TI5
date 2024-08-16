@@ -21,7 +21,7 @@ public class ActionBar : MonoBehaviour {
             barFill.color = highlight;
             full = true;
         }
-        else if (full) {
+        else if (full && barFill.fillAmount < 1) {
             barFill.color = darkened;
             full = false;
         }

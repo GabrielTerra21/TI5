@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour{
     }
 
     public void SpendAP() {
-        ap.currentValue -= 25;
+        ap.currentValue = 0;
         actionBar.UpdateBar(ap);
     }
 
