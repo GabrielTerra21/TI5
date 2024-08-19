@@ -42,7 +42,8 @@ public abstract class Character : MonoBehaviour
             life = 0;
             Die();
         }
-        Instantiate(hitMark, transform.position, transform.rotation);
+        GameObject particle = Instantiate(hitMark, transform.position, transform.rotation);
+        Destroy(particle, 3);
         return dmg;
     }
 

@@ -4,7 +4,8 @@ using UnityEngine.AI;
 public class Enemy : Character {
     
     public Vector3 homePos = Vector3.zero;
-    public float roamingDistance, reachingDistance;
+    public float roamingDistance;
+    public float reachingDistance = 0.2f;
     public NavMeshAgent ai;
 
     protected override void Awake() {
@@ -23,8 +24,7 @@ public class Enemy : Character {
     }
     protected override void Start() {
         base.Start();
-        if (homePos == Vector3.zero) homePos = transform.position;
-        if (reachingDistance == 0) reachingDistance = .2f;
+        homePos = transform.position;
     }
     
     public override void Die() {
