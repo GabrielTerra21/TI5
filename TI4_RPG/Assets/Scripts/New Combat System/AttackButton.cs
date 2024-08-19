@@ -22,6 +22,7 @@ public class AttackButton : MonoBehaviour {
     [SerializeField] private Vector3 shrinkMod = new Vector3(.2f, .2f, 0);
     private Vector3 defaultSize;
     public bool selected = false;
+    public Coroutine coroutine;
 
     // Garante que o componente EventTrigger
     // do botão esteja devidamente referenciado.
@@ -34,7 +35,7 @@ public class AttackButton : MonoBehaviour {
     // Chamado ao clicar no botão
     [ExecuteInEditMode]
     public void OnSelection(BaseEventData context) {
-        StartCoroutine(Flash(20));
+        coroutine = StartCoroutine(Flash(20));
     }
 
     // Aumenta o tamanho do botão ao botar o mouse sobre o botão
@@ -108,6 +109,7 @@ public class AttackButton : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         highlight.SetActive(false);
         SetInactive();
+        coroutine = null;
     }
     
 }

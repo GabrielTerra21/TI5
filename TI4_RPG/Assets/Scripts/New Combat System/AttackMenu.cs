@@ -9,7 +9,6 @@ public class AttackMenu : MonoBehaviour {
     [SerializeField] private AttackButton selected;
     [SerializeField] private RectTransform rightWing, leftWing;
     [SerializeField] private RectTransform offScreenPosR, onScreenPosR, offScreenPosL, onScreenPosL;
-    //[SerializeField] private PlayerInput playerInput;
     private CombatState player;
 
     
@@ -43,17 +42,19 @@ public class AttackMenu : MonoBehaviour {
         }
         leftWing.position = offScreenPosL.position;
         rightWing.position = offScreenPosR.position;
+        UpdateMenu();
     }
 
     // Chama os metodos necessarios para animar o surgimento da UI de combate
     // e coloca os botões de ataque em estado ativo.
     public void OpenMenu() { 
         Debug.Log("Open menu called");
+        InputManager.Instance.actions["Action"].performed -= OpenMenu;
         GameManager.Instance.PauseGame(); 
         StartCoroutine(EnterScreen(leftWing, onScreenPosL.position));
         StartCoroutine(EnterScreen(rightWing, onScreenPosR.position));
         foreach (var data in buttons) {
-            data.SetActive();
+            if(data.gameObject.activeInHierarchy) data.SetActive();
         }
     }
 
@@ -68,14 +69,14 @@ public class AttackMenu : MonoBehaviour {
         if (selected) selected.selected = false; 
         selected = null; 
         foreach (var data in buttons) { 
-            data.SetInactive();
+            if(data.gameObject.activeInHierarchy)data.SetInactive();
         }
 
         StartCoroutine(EnterScreen(leftWing, offScreenPosL.position)); 
         StartCoroutine(EnterScreen(rightWing, offScreenPosR.position)); 
         // Retornar tempo ao normal
         GameManager.Instance.UnpauseGame();
-        
+        InputManager.Instance.actions["Action"].performed += OpenMenu;
     }
 
     // Metodo Para Chamar CloseMenu atraves do InputManager
@@ -87,19 +88,21 @@ public class AttackMenu : MonoBehaviour {
     // chama o metodo para desabilitar a interatividade dos botões
     // e chama a execução da skill selecionada.
     public void OnSelection() {
-        foreach (var data in buttons) {
+        /*
+         foreach (var data in buttons) {
             if (data.selected) {
                 selected = data;
             }
-            else data.SetInactive();
+            else if (data.gameObject.activeInHierarchy) data.SetInactive();
         }
-        GameManager.Instance.GainAP(-25);
+        GameManager.Instance.SpendAP();
         selected.skill.OnCast(player.agent, player.ReturnTarget());
         selected.SetInactive();
         selected.selected = false;
         selected = null;
         CloseMenu();
-        // Retornar TimeScale ao normal
+        */
+        StartCoroutine(SelectionMade());
     }
 
     public void UpdateMenu() {
@@ -123,5 +126,25 @@ public class AttackMenu : MonoBehaviour {
             yield return null;
         }
         move.position = targetPos;
+    }
+
+    // Checa qual botão foi selecionado,
+    // aguarda pela finalização da animação dos botões
+    // chama o metodo para desabilitar a interatividade dos botões
+    // e chama a execução da skill selecionada.
+    IEnumerator SelectionMade() {
+        foreach (var data in buttons) {
+            if (data.selected) {
+                selected = data;
+            }
+            else if (data.gameObject.activeInHierarchy) data.SetInactive();
+        }
+        GameManager.Instance.SpendAP();
+        yield return new WaitWhile(() => selected.coroutine != null);
+        selected.skill.OnCast(player.agent, player.ReturnTarget());
+        selected.SetInactive();
+        selected.selected = false;
+        selected = null;
+        CloseMenu();
     }
 }

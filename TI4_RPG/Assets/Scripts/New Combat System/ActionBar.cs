@@ -11,6 +11,7 @@ public class ActionBar : MonoBehaviour {
 
 
     private void Start() {
+        GameManager.Instance.actionBar = this;
         barFill.color = darkened;
     }
     

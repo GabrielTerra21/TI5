@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 public class CombatState : State {
     [Space(10)] [Header("State Components")] 
@@ -49,10 +48,12 @@ public class CombatState : State {
     }
 
     private void OnDisable() {
+        if (InputManager.Instance == null) return;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").started += OnMovement;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").performed += OnMovement;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").canceled += OnMovement;
         InputManager.Instance.actions["SwitchEnemy"].performed -= TargetNext;
+        moveDir = Vector3.zero;
     }
     
     /*

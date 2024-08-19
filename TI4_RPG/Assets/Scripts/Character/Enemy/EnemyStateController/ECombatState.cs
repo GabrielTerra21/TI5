@@ -25,7 +25,7 @@ public class ECombatState : State {
     private void Awake() {
         if(!self) self = GetComponent<Character>();
         if(animator != null) animationLayerIndex = animator.GetLayerIndex("Combat");
-        if ( !sc ) sc = GetComponent<SkillContainer>();
+        //if ( !sc ) sc = GetComponent<SkillContainer>();
         if ( !eDetect ) eDetect = GetComponent<EngageSphere>();
     }
     

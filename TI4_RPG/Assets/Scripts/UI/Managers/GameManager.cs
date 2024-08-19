@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour{
     public string currentScene;
 
     [Header("UI Components")] 
-    [SerializeField] private ActionBar actionBar;
+    public ActionBar actionBar;
     public SkillDataSO empty;
     public SkillDisplayCross cross;
     public Action UpdateUI;

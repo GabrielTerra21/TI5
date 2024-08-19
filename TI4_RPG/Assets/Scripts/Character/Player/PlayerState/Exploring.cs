@@ -40,17 +40,19 @@ public class Exploring : State
     }
 
     private void OnEnable() {
-        InputManager.Instance.actions["Movement"].started += OnMovement;
-        InputManager.Instance.actions["Movement"].performed += OnMovement;
-        InputManager.Instance.actions["Movement"].canceled += OnMovement;
+        InputManager.Instance.actions.FindActionMap("Action").FindAction("Movement").started += OnMovement;
+        InputManager.Instance.actions.FindActionMap("Action").FindAction("Movement").performed += OnMovement;
+        InputManager.Instance.actions.FindActionMap("Action").FindAction("Movement").canceled += OnMovement;
         InputManager.Instance.actions["Interact"].performed += Interact;
     }
 
     private void OnDisable() {
-        InputManager.Instance.actions["Movement"].started -= OnMovement;
-        InputManager.Instance.actions["Movement"].performed -= OnMovement;
-        InputManager.Instance.actions["Movement"].canceled -= OnMovement;
+        if(InputManager.Instance == null) return;
+        InputManager.Instance.actions.FindActionMap("Action").FindAction("Movement").started -= OnMovement;
+        InputManager.Instance.actions.FindActionMap("Action").FindAction("Movement").performed -= OnMovement;
+        InputManager.Instance.actions.FindActionMap("Action").FindAction("Movement").canceled -= OnMovement;
         InputManager.Instance.actions["Interact"].performed -= Interact;
+        moveDir = Vector3.zero;
     }
     
     /*
