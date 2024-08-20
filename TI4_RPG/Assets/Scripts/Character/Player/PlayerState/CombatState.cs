@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class CombatState : State {
     [Space(10)] [Header("State Components")] 
     [SerializeField] private SplineLine line;
+    [SerializeField] private AttackIndicator aoe;
     public Character agent;
     [SerializeField] private Character target;
     [SerializeField] private EngageSphere eDetect;
@@ -11,6 +12,7 @@ public class CombatState : State {
     
     [Space(10)][Header("New Combat System Components")]
     [SerializeField] private SkillDataSO autoAttack;
+    [SerializeField] private float attackRange = 1f;
     [SerializeField] private float coolDown;
     public SkillDataSO[] skills = new SkillDataSO[6]; 
     
@@ -40,6 +42,12 @@ public class CombatState : State {
         if (!line) line = GetComponentInChildren<SplineLine>();
     }
 
+    protected override void Start() {
+        base.Start();
+        aoe.SetRange(attackRange);
+    }
+
+    //Subscreve as respectivas ações ao mapa de ações do input Manager
     private void OnEnable() {
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").started += OnMovement;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").performed += OnMovement;
@@ -47,6 +55,7 @@ public class CombatState : State {
         InputManager.Instance.actions["SwitchEnemy"].performed += TargetNext;
     }
 
+    //Desubscreve as respectivas ações ao mapa de ações do input Manager
     private void OnDisable() {
         if (InputManager.Instance == null) return;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").started += OnMovement;
@@ -55,23 +64,6 @@ public class CombatState : State {
         InputManager.Instance.actions["SwitchEnemy"].performed -= TargetNext;
         moveDir = Vector3.zero;
     }
-    
-    /*
-    //Subscreve as respectivas ações ao mapa de ações do input Manager
-    public void OnSubscribe() {
-        playerInput.actions["Movement"].started += OnMovement;
-        playerInput.actions["Movement"].performed += OnMovement;
-        playerInput.actions["Movement"].canceled += OnMovement;
-        playerInput.actions["SwitchEnemy"].performed += TargetNext;
-    }
-    
-    //Desubscreve as respectivas ações ao mapa de ações do input Manager
-    public void OnCleanup() {
-        playerInput.actions["Movement"].started -= OnMovement;
-        playerInput.actions["Movement"].performed -= OnMovement;
-        playerInput.actions["Movement"].canceled -= OnMovement;
-        playerInput.actions["SwitchEnemy"].performed -= TargetNext;
-    }*/
 
     private void Update()
     {
@@ -79,35 +71,40 @@ public class CombatState : State {
         movement.Moving(moveDir, agent.moveSpeed);
         animationController.SetAnimations(moveDir);
         targetLock.SetRotation(target.transform.position);
-        if (moveDir.magnitude < 0.05f && coolDown <= 0) {
-            autoAttack.OnCast(agent, target);
-            coolDown = autoAttack.CoolDown;
+        if(InRange(target.transform))
+        {
+            if (moveDir.magnitude < 0.05f && coolDown <= 0) {
+                autoAttack.OnCast(agent, target);
+                coolDown = autoAttack.CoolDown;
+            }
+            else if(!paused)coolDown -= Time.deltaTime;
         }
-        else if(!paused)coolDown -= Time.deltaTime;
+        
     }
 
     private void LateUpdate() { OnTargetDeath(); }
-
-    // private void OnMovement(InputValue value) => moveDir = value.Get<Vector2>();
+    
     public void OnMovement(InputAction.CallbackContext context) {
         moveDir = context.ReadValue<Vector2>();
     }
 
-    /*
-    public void Cast(int slot) {
-        skillManager.Cast(slot, target);
+    // Calcula 
+    private bool InRange(Transform target) {
+        if ((target.position - transform.position).sqrMagnitude > attackRange * attackRange) {
+            if (aoe.highlighted) aoe.Deactivate();
+            Debug.Log("falso");
+            return false;
+        }
+        if (!aoe.highlighted) aoe.Activate();
+        Debug.Log("true");
+        return true;
     }
-
-    public void Cast(Skill skill) {
-        skillManager.Cast(skill, target);
-    }
-    */
     
     public override State OnEnterState()
     {
+        aoe.FadeIn();
         GameManager.Instance.state = GameManager.GameState.COMBAT;
         InputManager.Instance.SwitchCurrentActionMap("Combat");
-        // skillWheel.SetActive(true);
         animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;
         target = eDetect.GetNextTarget();
@@ -116,8 +113,10 @@ public class CombatState : State {
         return this;
     }
     
+    // Limpa as variaveis, desliga elementos da interface de combate
+    // e altera layer de animação.
     public override void OnExitState() {
-        // skillWheel.SetActive(false);
+        aoe.FadeOut();
         target = null;
         animator.SetLayerWeight(animationLayerIndex, 0);
         line.gameObject.SetActive(false);
@@ -130,14 +129,6 @@ public class CombatState : State {
         target = eDetect.GetNextTarget(target);
         line.Target(target.LockOnTarget.gameObject);
     }
-
-    // Se o jogador realizar o input e possuir barra de ação o suficiente
-    // o menu de ataque sera aberto.
-    /*public void OpenActionMenu(InputAction.CallbackContext context) {
-        if (context.performed && GameManager.Instance.ap.currentValue >= 25) {
-            // abre o menu de combate
-        }
-    }*/
     
     // Mesma coisa que o TargetNext mas não possui argumentos
     // utilizado para chamar o metodo automaticamente caso não haja alvo

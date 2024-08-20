@@ -61,7 +61,6 @@ public class Ratomelo : State {
                 // Caso o alvo esteja dentro de alcance, a skill é conjurada
                 // e o comportamento de IDDLE iniciado.
                 if (InDistance(skill, target.transform)) { 
-                    Debug.Log("AutoAttacking"); 
                     skill.OnCast(self, target);
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
