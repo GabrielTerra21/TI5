@@ -4,11 +4,34 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public String Name;
-    
+    public Portal[] doors = new Portal[4];
+    public GameObject[] enemies;
+    public GameObject treasure;
+    public bool cleared = false;
 
-    private void OnDrawGizmos(){
-        Collider col = GetComponent<Collider>();
-        Gizmos.color = new Color(0, 0, 1, .8f);
-        Gizmos.DrawWireCube(col.bounds.center, col.bounds.extents * 2);
+
+    private void Start() {
+    }
+    
+    public void EnterRoom() {
+        if (cleared) {
+            foreach(var data in doors) data.gameObject.SetActive(true);
+        }
+        else{
+            if (enemies != null) {
+                foreach (var data in enemies) data.SetActive(true); 
+            }
+
+            if (treasure != null) {
+                treasure.SetActive(true);
+            }
+        }
+    }
+
+    public void ClearRoom() {
+        cleared = true;
+        foreach (var data in doors) {
+            data.gameObject.SetActive(true);
+        }
     }
 }

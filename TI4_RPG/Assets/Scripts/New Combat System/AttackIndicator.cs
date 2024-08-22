@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,11 +9,16 @@ public class AttackIndicator : MonoBehaviour {
     [SerializeField] private float fadeRange;
     [SerializeField] private float duration;
     [SerializeField] private LayerMask floorLayer;
-    public bool highlighted;
+    public bool highlighted = false;
 
 
     private void Awake() {
         mat = GetComponent<MeshRenderer>().material;
+    }
+
+    private void Start() {
+        transform.localScale = Vector3.zero;
+        mat.color = defaultCol;
     }
 
     private void FixedUpdate() {
@@ -23,7 +27,6 @@ public class AttackIndicator : MonoBehaviour {
 
     public void SetRange(float range) {
         this.range = range / 5;
-        StartCoroutine(ChangeSize(range));
     }
 
     public void Activate() {

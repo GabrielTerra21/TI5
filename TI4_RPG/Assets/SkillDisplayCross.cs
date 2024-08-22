@@ -12,7 +12,7 @@ public class SkillDisplayCross : MonoBehaviour {
     private void Awake() {
         //source = player.skillManager;
         if (GameManager.Instance == null)  StartCoroutine(SetCross()); 
-        else GameManager.Instance.cross = this;
+        //else GameManager.Instance.cross = this;
 
     }
     
@@ -33,6 +33,6 @@ public class SkillDisplayCross : MonoBehaviour {
 
     IEnumerator SetCross() {
         yield return new WaitUntil(() => GameManager.Instance != null);
-        GameManager.Instance.cross = this;
+        //GameManager.Instance.cross = this;
     }
 }

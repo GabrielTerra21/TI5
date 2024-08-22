@@ -4,8 +4,9 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using System;
 
-public class GameManager : MonoBehaviour{
+public class GameManager : MonoBehaviour {
     [Header("Player info")] 
+    public Player player;
     public int money = 300;
     public MyStat ap = new MyStat(25);
     private Exploring exploring;
@@ -21,11 +22,12 @@ public class GameManager : MonoBehaviour{
     [Header("UI Components")] 
     public ActionBar actionBar;
     public SkillDataSO empty;
-    public SkillDisplayCross cross;
+    public Vinhette vinhette;
     public Action UpdateUI;
     
-    //[Header("Managers Components")]
+    [Header("Managers Components")]
     public PlayerInput playerInput;
+    public RoomManager roomManager;
     
     public static GameManager Instance;
 
@@ -37,7 +39,6 @@ public class GameManager : MonoBehaviour{
     
     private void Start() {
         //playerInput = GetComponent<PlayerInput>();
-        SceneManager.sceneLoaded += OnLoadedScene;
         //playerInput = FindObjectOfType<PlayerInput>();
         //exploring = FindObjectOfType<Exploring>();
         //combatState = FindObjectOfType<CombatState>();
@@ -82,11 +83,7 @@ public class GameManager : MonoBehaviour{
         SceneManager.LoadScene("LoadingScreen");
         playerInput.enabled = true;
     }
-
-    public void OnLoadedScene(Scene scene, LoadSceneMode mode) {
-        
-    }
-
+    
     public void PauseGame() {
         if (paused) { throw new Exception("Game is already paused"); }
         if (currentScene == "Menu") return;

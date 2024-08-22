@@ -9,7 +9,11 @@ public class Player : Character
 
     
     protected override void Awake(){
+        if (GameManager.Instance.player != null) Destroy(gameObject);
+        else  GameManager.Instance.player = this; 
+        
         base.Awake();
+        
         if(gravity == null)gravity = GetComponent<CCGravity>();
         if (!line) line = GetComponentInChildren<SplineLine>();
     }
@@ -28,6 +32,14 @@ public class Player : Character
         Destroy(gameObject);
         GameManager.Instance.LoadNewScene("Derrota");
         GameManager.Instance.money = 150;
+    }
+
+    public void Teleport(Vector3 newPos) {
+        Debug.Log("Teleportou");
+        CharacterController cc = GetComponent<CharacterController>();
+        cc.enabled = false;
+        transform.position = newPos;
+        cc.enabled = true;
     }
 
     public void PauseGame() {
