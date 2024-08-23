@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +10,7 @@ public abstract class Character : MonoBehaviour
     public GameObject LockOnTarget;
     public UnityEvent OnDeath, OnDamage,OnHeal;
     public GameObject hitMark;
+    [SerializeField] private Material mat;
 
     [Space(5)]
     [Header("Character Sheet")]
@@ -36,6 +38,8 @@ public abstract class Character : MonoBehaviour
     }
 
     public virtual int TakeDamage(int dmg) {
+        StartCoroutine(Flash(mat));
+        
         life -= dmg;
         OnDamage.Invoke();
         if (life <= 0) {
@@ -64,5 +68,12 @@ public abstract class Character : MonoBehaviour
     }
 
     public abstract void Die();
+
+    IEnumerator Flash(Material mat) {
+        Shader previous = mat.shader;
+        mat.shader = Shader.Find("Unlit/DamageShader");
+        yield return new WaitForSeconds(0.5f);
+        mat.shader = previous;
+    }
 
 }
