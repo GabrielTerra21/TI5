@@ -11,6 +11,7 @@ public abstract class Character : MonoBehaviour
     public UnityEvent OnDeath, OnDamage,OnHeal;
     public GameObject hitMark;
     [SerializeField] private Material mat;
+    [SerializeField] private Shader lit;
 
     [Space(5)]
     [Header("Character Sheet")]
@@ -28,6 +29,7 @@ public abstract class Character : MonoBehaviour
     protected virtual void Start() {
         GameManager.Instance.pauseGame.AddListener(Pause);
         GameManager.Instance.unpauseGame.AddListener(Unpause);
+        mat.shader = lit;
     }
 
     public void GetData(){
@@ -73,7 +75,7 @@ public abstract class Character : MonoBehaviour
         Shader previous = mat.shader;
         mat.shader = Shader.Find("Unlit/DamageShader");
         yield return new WaitForSeconds(0.5f);
-        mat.shader = previous;
+        mat.shader = Shader.Find("Universal Render Pipeline/Lit");
     }
 
 }
