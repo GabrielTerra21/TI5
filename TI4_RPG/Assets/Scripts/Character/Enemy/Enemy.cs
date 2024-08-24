@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class Enemy : Character {
     
@@ -32,4 +33,12 @@ public class Enemy : Character {
         OnDeath.Invoke();
         Destroy(gameObject);
     }
+
+    /*
+    IEnumerator HitStop() {
+        GameManager.Instance.PauseGame();
+        yield return new WaitForSeconds(0.2f);
+        GameManager.Instance.UnpauseGame();
+    }
+    */
 }
