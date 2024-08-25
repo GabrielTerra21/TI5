@@ -9,8 +9,8 @@ public abstract class Character : MonoBehaviour
     public GameObject LockOnTarget;
     public UnityEvent OnDeath, OnDamage,OnHeal;
     public GameObject hitMark;
-    [SerializeField] private Material mat;
-    [SerializeField] private Shader lit;
+    [SerializeField] protected Material mat;
+    [SerializeField] protected Shader lit;
 
     [Space(5)]
     [Header("Character Sheet")]
@@ -39,7 +39,6 @@ public abstract class Character : MonoBehaviour
     }
 
     public virtual int TakeDamage(int dmg) {
-        StartCoroutine(Flash(mat));
         
         life -= dmg;
         OnDamage.Invoke();
