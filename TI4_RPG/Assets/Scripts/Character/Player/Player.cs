@@ -19,6 +19,7 @@ public class Player : Character
     }
 
     protected override void Start() {
+        lit = Shader.Find("Particles/Standard Unlit");
         base.Start();
         line.SetOrigin(LockOnTarget);
         line.gameObject.SetActive(false);

@@ -31,12 +31,11 @@ public class Portal : MonoBehaviour {
     */
 
     public void TurnOff() {
-        lights.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        if(lights != null) lights.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
 
     public void TurnOn() {
-        lights.Play();
-        Debug.Log("");
+        if(lights != null) lights.Play();
     }
 
     IEnumerator Loading(Player player) {

@@ -39,7 +39,7 @@ public abstract class Character : MonoBehaviour
     }
 
     public virtual int TakeDamage(int dmg) {
-        
+        StartCoroutine(Flash(mat));
         life -= dmg;
         OnDamage.Invoke();
         if (life <= 0) {

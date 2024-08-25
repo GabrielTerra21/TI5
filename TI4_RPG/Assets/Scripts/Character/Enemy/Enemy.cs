@@ -34,11 +34,6 @@ public class Enemy : Character {
         Destroy(gameObject);
     }
 
-    public override int TakeDamage(int dmg) {
-        StartCoroutine(Flash(mat));
-        return base.TakeDamage(dmg);
-    }
-
     /*
     IEnumerator HitStop() {
         GameManager.Instance.PauseGame();
@@ -46,10 +41,5 @@ public class Enemy : Character {
         GameManager.Instance.UnpauseGame();
     }
     */
-    IEnumerator Flash(Material mat) {
-        mat.shader = Shader.Find("Unlit/DamageShader");
-        yield return new WaitForSeconds(0.5f);
-        mat.shader = lit;
-    }
     
 }
