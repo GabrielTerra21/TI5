@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -27,9 +26,9 @@ public abstract class Character : MonoBehaviour
     }
 
     protected virtual void Start() {
+        mat.shader = lit;
         GameManager.Instance.pauseGame.AddListener(Pause);
         GameManager.Instance.unpauseGame.AddListener(Unpause);
-        mat.shader = lit;
     }
 
     public void GetData(){
@@ -72,10 +71,9 @@ public abstract class Character : MonoBehaviour
     public abstract void Die();
 
     IEnumerator Flash(Material mat) {
-        Shader previous = mat.shader;
         mat.shader = Shader.Find("Unlit/DamageShader");
         yield return new WaitForSeconds(0.5f);
-        mat.shader = Shader.Find("Universal Render Pipeline/Lit");
+        mat.shader = lit;
     }
 
 }

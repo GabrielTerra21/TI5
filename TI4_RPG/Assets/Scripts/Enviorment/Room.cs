@@ -3,35 +3,44 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public String Name;
-    public Portal[] doors = new Portal[4];
-    public GameObject[] enemies;
+    public String ID;
+    public Enemy[] enemies;
     public GameObject treasure;
-    public bool cleared = false;
 
-
-    private void Start() {
+    
+    // Adiciona ao evento de morte de cada inimigo presente
+    // uma chamada do metodo que checa se todos os inimigos ja foram derrotados.
+    public void Start() {
+        EnterRoom();
     }
     
+    // Checa se a sala ja foi vencida pelo player e desliga / liga
+    // portas, inimigos e tesouros de acordo com o status da sala
     public void EnterRoom() {
-        if (cleared) {
-            foreach(var data in doors) data.gameObject.SetActive(true);
+        if (GameManager.Instance.CheckClearedRooms(ID)) {
+            foreach (var data in enemies) { data.gameObject.SetActive(false); }
         }
         else{
             if (enemies != null) {
-                foreach (var data in enemies) data.SetActive(true); 
+                foreach (var data in enemies) { data.OnDeath.AddListener(CheckIfEmpty); }
             }
-
             if (treasure != null) {
                 treasure.SetActive(true);
             }
         }
     }
 
-    public void ClearRoom() {
-        cleared = true;
-        foreach (var data in doors) {
-            data.gameObject.SetActive(true);
+    // Checa se todos os inimigos da sala foram mortos
+    // chama metodo de vencer sala se for verdade.
+    public void CheckIfEmpty() {
+        if (enemies.Length <= 0) {
+            ClearRoom();
         }
+    }
+
+    // Adiciona o ID da sala à lista de sala vencidas
+    // ativa as portas da sala
+    public void ClearRoom() {
+        GameManager.Instance.AddClearedRoom(ID);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -46,11 +47,17 @@ public class EngageSphere : MonoBehaviour {
     }
 
     public Character GetNextTarget(Character current = null) {
-        if (current == null) return inRange[0];
-        Debug.Log("fase 2");
-        int i = inRange.IndexOf(current);
-        Debug.Log($"Targeted {inRange[(i + 1) % inRange.Count]}");
-        return inRange[ (i + 1) % inRange.Count ];
+        Character nTarget;
+        if (current == null) {
+            try { nTarget = inRange[0]; }
+            catch { nTarget = null; }
+        }
+        else {
+            int i = inRange.IndexOf(current);
+            nTarget = inRange[(i + 1) % inRange.Count];
+        }
+
+        return nTarget;
     }
     
 }

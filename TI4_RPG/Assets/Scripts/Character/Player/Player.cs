@@ -29,9 +29,13 @@ public class Player : Character
     }
 
     public override void Die() {
-        Destroy(gameObject);
-        GameManager.Instance.LoadNewScene("Derrota");
+        CombatState cState = GetComponent<CombatState>();
+        cState.OnEndCombat.Invoke();
+        
         GameManager.Instance.money = 150;
+        GetData();
+        
+        GameManager.Instance.DeathLoad();
     }
 
     public void Teleport(Vector3 newPos) {

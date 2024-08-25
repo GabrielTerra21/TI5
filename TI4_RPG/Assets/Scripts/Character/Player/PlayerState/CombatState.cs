@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,8 +10,9 @@ public class CombatState : State {
     [SerializeField] private Character target;
     [SerializeField] private EngageSphere eDetect;
     //public SkillContainer skillManager;
-    
-    [Space(10)][Header("New Combat System Components")]
+
+    [Space(10)] [Header("New Combat System Components")]
+    public Action OnEndCombat;
     [SerializeField] private SkillDataSO autoAttack;
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private float coolDown;
@@ -132,15 +134,21 @@ public class CombatState : State {
     
     // Mesma coisa que o TargetNext mas não possui argumentos
     // utilizado para chamar o metodo automaticamente caso não haja alvo
-    public void TargetNext() {
-        if (GameManager.Instance.state != GameManager.GameState.COMBAT) return; // Failsafe
-        
+    public bool TargetNext() {
         target = eDetect.GetNextTarget(target);
+        if (target == null) return false;
         line.Target(target.LockOnTarget.gameObject);
+        return true;
     }
 
     // Caso o jogador não possua alvo, automaticamente seleciona um alvo novo
-    public void OnTargetDeath() { if (target == null) { TargetNext(); } }
+    public void OnTargetDeath() {
+        if (target == null) {
+            if (!TargetNext()) {
+                OnEndCombat.Invoke();
+            } 
+        } 
+    }
     
     public Character ReturnTarget()
     {

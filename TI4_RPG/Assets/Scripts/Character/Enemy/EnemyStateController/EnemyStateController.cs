@@ -14,6 +14,5 @@ public class EnemyStateController : StateMachine {
      {
           base.Start();
           eDetection.OnEngage.AddListener(() => EnterState(Combat));
-          eDetection.OnDisengage.AddListener(() => EnterState(Iddle));
      }
 }

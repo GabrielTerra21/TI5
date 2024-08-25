@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class Vinhette : MonoBehaviour {
-    [SerializeField] private AnimationClip fadeIn, fadeOut;
+    [SerializeField] private AnimationClip fadeIn, fadeOut, cover, uncover;
     [SerializeField] private Animation animation;
 
     private void Awake() {
@@ -17,4 +17,15 @@ public class Vinhette : MonoBehaviour {
         animation.clip = fadeOut;
         animation.Play();
     }
+
+    public void Cover() {
+        animation.clip = cover;
+        animation.Play();
+    }
+
+    public void Uncover() {
+        animation.clip = uncover;
+        animation.Play();
+    }
+    
 }

@@ -10,8 +10,7 @@ public abstract class StateMachine : MonoBehaviour {
         EnterState(start);
     }
     
-    public void EnterState(State state)
-    {
+    public void EnterState(State state) {
         current.OnExitState();
         current.enabled = false;
         state.enabled = true;

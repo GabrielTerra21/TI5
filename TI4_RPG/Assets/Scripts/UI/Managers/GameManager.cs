@@ -3,6 +3,9 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour {
     [Header("Player info")] 
@@ -18,6 +21,8 @@ public class GameManager : MonoBehaviour {
     public bool paused;
     public UnityEvent pauseGame, unpauseGame; 
     public string currentScene;
+    public Portal previousDoor;
+    private List<string> clearedRooms = new List<string>();
 
     [Header("UI Components")] 
     public ActionBar actionBar;
@@ -83,7 +88,45 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene("LoadingScreen");
         playerInput.enabled = true;
     }
-    
+
+    // Checa se o ID da sala informado esta presente na lista de salas completas e retorna o resultado.
+    public bool CheckClearedRooms(string ID) {
+        return clearedRooms.Contains(ID);
+    }
+
+    public void AddClearedRoom(string ID) {
+        if(clearedRooms.Contains(ID))return;
+        else clearedRooms.Add(ID);
+    }
+
+    public void DeathLoad() {
+        PauseGame();
+        StartCoroutine(LoadPreviousScreen());
+        ap.currentValue = 0;
+        UIUpdate();
+    }
+
+    IEnumerator LoadPreviousScreen() {
+        vinhette.Cover();
+        
+        yield return new WaitForSeconds(2);
+        
+        AsyncOperation sceneToLoad = SceneManager.LoadSceneAsync(previousDoor.roomID, LoadSceneMode.Additive);
+        AsyncOperation sceneToUnload = SceneManager.UnloadSceneAsync(currentScene);
+        
+        yield return new WaitUntil(() => sceneToLoad.isDone);
+        
+        player.Teleport(previousDoor.spawnPoint.position);
+        
+        yield return new WaitUntil(() => sceneToUnload.isDone);
+        yield return new WaitForSeconds(1);
+        
+        Instance.vinhette.Uncover();
+        yield return new WaitForSeconds(1);
+        
+        Instance.UnpauseGame();
+    }
+
     public void PauseGame() {
         if (paused) { throw new Exception("Game is already paused"); }
         if (currentScene == "Menu") return;
