@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,8 +11,10 @@ public class CombatState : State {
     [SerializeField] private EngageSphere eDetect;
     //public SkillContainer skillManager;
 
-    [Space(10)] [Header("New Combat System Components")]
-    public Action OnEndCombat;
+    [Space(10)]
+    [Header("New Combat System Components")]
+    //public Action OnEndCombat;
+    [SerializeField] private List<Character> enemies = new List<Character>();
     [SerializeField] private SkillDataSO autoAttack;
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private float coolDown;
@@ -94,7 +96,6 @@ public class CombatState : State {
     private bool InRange(Transform target) {
         if ((target.position - transform.position).sqrMagnitude > attackRange * attackRange) {
             if (aoe.highlighted) aoe.Deactivate();
-            Debug.Log("falso");
             return false;
         }
         if (!aoe.highlighted) aoe.Activate();
@@ -102,22 +103,30 @@ public class CombatState : State {
         return true;
     }
     
-    public override State OnEnterState()
-    {
+    public override State OnEnterState() {
+        GameObject[] enemyGroup = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemyGroup.Length; i++) {
+            enemies.Add(enemyGroup[i].GetComponent<Character>());
+        }
+        
         aoe.FadeIn();
-        GameManager.Instance.state = GameManager.GameState.COMBAT;
+        
         InputManager.Instance.SwitchCurrentActionMap("Combat");
         animator.SetLayerWeight(animationLayerIndex, 1);
         animator.runtimeAnimatorController = ac;
-        target = eDetect.GetNextTarget();
+        
+        //target = eDetect.GetNextTarget();
+        TargetNext();
         line.gameObject.SetActive(true);
         line.Target(target.LockOnTarget);
+        
         return this;
     }
     
     // Limpa as variaveis, desliga elementos da interface de combate
     // e altera layer de animação.
     public override void OnExitState() {
+        enemies.Clear();
         aoe.FadeOut();
         target = null;
         animator.SetLayerWeight(animationLayerIndex, 0);
@@ -128,24 +137,35 @@ public class CombatState : State {
     // Faz chamada do eDetect para adquirir novo alvo
     // Atualiza o alvo da linha de targeting
     public void TargetNext(InputAction.CallbackContext context) {
-        target = eDetect.GetNextTarget(target);
-        line.Target(target.LockOnTarget.gameObject);
+        //target = eDetect.GetNextTarget(target);
+        Character nTarget;
+        int i = enemies.IndexOf(target);
+        nTarget = enemies[(i + 1) % enemies.Count];
+        target = nTarget;
     }
     
     // Mesma coisa que o TargetNext mas não possui argumentos
     // utilizado para chamar o metodo automaticamente caso não haja alvo
     public bool TargetNext() {
-        target = eDetect.GetNextTarget(target);
-        if (target == null) return false;
-        line.Target(target.LockOnTarget.gameObject);
-        return true;
+        //target = eDetect.GetNextTarget(target);
+        Character nTarget;
+        if (target == null) {
+            try { nTarget = enemies[0]; }
+            catch { nTarget = null; }
+        }
+        else {
+            int i = enemies.IndexOf(target);
+            nTarget = enemies[(i + 1) % enemies.Count];
+        }
+        target = nTarget;
+        return target != null;
     }
 
     // Caso o jogador não possua alvo, automaticamente seleciona um alvo novo
     public void OnTargetDeath() {
         if (target == null) {
             if (!TargetNext()) {
-                OnEndCombat.Invoke();
+                GameManager.Instance.CallExploration();
             } 
         } 
     }

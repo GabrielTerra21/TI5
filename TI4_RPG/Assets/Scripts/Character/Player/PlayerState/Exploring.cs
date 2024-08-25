@@ -83,7 +83,6 @@ public class Exploring : State
     public void OnMovement(InputAction.CallbackContext context) => moveDir = context.ReadValue<Vector2>();
 
     public override State OnEnterState() {
-        GameManager.Instance.state = GameManager.GameState.EXPLORATION;
         //if(GameManager.Instance.playerInput == null) GameManager.Instance.playerInput = FindObjectOfType<PlayerInput>();
         InputManager.Instance.SwitchCurrentActionMap("Action");
         InputManager.Instance.actions["Interact"].performed += Interact;

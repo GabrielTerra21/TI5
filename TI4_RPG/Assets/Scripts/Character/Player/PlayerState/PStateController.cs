@@ -6,6 +6,9 @@ public class PStateController : StateMachine
     [Header("States")]
     public State Exploration, Combat, Cinematic;
 
+    public CombatState combat;
+    public Exploring exploring;
+
     [Space(10)] [Header("Components")] [SerializeField]
     private EngageSphere eDetection;
     
@@ -13,15 +16,14 @@ public class PStateController : StateMachine
     protected override void Start()
     {
         base.Start();
-        eDetection.OnEngage.AddListener(() => {
+        GameManager.Instance.enterCombat.AddListener(() => {
             EnterState(Combat);
             InputManager.Instance.SwitchCurrentActionMap("Combat");
         });
-        Combat.GetComponent<CombatState>().OnEndCombat += () => {
+        GameManager.Instance.enterExploration.AddListener( () => {
             EnterState(Exploration);
             InputManager.Instance.SwitchCurrentActionMap("Action");
-            Debug.Log("Exited combat");
-        };
+        });
         /*
         eDetection.OnDisengage.AddListener(() => {
             EnterState(Exploration);

@@ -18,11 +18,15 @@ public class Room : MonoBehaviour
     // portas, inimigos e tesouros de acordo com o status da sala
     public void EnterRoom() {
         if (GameManager.Instance.CheckClearedRooms(ID)) {
-            foreach (var data in enemies) { data.gameObject.SetActive(false); }
+            Debug.Log($"Room {ID} already cleared");
         }
         else{
             if (enemies != null) {
-                foreach (var data in enemies) { data.OnDeath.AddListener(CheckIfEmpty); }
+                Debug.Log("Spawning Enemies");
+                foreach (var data in enemies) {
+                    data.gameObject.SetActive(true);
+                    data.OnDeath.AddListener(CheckIfEmpty);
+                }
             }
             if (treasure != null) {
                 treasure.SetActive(true);
@@ -33,7 +37,7 @@ public class Room : MonoBehaviour
     // Checa se todos os inimigos da sala foram mortos
     // chama metodo de vencer sala se for verdade.
     public void CheckIfEmpty() {
-        if (enemies.Length <= 0) {
+        if (enemies.Length == 1) {
             ClearRoom();
         }
     }
@@ -41,6 +45,7 @@ public class Room : MonoBehaviour
     // Adiciona o ID da sala à lista de sala vencidas
     // ativa as portas da sala
     public void ClearRoom() {
+        Debug.Log($"Room {ID} cleared");
         GameManager.Instance.AddClearedRoom(ID);
     }
 }

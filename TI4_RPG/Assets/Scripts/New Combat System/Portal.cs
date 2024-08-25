@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour {
     public Transform spawnPoint;
+    public ParticleSystem lights;
     [SerializeField] private Portal Destination;
     public string roomID;
     private AsyncOperation sceneToLoad, sceneToUnload;
@@ -24,6 +25,15 @@ public class Portal : MonoBehaviour {
     }
     */
 
+    public void TurnOff() {
+        lights.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+    }
+
+    public void TurnOn() {
+        lights.Play();
+        Debug.Log("");
+    }
+
     IEnumerator Loading(Player player) {
         GameManager.Instance.PauseGame();
         GameManager.Instance.vinhette.FadeIn();
@@ -43,8 +53,9 @@ public class Portal : MonoBehaviour {
         yield return new WaitUntil(() => sceneToUnload.isDone);
         yield return new WaitForSeconds(1);
         
+        
         GameManager.Instance.vinhette.FadeOut();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         
         GameManager.Instance.UnpauseGame();
     }

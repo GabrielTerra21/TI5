@@ -6,7 +6,6 @@ public class Ratomelo : State {
     [Space(10)] [Header("Components")] 
     [SerializeField] private Character self;
     [SerializeField] private Animator animator;
-    [SerializeField] private EngageSphere eDetect;
     [SerializeField] private NavMeshAgent ai;
 
     private enum BEHAVIOUR {
@@ -29,24 +28,32 @@ public class Ratomelo : State {
     private void Awake() {
         if (animator != null) animationLayerIndex = animator.GetLayerIndex("Combat");
         animationMovementID = Animator.StringToHash("Movement");
-        if(eDetect == null) eDetect = GetComponent<EngageSphere>();
         ai = GetComponent<NavMeshAgent>();
         ai.speed = self.moveSpeed;
+        gameObject.SetActive(false);
+    }
+
+    private void OnEnable() {
+        OnEnterState();
+        paused = true;
+    }
+
+    private void OnDisable() {
+        OnExitState();
     }
     
     // Ativa a layer de animação adequada, busca um alvo do tipo Character
     // retorna this para que o StateManager saiba o estado atual do personagem
     public override State OnEnterState() {
         if(animator != null) animator.SetLayerWeight(animationLayerIndex, 1);
-        target = eDetect.GetNextTarget();
+        target = GameObject.FindWithTag("Player").GetComponent<Character>();
+        GameManager.Instance.CallCombatMode();
         return this;
     }
 
     // Desliga layer de animação de combate, limpa variavel de alvo
     // e para quaisquer coroutinas ainda sendo executadas neste MonoBehaviour
     public override void OnExitState() {
-        Debug.Log($"{gameObject.name} is exiting combat state");
-        if(animator != null) animator.SetLayerWeight(animationLayerIndex, 0);
         target = null;
         StopAllCoroutines();
     }

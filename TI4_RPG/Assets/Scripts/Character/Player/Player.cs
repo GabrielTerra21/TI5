@@ -30,7 +30,8 @@ public class Player : Character
 
     public override void Die() {
         CombatState cState = GetComponent<CombatState>();
-        cState.OnEndCombat.Invoke();
+        GameManager.Instance.CallExploration();
+        //cState.OnEndCombat.Invoke();
         
         GameManager.Instance.money = 150;
         GetData();

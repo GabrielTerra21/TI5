@@ -19,12 +19,13 @@ public class GameManager : MonoBehaviour {
     public GameState state;
     public enum GameState {COMBAT, EXPLORATION}
     public bool paused;
-    public UnityEvent pauseGame, unpauseGame; 
+    public UnityEvent pauseGame, unpauseGame, enterCombat, enterExploration; 
     public string currentScene;
     public Portal previousDoor;
-    private List<string> clearedRooms = new List<string>();
+    public List<string> clearedRooms = new List<string>();
 
-    [Header("UI Components")] 
+    [Header("UI Components")]
+    public TextHealthBar healthBar;
     public ActionBar actionBar;
     public SkillDataSO empty;
     public Vinhette vinhette;
@@ -36,12 +37,15 @@ public class GameManager : MonoBehaviour {
     
     public static GameManager Instance;
 
+    // Codigo de Singleton.
     private void Awake() {
         if (Instance != null) Destroy(gameObject);
         else Instance = this;
         DontDestroyOnLoad(this);
     }
     
+    // Atribui o ID da cena atual ao valor currentScene, determina o stado do GameManager como
+    // estado de exploração e faz update da UI.
     private void Start() {
         //playerInput = GetComponent<PlayerInput>();
         //playerInput = FindObjectOfType<PlayerInput>();
@@ -54,15 +58,19 @@ public class GameManager : MonoBehaviour {
         actionBar.UpdateBar(ap);
     }
 
+    // Reduz price da quantidade de dinheiro que o jogador tem.
     public void SpendMoney(int price) { money -= price; }
 
+    // Adiciona amount à quantidade de dinheiro do Jogador
     public void GainMoney(int amount) { money += amount; }
 
+    // Adiciona amount à barra de AP do jogador
     public void GainAP(int amount) {
         ap.currentValue += amount;
         actionBar.UpdateBar(ap);
     }
 
+    // Zera a barra de AP
     public void SpendAP() {
         ap.currentValue = 0;
         actionBar.UpdateBar(ap);
@@ -94,18 +102,26 @@ public class GameManager : MonoBehaviour {
         return clearedRooms.Contains(ID);
     }
 
+    
+    // Adiciona ID à lista de salas vencidas, a menos que a ID informada ja se encontre na lista.
     public void AddClearedRoom(string ID) {
         if(clearedRooms.Contains(ID))return;
         else clearedRooms.Add(ID);
     }
 
+    // Pausa o jogo, chama corotiona para carregar a cena anterior e atualiza as UI's
+    // chamado pelo jogador quando ele morre.
     public void DeathLoad() {
         PauseGame();
         StartCoroutine(LoadPreviousScreen());
         ap.currentValue = 0;
-        UIUpdate();
+        actionBar.UpdateBar(ap);
+        healthBar.UpdateValues();
     }
 
+    
+    // Cuida das animações da vinheta de morte, teleporta o jogador de volta para a sala anterior
+    // e lida com o carregamento e descarregamento de cenas.
     IEnumerator LoadPreviousScreen() {
         vinhette.Cover();
         
@@ -127,6 +143,7 @@ public class GameManager : MonoBehaviour {
         Instance.UnpauseGame();
     }
 
+    // Pausa o jogo e chama o evento de pausa
     public void PauseGame() {
         if (paused) { throw new Exception("Game is already paused"); }
         if (currentScene == "Menu") return;
@@ -134,28 +151,45 @@ public class GameManager : MonoBehaviour {
         paused = true;
     }
 
+    // Chama a entrada do estado de combate
+    public void CallCombatMode() {
+        state = GameState.COMBAT;
+        enterCombat.Invoke();
+    }
+
+    // Chama a entrada do estado de exploração
+    public void CallExploration() {
+        state = GameState.EXPLORATION;
+        enterExploration.Invoke();
+    }
+
+    // Pausa o jogo e troca o esquema de controles para os controles de UI.
     public void EnterUI() {
         PauseGame();
         playerInput.SwitchCurrentActionMap("MyUI");
     }
 
+    // Despausa o jogo e retorna os controles para o modo de exploração.
     public void ExitUI() {
         UnpauseGame();
-        //cross.UpdateSlots();
         playerInput.SwitchCurrentActionMap("Action");
     }
 
+    // Despausa o jogo e invoca o evento de despausa.
     public void UnpauseGame() {
         if (!paused) { throw new Exception("Is not paused"); }
         unpauseGame.Invoke();
         paused = false;
     }
 
+    // Tenho QUASE certeza que não é utilizado
     public void TogglePause() {
         if (paused) UnpauseGame();
         else PauseGame();
     }
 
+    // Tenho quase certeza que só é utilizado para atualizar a barra de vida
+    // Poderia ser refatorado com toda certeza, dito isso, falta tempo...
     public void UIUpdate()
     {
         UpdateUI?.Invoke();
