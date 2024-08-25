@@ -10,6 +10,11 @@ public class Portal : MonoBehaviour {
     private AsyncOperation sceneToLoad, sceneToUnload;
 
 
+    private void Start() {
+        GameManager.Instance.enterExploration.AddListener(TurnOn);
+        GameManager.Instance.enterCombat.AddListener(TurnOff);
+    }
+
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player") && GameManager.Instance.state != GameManager.GameState.COMBAT) {
             StartCoroutine(Loading(other.GetComponent<Player>()));
