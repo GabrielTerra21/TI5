@@ -842,6 +842,39 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326364530}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &342748942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 342748943}
+  m_Layer: 0
+  m_Name: Room3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &342748943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342748942}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 382837418}
+  - {fileID: 1779656873}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &364421861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1219,7 +1252,7 @@ Transform:
   - {fileID: 1922626734}
   - {fileID: 378034153}
   - {fileID: 251089588}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 342748943}
   m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!1001 &389220652
 PrefabInstance:
@@ -3860,7 +3893,7 @@ Transform:
   - {fileID: 1649708985}
   - {fileID: 897834353}
   - {fileID: 806651892}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 342748943}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1851706368
 PrefabInstance:
@@ -4509,7 +4542,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 382837418}
-  - {fileID: 1779656873}
+  - {fileID: 342748943}
   - {fileID: 1716640133}
   - {fileID: 85200670}
