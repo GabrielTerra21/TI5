@@ -6,7 +6,7 @@ public class PauseScreen : MonoBehaviour {
     //public PlayerInput playerInput;
     
     public void OpenPauseMenu(InputAction.CallbackContext context) {
-        if (context.performed) {
+        if (context.performed && GameManager.Instance.paused == false) {
             pauseScreen.SetActive(true);
             GameManager.Instance.EnterUI();
             InputManager.Instance.actions["Cancel"].performed += ClosePauseMenu;

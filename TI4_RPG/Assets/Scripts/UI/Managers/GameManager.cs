@@ -17,9 +17,9 @@ public class GameManager : MonoBehaviour {
 
     [Header("Game Info")] 
     public GameState state;
-    public enum GameState {COMBAT, EXPLORATION}
+    public enum GameState {COMBAT, EXPLORATION, CINEMATIC}
     public bool paused;
-    public UnityEvent pauseGame, unpauseGame, enterCombat, enterExploration; 
+    public UnityEvent pauseGame, unpauseGame, enterCombat, enterExploration, enterCinematic; 
     public string currentScene;
     public Portal previousDoor;
     public List<string> clearedRooms = new List<string>();
@@ -161,6 +161,11 @@ public class GameManager : MonoBehaviour {
     public void CallExploration() {
         state = GameState.EXPLORATION;
         enterExploration.Invoke();
+    }
+
+    public void CallCinematic() {
+        state = GameState.CINEMATIC;
+        enterCinematic.Invoke();
     }
 
     // Pausa o jogo e troca o esquema de controles para os controles de UI.

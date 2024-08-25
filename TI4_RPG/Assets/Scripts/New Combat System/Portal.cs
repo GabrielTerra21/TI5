@@ -39,6 +39,7 @@ public class Portal : MonoBehaviour {
     }
 
     IEnumerator Loading(Player player) {
+        //GameManager.Instance.state = GameManager.GameState.CINEMATIC;
         GameManager.Instance.PauseGame();
         GameManager.Instance.vinhette.FadeIn();
         
@@ -62,6 +63,11 @@ public class Portal : MonoBehaviour {
         yield return new WaitForSeconds(1);
         
         GameManager.Instance.UnpauseGame();
+        /*
+        if (GameManager.Instance.state == GameManager.GameState.CINEMATIC) {
+            GameManager.Instance.state = GameManager.GameState.EXPLORATION;
+        }
+        */
     }
     
     
