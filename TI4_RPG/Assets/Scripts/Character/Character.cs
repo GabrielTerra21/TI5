@@ -9,6 +9,8 @@ public abstract class Character : MonoBehaviour
     public GameObject LockOnTarget;
     public UnityEvent OnDeath, OnDamage,OnHeal;
     public GameObject hitMark;
+
+    [SerializeField] private SkinnedMeshRenderer renderer;
     [SerializeField] protected Material mat;
     [SerializeField] protected Shader lit;
 
@@ -70,9 +72,22 @@ public abstract class Character : MonoBehaviour
     public abstract void Die();
 
     IEnumerator Flash(Material mat) {
-        mat.shader = Shader.Find("Unlit/DamageShader");
+        Material clone = new Material(mat);
+
+        //for (int i = 0; i < renderer.materials.Length; i++) {
+        //    renderer.materials[i] = clone;
+        //}
+        renderer.material = clone;
+
+        clone.shader = Shader.Find("Unlit/DamageShader");
         yield return new WaitForSeconds(0.5f);
-        mat.shader = lit;
+        clone.shader = lit;
+
+        renderer.material = mat;
+        //for (int i = 0; i < renderer.materials.Length; i++) {
+        //    renderer.materials[i] = mat;
+        //}
+
     }
 
 }
