@@ -922,6 +922,57 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 319081816}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &329574265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 329574267}
+  - component: {fileID: 329574266}
+  m_Layer: 0
+  m_Name: Room4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &329574266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329574265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f769486d0840934e8d93b9d576552a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: Room4
+  enemies:
+  - {fileID: 741283104}
+  - {fileID: 692603661}
+  treasure: {fileID: 0}
+--- !u!4 &329574267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329574265}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 803702718}
+  - {fileID: 818370651}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &361654039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1459,84 +1510,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 495759127}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &541915936
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 621358177521138420, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_Name
-      value: RatomeloEnemy (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 621358177521138420, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 90.77
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 79.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 56fe1706f9726ee45952072ce8bf6143, type: 3}
 --- !u!1 &605501179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1729,6 +1702,196 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 668628365}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &692603660
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2675678725594001457, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_Name
+      value: New RatomeloEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 98.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 82.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 65b206ca36042984cb26e8fa58cd6392, type: 3}
+--- !u!114 &692603661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6087518924314107851, guid: 65b206ca36042984cb26e8fa58cd6392,
+    type: 3}
+  m_PrefabInstance: {fileID: 692603660}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a997df0fd8a4ed44f91bd6bc63ece26f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &741283103
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2675678725594001457, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_Name
+      value: New RatomeloEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 91.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 81.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 65b206ca36042984cb26e8fa58cd6392, type: 3}
+--- !u!114 &741283104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6087518924314107851, guid: 65b206ca36042984cb26e8fa58cd6392,
+    type: 3}
+  m_PrefabInstance: {fileID: 741283103}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a997df0fd8a4ed44f91bd6bc63ece26f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &744647276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2063,7 +2226,7 @@ Transform:
   - {fileID: 361654040}
   - {fileID: 1016676881}
   - {fileID: 1770539751}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 329574267}
   m_LocalEulerAnglesHint: {x: 0, y: -135, z: 0}
 --- !u!1 &818370650
 GameObject:
@@ -2100,7 +2263,7 @@ Transform:
   - {fileID: 1923866052}
   - {fileID: 1888451349}
   - {fileID: 495759128}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 329574267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1016676880
 GameObject:
@@ -4125,84 +4288,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2003508527}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2012275046
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 621358177521138420, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_Name
-      value: RatomeloEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 621358177521138420, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 96.19
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 82.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9008083703753663548, guid: 56fe1706f9726ee45952072ce8bf6143,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 56fe1706f9726ee45952072ce8bf6143, type: 3}
 --- !u!1 &2024037956
 GameObject:
   m_ObjectHideFlags: 0
@@ -4519,7 +4604,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 803702718}
-  - {fileID: 818370651}
-  - {fileID: 541915936}
-  - {fileID: 2012275046}
+  - {fileID: 329574267}
+  - {fileID: 741283103}
+  - {fileID: 692603660}
