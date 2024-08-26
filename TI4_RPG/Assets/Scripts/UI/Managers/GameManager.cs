@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
     
     [Header("Managers Components")]
     public PlayerInput playerInput;
-    public RoomManager roomManager;
+    public DialogueBox DialogueManager;
     
     public static GameManager Instance;
 

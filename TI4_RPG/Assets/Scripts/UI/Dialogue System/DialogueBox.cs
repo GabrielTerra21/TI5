@@ -62,7 +62,7 @@ public class DialogueBox : MonoBehaviour {
     IEnumerator StepPasting(string content) {
         foreach (char value in content) {
             text.text += value;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.02f);
         }
         ActivateArrow();
     }
