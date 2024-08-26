@@ -25,7 +25,7 @@ public class Room : MonoBehaviour
                 Debug.Log("Spawning Enemies");
                 foreach (var data in enemies) {
                     data.gameObject.SetActive(true);
-                    data.OnDeath.AddListener(CheckIfEmpty);
+                    //data.OnDeath.AddListener(CheckIfEmpty);
                 }
             }
             if (treasure != null) {
@@ -36,11 +36,14 @@ public class Room : MonoBehaviour
 
     // Checa se todos os inimigos da sala foram mortos
     // chama metodo de vencer sala se for verdade.
+    /*
     public void CheckIfEmpty() {
-        if (enemies.Length == 1) {
-            ClearRoom();
+        foreach (var data in enemies) {
+            if(data != null) return;
         }
+        ClearRoom();
     }
+    */
 
     // Adiciona o ID da sala à lista de sala vencidas
     // ativa as portas da sala

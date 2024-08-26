@@ -17,6 +17,7 @@ public class Portal : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player") && GameManager.Instance.state != GameManager.GameState.COMBAT) {
+            GameManager.Instance.AddClearedRoom(roomID);
             StartCoroutine(Loading(other.GetComponent<Player>()));
         }
     }

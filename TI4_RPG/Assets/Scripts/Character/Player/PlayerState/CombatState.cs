@@ -146,27 +146,23 @@ public class CombatState : State {
     
     // Mesma coisa que o TargetNext mas não possui argumentos
     // utilizado para chamar o metodo automaticamente caso não haja alvo
-    public bool TargetNext() {
+    public void TargetNext() {
         //target = eDetect.GetNextTarget(target);
-        Character nTarget;
-        if (target == null) {
-            try { nTarget = enemies[0]; }
-            catch { nTarget = null; }
+        Character nTarget  = null;
+        foreach (var data in enemies) {
+            if (data != null) nTarget = data;
         }
+        if(nTarget == null){GameManager.Instance.CallExploration();}
         else {
-            int i = enemies.IndexOf(target);
-            nTarget = enemies[(i + 1) % enemies.Count];
+            target = nTarget;
+            line.Target(target.LockOnTarget);
         }
-        target = nTarget;
-        return target != null;
     }
 
     // Caso o jogador não possua alvo, automaticamente seleciona um alvo novo
     public void OnTargetDeath() {
         if (target == null) {
-            if (!TargetNext()) {
-                GameManager.Instance.CallExploration();
-            } 
+            TargetNext();
         } 
     }
     
