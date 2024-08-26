@@ -3461,6 +3461,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1629651385}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1629651387 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6087518924314107851, guid: 65b206ca36042984cb26e8fa58cd6392,
+    type: 3}
+  m_PrefabInstance: {fileID: 1629651385}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629651386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a997df0fd8a4ed44f91bd6bc63ece26f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1635168894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4091,6 +4103,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65b206ca36042984cb26e8fa58cd6392, type: 3}
+--- !u!114 &1774782459 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6087518924314107851, guid: 65b206ca36042984cb26e8fa58cd6392,
+    type: 3}
+  m_PrefabInstance: {fileID: 1774782458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a997df0fd8a4ed44f91bd6bc63ece26f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1879174354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5072,7 +5096,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: Room14
-  enemies: []
+  enemies:
+  - {fileID: 1629651387}
+  - {fileID: 1774782459}
   treasure: {fileID: 1629651386}
 --- !u!4 &2067867158
 Transform:
