@@ -56,7 +56,7 @@ public class CombatState : State {
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").started += OnMovement;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").performed += OnMovement;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").canceled += OnMovement;
-        InputManager.Instance.actions["SwitchEnemy"].performed += TargetNext;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("SwitchEnemy").performed += TargetNext;
     }
 
     //Desubscreve as respectivas ações ao mapa de ações do input Manager
@@ -65,7 +65,7 @@ public class CombatState : State {
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").started += OnMovement;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").performed += OnMovement;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").canceled += OnMovement;
-        InputManager.Instance.actions["SwitchEnemy"].performed -= TargetNext;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("SwitchEnemy").performed += TargetNext;
         moveDir = Vector3.zero;
     }
 
@@ -109,6 +109,7 @@ public class CombatState : State {
             enemies.Add(enemyGroup[i].GetComponent<Character>());
         }
         
+        GameManager.Instance.playerStats.FadeIn();
         aoe.FadeIn();
         
         InputManager.Instance.SwitchCurrentActionMap("Combat");
@@ -127,6 +128,7 @@ public class CombatState : State {
     // e altera layer de animação.
     public override void OnExitState() {
         enemies.Clear();
+        GameManager.Instance.playerStats.FadeOut();
         aoe.FadeOut();
         target = null;
         animator.SetLayerWeight(animationLayerIndex, 0);

@@ -26,6 +26,7 @@ public class Ratomelo : State {
 
     // Adquire referencia da layer de animação e componentes
     private void Awake() {
+        paused = true;
         if (animator != null) animationLayerIndex = animator.GetLayerIndex("Combat");
         animationMovementID = Animator.StringToHash("Movement");
         ai = GetComponent<NavMeshAgent>();

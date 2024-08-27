@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour {
     [Header("Player info")] 
@@ -29,6 +28,7 @@ public class GameManager : MonoBehaviour {
     public ActionBar actionBar;
     public SkillDataSO empty;
     public Vinhette vinhette;
+    public Vinhette playerStats;
     public Action UpdateUI;
     
     [Header("Managers Components")]
@@ -154,13 +154,13 @@ public class GameManager : MonoBehaviour {
     // Chama a entrada do estado de combate
     public void CallCombatMode() {
         state = GameState.COMBAT;
-        enterCombat.Invoke();
+        StartCoroutine(EventBuffer(enterCombat));
     }
 
     // Chama a entrada do estado de exploração
     public void CallExploration() {
         state = GameState.EXPLORATION;
-        enterExploration.Invoke();
+        StartCoroutine(EventBuffer(enterExploration));
     }
 
     public void CallCinematic() {
@@ -198,5 +198,13 @@ public class GameManager : MonoBehaviour {
     public void UIUpdate()
     {
         UpdateUI?.Invoke();
+    }
+
+    
+    // Aguarda até que o jogo não esteja mais em estado de pausa para invocar o evento
+    // necessario para que as animações de interface toquem
+    IEnumerator EventBuffer(UnityEvent nEvent) {
+        yield return new WaitUntil(() => !paused);
+        nEvent.Invoke();
     }
 }
