@@ -1,13 +1,18 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AoE : MonoBehaviour
 {
     public AoESO aoe;
-
-    public void CastAoE(int power)
+    public void CastAoE(int power, float castTime)
     {
-        aoe.DealDamage(transform.position,power);
+        StartCoroutine(CountDown(power, castTime - 0.1f));
+    }
+    public IEnumerator CountDown(int power,float countTime)
+    {
+        yield return new WaitForSeconds(countTime);
+
+        Debug.Log("foi");
+        aoe.DealDamage(transform.position, power);
     }
 }

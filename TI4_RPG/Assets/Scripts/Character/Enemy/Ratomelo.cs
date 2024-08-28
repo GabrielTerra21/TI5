@@ -15,7 +15,7 @@ public class Ratomelo : State {
     
     [Space(10)] [Header("Info")] 
     [SerializeField] private BEHAVIOUR behaviour;
-    [SerializeField] private SkillDataSO skill;
+    [SerializeField] private SkillDataSO autoAttack,secondarySkill;
     [SerializeField] private Character target;
     [SerializeField] private int animationLayerIndex;
     [SerializeField] private int animationMovementID;
@@ -68,8 +68,14 @@ public class Ratomelo : State {
             case BEHAVIOUR.ATTACK:
                 // Caso o alvo esteja dentro de alcance, a skill é conjurada
                 // e o comportamento de IDDLE iniciado.
-                if (InDistance(skill, target.transform)) { 
-                    skill.OnCast(self, target);
+                if (InDistance(autoAttack, target.transform) && Random.RandomRange(0,10) < 7) { 
+                    autoAttack.OnCast(self, target);
+                    _iddleTimer = iddleTime;
+                    behaviour = BEHAVIOUR.IDDLE;
+                }
+                else if(InDistance(secondarySkill, target.transform))
+                {
+                    secondarySkill.OnCast(self, target);
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
                 }
@@ -77,8 +83,9 @@ public class Ratomelo : State {
                 // e o agente não esteja se movendo, inicia movimento em direção ao alvo.
                 else if (!moving) {
                     Debug.Log("Starting Movement");
-                    StartCoroutine(Movement(skill));
+                    StartCoroutine(Movement(autoAttack));
                 }
+                transform.LookAt(target.transform.position);
                 break;
             // Faz uma contagem regressiva para retornar ao estado de ATTACK.
             // Serve unicamente para impedir o que o agente ataque initerruptamente.
