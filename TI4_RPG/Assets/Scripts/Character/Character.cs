@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public abstract class Character : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public abstract class Character : MonoBehaviour
     public UnityEvent OnDeath, OnDamage,OnHeal;
     public GameObject hitMark;
 
-    [SerializeField] private SkinnedMeshRenderer renderer;
+    [FormerlySerializedAs("renderer")] [SerializeField] private SkinnedMeshRenderer render;
     [SerializeField] protected Material mat;
     [SerializeField] protected Shader lit;
 
@@ -77,13 +78,13 @@ public abstract class Character : MonoBehaviour
         Material clone = new Material(mat);
         Material[] mats;
         
-        mats = renderer.materials;
+        mats = render.materials;
         
         for (int i = 0; i < mats.Length; i++) {
             mats[i] = clone;
         }
 
-        renderer.materials = mats;
+        render.materials = mats;
 
         clone.shader = Shader.Find("Unlit/DamageShader");
         yield return new WaitForSeconds(0.5f);
@@ -93,7 +94,7 @@ public abstract class Character : MonoBehaviour
             mats[i] = mat;
         }
 
-        renderer.materials = mats;
+        render.materials = mats;
     }
 
 }
