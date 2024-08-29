@@ -2,7 +2,7 @@ Shader "Unlit/DamageShader"
 {
     Properties
     {
-        _Color ("Damage Highlight Color", Color) = (1, 1, 1, 1)
+        _Color ("Color", color) = (1, 1, 1, 1)
     }
     SubShader
     {
@@ -25,8 +25,6 @@ Shader "Unlit/DamageShader"
             {
                 float4 vertex : SV_POSITION;
             };
-
-            fixed4 _Color;
             
 
             v2f vert (appdata v)
@@ -38,7 +36,7 @@ Shader "Unlit/DamageShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                return _Color;
+                return float4(1, 1, 1, 1);
             }
             ENDCG
         }

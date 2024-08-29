@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -73,21 +75,25 @@ public abstract class Character : MonoBehaviour
 
     IEnumerator Flash(Material mat) {
         Material clone = new Material(mat);
+        Material[] mats;
+        
+        mats = renderer.materials;
+        
+        for (int i = 0; i < mats.Length; i++) {
+            mats[i] = clone;
+        }
 
-        //for (int i = 0; i < renderer.materials.Length; i++) {
-        //    renderer.materials[i] = clone;
-        //}
-        renderer.material = clone;
+        renderer.materials = mats;
 
         clone.shader = Shader.Find("Unlit/DamageShader");
         yield return new WaitForSeconds(0.5f);
         clone.shader = lit;
 
-        renderer.material = mat;
-        //for (int i = 0; i < renderer.materials.Length; i++) {
-        //    renderer.materials[i] = mat;
-        //}
+        for (int i = 0; i < mats.Length; i++) {
+            mats[i] = mat;
+        }
 
+        renderer.materials = mats;
     }
 
 }
