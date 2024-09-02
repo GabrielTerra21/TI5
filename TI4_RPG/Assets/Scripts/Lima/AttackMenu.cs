@@ -27,6 +27,10 @@ public class AttackMenu : MonoBehaviour {
     }
     
     private void Start() {
+        // Registra os metodos para o menu entrar e sair de cena no inicio e final da fase de combate respectivamente
+        GameManager.Instance.enterCombat.AddListener(EnterScreen);
+        GameManager.Instance.enterExploration.AddListener(ExitScreen);
+        
         // Registra um novo envento ao OnPointerClick de cada botão
         // que chama o metodo OnSelection do menu
         foreach (var data in buttons) {
@@ -51,8 +55,6 @@ public class AttackMenu : MonoBehaviour {
         Debug.Log("Open menu called");
         InputManager.Instance.actions["Action"].performed -= OpenMenu;
         GameManager.Instance.PauseGame(); 
-        StartCoroutine(EnterScreen(leftWing, onScreenPosL.position));
-        StartCoroutine(EnterScreen(rightWing, onScreenPosR.position));
         foreach (var data in buttons) {
             if(data.gameObject.activeInHierarchy) data.SetActive();
         }
@@ -63,6 +65,18 @@ public class AttackMenu : MonoBehaviour {
         if(context.performed && GameManager.Instance.ap.currentValue >= 25 ) OpenMenu();
     }
 
+    public void EnterScreen() {
+        Debug.Log("Enter Sreen chamado");
+        StartCoroutine(MoveOnScreen(leftWing, onScreenPosL.position));
+        StartCoroutine(MoveOnScreen(rightWing, onScreenPosR.position));
+    }
+
+    public void ExitScreen() {
+        Debug.Log("Exit Sreen chamado");
+        StartCoroutine(MoveOnScreen(leftWing, offScreenPosL.position));
+        StartCoroutine(MoveOnScreen(rightWing, offScreenPosR.position));
+    }
+
     // Reseta variaveis que precisam ser resetadas ao fim do uso da interface
     // anima a UI saindo da tela e coloca os botões de ataque em estado inativo.
     public void CloseMenu() {
@@ -71,9 +85,6 @@ public class AttackMenu : MonoBehaviour {
         foreach (var data in buttons) { 
             if(data.gameObject.activeInHierarchy)data.SetInactive();
         }
-
-        StartCoroutine(EnterScreen(leftWing, offScreenPosL.position)); 
-        StartCoroutine(EnterScreen(rightWing, offScreenPosR.position)); 
         // Retornar tempo ao normal
         GameManager.Instance.UnpauseGame();
         InputManager.Instance.actions["Action"].performed += OpenMenu;
@@ -116,7 +127,7 @@ public class AttackMenu : MonoBehaviour {
     }
 
     // Produz efeito de animação do menu de combate deslizar para dentro/fora da tela.
-    IEnumerator EnterScreen(RectTransform move, Vector3 targetPos) {
+    IEnumerator MoveOnScreen(RectTransform move, Vector3 targetPos) {
         float duration = 0.5f;
         float value = 0;
         Vector3 origin = move.position;
