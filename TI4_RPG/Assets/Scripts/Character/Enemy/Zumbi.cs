@@ -2,20 +2,25 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 
-public class Ratomelo : State {
-    [Space(10)] [Header("Components")] 
+public class Zumbi : State
+{
+    [Space(10)]
+    [Header("Components")]
     [SerializeField] private Character self;
     [SerializeField] private Animator animator;
     [SerializeField] private NavMeshAgent ai;
 
-    private enum BEHAVIOUR {
+    private enum BEHAVIOUR
+    {
         ATTACK,
         IDDLE
     }
-    
-    [Space(10)] [Header("Info")] 
+
+    [Space(10)]
+    [Header("Info")]
     [SerializeField] private BEHAVIOUR behaviour;
-    [SerializeField] private SkillDataSO autoAttack,secondarySkill;
+    [SerializeField] private SkillDataSO primarySkill, secondarySkill;
+    [SerializeField] private bool cooldown;
     [SerializeField] private Character target;
     [SerializeField] private int animationLayerIndex;
     [SerializeField] private int animationMovementID;
@@ -24,8 +29,9 @@ public class Ratomelo : State {
     [SerializeField] private bool moving = false;
 
 
-    // Adquire referencia da layer de anima√ß√£o e componentes
-    private void Awake() {
+    // Adquire referencia da layer de animaÁ„o e componentes
+    private void Awake()
+    {
         paused = true;
         if (animator != null) animationLayerIndex = animator.GetLayerIndex("Combat");
         animationMovementID = Animator.StringToHash("Movement");
@@ -34,56 +40,66 @@ public class Ratomelo : State {
         gameObject.SetActive(false);
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         OnEnterState();
         paused = true;
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         OnExitState();
     }
-    
-    // Ativa a layer de anima√ß√£o adequada, busca um alvo do tipo Character
+
+    // Ativa a layer de animaÁ„o adequada, busca um alvo do tipo Character
     // retorna this para que o StateManager saiba o estado atual do personagem
-    public override State OnEnterState() {
-        if(animator != null) animator.SetLayerWeight(animationLayerIndex, 1);
+    public override State OnEnterState()
+    {
+        if (animator != null) animator.SetLayerWeight(animationLayerIndex, 1);
         target = GameObject.FindWithTag("Player").GetComponent<Character>();
         GameManager.Instance.CallCombatMode();
         return this;
     }
 
-    // Desliga layer de anima√ß√£o de combate, limpa variavel de alvo
+    // Desliga layer de animaÁ„o de combate, limpa variavel de alvo
     // e para quaisquer coroutinas ainda sendo executadas neste MonoBehaviour
-    public override void OnExitState() {
+    public override void OnExitState()
+    {
         target = null;
         StopAllCoroutines();
     }
-    
-    private void FixedUpdate() {
-        if(paused) return;
+
+    private void FixedUpdate()
+    {
+        if (paused) return;
 
         // Toda a logica de Comportamento do inimigo de acordo com o behaviour STATE
-        switch (behaviour) {
+        switch (behaviour)
+        {
             // Comportamento de ataque
             case BEHAVIOUR.ATTACK:
-                // Caso o alvo esteja dentro de alcance, a skill √© conjurada
+                // Caso o alvo esteja dentro de alcance, a skill È conjurada
                 // e o comportamento de IDDLE iniciado.
-                if (InDistance(autoAttack, target.transform) && Random.Range(0,10) > 7) { 
-                    autoAttack.OnCast(self, target);
+                if (InDistance(primarySkill, target.transform))
+                {
+                    primarySkill.OnCast(self, target);
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
                 }
-                else if(InDistance(secondarySkill, target.transform))
+                else if(InDistance(secondarySkill, target.transform) && Random.RandomRange(0,10) > 8 && cooldown)
                 {
                     secondarySkill.OnCast(self, target);
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
+                    cooldown = false;
+                    StartCoroutine(CoolDown(secondarySkill.CoolDown));
                 }
-                // Caso o alvo n√£o esteja dentro de alcance
-                // e o agente n√£o esteja se movendo, inicia movimento em dire√ß√£o ao alvo.
-                else if (!moving) {
+                // Caso o alvo n„o esteja dentro de alcance
+                // e o agente n„o esteja se movendo, inicia movimento em direÁ„o ao alvo.
+                else if (!moving)
+                {
                     Debug.Log("Starting Movement");
-                    StartCoroutine(Movement(autoAttack));
+                    StartCoroutine(Movement(primarySkill));
                 }
                 transform.LookAt(target.transform.position);
                 break;
@@ -91,38 +107,44 @@ public class Ratomelo : State {
             // Serve unicamente para impedir o que o agente ataque initerruptamente.
             case BEHAVIOUR.IDDLE:
                 _iddleTimer -= Time.fixedDeltaTime;
-                if (_iddleTimer <= 0) {
+                if (_iddleTimer <= 0)
+                {
                     behaviour = BEHAVIOUR.ATTACK;
                 }
                 break;
         }
     }
-    
-    // Diz se o alvo est√° ou n√£o dentro do alcance da skill fornecida como argumento
-    public bool InDistance(SkillDataSO skill, Transform targetPos) {
-        if ((targetPos.position - transform.position).sqrMagnitude > skill.Range * skill.Range) {
+
+    // Diz se o alvo est· ou n„o dentro do alcance da skill fornecida como argumento
+    public bool InDistance(SkillDataSO skill, Transform targetPos)
+    {
+        if ((targetPos.position - transform.position).sqrMagnitude > skill.Range * skill.Range)
+        {
             return false;
         }
         return true;
     }
-    
-    // Utiliza a variavel range da skill fornecida como argumento para estabelecer uma posi√ß√£o
-    // desejavel para o agente, em rela√ß√£o ao alvo, que permita conjurar o ataque, e √† usa como
+
+    // Utiliza a variavel range da skill fornecida como argumento para estabelecer uma posiÁ„o
+    // desejavel para o agente, em relaÁ„o ao alvo, que permita conjurar o ataque, e ‡ usa como
     // destino para o NavMesh agent do agente.
-    IEnumerator Movement ( SkillDataSO skill ) {
+    IEnumerator Movement(SkillDataSO skill)
+    {
         moving = true;
         animator.SetFloat(animationMovementID, ai.speed / self.moveSpeed);
         Vector3 targetPos = target.transform.position;
         NavMeshHit hit;
-        NavMesh.SamplePosition(targetPos, out hit, skill.Range - 1, -1); 
+        NavMesh.SamplePosition(targetPos, out hit, skill.Range - 1, -1);
         Vector3 desiredPos = hit.position;
         ai.SetDestination(desiredPos);
         // Enquanto estiver fora de alcance
-        // atualiza valor de anima√ß√£o e checa se o alvo mudou de posi√ß√£o.
+        // atualiza valor de animaÁ„o e checa se o alvo mudou de posiÁ„o.
         Debug.Log("Destination Set");
-        while (!InDistance(skill, target.transform)) {
-            // Caso o alvo tenha mudado de posi√ß√£o, inicia uma nova coroutina de movimenta√ß√£o.
-            if (target.transform.position != targetPos) {
+        while (!InDistance(skill, target.transform))
+        {
+            // Caso o alvo tenha mudado de posiÁ„o, inicia uma nova coroutina de movimentaÁ„o.
+            if (target.transform.position != targetPos)
+            {
                 StartCoroutine(Movement(skill));
                 yield break;
             }
@@ -132,5 +154,11 @@ public class Ratomelo : State {
         ai.ResetPath();
         moving = false;
         Debug.Log("New destination set");
+    }
+    public IEnumerator CoolDown(float countTime)
+    {
+        yield return new WaitForSeconds(countTime);
+
+        cooldown = true;
     }
 }
