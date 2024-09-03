@@ -16,7 +16,7 @@ public class HealthBar : MonoBehaviour
     public float maxHealth;
 
 
-    private void Start() {
+    protected virtual void Start() {
         owner.OnDamage.AddListener(() => UpdateValues());
         owner.OnHeal.AddListener(() => UpdateValues());
         SetValues(owner);

@@ -29,7 +29,7 @@ public class Zumbi : State
     [SerializeField] private bool moving = false;
 
 
-    // Adquire referencia da layer de animação e componentes
+    // Adquire referencia da layer de animaï¿½ï¿½o e componentes
     private void Awake()
     {
         paused = true;
@@ -51,7 +51,7 @@ public class Zumbi : State
         OnExitState();
     }
 
-    // Ativa a layer de animação adequada, busca um alvo do tipo Character
+    // Ativa a layer de animaï¿½ï¿½o adequada, busca um alvo do tipo Character
     // retorna this para que o StateManager saiba o estado atual do personagem
     public override State OnEnterState()
     {
@@ -61,7 +61,7 @@ public class Zumbi : State
         return this;
     }
 
-    // Desliga layer de animação de combate, limpa variavel de alvo
+    // Desliga layer de animaï¿½ï¿½o de combate, limpa variavel de alvo
     // e para quaisquer coroutinas ainda sendo executadas neste MonoBehaviour
     public override void OnExitState()
     {
@@ -78,7 +78,7 @@ public class Zumbi : State
         {
             // Comportamento de ataque
             case BEHAVIOUR.ATTACK:
-                // Caso o alvo esteja dentro de alcance, a skill é conjurada
+                // Caso o alvo esteja dentro de alcance, a skill ï¿½ conjurada
                 // e o comportamento de IDDLE iniciado.
                 if (InDistance(primarySkill, target.transform))
                 {
@@ -86,7 +86,7 @@ public class Zumbi : State
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
                 }
-                else if(InDistance(secondarySkill, target.transform) && Random.RandomRange(0,10) > 8 && cooldown)
+                else if(InDistance(secondarySkill, target.transform) && Random.Range(0,10) > 8 && cooldown)
                 {
                     secondarySkill.OnCast(self, target);
                     _iddleTimer = iddleTime;
@@ -94,8 +94,8 @@ public class Zumbi : State
                     cooldown = false;
                     StartCoroutine(CoolDown(secondarySkill.CoolDown));
                 }
-                // Caso o alvo não esteja dentro de alcance
-                // e o agente não esteja se movendo, inicia movimento em direção ao alvo.
+                // Caso o alvo nï¿½o esteja dentro de alcance
+                // e o agente nï¿½o esteja se movendo, inicia movimento em direï¿½ï¿½o ao alvo.
                 else if (!moving)
                 {
                     Debug.Log("Starting Movement");
@@ -115,7 +115,7 @@ public class Zumbi : State
         }
     }
 
-    // Diz se o alvo está ou não dentro do alcance da skill fornecida como argumento
+    // Diz se o alvo estï¿½ ou nï¿½o dentro do alcance da skill fornecida como argumento
     public bool InDistance(SkillDataSO skill, Transform targetPos)
     {
         if ((targetPos.position - transform.position).sqrMagnitude > skill.Range * skill.Range)
@@ -125,8 +125,8 @@ public class Zumbi : State
         return true;
     }
 
-    // Utiliza a variavel range da skill fornecida como argumento para estabelecer uma posição
-    // desejavel para o agente, em relação ao alvo, que permita conjurar o ataque, e à usa como
+    // Utiliza a variavel range da skill fornecida como argumento para estabelecer uma posiï¿½ï¿½o
+    // desejavel para o agente, em relaï¿½ï¿½o ao alvo, que permita conjurar o ataque, e ï¿½ usa como
     // destino para o NavMesh agent do agente.
     IEnumerator Movement(SkillDataSO skill)
     {
@@ -138,11 +138,11 @@ public class Zumbi : State
         Vector3 desiredPos = hit.position;
         ai.SetDestination(desiredPos);
         // Enquanto estiver fora de alcance
-        // atualiza valor de animação e checa se o alvo mudou de posição.
+        // atualiza valor de animaï¿½ï¿½o e checa se o alvo mudou de posiï¿½ï¿½o.
         Debug.Log("Destination Set");
         while (!InDistance(skill, target.transform))
         {
-            // Caso o alvo tenha mudado de posição, inicia uma nova coroutina de movimentação.
+            // Caso o alvo tenha mudado de posiï¿½ï¿½o, inicia uma nova coroutina de movimentaï¿½ï¿½o.
             if (target.transform.position != targetPos)
             {
                 StartCoroutine(Movement(skill));

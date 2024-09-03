@@ -9,6 +9,7 @@ public class AttackMenu : MonoBehaviour {
     [SerializeField] private AttackButton selected;
     [SerializeField] private RectTransform rightWing, leftWing;
     [SerializeField] private RectTransform offScreenPosR, onScreenPosR, offScreenPosL, onScreenPosL;
+    [SerializeField] private AnimationClip UIanimationClip;
     private CombatState player;
 
     
@@ -65,12 +66,14 @@ public class AttackMenu : MonoBehaviour {
         if(context.performed && GameManager.Instance.ap.currentValue >= 25 ) OpenMenu();
     }
 
+    // Metodo que Coloca o menu de combate na tela
     public void EnterScreen() {
         Debug.Log("Enter Sreen chamado");
         StartCoroutine(MoveOnScreen(leftWing, onScreenPosL.position));
         StartCoroutine(MoveOnScreen(rightWing, onScreenPosR.position));
     }
-
+    
+    // Remove o menu de combate da tela
     public void ExitScreen() {
         Debug.Log("Exit Sreen chamado");
         StartCoroutine(MoveOnScreen(leftWing, offScreenPosL.position));
@@ -128,7 +131,11 @@ public class AttackMenu : MonoBehaviour {
 
     // Produz efeito de animação do menu de combate deslizar para dentro/fora da tela.
     IEnumerator MoveOnScreen(RectTransform move, Vector3 targetPos) {
-        float duration = 0.5f;
+        float duration;
+        if (UIanimationClip == null)
+            duration = 0.5f;
+        else
+            duration = UIanimationClip.length;
         float value = 0;
         Vector3 origin = move.position;
         while (value < 1) {
