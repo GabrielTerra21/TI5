@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
     public ActionBar actionBar;
     public SkillDataSO empty;
     public Vinhette vinhette;
-    public Vinhette playerStats;
+    //public Vinhette playerStats;
     public Action UpdateUI;
     
     [Header("Managers Components")]

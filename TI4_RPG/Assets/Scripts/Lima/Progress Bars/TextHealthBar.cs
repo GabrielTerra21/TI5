@@ -36,6 +36,11 @@ public class TextHealthBar : HealthBar {
     IEnumerator ShakeUI() {
         RectTransform rect = GetComponent<RectTransform>();
         Vector3 OPos = rect.position;
+
+        // Eu sei que isso é resolver por hard coding, mas é a solução mais rapida, facil e barata computacionalmente
+        // -Lima, Pedro
+        if (OPos.x < 150) OPos.x = 150;
+            
         float timer = 1;
         while (timer > 0) {
             Vector3 shake = Random.insideUnitCircle * shakeIntensity;

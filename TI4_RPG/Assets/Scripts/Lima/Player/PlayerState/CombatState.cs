@@ -109,7 +109,7 @@ public class CombatState : State {
             enemies.Add(enemyGroup[i].GetComponent<Character>());
         }
         
-        GameManager.Instance.playerStats.FadeIn();
+        //GameManager.Instance.playerStats.FadeIn();
         aoe.FadeIn();
         
         InputManager.Instance.SwitchCurrentActionMap("Combat");
@@ -128,7 +128,7 @@ public class CombatState : State {
     // e altera layer de animação.
     public override void OnExitState() {
         enemies.Clear();
-        GameManager.Instance.playerStats.FadeOut();
+        //GameManager.Instance.playerStats.FadeOut();
         aoe.FadeOut();
         target = null;
         animator.SetLayerWeight(animationLayerIndex, 0);
