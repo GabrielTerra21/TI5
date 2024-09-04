@@ -74,7 +74,7 @@ public class CombatState : State {
         if(paused) return;
         movement.Moving(moveDir, agent.moveSpeed);
         animationController.SetAnimations(moveDir);
-        targetLock.SetRotation(target.transform.position);
+        if(target != null) targetLock.SetRotation(target.transform.position);
         if(InRange(target.transform))
         {
             if (moveDir.magnitude < 0.05f && coolDown <= 0) {

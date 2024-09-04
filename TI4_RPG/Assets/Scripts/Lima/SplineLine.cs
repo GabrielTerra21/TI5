@@ -26,7 +26,7 @@ public class SplineLine : MonoBehaviour {
     }
     
     private void FixedUpdate() {
-        SetLine();
+        if(target != null) SetLine();
     }
 
     public void Target(GameObject nTarget) {
