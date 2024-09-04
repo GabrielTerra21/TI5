@@ -11,6 +11,8 @@ public class DialogueBox : MonoBehaviour {
     public TMP_Text nameSpace, text;
     private int maxCharCount;
     public Queue<Speech> dialogue;
+    private string current;
+    private Coroutine op;
     
     
     public void Paste(Speech content) {
@@ -18,13 +20,25 @@ public class DialogueBox : MonoBehaviour {
         text.text = null;
         nameSpace.text = content.owner.charName;
         profilePic.sprite = content.owner.profile;
-        StartCoroutine(StepPasting(content.text));
+        op = StartCoroutine(StepPasting(content.text));
+    }
+
+    public void PasteAll(string content) {
+        StopCoroutine(op);
+        op = null;
+        text.text = content;
+        ActivateArrow();
     }
     
     public void Skip(InputAction.CallbackContext context) {
-        StopAllCoroutines();
-        if (dialogue.Count > 0)  Paste(dialogue.Dequeue()); 
-        else EndDialogue();
+        if (op != null) {
+            Debug.Log("op diferente de null");
+            PasteAll(current);
+        }
+        else {
+            if (dialogue.Count > 0) Paste(dialogue.Dequeue());
+            else EndDialogue();
+        }
     }
     
     // Este metodo deve ser usado unica e exclusivamente para a primeira execução de exibir o dialogo, ja que não é possivel invocar o metodo acima sem um Callback Context adequado
@@ -60,10 +74,12 @@ public class DialogueBox : MonoBehaviour {
     }
 
     IEnumerator StepPasting(string content) {
+        current = content;
         foreach (char value in content) {
             text.text += value;
             yield return new WaitForSeconds(0.02f);
         }
         ActivateArrow();
+        op = null;
     }
 }
