@@ -144,6 +144,7 @@ public class CombatState : State {
         int i = enemies.IndexOf(target);
         nTarget = enemies[(i + 1) % enemies.Count];
         target = nTarget;
+        line.Target(nTarget.LockOnTarget);
     }
     
     // Mesma coisa que o TargetNext mas não possui argumentos
