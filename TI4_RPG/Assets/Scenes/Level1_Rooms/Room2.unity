@@ -2252,18 +2252,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 738131450}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &887332283 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4781438995610388095, guid: adcaa98723214164ba675812b4ef600e,
-    type: 3}
-  m_PrefabInstance: {fileID: 994150736}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a997df0fd8a4ed44f91bd6bc63ece26f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &887332285 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4979696656401337574, guid: adcaa98723214164ba675812b4ef600e,
@@ -2574,6 +2562,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WolfEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675798814748434313, guid: adcaa98723214164ba675812b4ef600e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3673,7 +3666,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 2127614885}
     m_Modifications:
     - target: {fileID: 2675678725594001457, guid: 65b206ca36042984cb26e8fa58cd6392,
         type: 3}
@@ -3683,17 +3676,17 @@ PrefabInstance:
     - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 27.335978
+      value: -8.4243145
       objectReference: {fileID: 0}
     - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -6.3054523
       objectReference: {fileID: 0}
     - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 23.601645
+      value: 8.493392
       objectReference: {fileID: 0}
     - target: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
         type: 3}
@@ -3735,6 +3728,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65b206ca36042984cb26e8fa58cd6392, type: 3}
+--- !u!114 &1535648422 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6087518924314107851, guid: 65b206ca36042984cb26e8fa58cd6392,
+    type: 3}
+  m_PrefabInstance: {fileID: 1535648421}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a997df0fd8a4ed44f91bd6bc63ece26f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1535648423 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5817642549687019247, guid: 65b206ca36042984cb26e8fa58cd6392,
+    type: 3}
+  m_PrefabInstance: {fileID: 1535648421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1572779273
 GameObject:
   m_ObjectHideFlags: 0
@@ -4873,6 +4884,7 @@ Transform:
   m_Children:
   - {fileID: 1572779278}
   - {fileID: 1051633074}
+  - {fileID: 1535648423}
   - {fileID: 887332285}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4891,11 +4903,10 @@ MonoBehaviour:
   ID: Room2
   enemies:
   - {fileID: 1051633072}
-  - {fileID: 887332283}
+  - {fileID: 1535648422}
   treasure: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 2127614885}
-  - {fileID: 1535648421}
