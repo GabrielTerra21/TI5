@@ -133,7 +133,7 @@ public class AttackMenu : MonoBehaviour {
     IEnumerator MoveOnScreen(RectTransform move, Vector3 targetPos) {
         float duration;
         if (UIanimationClip == null)
-            duration = 0.5f;
+            duration = 0.25f;
         else
             duration = UIanimationClip.length;
         float value = 0;

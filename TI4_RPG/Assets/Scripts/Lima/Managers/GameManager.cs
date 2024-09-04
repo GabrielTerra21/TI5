@@ -70,6 +70,12 @@ public class GameManager : MonoBehaviour {
         actionBar.UpdateBar(ap);
     }
 
+    // Reduz amount pontos da barra de AP do jogador
+    public void LoseAP(int amount) {
+        ap.currentValue -= amount;
+        actionBar.UpdateBar(ap);
+    }
+
     // Zera a barra de AP
     public void SpendAP() {
         ap.currentValue = 0;
