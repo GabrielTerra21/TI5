@@ -8,11 +8,13 @@ public class Portal : MonoBehaviour {
     [SerializeField] private Portal Destination;
     public string roomID;
     private AsyncOperation sceneToLoad, sceneToUnload;
+    [SerializeField] private TileManager tileManager;
 
 
     private void Start() {
         GameManager.Instance.enterExploration.AddListener(TurnOn);
         GameManager.Instance.enterCombat.AddListener(TurnOff);
+        tileManager = FindObjectOfType<TileManager>();
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -55,6 +57,7 @@ public class Portal : MonoBehaviour {
         yield return new WaitUntil(() => sceneToLoad.isDone);
         
         player.Teleport(Destination.spawnPoint.position);
+        tileManager.DiscoverRoom(Destination.roomID);
         
         yield return new WaitUntil(() => sceneToUnload.isDone);
         yield return new WaitForSeconds(1);
