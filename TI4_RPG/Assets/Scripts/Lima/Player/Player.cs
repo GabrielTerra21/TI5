@@ -51,4 +51,5 @@ public class Player : Character
     public void PauseGame() {
         GameManager.Instance.PauseGame();
     }
+
 }

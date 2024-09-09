@@ -4,15 +4,23 @@ using UnityEngine;
 public class AoE : MonoBehaviour
 {
     public AoESO aoe;
+    float count = 0;
+    int power;
     public void CastAoE(int power, float castTime)
     {
-        StartCoroutine(CountDown(power, castTime - 0.1f));
+        this.power = power;
+        count = castTime;
     }
-    public IEnumerator CountDown(int power,float countTime)
+    private void Update()
     {
-        yield return new WaitForSeconds(countTime);
-
-        Debug.Log("foi");
-        aoe.DealDamage(transform.position, power);
+        if(!GameManager.Instance.paused && count > 0)
+        {
+            count -= Time.deltaTime;
+        }
+        else if(!GameManager.Instance.paused && count < 0)
+        {
+            aoe.DealDamage(transform.position, power);
+            Destroy(gameObject);
+        }
     }
 }

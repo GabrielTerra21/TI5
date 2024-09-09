@@ -12,6 +12,7 @@ public abstract class Character : MonoBehaviour
     public GameObject LockOnTarget;
     public UnityEvent OnDeath, OnDamage,OnHeal;
     public GameObject hitMark;
+    public List<GameObject> dependencies;
 
     [FormerlySerializedAs("renderer")] [SerializeField] private SkinnedMeshRenderer render;
     [SerializeField] protected Material mat;
@@ -25,6 +26,7 @@ public abstract class Character : MonoBehaviour
     public int defense { get; private set; }
     public int attack { get; private set; }
     public bool actionable = true;
+    public float count;
 
     protected virtual void Awake() {
         GetData();
@@ -96,5 +98,20 @@ public abstract class Character : MonoBehaviour
 
         render.materials = mats;
     }
-
+    public void Furia(int power, float castTime)
+    {
+        attack += power;
+        count = castTime;
+    }
+    private void Update()
+    {
+        if (count > 0 && !GameManager.Instance.paused)
+        {
+            count -= Time.deltaTime;
+        }
+        else if(count < 0 && !GameManager.Instance.paused)
+        {
+            GetData();
+        }
+    }
 }

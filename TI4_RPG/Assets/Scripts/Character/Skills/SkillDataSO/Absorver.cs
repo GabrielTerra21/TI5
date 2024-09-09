@@ -3,7 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Skills/Absorver", order = 2)]
 public class Absorver : SkillDataSO
 {
-    int heal;
     public override void OnCast(Character from, Character target)
     {
         
@@ -13,9 +12,9 @@ public class Absorver : SkillDataSO
         {
             if (c.gameObject.TryGetComponent<Character>(out Character character) && !character.CompareTag("Player"))
             {
-                heal += character.TakeDamage(Power);
+                character.TakeDamage(Power);
+                from.Heal(2);
             }
         }
-        from.Heal(heal/2);
     }
 }

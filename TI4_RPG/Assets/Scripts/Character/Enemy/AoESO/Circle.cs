@@ -11,6 +11,7 @@ public class Circle : AoESO
             if (c.CompareTag("Player"))
             {
                 c.GetComponent<Character>().TakeDamage(power);
+                GameManager.Instance.LoseAP(apDamage);
                 return;
             }
         }
