@@ -2,9 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Portal : WaitingTrigger {
+public class Portal : MonoBehaviour {
     public Transform spawnPoint;
-    [SerializeField] private bool locked = false;
     [SerializeField] private ParticleSystem lights;
     [SerializeField] private Portal Destination;
     public string roomID;
@@ -19,9 +18,7 @@ public class Portal : WaitingTrigger {
         tileManager = FindObjectOfType<TileManager>();
     }
 
-    protected override void OnTriggerEnter(Collider other) {
-        base.OnTriggerEnter(other);
-        if(locked) return;
+    protected void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player") && GameManager.Instance.state != GameManager.GameState.COMBAT) {
             GameManager.Instance.AddClearedRoom(roomID);
             StartCoroutine(Loading(other.GetComponent<Player>()));
@@ -36,13 +33,6 @@ public class Portal : WaitingTrigger {
         StartCoroutine(Loading());
     }
     */
-
-    private void TryUnlock() {
-        if (GameManager.Instance.keys > 0) {
-            locked = false;
-            TurnOn();
-        }
-    }
     
     public void TurnOff() {
         if(lights != null) lights.Stop(true, ParticleSystemStopBehavior.StopEmitting);
