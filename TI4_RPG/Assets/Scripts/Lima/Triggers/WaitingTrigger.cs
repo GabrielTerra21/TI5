@@ -12,7 +12,7 @@ public class WaitingTrigger : Trigger
         }
     }
     
-    private void OnTriggerEnter(Collider other) {
+    protected virtual void OnTriggerEnter(Collider other) {
         //if (other.CompareTag("Player")) { other.GetComponent<Exploring>().waitingTriggers.Add(this); }
         if (other.CompareTag("Player") && GameManager.Instance.state == GameManager.GameState.EXPLORATION && action != null) {
             other.GetComponent<Exploring>().interact.AddListener( () => {if(action != null) action.Invoke(); });

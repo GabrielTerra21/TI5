@@ -2,11 +2,13 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Portal : MonoBehaviour {
+public class Portal : WaitingTrigger {
     public Transform spawnPoint;
-    public ParticleSystem lights;
+    [SerializeField] private bool locked = false;
+    [SerializeField] private ParticleSystem lights;
     [SerializeField] private Portal Destination;
     public string roomID;
+    [SerializeField] private AnimationClip fIn, fOut;
     private AsyncOperation sceneToLoad, sceneToUnload;
     [SerializeField] private TileManager tileManager;
 
@@ -17,7 +19,9 @@ public class Portal : MonoBehaviour {
         tileManager = FindObjectOfType<TileManager>();
     }
 
-    private void OnTriggerEnter(Collider other) {
+    protected override void OnTriggerEnter(Collider other) {
+        base.OnTriggerEnter(other);
+        if(locked) return;
         if (other.CompareTag("Player") && GameManager.Instance.state != GameManager.GameState.COMBAT) {
             GameManager.Instance.AddClearedRoom(roomID);
             StartCoroutine(Loading(other.GetComponent<Player>()));
@@ -33,6 +37,13 @@ public class Portal : MonoBehaviour {
     }
     */
 
+    private void TryUnlock() {
+        if (GameManager.Instance.keys > 0) {
+            locked = false;
+            TurnOn();
+        }
+    }
+    
     public void TurnOff() {
         if(lights != null) lights.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
@@ -46,7 +57,7 @@ public class Portal : MonoBehaviour {
         GameManager.Instance.PauseGame();
         GameManager.Instance.vinhette.FadeIn();
         
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(fIn.length);
 
         GameManager.Instance.previousDoor = this;
         GameManager.Instance.currentScene = Destination.roomID;
@@ -60,11 +71,9 @@ public class Portal : MonoBehaviour {
         tileManager.DiscoverRoom(Destination.roomID);
         
         yield return new WaitUntil(() => sceneToUnload.isDone);
-        yield return new WaitForSeconds(1);
-        
         
         GameManager.Instance.vinhette.FadeOut();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(fOut.length);
         
         GameManager.Instance.UnpauseGame();
         /*
