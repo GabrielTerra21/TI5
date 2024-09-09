@@ -6,6 +6,7 @@ Shader "Unlit/CombatMenuBackGround"
         _Noise ("Noise Texture", 2D) = "white" {} 
         _Color ("Color", Color) = (1, 1, 1, 1)
         _Side ("Side", float) = 0
+        _Scale ("Scale", float) = 1
     }
     SubShader
     {
@@ -47,6 +48,7 @@ Shader "Unlit/CombatMenuBackGround"
             float4 _Noise_ST;
             float4 _Color;
             float _Side;
+            float _Scale;
 
             v2f vert (appdata v)
             {
@@ -58,8 +60,8 @@ Shader "Unlit/CombatMenuBackGround"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float x =abs(_Side - i.uv.x);
-                float y = i.uv.y ;
+                float x =abs(_Side * _Scale - i.uv.x * _Scale);
+                float y = i.uv.y * _Scale;
                 float val =  step( x  + y , 1);
                 return _Color * saturate(val);
             }
