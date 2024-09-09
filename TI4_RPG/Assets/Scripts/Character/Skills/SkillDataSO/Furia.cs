@@ -5,6 +5,6 @@ public class Furia : SkillDataSO
 {
     public override void OnCast(Character from, Character target)
     {
-        from.Furia(Power,CastTime);
+        //from.Furia(Power,CastTime);
     }
 }

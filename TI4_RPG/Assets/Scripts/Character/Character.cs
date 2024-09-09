@@ -21,10 +21,15 @@ public abstract class Character : MonoBehaviour
     [Space(5)]
     [Header("Character Sheet")]
     public CharacterDataSO data;
+    
     public float moveSpeed;
     public int life;
-    public int defense { get; private set; }
-    public int attack { get; private set; }
+
+    private int defense;
+    public int defenseBonus;
+    private int attack;
+    public int attackBonus;
+    
     public bool actionable = true;
     public float count;
 
@@ -57,6 +62,10 @@ public abstract class Character : MonoBehaviour
         Destroy(particle, 3);
         return dmg;
     }
+
+    public int Power() { return attack + attackBonus; }
+
+    public int Defense() { return defense + defenseBonus;}
 
     public virtual void Pause() {
         if(animator != null) 
@@ -98,11 +107,14 @@ public abstract class Character : MonoBehaviour
 
         render.materials = mats;
     }
-    public void Furia(int power, float castTime)
+    /*
+    public void Furia(int power, float castTime) 
     {
         attack += power;
         count = castTime;
     }
+    
+    
     private void Update()
     {
         if (count > 0 && !GameManager.Instance.paused)
@@ -114,4 +126,5 @@ public abstract class Character : MonoBehaviour
             GetData();
         }
     }
+    */
 }
