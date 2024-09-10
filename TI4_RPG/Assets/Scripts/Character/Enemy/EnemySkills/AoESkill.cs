@@ -7,7 +7,7 @@ public class AoESkill : SkillDataSO
     {
         GameObject g = Instantiate(Prefab, from.transform.position,from.transform.rotation, from.transform) ;
         AoE aoe = g.GetComponentInChildren<AoE>();
+        from.dependencies.Add(g);
         aoe.CastAoE(Power, CastTime);
-        Destroy(g,CastTime);
     }
 }

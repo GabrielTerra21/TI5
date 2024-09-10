@@ -12,6 +12,7 @@ public abstract class Character : MonoBehaviour
     public GameObject LockOnTarget;
     public UnityEvent OnDeath, OnDamage,OnHeal;
     public GameObject hitMark;
+    public List<GameObject> dependencies;
 
     [FormerlySerializedAs("renderer")] [SerializeField] private SkinnedMeshRenderer render;
     [SerializeField] protected Material mat;
@@ -20,11 +21,17 @@ public abstract class Character : MonoBehaviour
     [Space(5)]
     [Header("Character Sheet")]
     public CharacterDataSO data;
+    
     public float moveSpeed;
     public int life;
-    public int defense { get; private set; }
-    public int attack { get; private set; }
+
+    private int defense;
+    public int defenseBonus;
+    private int attack;
+    public int attackBonus;
+    
     public bool actionable = true;
+    public float count;
 
     protected virtual void Awake() {
         GetData();
@@ -55,6 +62,10 @@ public abstract class Character : MonoBehaviour
         Destroy(particle, 3);
         return dmg;
     }
+
+    public int Power() { return attack + attackBonus; }
+
+    public int Defense() { return defense + defenseBonus;}
 
     public virtual void Pause() {
         if(animator != null) 
@@ -96,5 +107,24 @@ public abstract class Character : MonoBehaviour
 
         render.materials = mats;
     }
-
+    /*
+    public void Furia(int power, float castTime) 
+    {
+        attack += power;
+        count = castTime;
+    }
+    
+    
+    private void Update()
+    {
+        if (count > 0 && !GameManager.Instance.paused)
+        {
+            count -= Time.deltaTime;
+        }
+        else if(count < 0 && !GameManager.Instance.paused)
+        {
+            GetData();
+        }
+    }
+    */
 }

@@ -8,6 +8,5 @@ public class TargetAoE : SkillDataSO
         GameObject g = Instantiate(Prefab, target.transform.position, from.transform.rotation);
         AoE aoe = g.GetComponentInChildren<AoE>();
         aoe.CastAoE(Power, CastTime);
-        Destroy(g, CastTime);
     }
 }

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     [Header("Player info")] 
     public Player player;
     public int money = 300;
+    public int keys = 0;
     public MyStat ap = new MyStat(25);
     private Exploring exploring;
     private CombatState combatState;
