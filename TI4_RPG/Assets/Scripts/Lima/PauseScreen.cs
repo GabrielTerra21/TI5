@@ -3,11 +3,13 @@ using UnityEngine.InputSystem;
 
 public class PauseScreen : MonoBehaviour {
     public GameObject pauseScreen;
+    public GameObject volumeScreen;
     //public PlayerInput playerInput;
     
     public void OpenPauseMenu(InputAction.CallbackContext context) {
         if (context.performed && GameManager.Instance.paused == false) {
             pauseScreen.SetActive(true);
+            volumeScreen.SetActive(false);
             GameManager.Instance.EnterUI();
             InputManager.Instance.actions["Cancel"].performed += ClosePauseMenu;
         }
@@ -17,6 +19,7 @@ public class PauseScreen : MonoBehaviour {
         if (context.performed) {
             GameManager.Instance.ExitUI();
             pauseScreen.SetActive(false);
+            volumeScreen.SetActive(false);
             InputManager.Instance.actions["Cancel"].performed -= ClosePauseMenu;
         }
     }
