@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8346631548418398497}
-  - component: {fileID: 8172144274970063965}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -32,27 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5137302845067566878}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8172144274970063965
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 461256146993185831}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 0.39951402, z: 0.75300205}
-  m_Center: {x: -0.025836952, y: 0.19606864, z: 0.13042308}
 --- !u!1 &5476532266428220836
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +40,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5137302845067566878}
-  - component: {fileID: 9022963772478903455}
   - component: {fileID: 76915310834591855}
   m_Layer: 0
   m_Name: Root_9
@@ -88,27 +65,6 @@ Transform:
   - {fileID: 4732367566002925177}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &9022963772478903455
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5476532266428220836}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.072202, y: 0.5205739, z: 0.8588017}
-  m_Center: {x: 0.08871151, y: 0.20231092, z: 0.056809254}
 --- !u!205 &76915310834591855
 LODGroup:
   m_ObjectHideFlags: 0
@@ -147,6 +103,7 @@ GameObject:
   - component: {fileID: 4732367566002925177}
   - component: {fileID: 3898829331506435781}
   - component: {fileID: 1177309710706989414}
+  - component: {fileID: 2643721042614354337}
   m_Layer: 0
   m_Name: Branch
   m_TagString: Untagged
@@ -219,3 +176,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2643721042614354337
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6493880642239421643}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011629896, y: 0.007664115, z: 0.0059746387}
+  m_Center: {x: 0.0007021338, y: -0.0010798365, z: 0.0021220846}
