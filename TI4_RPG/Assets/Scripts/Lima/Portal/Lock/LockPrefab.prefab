@@ -66,10 +66,61 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a63a4220859678c41932a4132dfcf0bc,
         type: 3}
       propertyPath: m_Name
-      value: Lock
+      value: LockPrefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a63a4220859678c41932a4132dfcf0bc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3818138894094388539}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a63a4220859678c41932a4132dfcf0bc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6924672339797518149}
   m_SourcePrefab: {fileID: 100100000, guid: a63a4220859678c41932a4132dfcf0bc, type: 3}
+--- !u!1 &5952880443734518074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a63a4220859678c41932a4132dfcf0bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6799741545284588651}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3818138894094388539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5952880443734518074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ac2a37cdeea3d0459a65048b7aa3107, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action:
+    m_PersistentCalls:
+      m_Calls: []
+  oneTime: 0
+--- !u!135 &6924672339797518149
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5952880443734518074}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.97
+  m_Center: {x: 0, y: -1, z: -0.65}

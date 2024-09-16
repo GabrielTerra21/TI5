@@ -6,6 +6,7 @@ public class TextHealthBar : HealthBar {
     public TMP_Text healthText;
     
     [SerializeField] private float shakeIntensity = 2;
+    [SerializeField] private RectTransform desiredPos;
 
     protected override void Start() {
         base.Start();
@@ -35,12 +36,13 @@ public class TextHealthBar : HealthBar {
     // pela escalar intensity, para produzir o efeito de "tremer" da barra
     IEnumerator ShakeUI() {
         RectTransform rect = GetComponent<RectTransform>();
-        Vector3 OPos = rect.position;
+        Vector3 OPos = desiredPos.position;
 
         // Eu sei que isso é resolver por hard coding, mas é a solução mais rapida, facil e barata computacionalmente
         // -Lima, Pedro
-        if (OPos.x < 150) OPos.x = 150;
-            
+        
+        
+        
         float timer = 1;
         while (timer > 0) {
             Vector3 shake = Random.insideUnitCircle * shakeIntensity;

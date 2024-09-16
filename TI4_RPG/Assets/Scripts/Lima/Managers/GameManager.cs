@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class GameManager : MonoBehaviour {
     [Header("Player info")] 
     public Player player;
     public int money = 300;
-    public int keys = 0;
+
+    [SerializeField] public int keys { get; private set; } = 1;
     public MyStat ap = new MyStat(25);
     private Exploring exploring;
     private CombatState combatState;
@@ -24,7 +26,8 @@ public class GameManager : MonoBehaviour {
     public Portal previousDoor;
     public List<string> clearedRooms = new List<string>();
 
-    [Header("UI Components")]
+    [Header("UI Components")] 
+    [SerializeField] private TMP_Text keysText;
     public TextHealthBar healthBar;
     public ActionBar actionBar;
     public SkillDataSO empty;
@@ -57,6 +60,7 @@ public class GameManager : MonoBehaviour {
         currentScene = SceneManager.GetActiveScene().name;
         state = GameState.EXPLORATION;
         actionBar.UpdateBar(ap);
+        keysText.text = "Keys : " + keys/10 + keys;
     }
 
     // Reduz price da quantidade de dinheiro que o jogador tem.
@@ -81,6 +85,16 @@ public class GameManager : MonoBehaviour {
     public void SpendAP() {
         ap.currentValue = 0;
         actionBar.UpdateBar(ap);
+    }
+
+    public void GainKey() {
+        keys++;
+        keysText.text = "Keys : " + keys/10 + keys;
+    }
+
+    public void LoseKey() {
+        keys--;
+        keysText.text = "Keys : " + keys/10 + keys;
     }
 
     public void LoadNewScene(string sceneName) {

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : Character
@@ -6,6 +7,7 @@ public class Player : Character
     [Header("Player Components")]
     [SerializeField] private CCGravity gravity;
     [SerializeField] private SplineLine line;
+    [SerializeField] private SkinnedMeshRenderer[] renderers;
 
     
     protected override void Awake(){
@@ -40,6 +42,19 @@ public class Player : Character
         GameManager.Instance.DeathLoad();
     }
 
+    public override int TakeDamage(int dmg) {
+        StartCoroutine(Flashing(renderers));
+        life -= dmg;
+        OnDamage.Invoke();
+        if (life <= 0) {
+            life = 0;
+            Die();
+        }
+        GameObject particle = Instantiate(hitMark, transform.position, transform.rotation);
+        Destroy(particle, 3);
+        return dmg;
+    }
+
     public void Teleport(Vector3 newPos) {
         Debug.Log("Teleportou");
         CharacterController cc = GetComponent<CharacterController>();
@@ -52,4 +67,13 @@ public class Player : Character
         GameManager.Instance.PauseGame();
     }
 
+    IEnumerator Flashing(SkinnedMeshRenderer[] mats) {
+        foreach (var data in mats) {
+            data.material.shader = Shader.Find("Unlit/DamageShader");
+        }
+        yield return new WaitForSeconds(0.5f);
+        foreach (var data in mats) {
+            data.material.shader = Shader.Find("Universal Render Pipeline/Lit");
+        }
+    }
 }

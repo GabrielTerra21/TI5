@@ -37,7 +37,7 @@ public class Portal : MonoBehaviour {
 
     public void Unlock() {
         if (locked && GameManager.Instance.keys > 0) {
-            GameManager.Instance.keys--;
+            GameManager.Instance.LoseKey();
             locked = false;
             doorLock.gameObject.SetActive(false);
             TurnOn();
