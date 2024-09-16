@@ -5,23 +5,42 @@ using UnityEngine.SceneManagement;
 public class Portal : MonoBehaviour {
     public Transform spawnPoint;
     [SerializeField] private ParticleSystem lights;
+    [SerializeField] private WaitingTrigger doorLock;
     [SerializeField] private Portal Destination;
     public string roomID;
     [SerializeField] private AnimationClip fIn, fOut;
     private AsyncOperation sceneToLoad, sceneToUnload;
     [SerializeField] private TileManager tileManager;
+    public bool locked = false;
 
 
     private void Start() {
         GameManager.Instance.enterExploration.AddListener(TurnOn);
         GameManager.Instance.enterCombat.AddListener(TurnOff);
         tileManager = FindObjectOfType<TileManager>();
+        if (locked) {
+            doorLock.gameObject.SetActive(true);
+            doorLock.action.AddListener(Unlock);
+            TurnOff();
+        }
+        else
+            doorLock.gameObject.SetActive(false);
     }
 
     protected void OnTriggerEnter(Collider other) {
+        if (locked) return;
         if (other.CompareTag("Player") && GameManager.Instance.state != GameManager.GameState.COMBAT) {
             GameManager.Instance.AddClearedRoom(roomID);
             StartCoroutine(Loading(other.GetComponent<Player>()));
+        }
+    }
+
+    public void Unlock() {
+        if (locked && GameManager.Instance.keys > 0) {
+            GameManager.Instance.keys--;
+            locked = false;
+            doorLock.gameObject.SetActive(false);
+            TurnOn();
         }
     }
     
@@ -39,6 +58,7 @@ public class Portal : MonoBehaviour {
     }
 
     public void TurnOn() {
+        if (locked) return;
         if(lights != null) lights.Play();
     }
 
