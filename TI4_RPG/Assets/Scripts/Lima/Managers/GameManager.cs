@@ -6,11 +6,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour {
     [Header("Player info")] 
     public Player player;
-    public int money = 300;
+    [FormerlySerializedAs("money")] public int ecos = 300;
 
     [SerializeField] public int keys { get; private set; } = 1;
     public MyStat ap = new MyStat(25);
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour {
     public List<string> clearedRooms = new List<string>();
 
     [Header("UI Components")] 
+    [SerializeField] private TMP_Text ecosText;
     [SerializeField] private TMP_Text keysText;
     public TextHealthBar healthBar;
     public ActionBar actionBar;
@@ -60,14 +62,21 @@ public class GameManager : MonoBehaviour {
         currentScene = SceneManager.GetActiveScene().name;
         state = GameState.EXPLORATION;
         actionBar.UpdateBar(ap);
-        keysText.text = "Keys : " + keys/10 + keys;
+        keysText.text = "Keys : " + keys/10 + keys % 10;
+        ecosText.text = "Ecos : " + ecos/10 + ecos % 10;
     }
 
     // Reduz price da quantidade de dinheiro que o jogador tem.
-    public void SpendMoney(int price) { money -= price; }
+    public void SpendEcos(int price) {
+        ecos -= price;
+        ecosText.text = "Ecos : " + ecos/10 + ecos % 10;
+    }
 
     // Adiciona amount à quantidade de dinheiro do Jogador
-    public void GainMoney(int amount) { money += amount; }
+    public void GainEcos(int amount) {
+        ecos += amount;
+        ecosText.text = "Ecos : " + ecos/10 + ecos % 10;
+    }
 
     // Adiciona amount à barra de AP do jogador
     public void GainAP(int amount) {
@@ -89,12 +98,12 @@ public class GameManager : MonoBehaviour {
 
     public void GainKey() {
         keys++;
-        keysText.text = "Keys : " + keys/10 + keys;
+        keysText.text = "Keys : " + keys/10 + keys % 10;
     }
 
     public void LoseKey() {
         keys--;
-        keysText.text = "Keys : " + keys/10 + keys;
+        keysText.text = "Keys : " + keys/10 + keys % 10 ;
     }
 
     public void LoadNewScene(string sceneName) {
@@ -106,7 +115,7 @@ public class GameManager : MonoBehaviour {
         //if(exploring != null)exploring.OnCleanup();
         //if(combatState != null)combatState.OnCleanup();
 
-        if (sceneName == "Fase1") money = 150;
+        if (sceneName == "Fase1") ecos = 150;
         
         pauseGame.RemoveAllListeners(); 
         unpauseGame.RemoveAllListeners();

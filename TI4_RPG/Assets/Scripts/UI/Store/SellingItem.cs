@@ -17,10 +17,10 @@ public class SellingItem : MonoBehaviour
     }
     public void Learn()
     {
-        if(GameManager.Instance.money >= skill.Price)
+        if(GameManager.Instance.ecos >= skill.Price)
         {
             Debug.Log("comprou");
-            GameManager.Instance.SpendMoney(skill.Price);
+            GameManager.Instance.SpendEcos(skill.Price);
             GameManager.Instance.UIUpdate();
             FindAnyObjectByType<SkillInventory>().Learn(skill);
             Destroy(gameObject);

@@ -36,7 +36,7 @@ public class Player : Character
         GameManager.Instance.CallExploration();
         //cState.OnEndCombat.Invoke();
         
-        GameManager.Instance.money = 150;
+        GameManager.Instance.ecos = 150;
         GetData();
         
         GameManager.Instance.DeathLoad();

@@ -10,6 +10,8 @@ public abstract class Trigger : MonoBehaviour
 
 
     protected virtual void Start() {
-        if(oneTime) action.AddListener(() => { action = null;});
+        if(oneTime) action.AddListener(() => {
+            action = null;
+        });
     } 
 }

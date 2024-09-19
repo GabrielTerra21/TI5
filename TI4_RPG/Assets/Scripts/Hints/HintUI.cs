@@ -16,9 +16,9 @@ public class HintUI : MonoBehaviour
     }
     public void BuyHint()
     {
-        if (GameManager.Instance.money >= 50 && hint.blocked)
+        if (GameManager.Instance.ecos >= 50 && hint.blocked)
         {
-            GameManager.Instance.SpendMoney(50);
+            GameManager.Instance.SpendEcos(50);
             GameManager.Instance.UIUpdate();
             hint.blocked = false;
             img.sprite = unlockedSprite;
