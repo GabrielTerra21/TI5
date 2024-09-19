@@ -105,28 +105,7 @@ public class GameManager : MonoBehaviour {
         keys--;
         keysText.text = "Keys : " + keys/10 + keys % 10 ;
     }
-
-    public void LoadNewScene(string sceneName) {
-        //MonoBehaviour[] scripts = FindObjectsOfType<MonoBehaviour>();
-        /*foreach (var script in scripts) {
-            if(script.gameObject != gameObject) script.enabled = false;
-        }*/
-        
-        //if(exploring != null)exploring.OnCleanup();
-        //if(combatState != null)combatState.OnCleanup();
-
-        if (sceneName == "Fase1") ecos = 150;
-        
-        pauseGame.RemoveAllListeners(); 
-        unpauseGame.RemoveAllListeners();
-        UpdateUI = null;
-        paused = false;
-        currentScene = sceneName;
-        playerInput.enabled = false;
-        SceneManager.LoadScene("LoadingScreen");
-        playerInput.enabled = true;
-    }
-
+    
     // Checa se o ID da sala informado esta presente na lista de salas completas e retorna o resultado.
     public bool CheckClearedRooms(string ID) {
         return clearedRooms.Contains(ID);
