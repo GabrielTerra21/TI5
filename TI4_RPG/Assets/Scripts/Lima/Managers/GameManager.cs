@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
     public Player player;
     [FormerlySerializedAs("money")] public int ecos = 300;
 
-    [SerializeField] public int keys { get; private set; } = 1;
+    [SerializeField] public int keys { get; private set; } = 0;
     public MyStat ap = new MyStat(25);
     private Exploring exploring;
     private CombatState combatState;
@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour {
     public ActionBar actionBar;
     public SkillDataSO empty;
     public Vinhette vinhette;
-    //public Vinhette playerStats;
     public Action UpdateUI;
     
     [Header("Managers Components")]
@@ -62,6 +61,8 @@ public class GameManager : MonoBehaviour {
         currentScene = SceneManager.GetActiveScene().name;
         state = GameState.EXPLORATION;
         actionBar.UpdateBar(ap);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         keysText.text = "Keys : " + keys/10 + keys % 10;
         ecosText.text = "Ecos : " + ecos/10 + ecos % 10;
     }
@@ -180,11 +181,15 @@ public class GameManager : MonoBehaviour {
     // Pausa o jogo e troca o esquema de controles para os controles de UI.
     public void EnterUI() {
         PauseGame();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         playerInput.SwitchCurrentActionMap("MyUI");
     }
 
     // Despausa o jogo e retorna os controles para o modo de exploração.
     public void ExitUI() {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         UnpauseGame();
         playerInput.SwitchCurrentActionMap("Action");
     }

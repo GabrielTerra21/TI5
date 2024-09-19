@@ -55,7 +55,12 @@ public class AttackMenu : MonoBehaviour {
     public void OpenMenu() { 
         Debug.Log("Open menu called");
         InputManager.Instance.actions["Action"].performed -= OpenMenu;
-        GameManager.Instance.PauseGame(); 
+        GameManager.Instance.PauseGame();
+        
+        // Isto esta aqui pq eu ainda n descobri pq que usar o exit e enter UI do GameManager quebra o jogo
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        
         foreach (var data in buttons) {
             if(data.gameObject.activeInHierarchy) data.SetActive();
         }
@@ -89,6 +94,11 @@ public class AttackMenu : MonoBehaviour {
             if(data.gameObject.activeInHierarchy)data.SetInactive();
         }
         // Retornar tempo ao normal
+        
+        // Isto esta aqui pq eu ainda n descobri pq que usar o exit e enter UI do GameManager quebra o jogo
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        
         GameManager.Instance.UnpauseGame();
         InputManager.Instance.actions["Action"].performed += OpenMenu;
     }

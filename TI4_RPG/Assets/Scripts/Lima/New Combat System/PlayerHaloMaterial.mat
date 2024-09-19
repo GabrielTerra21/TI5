@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AOE
-  m_Shader: {fileID: 4800000, guid: cc4f4f2a2e9f99f4681d060751a5f384, type: 3}
+  m_Name: PlayerHaloMaterial
+  m_Shader: {fileID: 4800000, guid: a5fb4c087f2973d4eb20cab8ec40e2dd, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -29,10 +29,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Duration: 1
-    - _Radius: 0.5
+    - _Thickness: 0.015
     m_Colors:
-    - _Center: {r: 0.5, g: 0.5, b: 0, a: 0}
-    - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _Color2: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
+    - _AoeColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

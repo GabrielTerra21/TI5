@@ -9,7 +9,6 @@ public class LimaCameraBehaviour : MonoBehaviour {
     [SerializeField] private float duration;
 
     private void Start() {
-        Debug.Log(GameObject.FindWithTag("Player"));
         cam = GetComponent<CinemachineVirtualCamera>();
         defaultSize = cam.m_Lens.OrthographicSize;
         GameManager.Instance.enterCombat.AddListener(ZoomIn);
