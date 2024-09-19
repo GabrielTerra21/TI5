@@ -20,13 +20,14 @@ public class Zumbi : State
     [Header("Info")]
     [SerializeField] private BEHAVIOUR behaviour;
     [SerializeField] private SkillDataSO primarySkill, secondarySkill;
-    [SerializeField] private bool cooldown;
     [SerializeField] private Character target;
     [SerializeField] private int animationLayerIndex;
     [SerializeField] private int animationMovementID;
     [SerializeField] private float iddleTime = 3;
     private float _iddleTimer;
     [SerializeField] private bool moving = false;
+    private bool cooldown = true;
+    private float timer;
 
 
     // Adquire referencia da layer de anima��o e componentes
@@ -72,7 +73,7 @@ public class Zumbi : State
     private void FixedUpdate()
     {
         if (paused) return;
-
+        CoolDown();
         // Toda a logica de Comportamento do inimigo de acordo com o behaviour STATE
         switch (behaviour)
         {
@@ -92,7 +93,7 @@ public class Zumbi : State
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
                     cooldown = false;
-                    StartCoroutine(CoolDown(secondarySkill.CoolDown));
+                    timer = 0;
                 }
                 // Caso o alvo n�o esteja dentro de alcance
                 // e o agente n�o esteja se movendo, inicia movimento em dire��o ao alvo.
@@ -155,10 +156,15 @@ public class Zumbi : State
         moving = false;
         Debug.Log("New destination set");
     }
-    public IEnumerator CoolDown(float countTime)
+    public void CoolDown()
     {
-        yield return new WaitForSeconds(countTime);
-
-        cooldown = true;
+        if (!cooldown)
+        {
+            timer += Time.fixedDeltaTime;
+            if (timer >= secondarySkill.CoolDown)
+            {
+                cooldown = true;
+            }
+        }
     }
 }

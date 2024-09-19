@@ -32,6 +32,7 @@ public class Enemy : Character {
         Debug.Log("Morri XD");
         OnDeath.Invoke();
         Destroy(gameObject);
+        GameManager.Instance.GainEcos(5);
         foreach(GameObject g in dependencies)
         {
             Destroy(g);

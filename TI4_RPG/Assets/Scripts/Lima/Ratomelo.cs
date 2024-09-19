@@ -22,6 +22,9 @@ public class Ratomelo : State {
     [SerializeField] private float iddleTime = 3;
     private float _iddleTimer;
     [SerializeField] private bool moving = false;
+    private bool cooldown = true;
+    private float timer;
+
 
 
     // Adquire referencia da layer de animação e componentes
@@ -61,7 +64,7 @@ public class Ratomelo : State {
     
     private void FixedUpdate() {
         if(paused) return;
-
+        CoolDown();
         // Toda a logica de Comportamento do inimigo de acordo com o behaviour STATE
         switch (behaviour) {
             // Comportamento de ataque
@@ -73,12 +76,14 @@ public class Ratomelo : State {
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
                 }
-                else if(InDistance(secondarySkill, target.transform))
+                /*else if(InDistance(secondarySkill, target.transform) && Random.Range(0, 10) > 6 && cooldown)
                 {
                     secondarySkill.OnCast(self, target);
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
-                }
+                    cooldown = false;
+                    timer = 0;
+                }*/
                 // Caso o alvo não esteja dentro de alcance
                 // e o agente não esteja se movendo, inicia movimento em direção ao alvo.
                 else if (!moving) {
@@ -132,5 +137,16 @@ public class Ratomelo : State {
         ai.ResetPath();
         moving = false;
         Debug.Log("New destination set");
+    }
+    public void CoolDown()
+    {
+        if (!cooldown)
+        {
+            timer += Time.fixedDeltaTime;
+            if (timer >= secondarySkill.CoolDown)
+            {
+                cooldown = true;
+            }
+        }
     }
 }

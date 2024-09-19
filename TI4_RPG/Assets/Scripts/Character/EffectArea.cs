@@ -10,17 +10,21 @@ public class EffectArea : MonoBehaviour
     private void Start()
     {
         count = effect.duration;
+        characters = new List<Character>();
     }
-    void Update()
+    void FixedUpdate()
     {
         if (!GameManager.Instance.paused && count > 0)
         {
-            count -= Time.deltaTime;
-            countLoop += Time.deltaTime;
+            count -= Time.fixedDeltaTime;
+            countLoop += Time.fixedDeltaTime;
             if (countLoop >= effect.interval)
             {
                 countLoop = 0;
-                effect.DoStuff(characters);
+                if (characters != null)
+                {
+                    effect.DoStuff(characters);
+                }
             }
         }
         else if(!GameManager.Instance.paused && count < 0)
@@ -30,12 +34,16 @@ public class EffectArea : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        other.TryGetComponent<Character>(out Character c);
-        characters.Add(c);
+        if (other.TryGetComponent<Character>(out Character c))
+        {       
+            characters.Add(c);
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        other.TryGetComponent<Character>(out Character c);
-        characters.Remove(c);
+        if (other.TryGetComponent<Character>(out Character c))
+        {
+            characters.Remove(c);
+        }
     }
 }

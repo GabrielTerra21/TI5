@@ -20,6 +20,10 @@ public class AoE : MonoBehaviour
         else if(!GameManager.Instance.paused && count < 0)
         {
             aoe.DealDamage(transform.position, power);
+            if (aoe.prefab != null)
+            {
+                Instantiate(aoe.prefab, transform.position, transform.rotation);
+            }
             Destroy(gameObject);
         }
     }
