@@ -11,7 +11,7 @@ using UnityEngine.Serialization;
 public class GameManager : MonoBehaviour {
     [Header("Player info")] 
     public Player player;
-    [FormerlySerializedAs("money")] public int ecos = 300;
+    [FormerlySerializedAs("money")] public int ecos;
 
     [SerializeField] public int keys { get; private set; } = 0;
     public MyStat ap = new MyStat(25);
