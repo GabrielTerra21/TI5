@@ -102,7 +102,6 @@ public class CombatState : State {
             return false;
         }
         if (!aoe.highlighted) aoe.Activate();
-        Debug.Log("true");
         return true;
     }
     
