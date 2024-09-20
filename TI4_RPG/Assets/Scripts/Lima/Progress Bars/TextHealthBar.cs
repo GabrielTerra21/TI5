@@ -50,6 +50,6 @@ public class TextHealthBar : HealthBar {
             timer -= Time.fixedDeltaTime;
             yield return null;
         }
-        rect.position = OPos;
+        rect.position = desiredPos.position;
     }
 }
