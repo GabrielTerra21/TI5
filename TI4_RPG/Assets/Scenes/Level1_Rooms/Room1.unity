@@ -2262,6 +2262,46 @@ SkinnedMeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 405783475}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &376664836 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f9a733389bfd913489fb598ef8ce0c4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1409585301}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &376664837 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f9a733389bfd913489fb598ef8ce0c4d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1409585301}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &376664838
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376664836}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 3bc549cea6b5c254a83f77070865c3a0, type: 3}
+  m_Controller: {fileID: 9100000, guid: 10cf19ac66ad1414a9091aa7b82e862f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Clavicle.L'\n\tTransform 'Master'\n\tTransform
+    'Arm.R'\n\tTransform 'Clavicle.R'\n\tTransform 'Root'\n\tTransform 'ForeArm.L'\n\tTransform
+    'MechHandLower'\n\tTransform 'Foot.R.001'\n\tTransform 'ThirdFingerMid'\n\tTransform
+    'SecondFingerTip'\n\tand more ...\n\tFrom animation clip 'Idle 2'\n\tFrom animation
+    clip 'ExplorationWalk'\n\tFrom animation clip 'ExplorationWalk'\n\tFrom animation
+    clip 'CombatIdle'\n\tFrom animation clip 'MainAttack'"
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &394673198
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,6 +2658,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Selia
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4bce3e8d930e6e0498173a236576ba95,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2125286044524730048, guid: 4bce3e8d930e6e0498173a236576ba95,
         type: 3}
@@ -10116,6 +10161,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1375088144}
   m_CullTransparentMesh: 1
+--- !u!1001 &1409585301
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8321513560597307694}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f9a733389bfd913489fb598ef8ce0c4d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f9a733389bfd913489fb598ef8ce0c4d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f9a733389bfd913489fb598ef8ce0c4d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f9a733389bfd913489fb598ef8ce0c4d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f9a733389bfd913489fb598ef8ce0c4d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f9a733389bfd913489fb598ef8ce0c4d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f9a733389bfd913489fb598ef8ce0c4d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f9a733389bfd913489fb598ef8ce0c4d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f9a733389bfd913489fb598ef8ce0c4d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f9a733389bfd913489fb598ef8ce0c4d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9a733389bfd913489fb598ef8ce0c4d,
+        type: 3}
+      propertyPath: m_Name
+      value: SeliaUpdatedAnimations
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f9a733389bfd913489fb598ef8ce0c4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f9a733389bfd913489fb598ef8ce0c4d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 376664838}
+  m_SourcePrefab: {fileID: 100100000, guid: f9a733389bfd913489fb598ef8ce0c4d, type: 3}
 --- !u!1 &1412980165
 GameObject:
   m_ObjectHideFlags: 0
@@ -23425,6 +23547,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 405783476}
+  - {fileID: 376664837}
   - {fileID: 7653771821806905218}
   - {fileID: 5327934314494809516}
   - {fileID: 7443207502940313256}
