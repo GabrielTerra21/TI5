@@ -30,9 +30,9 @@ public abstract class Character : MonoBehaviour
     public int life;
 
     private int defense;
-    public int defenseBonus;
+    private int defenseBonus;
     private int attack;
-    public int attackBonus;
+    private int attackBonus;
     
     public bool actionable = true;
     public float count;
@@ -78,6 +78,10 @@ public abstract class Character : MonoBehaviour
     public int Power() { return attack + attackBonus; }
 
     public int Defense() { return defense + defenseBonus;}
+
+    public virtual void ApplyBonusAttack(int bonus) { attackBonus += bonus; }
+
+    public virtual void ApplyBonusDefense(int bonus) { defenseBonus += bonus; }
 
     public virtual void Pause() {
         if(animator != null) 

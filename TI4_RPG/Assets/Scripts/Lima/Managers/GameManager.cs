@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
     [Header("UI Components")] 
     [SerializeField] private TMP_Text ecosText;
     [SerializeField] private TMP_Text keysText;
+    [SerializeField] private StatusDisplay[] statusSlots;
     public TextHealthBar healthBar;
     public ActionBar actionBar;
     public SkillDataSO empty;
@@ -105,6 +106,13 @@ public class GameManager : MonoBehaviour {
     public void LoseKey() {
         keys--;
         keysText.text = "Keys : " + keys/10 + keys % 10 ;
+    }
+
+    public StatusDisplay GetStatusSlot() {
+        for (int i = 0; i < statusSlots.Length; i++) {
+            if (statusSlots[i].currentStatus == StatusDisplay.statusEffect.NONE) return statusSlots[i];
+        }
+        return null;
     }
     
     // Checa se o ID da sala informado esta presente na lista de salas completas e retorna o resultado.
