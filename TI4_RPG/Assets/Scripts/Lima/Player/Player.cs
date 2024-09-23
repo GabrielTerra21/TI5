@@ -29,6 +29,8 @@ public class Player : Character
     
     private void FixedUpdate(){
         gravity.Gravity();
+        if (Input.GetKeyDown(KeyCode.L))
+            TakeDamage(5);
     }
 
     public override void Die() {
@@ -52,6 +54,7 @@ public class Player : Character
         }
         GameObject particle = Instantiate(hitMark, transform.position, transform.rotation);
         Destroy(particle, 3);
+        damageText.DisplayDamage(-dmg);
         return dmg;
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
@@ -14,9 +15,12 @@ public abstract class Character : MonoBehaviour
     public GameObject hitMark;
     public List<GameObject> dependencies;
 
-    [FormerlySerializedAs("renderer")] [SerializeField] private SkinnedMeshRenderer render;
+    [SerializeField] private SkinnedMeshRenderer render;
     [SerializeField] protected Material mat;
     [SerializeField] protected Shader lit;
+    
+    [Header("UI Character Elements"), Space(10)]
+    [SerializeField] protected DamageText damageText;
 
     [Space(5)]
     [Header("Character Sheet")]
@@ -60,7 +64,15 @@ public abstract class Character : MonoBehaviour
         }
         GameObject particle = Instantiate(hitMark, transform.position, transform.rotation);
         Destroy(particle, 3);
+        
+        if(damageText != null)damageText.DisplayDamage(-dmg);
+        
         return dmg;
+    }
+
+    // O metodo é chamado ShowDamage, mas é utilizado para mostrar vida regenerada tambem.
+    private void ShowDamage(int damage) {
+        
     }
 
     public int Power() { return attack + attackBonus; }
