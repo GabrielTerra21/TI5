@@ -1817,14 +1817,21 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277584775}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 3bc549cea6b5c254a83f77070865c3a0, type: 3}
   m_Controller: {fileID: 9100000, guid: 10cf19ac66ad1414a9091aa7b82e862f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'ThumbBase'\n\tTransform 'Clavicle.L'\n\tTransform
+    'Master'\n\tTransform 'Arm.R'\n\tTransform 'Clavicle.R'\n\tTransform 'Root'\n\tTransform
+    'ForeArm.L'\n\tTransform 'MechHandLower'\n\tTransform 'Foot.R.001'\n\tTransform
+    'ThirdFingerMid'\n\tand more ...\n\tFrom animation clip 'Exploration Idle'\n\tFrom
+    animation clip 'ExplorationWalk'\n\tFrom animation clip 'ExplorationWalk'\n\tFrom
+    animation clip 'CombatIdle'\n\tFrom animation clip 'Attack1'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -4204,7 +4211,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -108.54, y: 0}
+  m_AnchoredPosition: {x: -91.7, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &529704656
@@ -4498,7 +4505,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -96.382, y: 0}
+  m_AnchoredPosition: {x: -62.2, y: 0}
   m_SizeDelta: {x: 150, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &544022868
