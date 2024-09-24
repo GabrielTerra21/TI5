@@ -2405,14 +2405,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'Clavicle.L'\n\tTransform 'Master'\n\tTransform
-    'Arm.R'\n\tTransform 'Clavicle.R'\n\tTransform 'Root'\n\tTransform 'ForeArm.L'\n\tTransform
-    'MechHandLower'\n\tTransform 'Foot.R.001'\n\tTransform 'ThirdFingerMid'\n\tTransform
-    'SecondFingerTip'\n\tand more ...\n\tFrom animation clip 'Idle 2'\n\tFrom animation
-    clip 'ExplorationWalk'\n\tFrom animation clip 'ExplorationWalk'\n\tFrom animation
-    clip 'CombatIdle'\n\tFrom animation clip 'MainAttack'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -3317,18 +3310,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 4880963796330655940}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &437843127 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 654422505927932278, guid: d15c329448eddbd46997d13b47fce31a,
-    type: 3}
-  m_PrefabInstance: {fileID: 4880963796330655940}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 601cb514247818e41903432120f155a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &440917361
 GameObject:
   m_ObjectHideFlags: 0
@@ -4139,14 +4120,14 @@ RectTransform:
   m_GameObject: {fileID: 529704654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3184097009310768530}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -105, y: 0}
+  m_AnchoredPosition: {x: -108.54, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &529704656
@@ -4169,7 +4150,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: cc989ea499102eb438dd4713811ec798, type: 3}
+  m_Texture: {fileID: 2800000, guid: 0712b8c3a04597a48aebf967b9251ffa, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -4433,14 +4414,14 @@ RectTransform:
   m_GameObject: {fileID: 544022866}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2223668447419553474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -105, y: 0}
+  m_AnchoredPosition: {x: -96.382, y: 0}
   m_SizeDelta: {x: 150, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &544022868
@@ -4463,7 +4444,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fb230221280762c48930734df1c99530, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f9f018b105ee21a419c1df63ba3df5b3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -8867,18 +8848,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fa21342b2f650144b1fd452882ea46b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icons:
-    keys:
-    - AttackUp
-    - AttackDown
-    - DefenseUp
-    - DefenseDown
-    values:
-    - {fileID: 21300000, guid: 787a54dfa16e9ca4b8b429626aec8eed, type: 3}
-    - {fileID: 21300000, guid: f2b8f0438db8a9a43bf0711317cc820b, type: 3}
-    - {fileID: 21300000, guid: 67f9c4fb4e471e14080691c1dc8902d8, type: 3}
-    - {fileID: 21300000, guid: 20dded09a1e35724abb90435990ed564, type: 3}
-  currentStatus: 4
 --- !u!4 &1112982480 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4490412201532896, guid: 5984682f8774a4c45a4cbf1ddde14123,
@@ -22324,8 +22293,6 @@ MonoBehaviour:
   clearedRooms: []
   ecosText: {fileID: 1573907280}
   keysText: {fileID: 980076081}
-  statusSlots:
-  - {fileID: 1106648974}
   healthBar: {fileID: 1476035439099220435}
   actionBar: {fileID: 2533564736318114760}
   empty: {fileID: 11400000, guid: 09cbbbaeb0f5b1d44b9167e5ba253748, type: 2}
@@ -25000,10 +24967,11 @@ MonoBehaviour:
   render: {fileID: 996372917}
   mat: {fileID: 2100000, guid: 755248b52af40de40b5663d1eea8b222, type: 2}
   lit: {fileID: 0}
-  damageText: {fileID: 437843127}
   data: {fileID: 11400000, guid: 672b05e0383e68346a07d95ff22c5098, type: 2}
   moveSpeed: 5
   life: 0
+  defenseBonus: 0
+  attackBonus: 0
   actionable: 1
   count: 0
   gravity: {fileID: 6537688097644661631}
