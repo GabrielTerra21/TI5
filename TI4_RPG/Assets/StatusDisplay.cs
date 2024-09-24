@@ -15,7 +15,10 @@ public class StatusDisplay : MonoBehaviour {
         NONE
     };
     public statusEffect currentStatus = statusEffect.NONE;
-    
+
+    private void Start() {
+        image = GetComponent<Image>();
+    }
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.K)) {

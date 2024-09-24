@@ -25,6 +25,7 @@ public class MyDictionary<T1, T2> {
     public T2 this[T1 key] {
         get {
             int index = keys.IndexOf(key);
+            Debug.Log($"{key}, {index}");
             return values[index];
         }
         set {
