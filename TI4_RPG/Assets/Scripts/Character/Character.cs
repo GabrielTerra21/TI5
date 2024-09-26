@@ -21,6 +21,7 @@ public abstract class Character : MonoBehaviour
     
     [Header("UI Character Elements"), Space(10)]
     [SerializeField] protected DamageText damageText;
+    
 
     [Space(5)]
     [Header("Character Sheet")]
@@ -30,9 +31,9 @@ public abstract class Character : MonoBehaviour
     public int life;
 
     private int defense;
-    private int defenseBonus;
+    private int defenseBonus = 0;
     private int attack;
-    private int attackBonus;
+    private int attackBonus = 0;
     
     public bool actionable = true;
     public float count;
@@ -56,7 +57,7 @@ public abstract class Character : MonoBehaviour
 
     public virtual int TakeDamage(int dmg) {
         StartCoroutine(Flash(mat));
-        life -= dmg;
+        life -= dmg - Defense();
         OnDamage.Invoke();
         if (life <= 0) {
             life = 0;
@@ -65,7 +66,7 @@ public abstract class Character : MonoBehaviour
         GameObject particle = Instantiate(hitMark, transform.position, transform.rotation);
         Destroy(particle, 3);
         
-        if(damageText != null)damageText.DisplayDamage(-dmg);
+        if(damageText != null)damageText.DisplayDamage(-dmg + Defense());
         
         return dmg;
     }

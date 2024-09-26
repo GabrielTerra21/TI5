@@ -5,6 +5,7 @@ public class Furia : SkillDataSO
 {
     public override void OnCast(Character from, Character target)
     {
-        //from.Furia(Power,CastTime);
+        from.ApplyBonusAttack(Power);
+        //BuffController.instance.ListarBuff(CastTime, "attack", from, Power);
     }
 }

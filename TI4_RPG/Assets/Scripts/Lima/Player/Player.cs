@@ -8,8 +8,10 @@ public class Player : Character
     [SerializeField] private CCGravity gravity;
     [SerializeField] private SplineLine line;
     [SerializeField] private SkinnedMeshRenderer[] renderers;
+    [SerializeField] protected DamageText defenseText;
+    public SkillDataSO furia;
 
-    
+
     protected override void Awake(){
         if (GameManager.Instance.player != null) Destroy(gameObject);
         else  GameManager.Instance.player = this; 
@@ -30,7 +32,10 @@ public class Player : Character
     private void FixedUpdate(){
         gravity.Gravity();
         if (Input.GetKeyDown(KeyCode.L))
-            ApplyBonusAttack(5);
+        {
+            furia.OnCast(this, null);
+        }
+            
     }
 
     public override void Die() {
@@ -46,7 +51,7 @@ public class Player : Character
 
     public override int TakeDamage(int dmg) {
         StartCoroutine(Flashing(renderers));
-        life -= dmg;
+        life -= dmg - Defense();
         OnDamage.Invoke();
         if (life <= 0) {
             life = 0;
@@ -54,7 +59,8 @@ public class Player : Character
         }
         GameObject particle = Instantiate(hitMark, transform.position, transform.rotation);
         Destroy(particle, 3);
-        damageText.DisplayDamage(-dmg);
+        damageText.DisplayDamage(-dmg + Defense());
+        defenseText.DisplayDamage(Defense());
         return dmg;
     }
     
@@ -65,7 +71,7 @@ public class Player : Character
     public override void ApplyBonusAttack(int bonus) {
         base.ApplyBonusAttack(bonus);
         StatusDisplay slot = GameManager.Instance.GetStatusSlot();
-        if(bonus > 0) 
+        if (bonus > 0) 
             slot?.DisplayStatus(StatusDisplay.statusEffect.ATTACKUP);
         else 
             slot?.DisplayStatus(StatusDisplay.statusEffect.ATTACKDOWN);
