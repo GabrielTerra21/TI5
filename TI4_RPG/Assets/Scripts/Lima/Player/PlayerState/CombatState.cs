@@ -73,11 +73,11 @@ public class CombatState : State {
     {
         if(paused) return;
         movement.Moving(moveDir, agent.moveSpeed);
-        animationController.SetAnimations(moveDir);
         
         if(target == null) return;
         
-        targetLock.SetRotation(target.transform.position);
+        //targetLock.SetRotation(target.transform.position);
+        SetRotation();
         if(InRange(target.transform))
         {
             if (moveDir.magnitude < 0.05f && coolDown <= 0) {
@@ -87,6 +87,17 @@ public class CombatState : State {
             else if(!paused)coolDown -= Time.deltaTime;
         }
         
+    }
+
+    private void SetRotation() {
+        if (Vector3.Distance(transform.position, target.transform.position) < autoAttack.Range){
+            transform.LookAt(target.transform.position);
+            animationController.SetAnimations(moveDir); 
+        }
+        else {
+            transform.LookAt(agent.transform.position + new Vector3(moveDir.x, 0, moveDir.y));
+            animator.SetFloat("Movement", moveDir.magnitude);
+        }
     }
 
     private void LateUpdate() { OnTargetDeath(); }
