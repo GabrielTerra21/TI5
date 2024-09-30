@@ -66,7 +66,7 @@ public abstract class Character : MonoBehaviour
         GameObject particle = Instantiate(hitMark, transform.position, transform.rotation);
         Destroy(particle, 3);
         
-        if(damageText != null)damageText.DisplayDamage(-dmg + Defense());
+        if(damageText != null)damageText.DisplayDamage(-dmg + Mathf.Clamp(Defense(),-100,dmg));
         
         return dmg;
     }

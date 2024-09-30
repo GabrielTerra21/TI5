@@ -23,7 +23,10 @@ public class EffectArea : MonoBehaviour
                 countLoop = 0;
                 if (characters != null)
                 {
-                    effect.DoStuff(characters);
+                    foreach (Character character in characters)
+                    {
+                        effect.DoStuff(character);
+                    }
                 }
             }
         }

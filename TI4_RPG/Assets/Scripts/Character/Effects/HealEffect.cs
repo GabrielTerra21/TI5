@@ -5,14 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Effect/HealEffect", order = 2)]
 public class HealEffect : Effect
 {
-    public override void DoStuff(List<Character> characters) 
+    public override void DoStuff(Character character)
     {
-        foreach (Character character in characters)
+        if (character.CompareTag("Player"))
         {
-            if (character.CompareTag("Player"))
-            {
-                character.Heal(power);
-            }
+            character.Heal(power);
         }
+
     }
 }

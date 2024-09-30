@@ -76,14 +76,14 @@ public class Ratomelo : State {
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
                 }
-                /*else if(InDistance(secondarySkill, target.transform) && Random.Range(0, 10) > 6 && cooldown)
+                else if(secondarySkill != null && InDistance(secondarySkill, target.transform) && Random.Range(0, 10) > 6 && cooldown)
                 {
                     secondarySkill.OnCast(self, target);
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
                     cooldown = false;
                     timer = 0;
-                }*/
+                }
                 // Caso o alvo não esteja dentro de alcance
                 // e o agente não esteja se movendo, inicia movimento em direção ao alvo.
                 else if (!moving) {

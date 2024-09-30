@@ -7,5 +7,5 @@ public abstract class Effect : ScriptableObject
     public int interval;
     public int duration;
     public int power;
-    public abstract void DoStuff(List<Character> characters);
+    public abstract void DoStuff(Character character);
 }
