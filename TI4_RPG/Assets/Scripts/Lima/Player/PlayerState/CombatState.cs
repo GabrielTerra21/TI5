@@ -82,6 +82,7 @@ public class CombatState : State {
         {
             if (moveDir.magnitude < 0.05f && coolDown <= 0) {
                 autoAttack.OnCast(agent, target);
+                //animator.SetTrigger("Attack");
                 coolDown = autoAttack.CoolDown;
             }
             else if(!paused)coolDown -= Time.deltaTime;
@@ -90,6 +91,7 @@ public class CombatState : State {
     }
 
     private void SetRotation() {
+        /*
         if (Vector3.Distance(transform.position, target.transform.position) < autoAttack.Range){
             transform.LookAt(target.transform.position);
             animationController.SetAnimations(moveDir); 
@@ -98,6 +100,9 @@ public class CombatState : State {
             transform.LookAt(agent.transform.position + new Vector3(moveDir.x, 0, moveDir.y));
             animator.SetFloat("Movement", moveDir.magnitude);
         }
+        */
+        transform.LookAt(agent.transform.position + new Vector3(moveDir.x, 0, moveDir.y));
+        animator.SetFloat("Movement", moveDir.magnitude);
     }
 
     private void LateUpdate() { OnTargetDeath(); }
@@ -185,5 +190,25 @@ public class CombatState : State {
     public Character ReturnTarget()
     {
         return target;
+    }
+
+    private void Dash(InputAction.CallbackContext context) {
+        float distance = 1;
+        float speed;
+        Vector3 orientation = new Vector3();
+        orientation.x = moveDir.x;
+        orientation.z = moveDir.y;
+        if (context.performed) {
+            Vector3 finalPos = new Vector3();
+            Ray ray = new Ray(transform.position, orientation);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, distance)) {
+                finalPos = hit.point;
+            }
+            else {
+                finalPos = transform.position + orientation * distance;
+            }
+            
+        }
     }
 }

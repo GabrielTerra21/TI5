@@ -15,4 +15,8 @@ public abstract class SkillDataSO : ScriptableObject
     public RuntimeAnimatorController animationOverride;
     
     public abstract void OnCast ( Character from, Character target);
+
+    protected virtual void Rotate(Transform from, Vector3 target) {
+        from.LookAt(target);
+    }
 }
