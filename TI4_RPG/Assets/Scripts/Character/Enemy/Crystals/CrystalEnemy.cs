@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrystalEnemy : MonoBehaviour
+public class CrystalEnemy : Enemy
 {
     public Room room;
-    public Effect effect,deatheffect;
+    public Effect effect;
     float countLoop = 0;
     public GameObject particles;
+
     public enum Type {Continuos, Instant}
     public Type type;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         if(type == Type.Instant)
         {
             foreach(Enemy enemy in room.enemies)
@@ -38,11 +40,8 @@ public class CrystalEnemy : MonoBehaviour
             }
         }
     }
-    private void OnDestroy()
+    public void OnDeathEffect(Effect e)
     {
-        foreach (Character character in room.enemies)
-        {
-            deatheffect.DoStuff(character);
-        }
+        room.ApplyEffect(e);
     }
 }

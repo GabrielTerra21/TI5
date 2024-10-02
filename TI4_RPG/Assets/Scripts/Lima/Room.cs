@@ -50,4 +50,12 @@ public class Room : MonoBehaviour
         Debug.Log($"Room {ID} cleared");
         GameManager.Instance.AddClearedRoom(ID);
     }
+
+    public void ApplyEffect(Effect effect)
+    {
+        foreach(Enemy enemy in enemies)
+        {
+            effect.DoStuff(enemy);
+        }
+    }
 }

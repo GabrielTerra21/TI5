@@ -191,7 +191,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2639095613382886180}
   - component: {fileID: 3162660417475022554}
-  - component: {fileID: 8293023137561506431}
   - component: {fileID: 9163164101280659282}
   - component: {fileID: 6720913027975584279}
   - component: {fileID: 9062964558912436270}
@@ -232,28 +231,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a7d56432aa629c4e85ce032cb5f6aab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  room: {fileID: 0}
-  effect: {fileID: 11400000, guid: b20a13b108a985541aac0d642f4d6822, type: 2}
-  particles: {fileID: 8078868207066089355, guid: bce38488e50221f489361db42afd90ad,
-    type: 3}
-  type: 0
---- !u!114 &8293023137561506431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4479069344897252337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a997df0fd8a4ed44f91bd6bc63ece26f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   animator: {fileID: 6720913027975584279}
   LockOnTarget: {fileID: 1228356235822387561}
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3162660417475022554}
+        m_TargetAssemblyTypeName: CrystalEnemy, Assembly-CSharp
+        m_MethodName: OnDeathEffect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 0c8133d3248def241b3c811ceb92a116,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: Effect, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -263,18 +258,24 @@ MonoBehaviour:
   hitMark: {fileID: 8378049728435400075, guid: ec504b50626469c4e86573842663703e, type: 3}
   dependencies: []
   render: {fileID: 0}
-  mat: {fileID: 2100000, guid: cc6d89b2254d0014692d24a7e61c39a5, type: 2}
+  meshRenderer: {fileID: 6765665642450602204}
+  mat: {fileID: 2100000, guid: 8ae3f9e3282b160469ccdc635063c83f, type: 2}
   lit: {fileID: -6465566751694194690, guid: 5d49eb33426ec3c4b9fb58a7da5e7292, type: 3}
   damageText: {fileID: 7997945104951286560}
   data: {fileID: 11400000, guid: 40afd53ffadd19b4687b01b291b444d2, type: 2}
-  moveSpeed: 1.5
-  life: 40
+  moveSpeed: 0
+  life: 0
   actionable: 1
   count: 0
   homePos: {x: 0, y: 0, z: 0}
-  roamingDistance: 10
-  reachingDistance: 0.25
+  roamingDistance: 0
+  reachingDistance: 0.2
   ai: {fileID: 9163164101280659282}
+  room: {fileID: 0}
+  effect: {fileID: 11400000, guid: b20a13b108a985541aac0d642f4d6822, type: 2}
+  particles: {fileID: 8078868207066089355, guid: bce38488e50221f489361db42afd90ad,
+    type: 3}
+  type: 0
 --- !u!195 &9163164101280659282
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -465,7 +466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2846872184109427680}
   - component: {fileID: 8052291522052910936}
-  - component: {fileID: 4653992818623424854}
+  - component: {fileID: 6765665642450602204}
   m_Layer: 0
   m_Name: crystal
   m_TagString: Untagged
@@ -496,7 +497,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5410020837298555701}
   m_Mesh: {fileID: -5495902117074765545, guid: 6697ce69091429542b6b59327cff59fe, type: 3}
---- !u!23 &4653992818623424854
+--- !u!23 &6765665642450602204
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -742,6 +743,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9d05f65977733439371f22cbb25254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 8293023137561506431}
+  owner: {fileID: 0}
   barFill: {fileID: 8297156336121024767}
   maxHealth: 0
