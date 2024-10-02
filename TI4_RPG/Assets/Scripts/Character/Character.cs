@@ -16,6 +16,7 @@ public abstract class Character : MonoBehaviour
     public List<GameObject> dependencies;
 
     [SerializeField] private SkinnedMeshRenderer render;
+    [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] protected Material mat;
     [SerializeField] protected Shader lit;
     
@@ -105,9 +106,13 @@ public abstract class Character : MonoBehaviour
     IEnumerator Flash(Material mat) {
         Material clone = new Material(mat);
         Material[] mats;
-        
-        mats = render.materials;
-        
+        if (render) {
+            mats = render.materials;
+        }
+        else {
+            mats = meshRenderer.materials;
+        }
+
         for (int i = 0; i < mats.Length; i++) {
             mats[i] = clone;
         }
