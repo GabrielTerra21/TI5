@@ -18,6 +18,7 @@ public class CombatState : State {
     [SerializeField] private SkillDataSO autoAttack;
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private float coolDown;
+    [SerializeField] private float dashDistance;
     public SkillDataSO[] skills = new SkillDataSO[6]; 
     
     
@@ -57,15 +58,17 @@ public class CombatState : State {
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").performed += OnMovement;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").canceled += OnMovement;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("SwitchEnemy").performed += TargetNext;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Dash").performed += Dash;
     }
 
     //Desubscreve as respectivas ações ao mapa de ações do input Manager
     private void OnDisable() {
         if (InputManager.Instance == null) return;
-        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").started += OnMovement;
-        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").performed += OnMovement;
-        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").canceled += OnMovement;
-        InputManager.Instance.actions.FindActionMap("Combat").FindAction("SwitchEnemy").performed += TargetNext;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").started -= OnMovement;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").performed -= OnMovement;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").canceled -= OnMovement;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("SwitchEnemy").performed -= TargetNext;
+        InputManager.Instance.actions.FindActionMap("Combat").FindAction("Dash").performed -= Dash;
         moveDir = Vector3.zero;
     }
 
@@ -151,7 +154,6 @@ public class CombatState : State {
         target = null;
         animator.SetLayerWeight(animationLayerIndex, 0);
         line.gameObject.SetActive(false);
-        Debug.Log("Exiting Combat State");
     }
     
     // Faz chamada do eDetect para adquirir novo alvo
@@ -193,22 +195,17 @@ public class CombatState : State {
     }
 
     private void Dash(InputAction.CallbackContext context) {
-        float distance = 1;
-        float speed;
-        Vector3 orientation = new Vector3();
-        orientation.x = moveDir.x;
-        orientation.z = moveDir.y;
-        if (context.performed) {
+        Vector3 inputDir = new Vector3(moveDir.x, 0, moveDir.y);
+        if (inputDir != Vector3.zero) {
+            Debug.Log("Dash!");
             Vector3 finalPos = new Vector3();
-            Ray ray = new Ray(transform.position, orientation);
+            Ray ray = new Ray(transform.position, moveDir);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, distance)) {
-                finalPos = hit.point;
-            }
-            else {
-                finalPos = transform.position + orientation * distance;
-            }
-            
+            finalPos = transform.position + inputDir.normalized * dashDistance;
+            cc.Move( finalPos  - transform.position);
         }
+        else Debug.Log("Nenhuma direção sendo apertada");
     }
+    
+    
 }

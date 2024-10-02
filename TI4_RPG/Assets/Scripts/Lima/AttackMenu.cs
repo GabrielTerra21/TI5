@@ -73,14 +73,12 @@ public class AttackMenu : MonoBehaviour {
 
     // Metodo que Coloca o menu de combate na tela
     public void EnterScreen() {
-        Debug.Log("Enter Sreen chamado");
         StartCoroutine(MoveOnScreen(leftWing, onScreenPosL.position));
         StartCoroutine(MoveOnScreen(rightWing, onScreenPosR.position));
     }
     
     // Remove o menu de combate da tela
     public void ExitScreen() {
-        Debug.Log("Exit Sreen chamado");
         StartCoroutine(MoveOnScreen(leftWing, offScreenPosL.position));
         StartCoroutine(MoveOnScreen(rightWing, offScreenPosR.position));
     }

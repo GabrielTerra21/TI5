@@ -25,7 +25,6 @@ public class AoE : MonoBehaviour
                 GameManager.Instance.player.TakeDamage(this.power);
                 GameManager.Instance.LoseAP(aoe.apDamage);
                 player = false;
-                Debug.Log("cast");
             }
             if (aoe.prefab != null)
             {

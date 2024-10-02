@@ -99,7 +99,6 @@ public class Zumbi : State
                 // e o agente n�o esteja se movendo, inicia movimento em dire��o ao alvo.
                 else if (!moving)
                 {
-                    Debug.Log("Starting Movement");
                     StartCoroutine(Movement(primarySkill));
                 }
                 transform.LookAt(target.transform.position);
@@ -140,7 +139,6 @@ public class Zumbi : State
         ai.SetDestination(desiredPos);
         // Enquanto estiver fora de alcance
         // atualiza valor de anima��o e checa se o alvo mudou de posi��o.
-        Debug.Log("Destination Set");
         while (!InDistance(skill, target.transform))
         {
             // Caso o alvo tenha mudado de posi��o, inicia uma nova coroutina de movimenta��o.
@@ -154,7 +152,6 @@ public class Zumbi : State
         animator.SetFloat(animationMovementID, 0);
         ai.ResetPath();
         moving = false;
-        Debug.Log("New destination set");
     }
     public void CoolDown()
     {

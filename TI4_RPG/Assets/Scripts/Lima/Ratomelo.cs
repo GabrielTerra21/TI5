@@ -87,7 +87,6 @@ public class Ratomelo : State {
                 // Caso o alvo não esteja dentro de alcance
                 // e o agente não esteja se movendo, inicia movimento em direção ao alvo.
                 else if (!moving) {
-                    Debug.Log("Starting Movement");
                     StartCoroutine(Movement(autoAttack));
                 }
                 transform.LookAt(target.transform.position);
@@ -124,7 +123,6 @@ public class Ratomelo : State {
         ai.SetDestination(desiredPos);
         // Enquanto estiver fora de alcance
         // atualiza valor de animação e checa se o alvo mudou de posição.
-        Debug.Log("Destination Set");
         while (!InDistance(skill, target.transform)) {
             // Caso o alvo tenha mudado de posição, inicia uma nova coroutina de movimentação.
             if (target.transform.position != targetPos) {
@@ -136,7 +134,6 @@ public class Ratomelo : State {
         animator.SetFloat(animationMovementID, 0);
         ai.ResetPath();
         moving = false;
-        Debug.Log("New destination set");
     }
     public void CoolDown()
     {

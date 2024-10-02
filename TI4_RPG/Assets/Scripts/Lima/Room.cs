@@ -22,7 +22,6 @@ public class Room : MonoBehaviour
         }
         else{
             if (enemies != null) {
-                Debug.Log("Spawning Enemies");
                 foreach (var data in enemies) {
                     data.gameObject.SetActive(true);
                     //data.OnDeath.AddListener(CheckIfEmpty);
