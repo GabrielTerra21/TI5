@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,6 +20,8 @@ public class CombatState : State {
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private float coolDown;
     [SerializeField] private float dashDistance;
+    [SerializeField] private float dashDuration;
+    [SerializeField] private TrailRenderer dashTrail;
     public SkillDataSO[] skills = new SkillDataSO[6]; 
     
     
@@ -75,6 +78,7 @@ public class CombatState : State {
     private void Update()
     {
         if(paused) return;
+        if(!agent.actionable) return;
         movement.Moving(moveDir, agent.moveSpeed);
         
         if(target == null) return;
@@ -195,17 +199,32 @@ public class CombatState : State {
     }
 
     private void Dash(InputAction.CallbackContext context) {
-        Vector3 inputDir = new Vector3(moveDir.x, 0, moveDir.y);
-        if (inputDir != Vector3.zero) {
-            Debug.Log("Dash!");
+        if (moveDir != Vector2.zero) {
+            Vector3 inputDir = new Vector3(moveDir.x, 0, moveDir.y);
             Vector3 finalPos = new Vector3();
-            Ray ray = new Ray(transform.position, moveDir);
-            RaycastHit hit;
             finalPos = transform.position + inputDir.normalized * dashDistance;
-            cc.Move( finalPos  - transform.position);
+            Debug.Log("Dash!");
+            StartCoroutine(Dash( finalPos  - transform.position));
         }
         else Debug.Log("Nenhuma direção sendo apertada");
     }
-    
+
+    IEnumerator Dash(Vector3 movement) {
+        agent.actionable = false;
+        dashTrail.enabled = true;
+        
+        float timer = 0;
+        Vector3 step = (movement / dashDuration) * Time.fixedDeltaTime;
+        
+        while (timer < dashDuration) {
+            cc.Move(step);
+            timer += Time.fixedDeltaTime;
+            yield return null;
+        }
+        
+        agent.actionable = true;
+        yield return new WaitForSeconds(0.1f);
+        dashTrail.enabled = false;
+    }
     
 }
