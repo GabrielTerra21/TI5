@@ -77,12 +77,6 @@ public abstract class Character : MonoBehaviour
         return dmg;
     }
 
-    // O metodo é chamado ShowDamage, mas é utilizado para mostrar vida regenerada tambem.
-    private void ShowDamage(int damage)
-    {
-
-    }
-
     public int Power() { return attack + attackBonus; }
 
     public int Defense() { return defense + defenseBonus; }
@@ -130,7 +124,8 @@ public abstract class Character : MonoBehaviour
             mats[i] = clone;
         }
 
-        render.materials = mats;
+        if (render) render.materials = mats;
+        else meshRenderer.materials = mats;
 
         clone.shader = Shader.Find("Unlit/DamageShader");
         yield return new WaitForSeconds(0.5f);
@@ -141,7 +136,8 @@ public abstract class Character : MonoBehaviour
             mats[i] = mat;
         }
 
-        render.materials = mats;
+        if (render) render.materials = mats;
+        else meshRenderer.materials = mats;
     }
     /*
     public void Furia(int power, float castTime) 

@@ -5,6 +5,7 @@ Shader "Unlit/DrawHalo"
         _MainTex ("Texture", 2D) = "white" {}
         _Color ("Color", Color) = (1, 1, 1, 1)
         _Thickness ("Aura Thickness", Range(0, 0.5)) = 0.4
+        _FillAmount("Fill Amount", Range(0, 1)) = 1
     }
     SubShader
     {

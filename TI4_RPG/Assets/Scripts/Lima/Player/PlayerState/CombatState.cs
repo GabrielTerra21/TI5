@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -175,11 +176,8 @@ public class CombatState : State {
     // utilizado para chamar o metodo automaticamente caso não haja alvo
     public void TargetNext() {
         //target = eDetect.GetNextTarget(target);
-        Character nTarget  = null;
-        foreach (var data in enemies) {
-            if (data != null) nTarget = data;
-        }
-        if(nTarget == null){GameManager.Instance.CallExploration();}
+        Character nTarget = enemies.First(data => data != null);
+        if (nTarget == null) { GameManager.Instance.CallExploration(); }
         else {
             target = nTarget;
             line.Target(target.LockOnTarget);
