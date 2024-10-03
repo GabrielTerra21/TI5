@@ -1,25 +1,3 @@
-<<<<<<< Updated upstream
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using TMPro;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
-
-public abstract class Character : MonoBehaviour
-{
-    [Header("Character Components")]
-    public Animator animator;
-    public GameObject LockOnTarget;
-    public UnityEvent OnDeath, OnDamage,OnHeal;
-    public GameObject hitMark;
-    public List<GameObject> dependencies;
-
-    [SerializeField] private SkinnedMeshRenderer render;
-    [SerializeField] private MeshRenderer meshRenderer;
-    [SerializeField] protected Material mat;
-=======
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,7 +18,6 @@ public abstract class Character : MonoBehaviour
     [SerializeField] private SkinnedMeshRenderer render;
     [SerializeField] private MeshRenderer meshRenderer;
     [SerializeField] protected Material mat;
->>>>>>> Stashed changes
     [SerializeField] protected Shader lit;
 
     [Header("UI Character Elements"), Space(10)]
@@ -117,66 +94,6 @@ public abstract class Character : MonoBehaviour
     public virtual void Pause()
     {
         if (animator != null)
-<<<<<<< Updated upstream
-            animator.speed = 1;
-    }
-
-    public virtual void Heal(int heal) {
-        life += heal;
-        if (life > data.maxHp) life = data.maxHp;
-        OnHeal.Invoke();
-    }
-
-    public abstract void Die();
-
-    IEnumerator Flash(Material mat) {
-        Material clone = new Material(mat);
-        Material[] mats;
-        if (render) {
-            mats = render.materials;
-        }
-        else {
-            mats = meshRenderer.materials;
-        }
-
-        for (int i = 0; i < mats.Length; i++) {
-            mats[i] = clone;
-        }
-
-        render.materials = mats;
-
-        clone.shader = Shader.Find("Unlit/DamageShader");
-        yield return new WaitForSeconds(0.5f);
-        clone.shader = lit;
-
-        for (int i = 0; i < mats.Length; i++) {
-            mats[i] = mat;
-        }
-
-        render.materials = mats;
-    }
-    /*
-    public void Furia(int power, float castTime) 
-    {
-        attack += power;
-        count = castTime;
-    }
-    
-    
-    private void Update()
-    {
-        if (count > 0 && !GameManager.Instance.paused)
-        {
-            count -= Time.deltaTime;
-        }
-        else if(count < 0 && !GameManager.Instance.paused)
-        {
-            GetData();
-        }
-    }
-    */
-}
-=======
             animator.speed = 0;
     }
 
@@ -199,7 +116,7 @@ public abstract class Character : MonoBehaviour
     {
         Material clone = new Material(mat);
         Material[] mats;
-        if (render)
+        if (render != null)
         {
             mats = render.materials;
         }
@@ -247,4 +164,3 @@ public abstract class Character : MonoBehaviour
     }
     */
 }
->>>>>>> Stashed changes
