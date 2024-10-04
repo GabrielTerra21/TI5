@@ -8,6 +8,7 @@ public class CombatState : State {
     [Space(10)] [Header("State Components")] 
     [SerializeField] private SplineLine line;
     [SerializeField] private AttackIndicator aoe;
+    [SerializeField] private Material aoeMat;
     public Character agent;
     [SerializeField] private Character target;
     [SerializeField] private EngageSphere eDetect;
@@ -20,6 +21,8 @@ public class CombatState : State {
     [SerializeField] private SkillDataSO autoAttack;
     [SerializeField] private float attackRange = 1f;
     [SerializeField] private float coolDown;
+    [SerializeField] private float dashCoolDown;
+    [SerializeField] private bool dashReady = true;
     [SerializeField] private float dashDistance;
     [SerializeField] private float dashDuration;
     [SerializeField] private TrailRenderer dashTrail;
@@ -197,14 +200,26 @@ public class CombatState : State {
     }
 
     private void Dash(InputAction.CallbackContext context) {
-        if (moveDir != Vector2.zero) {
+        if (moveDir != Vector2.zero && dashReady) {
             Vector3 inputDir = new Vector3(moveDir.x, 0, moveDir.y);
             Vector3 finalPos = new Vector3();
             finalPos = transform.position + inputDir.normalized * dashDistance;
-            Debug.Log("Dash!");
             StartCoroutine(Dash( finalPos  - transform.position));
+            StartCoroutine(DashCD());
         }
-        else Debug.Log("Nenhuma direção sendo apertada");
+    }
+
+    IEnumerator DashCD() {
+        dashReady = false;
+        float timer = 0;
+
+        while (timer < dashCoolDown) {
+            timer += Time.fixedDeltaTime;
+            aoe.GetComponent<MeshRenderer>().material.SetFloat("_FillAmount", timer/dashCoolDown);
+            yield return null;
+        }
+
+        dashReady = true;
     }
 
     IEnumerator Dash(Vector3 movement) {

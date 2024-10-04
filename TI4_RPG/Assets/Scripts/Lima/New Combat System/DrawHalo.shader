@@ -6,12 +6,14 @@ Shader "Unlit/DrawHalo"
         _Color ("Color", Color) = (1, 1, 1, 1)
         _Thickness ("Aura Thickness", Range(0, 0.5)) = 0.4
         _FillAmount("Fill Amount", Range(0, 1)) = 1
+        _Rotation ("Roation", Range(0, 360)) = 0
     }
     SubShader
     {
         Tags { "Queue" = "Transparent" }
         LOD 100
         Blend SrcAlpha OneMinusSrcAlpha
+        ZTest Off
 
         Pass
         {
@@ -37,12 +39,27 @@ Shader "Unlit/DrawHalo"
             float4 _MainTex_ST;
             half4 _Color;
             half _Thickness;
+            half _FillAmount;
+            half _Rotation;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+
+                float radians = _Rotation * UNITY_PI / 180; 
+
+                float s = sin(radians);
+                float c = cos(radians);
+
+                float2x2 rotMat = float2x2(c, -s,
+                                           s , c );
+                
+                float2 rotationUV = o.uv.xy * 2 - 1;
+                rotationUV = mul(rotMat, rotationUV);
+                o.uv = rotationUV * 0.5 + 0.5;
+                
                 return o;
             }
 
@@ -50,7 +67,12 @@ Shader "Unlit/DrawHalo"
             {
                 float dist = length(i.uv - float2(0.5, 0.5));
                 float val  = dist< 0.5 && dist> (0.5 - _Thickness);
-                return (_Color * val);
+
+                float2 uvCenter = i.uv.xy * 2 - 1;
+                float rad = atan2(uvCenter.y, uvCenter.x) / (UNITY_PI);
+                rad = step(rad * 0.5 + 0.5, _FillAmount);
+                
+                return (_Color * val) * rad;
             }
             ENDCG
         }

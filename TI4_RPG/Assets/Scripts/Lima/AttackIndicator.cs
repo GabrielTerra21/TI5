@@ -21,7 +21,7 @@ public class AttackIndicator : MonoBehaviour {
         mat.color = defaultCol;
     }
 
-    private void FixedUpdate() {
+    private void LateUpdate() {
         transform.rotation = Quaternion.identity;
     }
 
