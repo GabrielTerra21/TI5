@@ -4,6 +4,7 @@ Shader "Unlit/MapFade"
     {
         [PerRendererData]_MainTex ("Texture", 2D) = "white" {}
         _Color ("Color", color) = (1, 1, 1, 1)
+        _Range ("Range", Range(0, 0.5)) = 0.4
         
         // Coisa de Manipulação de Imagem
         _StencilComp ("Stencil Comparison", float) = 8
@@ -99,6 +100,7 @@ Shader "Unlit/MapFade"
             fixed4 _TextureSampleAdd; // Necessario
             float4 _ClipRect; // Necessario
             float4 _MainTex_ST; // Necessario
+            float _Range;
 
             // Vertex Shader, um foreach por vertice
             v2f vert (appdata v)
@@ -144,6 +146,7 @@ Shader "Unlit/MapFade"
                 // Minha logica pra distancia, pode desconsiderar
                 float scale = CalculateDistance(i);
                 scale *= scale;
+                scale = 1 - step(scale, _Range);
 
                 
                 return color * (1- scale); // multiplica a cor pelo valor do meu calculo, pra reduzir o alpha de acordo

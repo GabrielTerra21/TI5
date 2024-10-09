@@ -64,20 +64,20 @@ public class GameManager : MonoBehaviour {
         actionBar.UpdateBar(ap);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        keysText.text = "Keys : " + keys/10 + keys % 10;
-        ecosText.text = "Ecos : " + ecos/10 + ecos % 10;
+        keysText.text = " : " + keys/10 + keys % 10;
+        ecosText.text = " : " + ecos/10 + ecos % 10;
     }
 
     // Reduz price da quantidade de dinheiro que o jogador tem.
     public void SpendEcos(int price) {
         ecos -= price;
-        ecosText.text = "Ecos : " + ecos/10 + ecos % 10;
+        ecosText.text = " : " + ecos/10 + ecos % 10;
     }
 
     // Adiciona amount à quantidade de dinheiro do Jogador
     public void GainEcos(int amount) {
         ecos += amount;
-        ecosText.text = "Ecos : " + ecos/10 + ecos % 10;
+        ecosText.text = " : " + ecos/10 + ecos % 10;
     }
 
     // Adiciona amount à barra de AP do jogador
@@ -100,12 +100,12 @@ public class GameManager : MonoBehaviour {
 
     public void GainKey() {
         keys++;
-        keysText.text = "Keys : " + keys/10 + keys % 10;
+        keysText.text = " : " + keys/10 + keys % 10;
     }
 
     public void LoseKey() {
         keys--;
-        keysText.text = "Keys : " + keys/10 + keys % 10 ;
+        keysText.text = " : " + keys/10 + keys % 10 ;
     }
 
     public StatusDisplay GetStatusSlot() {

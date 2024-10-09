@@ -17,19 +17,12 @@ public class Room : MonoBehaviour
     // Checa se a sala ja foi vencida pelo player e desliga / liga
     // portas, inimigos e tesouros de acordo com o status da sala
     public void EnterRoom() {
-        if (GameManager.Instance.CheckClearedRooms(ID)) {
-            Debug.Log($"Room {ID} already cleared");
-        }
+        if (GameManager.Instance.CheckClearedRooms(ID)) 
+            foreach (var data in enemies) data.gameObject.SetActive(false);
         else{
-            if (enemies != null) {
-                foreach (var data in enemies) {
-                    data.gameObject.SetActive(true);
-                    //data.OnDeath.AddListener(CheckIfEmpty);
-                }
-            }
-            if (treasure != null) {
-                treasure.SetActive(true);
-            }
+            if (enemies != null)
+                foreach (var data in enemies) data.gameObject.SetActive(true); 
+            if (treasure != null) treasure.SetActive(true);
         }
     }
 
@@ -50,7 +43,7 @@ public class Room : MonoBehaviour
         Debug.Log($"Room {ID} cleared");
         GameManager.Instance.AddClearedRoom(ID);
     }
-
+    /*
     public void ApplyEffect(Effect effect)
     {
         foreach(Enemy enemy in enemies)
@@ -58,4 +51,5 @@ public class Room : MonoBehaviour
             effect.DoStuff(enemy);
         }
     }
+    */
 }
