@@ -8,8 +8,9 @@ Shader "Unlit/DrawTimedAOE"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
+        Tags {"Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType"="Transparent" }
+        ZWrite On
+        
         Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
