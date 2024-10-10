@@ -145,6 +145,7 @@ Shader "Unlit/MapFade"
 
                 // Minha logica pra distancia, pode desconsiderar
                 float scale = CalculateDistance(i);
+                float outerBorder = scale+ 0.1;
                 scale *= scale;
                 scale = 1 - step(scale, _Range);
 
