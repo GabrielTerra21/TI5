@@ -26,7 +26,8 @@ public class CombatState : State {
     [SerializeField] private float dashDistance;
     [SerializeField] private float dashDuration;
     [SerializeField] private TrailRenderer dashTrail;
-    public SkillDataSO[] skills = new SkillDataSO[6]; 
+    public SkillDataSO[] skills = new SkillDataSO[6];
+    [SerializeField] private bool firstTime = true;
     
     
     [Space(5)]
@@ -57,6 +58,7 @@ public class CombatState : State {
     protected override void Start() {
         base.Start();
         aoe.SetRange(attackRange);
+        
     }
 
     //Subscreve as respectivas ações ao mapa de ações do input Manager
@@ -66,6 +68,7 @@ public class CombatState : State {
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").canceled += OnMovement;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("SwitchEnemy").performed += TargetNext;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Dash").performed += Dash;
+        
     }
 
     //Desubscreve as respectivas ações ao mapa de ações do input Manager
@@ -149,7 +152,7 @@ public class CombatState : State {
         TargetNext();
         line.gameObject.SetActive(true);
         line.Target(target.LockOnTarget);
-        
+
         return this;
     }
     

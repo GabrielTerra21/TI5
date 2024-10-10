@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour {
     public SkillDataSO empty;
     public Vinhette vinhette;
     public Action UpdateUI;
+    [SerializeField] private GameObject tutorialScreen;
     
     [Header("Managers Components")]
     public PlayerInput playerInput;
@@ -220,6 +221,10 @@ public class GameManager : MonoBehaviour {
     public void UIUpdate()
     {
         UpdateUI?.Invoke();
+    }
+    
+    public void OpenTutorial() {
+        tutorialScreen.SetActive(true);
     }
 
     

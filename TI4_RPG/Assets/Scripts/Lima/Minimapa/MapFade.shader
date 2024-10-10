@@ -145,12 +145,13 @@ Shader "Unlit/MapFade"
 
                 // Minha logica pra distancia, pode desconsiderar
                 float scale = CalculateDistance(i);
-                float outerBorder = scale+ 0.1;
                 scale *= scale;
+                float outerBorder = 1 -step(scale, _Range - 0.025);
                 scale = 1 - step(scale, _Range);
+                outerBorder -= scale;
 
                 
-                return color * (1- scale); // multiplica a cor pelo valor do meu calculo, pra reduzir o alpha de acordo
+                return color * (1- scale) + outerBorder; // multiplica a cor pelo valor do meu calculo, pra reduzir o alpha de acordo
             }
             ENDCG
         }
