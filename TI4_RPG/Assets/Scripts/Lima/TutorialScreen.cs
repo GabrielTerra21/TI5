@@ -3,20 +3,24 @@ using UnityEngine.InputSystem;
 
 public class TutorialScreen : MonoBehaviour {
 
-    private void OnEnable() {
-        Open();
+    [SerializeField] private GameObject tutorialInterface;
+
+    private void Start() {
+        if(!GameManager.Instance.tutorial1) GameManager.Instance.enterCombat.AddListener(Open);
     }
 
     public void Open() {
         GameManager.Instance.EnterUI();
+        tutorialInterface.SetActive(true);
         GameManager.Instance.playerInput.actions["Confirm"].performed += Close;
+        GameManager.Instance.enterCombat.RemoveListener(Open);
+        GameManager.Instance.tutorial1 = true;
     }
 
     public void Close(InputAction.CallbackContext context) {
         //Toca animação
-        Debug.Log("opa");
         GameManager.Instance.playerInput.actions["Confirm"].performed -= Close;
-        gameObject.SetActive(false);
+        tutorialInterface.SetActive(false);
         GameManager.Instance.ExitUI();
     }
     
