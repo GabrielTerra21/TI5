@@ -9,7 +9,7 @@ public class StoreItem : MonoBehaviour {
     [SerializeField] private TMP_Text itemID, itemDescription, priceTag;
     [SerializeField] private Image sprite;
     [SerializeField] private int price;
-    [SerializeField] private bool boougth = false;
+    [SerializeField] private bool bought = false;
     [SerializeField] private GameObject highlight, darkened;
     
     private Vector3 defaultSize;
@@ -18,23 +18,30 @@ public class StoreItem : MonoBehaviour {
 
     protected void Start() {
         rect = GetComponent<RectTransform>();
-        itemID.text = skill.SkillName;
-        itemDescription.text = skill.Description;
-        priceTag.text = price.ToString();
-        sprite.sprite = skill.Icon;
-
         defaultSize = rect.localScale;
+    }
+
+    private void OnEnable() {
+        if (!bought) SetUp();
+        else SetInactive();
     }
 
     private void Purchase() {
         if (GameManager.Instance.ecos >= price) {
-            // Aprende Skill
-            boougth = true;
-            // Desativar
+         GameManager.Instance.LearnSkill(skill);
+         bought = true;
+         SetInactive();
         }
         else {
-            // Falha
+            Debug.Log("O jogador não possui dinheiro suficiente para efetuar a compra.");
         }
+    }
+
+    private void SetUp() {
+        itemID.text = skill.SkillName;
+        itemDescription.text = skill.Description;
+        priceTag.text = price.ToString();
+        sprite.sprite = skill.Icon;
     }
 
     private void SetInactive() {
@@ -43,7 +50,6 @@ public class StoreItem : MonoBehaviour {
         itemDescription.text = null;
         priceTag.text = null;
         darkened.SetActive(true);
-        
     }
     
     // Aumenta o tamanho do botão ao botar o mouse sobre o botão

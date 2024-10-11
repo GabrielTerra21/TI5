@@ -202,6 +202,10 @@ public class GameManager : MonoBehaviour {
         playerInput.SwitchCurrentActionMap(prevActionMap);
     }
 
+    public void LearnSkill(SkillDataSO skill) {
+        combatState.LearnSkill(skill);
+    }
+
     // Despausa o jogo e invoca o evento de despausa.
     public void UnpauseGame() {
         if (!paused) { throw new Exception("Is not paused"); }

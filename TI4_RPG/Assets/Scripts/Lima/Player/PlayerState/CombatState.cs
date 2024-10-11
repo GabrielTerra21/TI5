@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -115,6 +116,7 @@ public class CombatState : State {
             animator.SetFloat("Movement", moveDir.magnitude);
         }
         */
+        
         transform.LookAt(agent.transform.position + new Vector3(moveDir.x, 0, moveDir.y));
         animator.SetFloat("Movement", moveDir.magnitude);
     }
@@ -244,6 +246,15 @@ public class CombatState : State {
         agent.actionable = true;
         yield return new WaitForSeconds(0.1f);
         dashTrail.enabled = false;
+    }
+
+    public void LearnSkill(SkillDataSO skill) {
+        try {
+            skills[skills.Length] = skill;
+        }
+        catch {
+            throw new Exception("Numero maximo de skills ja alcançado");
+        }
     }
     
 }
