@@ -11,7 +11,9 @@ Shader "Unlit/AOE"
         }
         SubShader
         {
-            Tags{"Queue" = "Transparent"}
+            Tags{"Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent"}
+            ZWrite On
+            
             Blend SrcAlpha OneMinusSrcAlpha
     
             Pass

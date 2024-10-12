@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrystalEnemy : Enemy
 {
-    public Room room;
+    //public Room room;
     public Effect effect;
     float countLoop = 0;
     public GameObject particles;
@@ -17,10 +17,12 @@ public class CrystalEnemy : Enemy
         base.Start();
         if(type == Type.Instant)
         {
+            /*
             foreach(Enemy enemy in room.enemies)
             {
                 effect.DoStuff(enemy);
             }
+            */
         }
     }
     private void FixedUpdate()
@@ -31,17 +33,19 @@ public class CrystalEnemy : Enemy
             if (countLoop >= effect.interval)
             {
                 countLoop = 0;
-
+                /*
                 foreach (Character character in room.enemies)
                 {
                     effect.DoStuff(character);
                 }
+                */
                 Instantiate(particles,transform.position,transform.rotation);
             }
         }
     }
     public void OnDeathEffect(Effect e)
     {
-        room.ApplyEffect(e);
+        
+        //room.ApplyEffect(e);
     }
 }

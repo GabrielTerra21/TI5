@@ -7,9 +7,10 @@ Shader "Unlit/DrawSquareAOE"
     }
     SubShader
     {
-        Tags { "Queue" = "Transparent" }
-        LOD 100
+        Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent"}
         Blend SrcAlpha OneMinusSrcAlpha
+        
+        ZWrite On
 
         Pass
         {

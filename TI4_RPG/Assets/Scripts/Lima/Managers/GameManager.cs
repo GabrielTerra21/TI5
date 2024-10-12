@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour {
     public string currentScene;
     public Portal previousDoor;
     public List<string> clearedRooms = new List<string>();
+    [SerializeField] private string prevActionMap;
+    public bool tutorial1 = false;
 
     [Header("UI Components")] 
     [SerializeField] private TMP_Text ecosText;
@@ -64,20 +66,20 @@ public class GameManager : MonoBehaviour {
         actionBar.UpdateBar(ap);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        keysText.text = "Keys : " + keys/10 + keys % 10;
-        ecosText.text = "Ecos : " + ecos/10 + ecos % 10;
+        keysText.text = " : " + keys/10 + keys % 10;
+        ecosText.text = " : " + ecos/10 + ecos % 10;
     }
 
     // Reduz price da quantidade de dinheiro que o jogador tem.
     public void SpendEcos(int price) {
         ecos -= price;
-        ecosText.text = "Ecos : " + ecos/10 + ecos % 10;
+        ecosText.text = " : " + ecos/10 + ecos % 10;
     }
 
     // Adiciona amount à quantidade de dinheiro do Jogador
     public void GainEcos(int amount) {
         ecos += amount;
-        ecosText.text = "Ecos : " + ecos/10 + ecos % 10;
+        ecosText.text = " : " + ecos/10 + ecos % 10;
     }
 
     // Adiciona amount à barra de AP do jogador
@@ -100,12 +102,12 @@ public class GameManager : MonoBehaviour {
 
     public void GainKey() {
         keys++;
-        keysText.text = "Keys : " + keys/10 + keys % 10;
+        keysText.text = " : " + keys/10 + keys % 10;
     }
 
     public void LoseKey() {
         keys--;
-        keysText.text = "Keys : " + keys/10 + keys % 10 ;
+        keysText.text = " : " + keys/10 + keys % 10 ;
     }
 
     public StatusDisplay GetStatusSlot() {
@@ -141,9 +143,7 @@ public class GameManager : MonoBehaviour {
     // Cuida das animações da vinheta de morte, teleporta o jogador de volta para a sala anterior
     // e lida com o carregamento e descarregamento de cenas.
     IEnumerator LoadPreviousScreen() {
-        vinhette.Cover();
-        
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(vinhette.Cover());
         
         AsyncOperation sceneToLoad = SceneManager.LoadSceneAsync(previousDoor.roomID, LoadSceneMode.Additive);
         AsyncOperation sceneToUnload = SceneManager.UnloadSceneAsync(currentScene);
@@ -153,9 +153,8 @@ public class GameManager : MonoBehaviour {
         player.Teleport(previousDoor.spawnPoint.position);
         
         yield return new WaitUntil(() => sceneToUnload.isDone);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(vinhette.Uncover());
         
-        Instance.vinhette.Uncover();
         yield return new WaitForSeconds(1);
         
         Instance.UnpauseGame();
@@ -191,6 +190,7 @@ public class GameManager : MonoBehaviour {
         PauseGame();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        prevActionMap = playerInput.currentActionMap.name;
         playerInput.SwitchCurrentActionMap("MyUI");
     }
 
@@ -199,7 +199,11 @@ public class GameManager : MonoBehaviour {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         UnpauseGame();
-        playerInput.SwitchCurrentActionMap("Action");
+        playerInput.SwitchCurrentActionMap(prevActionMap);
+    }
+
+    public void LearnSkill(SkillDataSO skill) {
+        combatState.LearnSkill(skill);
     }
 
     // Despausa o jogo e invoca o evento de despausa.
@@ -221,7 +225,6 @@ public class GameManager : MonoBehaviour {
     {
         UpdateUI?.Invoke();
     }
-
     
     // Aguarda até que o jogo não esteja mais em estado de pausa para invocar o evento
     // necessario para que as animações de interface toquem

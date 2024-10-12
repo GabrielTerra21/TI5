@@ -1,11 +1,14 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Room : MonoBehaviour
 {
     public String ID;
     public Enemy[] enemies;
     public GameObject treasure;
+    [SerializeField] private UnityEvent ev;
 
     
     // Adiciona ao evento de morte de cada inimigo presente
@@ -18,31 +21,16 @@ public class Room : MonoBehaviour
     // portas, inimigos e tesouros de acordo com o status da sala
     public void EnterRoom() {
         if (GameManager.Instance.CheckClearedRooms(ID)) {
-            Debug.Log($"Room {ID} already cleared");
+            foreach (var data in enemies) data.gameObject.SetActive(false);
+            return;
         }
-        else{
-            if (enemies != null) {
-                foreach (var data in enemies) {
-                    data.gameObject.SetActive(true);
-                    //data.OnDeath.AddListener(CheckIfEmpty);
-                }
-            }
-            if (treasure != null) {
-                treasure.SetActive(true);
-            }
-        }
+        
+        if (enemies != null)
+            foreach (var data in enemies) data.gameObject.SetActive(true);
+        if (treasure != null) treasure.SetActive(true);
+        if(ev != null) ev.Invoke();
+        
     }
-
-    // Checa se todos os inimigos da sala foram mortos
-    // chama metodo de vencer sala se for verdade.
-    /*
-    public void CheckIfEmpty() {
-        foreach (var data in enemies) {
-            if(data != null) return;
-        }
-        ClearRoom();
-    }
-    */
 
     // Adiciona o ID da sala à lista de sala vencidas
     // ativa as portas da sala
@@ -50,7 +38,10 @@ public class Room : MonoBehaviour
         Debug.Log($"Room {ID} cleared");
         GameManager.Instance.AddClearedRoom(ID);
     }
-
+    
+    
+    
+    /*
     public void ApplyEffect(Effect effect)
     {
         foreach(Enemy enemy in enemies)
@@ -58,4 +49,5 @@ public class Room : MonoBehaviour
             effect.DoStuff(enemy);
         }
     }
+    */
 }

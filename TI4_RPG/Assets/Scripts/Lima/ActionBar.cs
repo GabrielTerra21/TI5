@@ -14,7 +14,7 @@ public class ActionBar : MonoBehaviour {
     private bool full;
     private RectTransform rect;
     
-
+    [SerializeField] private AudioSource audioSource;
 
     private void Start() {
         barFill.color = darkened;
@@ -36,6 +36,7 @@ public class ActionBar : MonoBehaviour {
 
     private void HighLight() {
         barFill.color = highlight;
+	audioSource.Play();
         StartCoroutine(ChangeSize(sizeChangeModifier));
     }
 

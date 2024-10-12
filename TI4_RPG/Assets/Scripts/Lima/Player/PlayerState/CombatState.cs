@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,8 @@ public class CombatState : State {
     [SerializeField] private float dashDistance;
     [SerializeField] private float dashDuration;
     [SerializeField] private TrailRenderer dashTrail;
-    public SkillDataSO[] skills = new SkillDataSO[6]; 
+    public SkillDataSO[] skills = new SkillDataSO[6];
+    [SerializeField] private bool firstTime = true;
     
     
     [Space(5)]
@@ -57,6 +59,7 @@ public class CombatState : State {
     protected override void Start() {
         base.Start();
         aoe.SetRange(attackRange);
+        
     }
 
     //Subscreve as respectivas ações ao mapa de ações do input Manager
@@ -66,6 +69,7 @@ public class CombatState : State {
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Movement").canceled += OnMovement;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("SwitchEnemy").performed += TargetNext;
         InputManager.Instance.actions.FindActionMap("Combat").FindAction("Dash").performed += Dash;
+        
     }
 
     //Desubscreve as respectivas ações ao mapa de ações do input Manager
@@ -112,6 +116,7 @@ public class CombatState : State {
             animator.SetFloat("Movement", moveDir.magnitude);
         }
         */
+        
         transform.LookAt(agent.transform.position + new Vector3(moveDir.x, 0, moveDir.y));
         animator.SetFloat("Movement", moveDir.magnitude);
     }
@@ -149,7 +154,7 @@ public class CombatState : State {
         TargetNext();
         line.gameObject.SetActive(true);
         line.Target(target.LockOnTarget);
-        
+
         return this;
     }
     
@@ -177,13 +182,16 @@ public class CombatState : State {
     
     // Mesma coisa que o TargetNext mas não possui argumentos
     // utilizado para chamar o metodo automaticamente caso não haja alvo
+    // Tenta encontrar um novo alvo automaticamente, em caso de falha, encerra o combate.
     public void TargetNext() {
-        //target = eDetect.GetNextTarget(target);
-        Character nTarget = enemies.First(data => data != null);
-        if (nTarget == null) { GameManager.Instance.CallExploration(); }
-        else {
+        try {
+            Character nTarget = enemies?.First(data => data != null);
             target = nTarget;
             line.Target(target.LockOnTarget);
+        }
+        catch {
+             GameManager.Instance.CallExploration();
+             return;
         }
     }
 
@@ -238,6 +246,15 @@ public class CombatState : State {
         agent.actionable = true;
         yield return new WaitForSeconds(0.1f);
         dashTrail.enabled = false;
+    }
+
+    public void LearnSkill(SkillDataSO skill) {
+        try {
+            skills[skills.Length] = skill;
+        }
+        catch {
+            throw new Exception("Numero maximo de skills ja alcançado");
+        }
     }
     
 }
