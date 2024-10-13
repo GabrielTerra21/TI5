@@ -13,6 +13,7 @@ public class Portal : MonoBehaviour {
     [SerializeField] private TileManager tileManager;
     public bool locked = false;
 
+    [SerializeField] private AudioSource audioSource;
 
     private void Start() {
         GameManager.Instance.enterExploration.AddListener(TurnOn);
@@ -64,6 +65,8 @@ public class Portal : MonoBehaviour {
 
     IEnumerator Loading(Player player) {
         //GameManager.Instance.state = GameManager.GameState.CINEMATIC;
+	audioSource.Play();
+
         GameManager.Instance.PauseGame();
         GameManager.Instance.vinhette.FadeIn();
         

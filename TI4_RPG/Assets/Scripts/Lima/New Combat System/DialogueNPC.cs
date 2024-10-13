@@ -9,6 +9,7 @@ public class DialogueNPC : WaitingTrigger {
     // faz com que o jogador itere pelo arranjo de dialogos, até que chegue no ultimo dialogo do NPC
     // neste caso, o NPC irá repetir o ultimo dialogo nas futuras interações.
     protected override void Start() {
+        base.Start();
         action.AddListener(() => {
             GameManager.Instance.DialogueManager.StartDialogue(dialogue[counter]);
             if (counter < dialogue.Length - 1) counter++;

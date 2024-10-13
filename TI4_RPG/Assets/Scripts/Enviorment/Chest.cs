@@ -14,6 +14,9 @@ public class Chest : MonoBehaviour
     [SerializeField] bool isUsed = false;
     [SerializeField] private GameObject moneyAnim, keyAnim;
     [SerializeField] private TMP_Text moneyText;
+
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip audioClip;
     void Start()
     {
         chestAnimator = GetComponent<Animator>();
@@ -23,6 +26,10 @@ public class Chest : MonoBehaviour
         if (!isUsed)
         {
             chestAnimator.SetTrigger("OpenChest");
+
+	    audioSource.clip = audioClip;
+	    audioSource.Play();
+
             switch (type) {
                 case REWARD.MONEY:
                     GameManager.Instance.GainEcos(amount);

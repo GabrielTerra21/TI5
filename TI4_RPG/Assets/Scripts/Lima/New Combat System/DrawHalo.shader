@@ -10,10 +10,10 @@ Shader "Unlit/DrawHalo"
     }
     SubShader
     {
-        Tags { "Queue" = "Transparent" }
-        LOD 100
+        Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType"  = "Transparent + 1"}
+        ZWrite On
+        
         Blend SrcAlpha OneMinusSrcAlpha
-        ZTest Off
 
         Pass
         {

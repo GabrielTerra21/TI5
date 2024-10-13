@@ -9,24 +9,28 @@ public class Vinhette : MonoBehaviour {
         anim = GetComponent<Animation>();
     }
 
-    public void FadeIn() {
+    public float FadeIn() {
         anim.clip = fadeIn;
         anim.Play();
+        return fadeIn.length;
     }
 
-    public void FadeOut() {
+    public float FadeOut() {
         anim.clip = fadeOut;
         anim.Play();
+        return fadeOut.length;
     }
 
-    public void Cover() {
+    public float Cover() {
         anim.clip = cover;
         anim.Play();
+        return cover.length;
     }
 
-    public void Uncover() {
+    public float Uncover() {
         anim.clip = uncover;
         anim.Play();
+        return uncover.length;
     }
     
 }
