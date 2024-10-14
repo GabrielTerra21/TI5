@@ -1520,6 +1520,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 329574267}
     m_Modifications:
+    - target: {fileID: 1749066982447441838, guid: f2c8010a8747f9442bc122a07726377c,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 8d4699e417a5f9b4ca27f62df5a186ac,
+        type: 2}
+    - target: {fileID: 1749066982447441838, guid: f2c8010a8747f9442bc122a07726377c,
+        type: 3}
+      propertyPath: m_UseGeometry
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7147760232060534084, guid: f2c8010a8747f9442bc122a07726377c,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1595,7 +1606,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1749066982447441838, guid: f2c8010a8747f9442bc122a07726377c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -1635,7 +1647,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_GenerateLinks: 0
   m_IgnoreNavMeshAgent: 1
@@ -1645,7 +1657,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: bea2668890956894aab52442d4509447, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: fb373c7d359e4494f84994be3b352b68, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1001 &382235014
 PrefabInstance:
@@ -3205,6 +3217,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: New RatomeloEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177806162373619846, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5044,6 +5061,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: New RatomeloEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7177806162373619846, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6176,6 +6198,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CrystalEnemy 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3512772342961818681, guid: 78f50e42e255052458b8fc587e5d62bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6967118780054287847, guid: 78f50e42e255052458b8fc587e5d62bf,
         type: 3}
