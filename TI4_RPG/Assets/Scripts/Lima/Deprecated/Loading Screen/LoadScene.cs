@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 
 public class LoadScene : MonoBehaviour {
-    private List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
+    [SerializeField] private List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
     [SerializeField] private Image loadingBar;
     [SerializeField] private GameObject buttons;
     public void LoadSceneAsync() {
