@@ -28,7 +28,6 @@ public class CombatState : State {
     [SerializeField] private float dashDuration;
     [SerializeField] private TrailRenderer dashTrail;
     public SkillDataSO[] skills = new SkillDataSO[6];
-    [SerializeField] private bool firstTime = true;
     
     
     [Space(5)]

@@ -13954,50 +13954,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df27d48efd47f1e47a1c9786c87d29aa, type: 3}
---- !u!1 &1459413848
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1459413850}
-  - component: {fileID: 1459413849}
-  m_Layer: 0
-  m_Name: ROOM MANAGER
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1459413849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459413848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85478641b29a3e441904b8b8d2c9a4a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1459413850
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1459413848}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4335257000280555678}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1478482847
 GameObject:
   m_ObjectHideFlags: 0
@@ -20800,6 +20756,9 @@ MonoBehaviour:
       m_Calls: []
   oneTime: 1
   key: {fileID: 1813776892}
+  onEndDialogue:
+    m_PersistentCalls:
+      m_Calls: []
   dialogue:
   - {fileID: 11400000, guid: b301cad4f4e74ff4bb61101b5d2c85b4, type: 2}
   counter: 0
@@ -24772,7 +24731,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 474105312}
-  - {fileID: 1459413850}
   - {fileID: 1849598550}
   - {fileID: 8321513560597307694}
   - {fileID: 1998137897}
@@ -28917,7 +28875,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  firstTime: 1
   cc: {fileID: 6492438986448684155}
   moveDir: {x: 0, y: 0}
   ac: {fileID: 22100000, guid: aba9b61e9bd27d9469b0e87a0f3db15e, type: 2}
