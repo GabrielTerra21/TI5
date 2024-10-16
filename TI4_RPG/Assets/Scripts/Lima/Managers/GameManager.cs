@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour {
 
     // Pausa o jogo e chama o evento de pausa
     public void PauseGame() {
-        if (paused) { throw new Exception("Game is already paused"); }
+        if (paused)  throw new Exception("Game is already paused"); 
         if (currentScene == "Menu") return;
         pauseGame.Invoke();
         paused = true;

@@ -3,7 +3,6 @@ using UnityEngine.Events;
 
 public class WaitingTrigger : Trigger {
     [SerializeField] private GameObject key;
-    [SerializeField] private UnityEvent onEndDialogue;
     private bool spent = false;
     protected override void Start() {
         if (oneTime) {
@@ -19,12 +18,11 @@ public class WaitingTrigger : Trigger {
     
     protected virtual void OnTriggerEnter(Collider other) {
         //if (other.CompareTag("Player")) { other.GetComponent<Exploring>().waitingTriggers.Add(this); }
-        if (other.CompareTag("Player") && GameManager.Instance.state == GameManager.GameState.EXPLORATION && action != null) {
+        if (other.CompareTag("Player") && GameManager.Instance.state == GameManager.GameState.EXPLORATION && action != null && !spent) {
             other.GetComponent<Exploring>().interact.AddListener(() => {
                 action.Invoke();
-                onEndDialogue?.Invoke();
             });
-            if(key != null && !spent) key.SetActive(true);
+            if(key != null) key.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other) {

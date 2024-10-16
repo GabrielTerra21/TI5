@@ -8269,8 +8269,8 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_VertexColorAlwaysGammaSpace: 1
+  m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -9650,6 +9650,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.0007424039
       objectReference: {fileID: 0}
+    - target: {fileID: 2750390883826844426, guid: a4b6733dbf3066c4f87d23ffe887e6a6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 06c7fcf8f9b46c7489e27833118b9a7e, type: 2}
     - target: {fileID: 2999845974198269995, guid: a4b6733dbf3066c4f87d23ffe887e6a6,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -20756,9 +20761,6 @@ MonoBehaviour:
       m_Calls: []
   oneTime: 1
   key: {fileID: 1813776892}
-  onEndDialogue:
-    m_PersistentCalls:
-      m_Calls: []
   dialogue:
   - {fileID: 11400000, guid: b301cad4f4e74ff4bb61101b5d2c85b4, type: 2}
   counter: 0
@@ -25250,6 +25252,79 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &4959137837346839398
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4504353323472484068, guid: ff0de0a8fa9149e4b85e03ee0b4803dd,
+        type: 3}
+      propertyPath: m_Name
+      value: Seller
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102136447998227961, guid: ff0de0a8fa9149e4b85e03ee0b4803dd,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 643246532}
+    - target: {fileID: 6576465103274849999, guid: ff0de0a8fa9149e4b85e03ee0b4803dd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.187171
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576465103274849999, guid: ff0de0a8fa9149e4b85e03ee0b4803dd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.008616924
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576465103274849999, guid: ff0de0a8fa9149e4b85e03ee0b4803dd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.556286
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576465103274849999, guid: ff0de0a8fa9149e4b85e03ee0b4803dd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.91167533
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576465103274849999, guid: ff0de0a8fa9149e4b85e03ee0b4803dd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576465103274849999, guid: ff0de0a8fa9149e4b85e03ee0b4803dd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.4109113
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576465103274849999, guid: ff0de0a8fa9149e4b85e03ee0b4803dd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576465103274849999, guid: ff0de0a8fa9149e4b85e03ee0b4803dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576465103274849999, guid: ff0de0a8fa9149e4b85e03ee0b4803dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -48.524
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576465103274849999, guid: ff0de0a8fa9149e4b85e03ee0b4803dd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ff0de0a8fa9149e4b85e03ee0b4803dd, type: 3}
 --- !u!114 &5020034354964092104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28597,7 +28672,7 @@ MonoBehaviour:
   dependencies: []
   render: {fileID: 0}
   meshRenderer: {fileID: 0}
-  mat: {fileID: 2100000, guid: 755248b52af40de40b5663d1eea8b222, type: 2}
+  mat: {fileID: 0}
   lit: {fileID: 0}
   damageText: {fileID: 569197923}
   data: {fileID: 11400000, guid: 672b05e0383e68346a07d95ff22c5098, type: 2}
@@ -28920,3 +28995,4 @@ SceneRoots:
   - {fileID: 2094161990}
   - {fileID: 676742344}
   - {fileID: 916055502}
+  - {fileID: 4959137837346839398}
