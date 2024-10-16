@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] public int keys { get; private set; } = 0;
     public MyStat ap = new MyStat(25);
     private Exploring exploring;
-    private CombatState combatState;
+    [SerializeField] private CombatState combatState;
 
     [Header("Game Info")] 
     public GameState state;

@@ -7598,6 +7598,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2781493525484166250}
   - component: {fileID: 5314727104124802170}
+  - component: {fileID: 8605318943575194824}
   m_Layer: 5
   m_Name: SellingItemSlot_1
   m_TagString: Untagged
@@ -7645,12 +7646,74 @@ MonoBehaviour:
   skill: {fileID: 11400000, guid: 2ecce36b35babef438e748e8699edf23, type: 2}
   itemID: {fileID: 2198117195031567627}
   priceTag: {fileID: 7534110562474191088}
+  descriptor: {fileID: 920262446675188181}
   sprite: {fileID: 4189705659464693159}
   price: 10
   bought: 0
   darkened: {fileID: 1069795518926895621}
   growthMod: {x: 0.1, y: 0.1, z: 0}
   shrinkMod: {x: 0.2, y: 0.2, z: 0}
+--- !u!114 &8605318943575194824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7700892131509979415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5314727104124802170}
+          m_TargetAssemblyTypeName: StoreItem, Assembly-CSharp
+          m_MethodName: OnHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5314727104124802170}
+          m_TargetAssemblyTypeName: StoreItem, Assembly-CSharp
+          m_MethodName: OnExitHover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5314727104124802170}
+          m_TargetAssemblyTypeName: StoreItem, Assembly-CSharp
+          m_MethodName: OnClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7768595739602851978
 GameObject:
   m_ObjectHideFlags: 0

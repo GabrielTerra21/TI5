@@ -18,9 +18,9 @@ public class WaitingTrigger : Trigger {
     
     protected virtual void OnTriggerEnter(Collider other) {
         //if (other.CompareTag("Player")) { other.GetComponent<Exploring>().waitingTriggers.Add(this); }
-        if (other.CompareTag("Player") && GameManager.Instance.state == GameManager.GameState.EXPLORATION && action != null && !spent) {
+        if (other.CompareTag("Player") && GameManager.Instance.state == GameManager.GameState.EXPLORATION && !spent) {
             other.GetComponent<Exploring>().interact.AddListener(() => {
-                action.Invoke();
+                action?.Invoke();
             });
             if(key != null) key.SetActive(true);
         }

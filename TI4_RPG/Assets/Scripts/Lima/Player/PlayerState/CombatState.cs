@@ -249,7 +249,9 @@ public class CombatState : State {
 
     public void LearnSkill(SkillDataSO skill) {
         try {
-            skills[skills.Length] = skill;
+            for (int i = 0; i < skills.Length; i++) {
+                if (skills[i] == null) skills[i] = skill;
+            }
         }
         catch {
             throw new Exception("Numero maximo de skills ja alcançado");

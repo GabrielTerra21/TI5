@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public class StoreItem : MonoBehaviour {
     [SerializeField] private RectTransform rect;
     [SerializeField] public SkillDataSO skill;
-    [SerializeField] private TMP_Text itemID,  priceTag;
+    [SerializeField] private TMP_Text itemID,  priceTag, descriptor;
     [SerializeField] private Image sprite;
     [SerializeField] private int price;
     [SerializeField] private bool bought = false;
     [SerializeField] private GameObject darkened;
-    public Action hoverSkill, purchased;
+    public Action  purchased;
     
     private Vector3 defaultSize;
     [SerializeField] private Vector3 growthMod = new Vector3(.1f, .1f, 0);
@@ -29,7 +29,6 @@ public class StoreItem : MonoBehaviour {
     }
 
     private void OnDisable() {
-        hoverSkill = null;
         purchased = null;
     }
 
@@ -74,7 +73,7 @@ public class StoreItem : MonoBehaviour {
         if (bought) return;
         
         StartCoroutine(ChangeSize(defaultSize + growthMod));
-        hoverSkill.Invoke();
+        descriptor.text = skill.Description;
     }
 
     // Diminui o tamanho do botão depois de se retirar o mouse do botão
@@ -82,6 +81,7 @@ public class StoreItem : MonoBehaviour {
         if (bought) return;
         
         StartCoroutine(ChangeSize(defaultSize));
+        descriptor.text = null;
     }
     
     // Interpola o tamanho do botão até o valor informado como argumento.

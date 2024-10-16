@@ -15,7 +15,7 @@ public class NewStore : MonoBehaviour {
         ecosAmount.text = GameManager.Instance.ecos.ToString();
         InputManager.Instance.actions.FindActionMap("MyUI").FindAction("Cancel").performed += CloseStore;
         foreach (var data in items) {
-            data.hoverSkill += () => DisplayInfo(data.skill.Description);
+            //data.hoverSkill += () => DisplayInfo(data.skill.Description);
             data.purchased += () => UpdateStore();
         }
     }
