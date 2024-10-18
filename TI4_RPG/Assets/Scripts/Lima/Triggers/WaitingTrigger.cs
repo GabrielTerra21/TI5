@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WaitingTrigger : Trigger {
     [SerializeField] private GameObject key;
@@ -17,9 +18,11 @@ public class WaitingTrigger : Trigger {
     
     protected virtual void OnTriggerEnter(Collider other) {
         //if (other.CompareTag("Player")) { other.GetComponent<Exploring>().waitingTriggers.Add(this); }
-        if (other.CompareTag("Player") && GameManager.Instance.state == GameManager.GameState.EXPLORATION && action != null) {
-            other.GetComponent<Exploring>().interact.AddListener( () => {if(action != null) action.Invoke(); });
-            if(key != null && !spent) key.SetActive(true);
+        if (other.CompareTag("Player") && GameManager.Instance.state == GameManager.GameState.EXPLORATION && !spent) {
+            other.GetComponent<Exploring>().interact.AddListener(() => {
+                action?.Invoke();
+            });
+            if(key != null) key.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other) {

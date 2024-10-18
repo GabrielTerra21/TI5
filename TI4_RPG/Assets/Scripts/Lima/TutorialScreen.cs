@@ -9,6 +9,10 @@ public class TutorialScreen : MonoBehaviour {
         if(!GameManager.Instance.tutorial1) GameManager.Instance.enterCombat.AddListener(Open);
     }
 
+    private void OnDisable() {
+        GameManager.Instance.enterCombat.RemoveListener(Open);
+    }
+
     public void Open() {
         GameManager.Instance.EnterUI();
         tutorialInterface.SetActive(true);

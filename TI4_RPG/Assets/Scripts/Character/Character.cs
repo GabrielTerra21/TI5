@@ -46,7 +46,6 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Start()
     {
-        mat.shader = lit;
         GameManager.Instance.pauseGame.AddListener(Pause);
         GameManager.Instance.unpauseGame.AddListener(Unpause);
     }

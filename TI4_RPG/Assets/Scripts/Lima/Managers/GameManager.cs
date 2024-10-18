@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     [Header("Player info")] 
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] public int keys { get; private set; } = 0;
     public MyStat ap = new MyStat(25);
     private Exploring exploring;
-    private CombatState combatState;
+    [SerializeField] private CombatState combatState;
 
     [Header("Game Info")] 
     public GameState state;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private TMP_Text ecosText;
     [SerializeField] private TMP_Text keysText;
     [SerializeField] private StatusDisplay[] statusSlots;
+    [SerializeField] private AutoAttackGear gearIcon;
     public TextHealthBar healthBar;
     public ActionBar actionBar;
     public SkillDataSO empty;
@@ -162,7 +164,7 @@ public class GameManager : MonoBehaviour {
 
     // Pausa o jogo e chama o evento de pausa
     public void PauseGame() {
-        if (paused) { throw new Exception("Game is already paused"); }
+        if (paused)  throw new Exception("Game is already paused"); 
         if (currentScene == "Menu") return;
         pauseGame.Invoke();
         paused = true;
@@ -170,12 +172,14 @@ public class GameManager : MonoBehaviour {
 
     // Chama a entrada do estado de combate
     public void CallCombatMode() {
+        ap.currentValue = 0;
         state = GameState.COMBAT;
         StartCoroutine(EventBuffer(enterCombat));
     }
 
     // Chama a entrada do estado de exploração
     public void CallExploration() {
+        ap.currentValue = 0;
         state = GameState.EXPLORATION;
         StartCoroutine(EventBuffer(enterExploration));
     }

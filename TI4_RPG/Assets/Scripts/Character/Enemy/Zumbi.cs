@@ -21,7 +21,6 @@ public class Zumbi : State
     [SerializeField] private BEHAVIOUR behaviour;
     [SerializeField] private SkillDataSO primarySkill, secondarySkill;
     [SerializeField] private Character target;
-    [SerializeField] private int animationLayerIndex;
     [SerializeField] private int animationMovementID;
     [SerializeField] private float iddleTime = 3;
     private float _iddleTimer;
@@ -34,11 +33,10 @@ public class Zumbi : State
     private void Awake()
     {
         paused = true;
-        if (animator != null) animationLayerIndex = animator.GetLayerIndex("Combat");
-        animationMovementID = Animator.StringToHash("Movement");
         ai = GetComponent<NavMeshAgent>();
         ai.speed = self.moveSpeed;
         gameObject.SetActive(false);
+        animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -56,7 +54,6 @@ public class Zumbi : State
     // retorna this para que o StateManager saiba o estado atual do personagem
     public override State OnEnterState()
     {
-        if (animator != null) animator.SetLayerWeight(animationLayerIndex, 1);
         target = GameObject.FindWithTag("Player").GetComponent<Character>();
         GameManager.Instance.CallCombatMode();
         return this;
@@ -100,6 +97,7 @@ public class Zumbi : State
                 else if (!moving)
                 {
                     StartCoroutine(Movement(primarySkill));
+                    animator.SetTrigger("isWalking");
                 }
                 transform.LookAt(target.transform.position);
                 break;
@@ -131,7 +129,6 @@ public class Zumbi : State
     IEnumerator Movement(SkillDataSO skill)
     {
         moving = true;
-        animator.SetFloat(animationMovementID, ai.speed / self.moveSpeed);
         Vector3 targetPos = target.transform.position;
         NavMeshHit hit;
         NavMesh.SamplePosition(targetPos, out hit, skill.Range - 1, -1);
@@ -149,7 +146,6 @@ public class Zumbi : State
             }
             yield return null;
         }
-        animator.SetFloat(animationMovementID, 0);
         ai.ResetPath();
         moving = false;
     }
