@@ -129,7 +129,6 @@ public class Zumbi : State
     IEnumerator Movement(SkillDataSO skill)
     {
         moving = true;
-        animator.SetFloat(animationMovementID, ai.speed / self.moveSpeed);
         Vector3 targetPos = target.transform.position;
         NavMeshHit hit;
         NavMesh.SamplePosition(targetPos, out hit, skill.Range - 1, -1);
@@ -147,7 +146,6 @@ public class Zumbi : State
             }
             yield return null;
         }
-        animator.SetFloat(animationMovementID, 0);
         ai.ResetPath();
         moving = false;
     }
