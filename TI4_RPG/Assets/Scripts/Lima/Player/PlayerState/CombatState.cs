@@ -19,9 +19,9 @@ public class CombatState : State {
     [Header("New Combat System Components")]
     //public Action OnEndCombat;
     [SerializeField] private List<Character> enemies = new List<Character>();
-    [SerializeField] private SkillDataSO autoAttack;
+    public SkillDataSO autoAttack;
     [SerializeField] private float attackRange = 1f;
-    [SerializeField] private float coolDown;
+    public float coolDown;
     [SerializeField] private float dashCoolDown;
     [SerializeField] private bool dashReady = true;
     [SerializeField] private float dashDistance;
@@ -99,9 +99,8 @@ public class CombatState : State {
                 //animator.SetTrigger("Attack");
                 coolDown = autoAttack.CoolDown;
             }
-            else if(!paused)coolDown -= Time.deltaTime;
         }
-        
+        coolDown -= Time.deltaTime;
     }
 
     private void SetRotation() {
@@ -221,7 +220,8 @@ public class CombatState : State {
         float timer = 0;
 
         while (timer < dashCoolDown) {
-            timer += Time.fixedDeltaTime;
+            yield return new WaitUntil(() => !GameManager.Instance.paused);
+            timer += Time.unscaledDeltaTime;
             aoe.GetComponent<MeshRenderer>().material.SetFloat("_FillAmount", timer/dashCoolDown);
             yield return null;
         }
@@ -234,11 +234,12 @@ public class CombatState : State {
         dashTrail.enabled = true;
         
         float timer = 0;
-        Vector3 step = (movement / dashDuration) * Time.fixedDeltaTime;
+        Vector3 step = (movement / dashDuration) * Time.unscaledDeltaTime;
         
         while (timer < dashDuration) {
+            yield return new WaitUntil(() => !GameManager.Instance.paused);
             cc.Move(step);
-            timer += Time.fixedDeltaTime;
+            timer += Time.unscaledDeltaTime;
             yield return null;
         }
         
@@ -250,7 +251,10 @@ public class CombatState : State {
     public void LearnSkill(SkillDataSO skill) {
         try {
             for (int i = 0; i < skills.Length; i++) {
-                if (skills[i] == null) skills[i] = skill;
+                if (skills[i] == null) {
+                    skills[i] = skill;
+                    return;
+                }
             }
         }
         catch {
