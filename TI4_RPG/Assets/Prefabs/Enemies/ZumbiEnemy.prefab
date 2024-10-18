@@ -1193,7 +1193,6 @@ GameObject:
   - component: {fileID: 7975664041367316062}
   - component: {fileID: 343012342067668623}
   - component: {fileID: 8520463252627562592}
-  - component: {fileID: 5048333436964060691}
   m_Layer: 7
   m_Name: ZumbiEnemy
   m_TagString: Enemy
@@ -1233,7 +1232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paused: 0
   self: {fileID: 7975664041367316062}
-  animator: {fileID: 5048333436964060691}
+  animator: {fileID: 2093059103874977688}
   ai: {fileID: 0}
   behaviour: 0
   primarySkill: {fileID: 11400000, guid: d036d1748f36cf343a1902cbd7b8cb48, type: 2}
@@ -1254,7 +1253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a997df0fd8a4ed44f91bd6bc63ece26f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 5048333436964060691}
+  animator: {fileID: 2093059103874977688}
   LockOnTarget: {fileID: 101205369233443923}
   OnDeath:
     m_PersistentCalls:
@@ -1324,27 +1323,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!95 &5048333436964060691
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4023944697175786152}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 692f3437838c4b64487d0c5a553a70fb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4061573615355289510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1385,6 +1363,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6632967549869580899}
+  - component: {fileID: 2093059103874977688}
   m_Layer: 0
   m_Name: ExecutorZombie Final
   m_TagString: Untagged
@@ -1412,6 +1391,27 @@ Transform:
   - {fileID: 93417754477517717}
   m_Father: {fileID: 1066222610782619086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &2093059103874977688
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4101110800059192690}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5bd719bf0160a5a49a2cd354c7857438, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4187465979755814424
 GameObject:
   m_ObjectHideFlags: 0
