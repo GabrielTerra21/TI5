@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
     [Header("Player info")] 
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private TMP_Text ecosText;
     [SerializeField] private TMP_Text keysText;
     [SerializeField] private StatusDisplay[] statusSlots;
+    [SerializeField] private AutoAttackGear gearIcon;
     public TextHealthBar healthBar;
     public ActionBar actionBar;
     public SkillDataSO empty;
@@ -170,12 +172,14 @@ public class GameManager : MonoBehaviour {
 
     // Chama a entrada do estado de combate
     public void CallCombatMode() {
+        ap.currentValue = 0;
         state = GameState.COMBAT;
         StartCoroutine(EventBuffer(enterCombat));
     }
 
     // Chama a entrada do estado de exploração
     public void CallExploration() {
+        ap.currentValue = 0;
         state = GameState.EXPLORATION;
         StartCoroutine(EventBuffer(enterExploration));
     }

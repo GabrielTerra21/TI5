@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CombatState : State {
     [Space(10)] [Header("State Components")] 
@@ -19,14 +20,15 @@ public class CombatState : State {
     [Header("New Combat System Components")]
     //public Action OnEndCombat;
     [SerializeField] private List<Character> enemies = new List<Character>();
-    public SkillDataSO autoAttack;
+    [SerializeField] SkillDataSO autoAttack;
     [SerializeField] private float attackRange = 1f;
-    public float coolDown;
+    [SerializeField] float coolDown;
     [SerializeField] private float dashCoolDown;
     [SerializeField] private bool dashReady = true;
     [SerializeField] private float dashDistance;
     [SerializeField] private float dashDuration;
     [SerializeField] private TrailRenderer dashTrail;
+    [SerializeField] private AutoAttackGear gearIcon;
     public SkillDataSO[] skills = new SkillDataSO[6];
     
     
@@ -94,13 +96,14 @@ public class CombatState : State {
         SetRotation();
         if(InRange(target.transform))
         {
-            if (moveDir.magnitude < 0.05f && coolDown <= 0) {
+            if (moveDir.magnitude < 0.05f && coolDown >= autoAttack.CoolDown) {
                 autoAttack.OnCast(agent, target);
                 //animator.SetTrigger("Attack");
-                coolDown = autoAttack.CoolDown;
+                coolDown = 0;
             }
         }
-        coolDown -= Time.deltaTime;
+        coolDown += Time.deltaTime;
+        gearIcon.UpdateGear(coolDown/ autoAttack.CoolDown);
     }
 
     private void SetRotation() {
@@ -152,6 +155,7 @@ public class CombatState : State {
         TargetNext();
         line.gameObject.SetActive(true);
         line.Target(target.LockOnTarget);
+        gearIcon.gameObject.SetActive(true);
 
         return this;
     }
@@ -165,6 +169,7 @@ public class CombatState : State {
         target = null;
         animator.SetLayerWeight(animationLayerIndex, 0);
         line.gameObject.SetActive(false);
+        gearIcon.gameObject.SetActive(false);
     }
     
     // Faz chamada do eDetect para adquirir novo alvo

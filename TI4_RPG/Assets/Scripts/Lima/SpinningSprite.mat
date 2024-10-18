@@ -23,6 +23,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _HighlightTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -30,6 +34,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _ColorMask: 15
+    - _FillAmount: 1
+    - _Offset: 1
     - _Rotation: 0
     - _Speed: 3
     - _Stencil: 0
@@ -37,7 +43,11 @@ Material:
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
+    - _UseHighlight: 0
     - _UseUIAlphaClip: 0
     m_Colors:
     - _Color: {r: 0.09411766, g: 0.1137255, b: 0.121568635, a: 1}
+    - _Color2: {r: 1, g: 1, b: 1, a: 0}
+    - _HighlighCol: {r: 1, g: 1, b: 1, a: 1}
+    - _HighlightCol: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

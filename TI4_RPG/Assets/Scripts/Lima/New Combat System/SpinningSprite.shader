@@ -8,6 +8,9 @@ Shader "Unlit/SpinningSprite"
         _Speed ("Rotation Speed", Range(0, 100)) = 1
         _Offset ("Offset Rotation", Range(0, 1)) = 1
         _FillAmount ("Fill Amount", Range(0, 1)) = 1
+        _UseHighlight ("Use Highlight Texture", Range(0, 1)) = 0
+        _HighlightTex ("Highlight Texture", 2D) = "white" {}
+        _HighlightCol ("Highlight Color", Color) = (1, 1, 1, 1)
     }
     SubShader
     {
@@ -40,6 +43,7 @@ Shader "Unlit/SpinningSprite"
             {
                 float2 uv : TEXCOORD0;
                 float2 rotUv: TEXCOORD1;
+                float2 highlightUV : TEXCOORD2;
                 float4 vertex : SV_POSITION;
             };
 
@@ -47,9 +51,13 @@ Shader "Unlit/SpinningSprite"
             float4 _MainTex_ST;
             fixed4 _Color;
             fixed4 _Color2;
+            fixed4 _HighlightCol;
             fixed _Speed;
             float _Offset;
             float _FillAmount;
+            fixed _UseHighlight;
+            sampler2D _HighlightTex;
+            
 
             v2f vert (appdata v)
             {
@@ -71,7 +79,7 @@ Shader "Unlit/SpinningSprite"
                 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-
+                o.highlightUV = TRANSFORM_TEX(v.uv, _MainTex);
                 
                 o.rotUv.xy = o.uv * 2 - 1;
                 o.rotUv = mul(rotMat, o.rotUv.xy);
@@ -93,8 +101,16 @@ Shader "Unlit/SpinningSprite"
                 float radial = atan2(newUvs.y, newUvs.x) / UNITY_PI;
                 radial = radial * 0.5 + 0.5;
                 float fill = step(1 - radial, _FillAmount);
+
+                float light;
+                if(_UseHighlight > 0.5){
+                    light = tex2D(_HighlightTex,float2(i.highlightUV.x, frac(i.highlightUV.y - _Time.y)));
+                    light *= light;
+                }
+                else
+                    light = 0;
                 
-                return mask *(fill * _Color + (1 - fill) * _Color2) ;
+                return mask * (fill * _Color + (1 - fill) * _Color2 + light * _HighlightCol) ;
             }
             ENDCG
         }
