@@ -17,8 +17,6 @@ public class Ratomelo : State {
     [SerializeField] private BEHAVIOUR behaviour;
     [SerializeField] private SkillDataSO autoAttack,secondarySkill;
     [SerializeField] private Character target;
-    [SerializeField] private int animationLayerIndex;
-    [SerializeField] private int animationMovementID;
     [SerializeField] private float iddleTime = 3;
     private float _iddleTimer;
     [SerializeField] private bool moving = false;
@@ -30,8 +28,6 @@ public class Ratomelo : State {
     // Adquire referencia da layer de animação e componentes
     private void Awake() {
         paused = true;
-        if (animator != null) animationLayerIndex = animator.GetLayerIndex("Combat");
-        animationMovementID = Animator.StringToHash("Movement");
         ai = GetComponent<NavMeshAgent>();
         ai.speed = self.moveSpeed;
         gameObject.SetActive(false);
@@ -49,7 +45,6 @@ public class Ratomelo : State {
     // Ativa a layer de animação adequada, busca um alvo do tipo Character
     // retorna this para que o StateManager saiba o estado atual do personagem
     public override State OnEnterState() {
-        if(animator != null) animator.SetLayerWeight(animationLayerIndex, 1);
         target = GameObject.FindWithTag("Player").GetComponent<Character>();
         GameManager.Instance.CallCombatMode();
         return this;
@@ -73,12 +68,18 @@ public class Ratomelo : State {
                 // e o comportamento de IDDLE iniciado.
                 if (InDistance(autoAttack, target.transform) && Random.Range(0,10) > 7) { 
                     autoAttack.OnCast(self, target);
+                    animator.SetBool("IsIdle", false);
+                    animator.SetBool("IsWalking", false);
+                    animator.SetBool("IsAttack", true);
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
                 }
                 else if(secondarySkill != null && InDistance(secondarySkill, target.transform) && Random.Range(0, 10) > 6 && cooldown)
                 {
                     secondarySkill.OnCast(self, target);
+                    animator.SetBool("IsIdle", false);
+                    animator.SetBool("IsWalking", false);
+                    animator.SetBool("IsAttack", true);
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
                     cooldown = false;
@@ -88,12 +89,18 @@ public class Ratomelo : State {
                 // e o agente não esteja se movendo, inicia movimento em direção ao alvo.
                 else if (!moving) {
                     StartCoroutine(Movement(autoAttack));
+                    animator.SetBool("IsIdle", false);
+                    animator.SetBool("IsWalking", true);
+                    animator.SetBool("IsAttack", false);
                 }
                 transform.LookAt(target.transform.position);
                 break;
             // Faz uma contagem regressiva para retornar ao estado de ATTACK.
             // Serve unicamente para impedir o que o agente ataque initerruptamente.
             case BEHAVIOUR.IDDLE:
+                animator.SetBool("IsIdle",true);
+                animator.SetBool("IsWalking", false);
+                animator.SetBool("IsAttack", false);
                 _iddleTimer -= Time.fixedDeltaTime;
                 if (_iddleTimer <= 0) {
                     behaviour = BEHAVIOUR.ATTACK;
@@ -115,7 +122,6 @@ public class Ratomelo : State {
     // destino para o NavMesh agent do agente.
     IEnumerator Movement ( SkillDataSO skill ) {
         moving = true;
-        animator.SetFloat(animationMovementID, ai.speed / self.moveSpeed);
         Vector3 targetPos = target.transform.position;
         NavMeshHit hit;
         NavMesh.SamplePosition(targetPos, out hit, skill.Range - 1, -1); 
@@ -131,7 +137,6 @@ public class Ratomelo : State {
             }
             yield return null;
         }
-        animator.SetFloat(animationMovementID, 0);
         ai.ResetPath();
         moving = false;
     }
