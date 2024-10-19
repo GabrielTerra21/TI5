@@ -45,6 +45,10 @@ public class StoreItem : MonoBehaviour {
         }
     }
 
+    private void OnValidate() {
+        SetUp();
+    }
+
     // Faz o setup inicial de colocar o sprite adequado, nome e preço da skill
     private void SetUp() {
         itemID.text = skill.SkillName;
