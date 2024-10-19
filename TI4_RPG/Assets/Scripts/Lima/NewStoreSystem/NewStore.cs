@@ -12,7 +12,7 @@ public class NewStore : MonoBehaviour {
     public void OpenStore() {
         GameManager.Instance.EnterUI();
         storeInterface.SetActive(true);
-        ecosAmount.text = GameManager.Instance.ecos.ToString();
+        UpdateStore();
         InputManager.Instance.actions.FindActionMap("MyUI").FindAction("Cancel").performed += CloseStore;
         foreach (var data in items) {
             //data.hoverSkill += () => DisplayInfo(data.skill.Description);

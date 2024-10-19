@@ -8,7 +8,7 @@ public class AttackMenu : MonoBehaviour {
     [SerializeField] private AttackButton[] buttons = new AttackButton[6];
     [SerializeField] private AttackButton selected;
     [SerializeField] private RectTransform rightWing, leftWing;
-    [SerializeField] private RectTransform offScreenPosR, onScreenPosR, offScreenPosL, onScreenPosL;
+    [SerializeField] private RectTransform offScreenPosR, onScreenPosR, offScreenPosL, onScreenPosL, background;
     [SerializeField] private AnimationClip UIanimationClip;
     private CombatState player;
 
@@ -73,6 +73,7 @@ public class AttackMenu : MonoBehaviour {
 
     // Metodo que Coloca o menu de combate na tela
     public void EnterScreen() {
+        UpdateMenu();
         StartCoroutine(MoveOnScreen(leftWing, onScreenPosL.position));
         StartCoroutine(MoveOnScreen(rightWing, onScreenPosR.position));
     }
@@ -128,8 +129,10 @@ public class AttackMenu : MonoBehaviour {
     }
 
     public void UpdateMenu() {
+        Debug.Log(buttons.Length);
         for (int i = 0; i < buttons.Length; i++) {
             if (player.skills[i] != null) {
+                Debug.Log("Botão atualizado");
                 buttons[i].gameObject.SetActive(true);
                 buttons[i].UpdateButton(player.skills[i]);
             }

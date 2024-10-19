@@ -14,14 +14,13 @@ public class AutoAttackGear : MonoBehaviour {
     }
 
     public void UpdateGear(float fillAmount) {
-        Debug.Log($"fillAmount = {fillAmount}");
         image.materialForRendering.SetFloat(fillAmountID,  fillAmount);
-        if (fillAmount >= 1 ) {
+        if (fillAmount >= 1  && !charged) {
             image.materialForRendering.SetFloat(speedID, 0);
             image.materialForRendering.SetFloat(highlightID, 1);
             charged = true;
         }
-        else{
+        else if (fillAmount < 1 && charged){
             image.materialForRendering.SetFloat(speedID, 37);
             image.materialForRendering.SetFloat(highlightID, 0);
             charged = false;

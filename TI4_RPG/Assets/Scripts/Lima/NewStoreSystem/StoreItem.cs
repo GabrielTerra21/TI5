@@ -37,6 +37,7 @@ public class StoreItem : MonoBehaviour {
             GameManager.Instance.SpendEcos(price);
             GameManager.Instance.LearnSkill(skill);
             bought = true;
+            purchased?.Invoke();
             SetInactive();
         }
         else {
