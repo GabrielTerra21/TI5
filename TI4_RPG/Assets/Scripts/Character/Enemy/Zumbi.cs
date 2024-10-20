@@ -136,7 +136,7 @@ public class Zumbi : State
         ai.SetDestination(desiredPos);
         // Enquanto estiver fora de alcance
         // atualiza valor de anima��o e checa se o alvo mudou de posi��o.
-        while (!InDistance(skill, target.transform))
+        while (!InDistance(skill, target.transform) && behaviour != BEHAVIOUR.IDDLE)
         {
             // Caso o alvo tenha mudado de posi��o, inicia uma nova coroutina de movimenta��o.
             if (target.transform.position != targetPos)
