@@ -29,14 +29,14 @@ public class Enemy : Character {
     }
     
     public override void Die() {
-        Debug.Log("Morri XD");
-        OnDeath.Invoke();
-        Destroy(gameObject);
-        GameManager.Instance.GainEcos(5);
         foreach(GameObject g in dependencies)
         {
             Destroy(g);
         }
+        Debug.Log("Morri XD");
+        OnDeath.Invoke();
+        Destroy(gameObject);
+        GameManager.Instance.GainEcos(5);
     }
 
     /*

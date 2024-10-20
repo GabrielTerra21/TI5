@@ -51,7 +51,7 @@ public class Player : Character
 
     public override int TakeDamage(int dmg) {
         StartCoroutine(Flashing(renderers));
-        life -= dmg - Defense();
+        life -= Mathf.Clamp(dmg - Defense(),0,dmg);
         OnDamage.Invoke();
         if (life <= 0) {
             life = 0;
@@ -59,7 +59,7 @@ public class Player : Character
         }
         GameObject particle = Instantiate(hitMark, transform.position, transform.rotation);
         Destroy(particle, 3);
-        damageText.DisplayDamage(-dmg + Defense());
+        damageText.DisplayDamage(-dmg + Mathf.Clamp(Defense(), -100, dmg));
         defenseText.DisplayDamage(Defense());
         return dmg;
     }

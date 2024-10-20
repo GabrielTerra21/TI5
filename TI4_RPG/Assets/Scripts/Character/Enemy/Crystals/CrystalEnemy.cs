@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CrystalEnemy : Enemy
 {
-    //public Room room;
-    public Effect effect;
+    public Effect effect, deathEffect;
     float countLoop = 0;
     public GameObject particles;
+    public List<Enemy> enemies;
 
     public enum Type {Continuos, Instant}
     public Type type;
@@ -17,12 +17,10 @@ public class CrystalEnemy : Enemy
         base.Start();
         if(type == Type.Instant)
         {
-            /*
-            foreach(Enemy enemy in room.enemies)
+            foreach(Enemy enemy in enemies)
             {
                 effect.DoStuff(enemy);
             }
-            */
         }
     }
     private void FixedUpdate()
@@ -33,19 +31,27 @@ public class CrystalEnemy : Enemy
             if (countLoop >= effect.interval)
             {
                 countLoop = 0;
-                /*
-                foreach (Character character in room.enemies)
+                foreach (Character character in enemies)
                 {
                     effect.DoStuff(character);
                 }
-                */
                 Instantiate(particles,transform.position,transform.rotation);
             }
         }
     }
-    public void OnDeathEffect(Effect e)
+    public void OnDeathEffect()
     {
-        
-        //room.ApplyEffect(e);
+        foreach (Enemy enemy in enemies)
+        {
+            deathEffect.DoStuff(enemy);
+        }
+    }
+    public override void Die()
+    {
+        if(deathEffect != null)
+        {
+            OnDeathEffect();
+        }
+        base.Die();
     }
 }
