@@ -17,7 +17,7 @@ public class Ratomelo : State {
     [SerializeField] private BEHAVIOUR behaviour;
     [SerializeField] private SkillDataSO autoAttack,secondarySkill;
     [SerializeField] private Character target;
-    [SerializeField] private float iddleTime = 3;
+    [SerializeField] private float iddleTime;
     private float _iddleTimer;
     [SerializeField] private bool moving = false;
     private bool cooldown = true;
