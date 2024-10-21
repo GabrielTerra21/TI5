@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Chest : MonoBehaviour
 {
@@ -7,13 +8,16 @@ public class Chest : MonoBehaviour
 
     private enum REWARD {
         MONEY,
-        KEY
+        KEY,
+        SKILL
     }
     [SerializeField] private REWARD type;
     [SerializeField] private int amount;
+    [SerializeField] private SkillDataSO skill;
     [SerializeField] bool isUsed = false;
-    [SerializeField] private GameObject moneyAnim, keyAnim;
+    [SerializeField] private GameObject moneyAnim, keyAnim, skillAnim;
     [SerializeField] private TMP_Text moneyText;
+    [SerializeField] private float dispawn;
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
@@ -35,10 +39,17 @@ public class Chest : MonoBehaviour
                     GameManager.Instance.GainEcos(amount);
                     moneyText.text = "$" + amount/10 + amount % 10;
                     moneyAnim.SetActive(true);
+                    Destroy(moneyAnim, dispawn);
                     break;
                 case REWARD.KEY:
                     GameManager.Instance.GainKey();
                     keyAnim.SetActive(true);
+                    break;
+                case REWARD.SKILL:
+                    GameManager.Instance.LearnSkill(skill);
+                    skillAnim.GetComponent<Image>().sprite = skill.Icon;
+                    skillAnim.SetActive(true);
+                    Destroy(skillAnim, dispawn);
                     break;
             }
             /*

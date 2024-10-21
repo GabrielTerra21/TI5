@@ -449,7 +449,7 @@ Transform:
   m_GameObject: {fileID: 3512772342961818681}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 91.27, y: 0, z: 80.75}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -474,20 +474,7 @@ MonoBehaviour:
   LockOnTarget: {fileID: 8396928934080560957}
   OnDeath:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3970376514219499833}
-        m_TargetAssemblyTypeName: CrystalEnemy, Assembly-CSharp
-        m_MethodName: OnDeathEffect
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 0c8133d3248def241b3c811ceb92a116,
-            type: 2}
-          m_ObjectArgumentAssemblyTypeName: Effect, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -511,7 +498,9 @@ MonoBehaviour:
   reachingDistance: 0.2
   ai: {fileID: 4262220757948645436}
   effect: {fileID: 11400000, guid: e669f7f3a3fb66c4baa89c0615916728, type: 2}
+  deathEffect: {fileID: 11400000, guid: 0c8133d3248def241b3c811ceb92a116, type: 2}
   particles: {fileID: 0}
+  enemies: []
   type: 1
 --- !u!195 &4262220757948645436
 NavMeshAgent:

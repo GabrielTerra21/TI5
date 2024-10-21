@@ -37,11 +37,16 @@ public class StoreItem : MonoBehaviour {
             GameManager.Instance.SpendEcos(price);
             GameManager.Instance.LearnSkill(skill);
             bought = true;
+            purchased?.Invoke();
             SetInactive();
         }
         else {
             Debug.Log("O jogador não possui dinheiro suficiente para efetuar a compra.");
         }
+    }
+
+    private void OnValidate() {
+        SetUp();
     }
 
     // Faz o setup inicial de colocar o sprite adequado, nome e preço da skill

@@ -7,10 +7,13 @@ public class EffectArea : MonoBehaviour
     public Effect effect;
     float count = 0, countLoop = 0;
     List<Character> characters;
+    private void Awake()
+    {
+        characters = new List<Character>();
+    }
     private void Start()
     {
         count = effect.duration;
-        characters = new List<Character>();
     }
     void FixedUpdate()
     {

@@ -136,6 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 706484231858335154}
+  - component: {fileID: 1630977587714660411}
   m_Layer: 0
   m_Name: ExecutorZombie Final
   m_TagString: Untagged
@@ -163,6 +164,27 @@ Transform:
   - {fileID: 4625760590196341410}
   m_Father: {fileID: 1422953642300991543}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1630977587714660411
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181902134082860808}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5bd719bf0160a5a49a2cd354c7857438, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &451045911128799868
 GameObject:
   m_ObjectHideFlags: 0
@@ -884,7 +906,6 @@ GameObject:
   - component: {fileID: 3723966309498030770}
   - component: {fileID: 3980114653614430377}
   - component: {fileID: 6670455459827270748}
-  - component: {fileID: 8082892594161529484}
   m_Layer: 7
   m_Name: ZumbiEnemy
   m_TagString: Enemy
@@ -924,15 +945,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paused: 0
   self: {fileID: 3723966309498030770}
-  animator: {fileID: 8082892594161529484}
+  animator: {fileID: 1630977587714660411}
   ai: {fileID: 0}
   behaviour: 0
   primarySkill: {fileID: 11400000, guid: d036d1748f36cf343a1902cbd7b8cb48, type: 2}
   secondarySkill: {fileID: 11400000, guid: cb0c57b2dded0ec4a98d86c36133af1b, type: 2}
   target: {fileID: 0}
-  animationLayerIndex: 0
   animationMovementID: 0
-  iddleTime: 4
+  iddleTime: 3
   moving: 0
 --- !u!114 &3723966309498030770
 MonoBehaviour:
@@ -946,7 +966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a997df0fd8a4ed44f91bd6bc63ece26f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 8082892594161529484}
+  animator: {fileID: 1630977587714660411}
   LockOnTarget: {fileID: 8886412935217588264}
   OnDeath:
     m_PersistentCalls:
@@ -1016,27 +1036,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!95 &8082892594161529484
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2835145789120427149}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5bd719bf0160a5a49a2cd354c7857438, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3165000315697149083
 GameObject:
   m_ObjectHideFlags: 0
