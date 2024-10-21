@@ -23,45 +23,25 @@ public class Player : Character
     }
 
     protected override void Start() {
-        lit = Shader.Find("Particles/Standard Unlit");
         base.Start();
         line.SetOrigin(LockOnTarget);
         line.gameObject.SetActive(false);
     }
     
+    // Operações de fisica
+    // Chama o operador de gravidade.
     private void FixedUpdate(){
         gravity.Gravity();
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            furia.OnCast(this, null);
-        }
-            
     }
 
+    // Encerra o estado de combate reseta os status do jogador e loada a cena anterior.
     public override void Die() {
         CombatState cState = GetComponent<CombatState>();
         GameManager.Instance.CallExploration();
         //cState.OnEndCombat.Invoke();
-        
-        GameManager.Instance.ecos = 150;
         GetData();
         
         GameManager.Instance.DeathLoad();
-    }
-
-    public override int TakeDamage(int dmg) {
-        StartCoroutine(Flashing(renderers));
-        life -= Mathf.Clamp(dmg - Defense(),0,dmg);
-        OnDamage.Invoke();
-        if (life <= 0) {
-            life = 0;
-            Die();
-        }
-        GameObject particle = Instantiate(hitMark, transform.position, transform.rotation);
-        Destroy(particle, 3);
-        damageText.DisplayDamage(-dmg + Mathf.Clamp(Defense(), -100, dmg));
-        defenseText.DisplayDamage(Defense());
-        return dmg;
     }
     
     // Executa o codigo base de apllicação de bonus para o status de ataque.
@@ -100,15 +80,5 @@ public class Player : Character
 
     public void PauseGame() {
         GameManager.Instance.PauseGame();
-    }
-
-    IEnumerator Flashing(SkinnedMeshRenderer[] mats) {
-        foreach (var data in mats) {
-            data.material.shader = Shader.Find("Unlit/DamageShader");
-        }
-        yield return new WaitForSeconds(0.5f);
-        foreach (var data in mats) {
-            data.material.shader = Shader.Find("Universal Render Pipeline/Lit");
-        }
     }
 }
