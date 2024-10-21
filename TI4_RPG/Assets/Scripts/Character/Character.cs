@@ -62,7 +62,7 @@ public abstract class Character : MonoBehaviour
     {
         //StartCoroutine(Flash(mat));
         life -= Mathf.Clamp(dmg - Defense(), 0, dmg);
-        OnDamage.Invoke();
+        OnDamage.Invoke(); 
         if (life <= 0)
         {
             life = 0;
