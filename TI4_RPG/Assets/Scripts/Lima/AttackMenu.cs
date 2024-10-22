@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -53,6 +54,7 @@ public class AttackMenu : MonoBehaviour {
     // Chama os metodos necessarios para animar o surgimento da UI de combate
     // e coloca os botões de ataque em estado ativo.
     public void OpenMenu() { 
+        if(!player.skills.First()) return;
         Debug.Log("Open menu called");
         InputManager.Instance.actions["Action"].performed -= OpenMenu;
         GameManager.Instance.PauseGame();

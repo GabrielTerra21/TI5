@@ -14,11 +14,9 @@ public abstract class Character : MonoBehaviour
     public UnityEvent OnDeath, OnDamage, OnHeal;
     public GameObject hitMark;
     public List<GameObject> dependencies;
-
-    [SerializeField] private SkinnedMeshRenderer render;
-    [SerializeField] private MeshRenderer meshRenderer;
-    [SerializeField] protected Material mat;
-    [SerializeField] protected Shader lit;
+    
+    [SerializeField] protected Material defaultMat, highlightMat;
+    [SerializeField] protected Renderer[] renders;
 
     [Header("UI Character Elements"), Space(10)]
     [SerializeField] protected DamageText damageText;
@@ -42,6 +40,10 @@ public abstract class Character : MonoBehaviour
     protected virtual void Awake()
     {
         GetData();
+        if (renders == null) 
+            renders = GetComponentsInChildren<Renderer>();
+        if (defaultMat == null)
+            defaultMat = renders.First().material;
     }
 
     protected virtual void Start()
@@ -60,7 +62,7 @@ public abstract class Character : MonoBehaviour
 
     public virtual int TakeDamage(int dmg)
     {
-        //StartCoroutine(Flash(mat));
+        StartCoroutine(Flash());
         life -= Mathf.Clamp(dmg - Defense(), 0, dmg);
         OnDamage.Invoke(); 
         if (life <= 0)
@@ -105,38 +107,16 @@ public abstract class Character : MonoBehaviour
 
     public abstract void Die();
 
-    IEnumerator Flash(Material mat)
-    {
-        Material clone = new Material(mat);
-        Material[] mats;
-        if (render != null)
-        {
-            mats = render.materials;
-        }
-        else
-        {
-            mats = meshRenderer.materials;
+    IEnumerator Flash() {
+        foreach (var data in renders) {
+            data.material = highlightMat;
         }
 
-        for (int i = 0; i < mats.Length; i++)
-        {
-            mats[i] = clone;
-        }
-
-        if (render) render.materials = mats;
-        else meshRenderer.materials = mats;
-
-        clone.shader = Shader.Find("Unlit/DamageShader");
         yield return new WaitForSeconds(0.5f);
-        clone.shader = lit;
-
-        for (int i = 0; i < mats.Length; i++)
-        {
-            mats[i] = mat;
+        
+        foreach (var data in renders) {
+            data.material = defaultMat;
         }
-
-        if (render) render.materials = mats;
-        else meshRenderer.materials = mats;
     }
     /*
     public void Furia(int power, float castTime) 
