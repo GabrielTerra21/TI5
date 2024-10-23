@@ -28,6 +28,10 @@ public class Portal : MonoBehaviour {
             doorLock.gameObject.SetActive(false);
     }
 
+    protected void OnEnable() {
+        Destination.gameObject.SetActive(true);
+    }
+
     protected void OnTriggerEnter(Collider other) {
         if (locked) return;
         if (other.CompareTag("Player") && GameManager.Instance.state != GameManager.GameState.COMBAT) {
