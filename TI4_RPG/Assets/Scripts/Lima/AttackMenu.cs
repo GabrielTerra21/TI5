@@ -131,7 +131,6 @@ public class AttackMenu : MonoBehaviour {
     }
 
     public void UpdateMenu() {
-        Debug.Log(buttons.Length);
         for (int i = 0; i < buttons.Length; i++) {
             if (player.skills[i] != null) {
                 Debug.Log("Botão atualizado");
