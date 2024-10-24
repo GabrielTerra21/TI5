@@ -244,10 +244,10 @@ MonoBehaviour:
       m_Calls: []
   hitMark: {fileID: 8378049728435400075, guid: ec504b50626469c4e86573842663703e, type: 3}
   dependencies: []
-  render: {fileID: 0}
-  meshRenderer: {fileID: 6765665642450602204}
-  mat: {fileID: 2100000, guid: 8ae3f9e3282b160469ccdc635063c83f, type: 2}
-  lit: {fileID: -6465566751694194690, guid: 5d49eb33426ec3c4b9fb58a7da5e7292, type: 3}
+  defaultMat: {fileID: 0}
+  highlightMat: {fileID: 2100000, guid: 8bbf929a96f253841b45684bd8852c5a, type: 2}
+  renders:
+  - {fileID: 6765665642450602204}
   damageText: {fileID: 7997945104951286560}
   data: {fileID: 11400000, guid: 40afd53ffadd19b4687b01b291b444d2, type: 2}
   moveSpeed: 0
@@ -258,10 +258,11 @@ MonoBehaviour:
   roamingDistance: 0
   reachingDistance: 0.2
   ai: {fileID: 9163164101280659282}
-  room: {fileID: 0}
   effect: {fileID: 11400000, guid: b20a13b108a985541aac0d642f4d6822, type: 2}
+  deathEffect: {fileID: 0}
   particles: {fileID: 8078868207066089355, guid: bce38488e50221f489361db42afd90ad,
     type: 3}
+  enemies: []
   type: 0
 --- !u!195 &9163164101280659282
 NavMeshAgent:

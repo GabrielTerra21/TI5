@@ -40,10 +40,15 @@ public abstract class Character : MonoBehaviour
     protected virtual void Awake()
     {
         GetData();
-        if (renders == null) 
+        if (renders == null) {
             renders = GetComponentsInChildren<Renderer>();
-        if (defaultMat == null)
+            foreach (var data in renders) {
+                Debug.Log(data);
+            }
+        }
+        if (defaultMat == null) {
             defaultMat = renders.First().material;
+        }
     }
 
     protected virtual void Start()
