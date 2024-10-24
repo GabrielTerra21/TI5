@@ -16,6 +16,7 @@ public class Ratomelo : State {
     [Space(10)] [Header("Info")] 
     [SerializeField] private BEHAVIOUR behaviour;
     [SerializeField] private SkillDataSO autoAttack,secondarySkill;
+    [SerializeField] private int animationMovementID, animationPrimeryAttID;
     [SerializeField] private Character target;
     [SerializeField] private float iddleTime;
     private float _iddleTimer;
@@ -31,6 +32,8 @@ public class Ratomelo : State {
         ai = GetComponent<NavMeshAgent>();
         ai.speed = self.moveSpeed;
         gameObject.SetActive(false);
+        animationMovementID = Animator.StringToHash("IsWalking");
+        animationPrimeryAttID = Animator.StringToHash("IsAttack");
     }
 
     private void OnEnable() {
@@ -68,14 +71,14 @@ public class Ratomelo : State {
                 // e o comportamento de IDDLE iniciado.
                 if (InDistance(autoAttack, target.transform) && Random.Range(0,10) > 7) { 
                     autoAttack.OnCast(self, target);
-                    animator.SetBool("IsAttack", true);
+                    animator.SetBool(animationPrimeryAttID, true);
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
                 }
                 else if(secondarySkill != null && InDistance(secondarySkill, target.transform) && Random.Range(0, 10) > 6 && cooldown)
                 {
                     secondarySkill.OnCast(self, target);
-                    animator.SetBool("IsAttack", true);
+                    animator.SetBool(animationPrimeryAttID, true);
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
                     cooldown = false;
@@ -85,15 +88,15 @@ public class Ratomelo : State {
                 // e o agente não esteja se movendo, inicia movimento em direção ao alvo.
                 else if (!moving) {
                     StartCoroutine(Movement(autoAttack));
-                    animator.SetBool("IsWalking", true);
+                    animator.SetBool(animationMovementID, true);
                 }
                 transform.LookAt(target.transform.position);
                 break;
             // Faz uma contagem regressiva para retornar ao estado de ATTACK.
             // Serve unicamente para impedir o que o agente ataque initerruptamente.
             case BEHAVIOUR.IDDLE:
-                animator.SetBool("IsWalking", false);
-                animator.SetBool("IsAttack", false);
+                animator.SetBool(animationMovementID, false);
+                animator.SetBool(animationPrimeryAttID, false);
                 _iddleTimer -= Time.fixedDeltaTime;
                 if (_iddleTimer <= 0) {
                     behaviour = BEHAVIOUR.ATTACK;

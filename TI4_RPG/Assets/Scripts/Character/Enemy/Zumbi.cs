@@ -21,7 +21,7 @@ public class Zumbi : State
     [SerializeField] private BEHAVIOUR behaviour;
     [SerializeField] private SkillDataSO primarySkill, secondarySkill;
     [SerializeField] private Character target;
-    [SerializeField] private int animationMovementID;
+    [SerializeField] private int animationMovementID, animationPrimeryAttID, animationSecundaryAttID;
     [SerializeField] private float iddleTime = 3;
     private float _iddleTimer;
     [SerializeField] private bool moving = false;
@@ -36,6 +36,9 @@ public class Zumbi : State
         ai = GetComponent<NavMeshAgent>();
         ai.speed = self.moveSpeed;
         gameObject.SetActive(false);
+        animationMovementID = Animator.StringToHash("IsWalking");
+        animationPrimeryAttID = Animator.StringToHash("IsAttackS");
+        animationSecundaryAttID = Animator.StringToHash("IsAttackC");
     }
 
     private void OnEnable()
@@ -82,7 +85,7 @@ public class Zumbi : State
                     primarySkill.OnCast(self, target);
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
-                    animator.SetBool("IsAttackS",true);
+                    animator.SetBool(animationPrimeryAttID,true);
                 }
                 else if(InDistance(secondarySkill, target.transform) && Random.Range(0,10) > 8 && cooldown)
                 {
@@ -91,23 +94,23 @@ public class Zumbi : State
                     behaviour = BEHAVIOUR.IDDLE;
                     cooldown = false;
                     timer = 0;
-                    animator.SetBool("IsAttackC", true);
+                    animator.SetBool(animationSecundaryAttID, true);
                 }
                 // Caso o alvo n�o esteja dentro de alcance
                 // e o agente n�o esteja se movendo, inicia movimento em dire��o ao alvo.
                 else if (!moving)
                 {
                     StartCoroutine(Movement(primarySkill));
-                    animator.SetBool("IsWalking",true);
+                    animator.SetBool(animationMovementID,true);
                 }
                 transform.LookAt(target.transform.position);
                 break;
             // Faz uma contagem regressiva para retornar ao estado de ATTACK.
             // Serve unicamente para impedir o que o agente ataque initerruptamente.
             case BEHAVIOUR.IDDLE:
-                animator.SetBool("IsWalking", false);
-                animator.SetBool("IsAttackC", false);
-                animator.SetBool("IsAttackS", false);
+                animator.SetBool(animationMovementID, false);
+                animator.SetBool(animationSecundaryAttID, false);
+                animator.SetBool(animationPrimeryAttID, false);
                 _iddleTimer -= Time.fixedDeltaTime;
                 if (_iddleTimer <= 0)
                 {
