@@ -5,7 +5,12 @@ using UnityEngine.UIElements;
 
 public class PuzzleControl : MonoBehaviour
 {
-    public int[] result, correctCombination;
+    [SerializeField] private GameObject portal;
+    [SerializeField] private GameObject puzzle;
+    [SerializeField] private GameObject door;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip audioClip;
+    private int[] result, correctCombination;
     private void Start()
     {
         result = new int[]{5,5,5};
@@ -30,8 +35,19 @@ public class PuzzleControl : MonoBehaviour
         if (result[0] == correctCombination[0] && result[1] == correctCombination[1] && result[2] == correctCombination[2])
         {
             Debug.Log("Opened!");
-            // fazer com que destrave a porta
+            door.GetComponent<Portal>().locked = false;
+            StartCoroutine("puzzleResolved");
         }
+    }
+
+    IEnumerator puzzleResolved()
+    {
+        puzzle.SetActive(false);
+        yield return new WaitForSeconds(1); 
+        audioSource.clip = audioClip;
+	    audioSource.Play();
+        yield return new WaitForSeconds(1.5f);
+        portal.SetActive(false);
     }
 
     private void OnDestroy()
