@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 5993988329877425619, guid: 5984682f8774a4c45a4cbf1ddde14123,
         type: 3}
       propertyPath: m_Size.x
-      value: 7.0131483
+      value: 3.9550667
       objectReference: {fileID: 0}
     - target: {fileID: 5993988329877425619, guid: 5984682f8774a4c45a4cbf1ddde14123,
         type: 3}
@@ -253,7 +253,7 @@ PrefabInstance:
     - target: {fileID: 5993988329877425619, guid: 5984682f8774a4c45a4cbf1ddde14123,
         type: 3}
       propertyPath: m_Center.x
-      value: -0.54053843
+      value: -2.0695732
       objectReference: {fileID: 0}
     - target: {fileID: 5993988329877425619, guid: 5984682f8774a4c45a4cbf1ddde14123,
         type: 3}
@@ -263,7 +263,7 @@ PrefabInstance:
     - target: {fileID: 5993988329877425619, guid: 5984682f8774a4c45a4cbf1ddde14123,
         type: 3}
       propertyPath: m_Center.z
-      value: 1.2202611
+      value: 1.2202575
       objectReference: {fileID: 0}
     - target: {fileID: 7929124773215462600, guid: 5984682f8774a4c45a4cbf1ddde14123,
         type: 3}
@@ -960,6 +960,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CrystalEnemy 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3512772342961818681, guid: 78f50e42e255052458b8fc587e5d62bf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6967118780054287847, guid: 78f50e42e255052458b8fc587e5d62bf,
         type: 3}
@@ -1997,6 +2002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 76915310834591855, guid: 0c8b6fb02c8ef8c4f9946dc54a79dcbe, type: 3}
+    - {fileID: 2643721042614354337, guid: 0c8b6fb02c8ef8c4f9946dc54a79dcbe, type: 3}
     m_RemovedGameObjects:
     - {fileID: 461256146993185831, guid: 0c8b6fb02c8ef8c4f9946dc54a79dcbe, type: 3}
     m_AddedGameObjects: []
@@ -2061,8 +2067,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.9117638}
+  m_Center: {x: 1.5063839e-10, y: 0, z: -0.45588154}
 --- !u!23 &658051249
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2716,6 +2722,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ratomelao (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7074554539020475148, guid: 6be2efa844059654a86fee4baf131a72,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3208,6 +3219,7 @@ GameObject:
   - component: {fileID: 1025275798}
   - component: {fileID: 1025275800}
   - component: {fileID: 1025275799}
+  - component: {fileID: 1025275801}
   m_Layer: 8
   m_Name: Stone (1)
   m_TagString: Untagged
@@ -3280,6 +3292,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025275797}
   m_Mesh: {fileID: -5521377495493645025, guid: 004e39c96737c104bba789f079d5f222, type: 3}
+--- !u!65 &1025275801
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1025275797}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.029693538, y: 0.0075212964, z: 0.008728185}
+  m_Center: {x: 0.0003661651, y: 0.0011551032, z: 0.00436409}
 --- !u!1001 &1033929022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3331,7 +3364,7 @@ PrefabInstance:
     - target: {fileID: 4534889083808274579, guid: 8f3cd065274f4ad4b855e6f8fdb5f404,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.45
+      value: 0.3002488
       objectReference: {fileID: 0}
     - target: {fileID: 4534889083808274579, guid: 8f3cd065274f4ad4b855e6f8fdb5f404,
         type: 3}
@@ -4113,7 +4146,9 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1725320428423730286, guid: 0ac223d8dbb85ab44aa4419da2d2e0f9, type: 3}
+    - {fileID: 7674304272753573949, guid: 0ac223d8dbb85ab44aa4419da2d2e0f9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4430,6 +4465,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 3819258224880678822, guid: ddb4a3e45a25f6b4f919df08cd24c857,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.09799388
+      objectReference: {fileID: 0}
     - target: {fileID: 4668503662688606389, guid: ddb4a3e45a25f6b4f919df08cd24c857,
         type: 3}
       propertyPath: m_Layer
@@ -4641,7 +4681,8 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8654454482841121205, guid: ddb4a3e45a25f6b4f919df08cd24c857, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2066062738698858400, guid: ddb4a3e45a25f6b4f919df08cd24c857,
         type: 3}
@@ -4843,8 +4884,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.4999889}
+  m_Center: {x: 0.0000000020103226, y: 0, z: 0.24999437}
 --- !u!23 &1370253322
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4957,6 +4998,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ratomelao
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074554539020475148, guid: 6be2efa844059654a86fee4baf131a72,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5385,8 +5431,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 1.8529454}
+  m_Center: {x: 3.4868552e-10, y: 0, z: -0.42647374}
 --- !u!23 &1502950162
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5499,6 +5545,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WolfEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6675798814748434313, guid: adcaa98723214164ba675812b4ef600e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6071,7 +6122,7 @@ Transform:
   m_GameObject: {fileID: 1787356066}
   serializedVersion: 2
   m_LocalRotation: {x: -0.35234284, y: 0.6130698, z: 0.6130698, w: 0.35234284}
-  m_LocalPosition: {x: -6.98, y: 0, z: -4.32}
+  m_LocalPosition: {x: -6.98, y: -0.18640918, z: -4.32}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6496,7 +6547,7 @@ Transform:
   m_GameObject: {fileID: 1979660723}
   serializedVersion: 2
   m_LocalRotation: {x: -0.6803356, y: 0.19272661, z: 0.19272661, w: 0.6803356}
-  m_LocalPosition: {x: -7.02, y: 0, z: -6.23}
+  m_LocalPosition: {x: -7.02, y: -0.18640918, z: -6.23}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6832,7 +6883,8 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6969756406273803311, guid: 247a46b461ccc9842b98ac536dd67600, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -6944,7 +6996,7 @@ PrefabInstance:
     - target: {fileID: 5269976634545165754, guid: 96822069f8ca24742963538d9c7e7589,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.83352584
+      value: 0.3918762
       objectReference: {fileID: 0}
     - target: {fileID: 5269976634545165754, guid: 96822069f8ca24742963538d9c7e7589,
         type: 3}
