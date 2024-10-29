@@ -1,31 +1,17 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour {
     public static MainMenuManager Instance;
-    [SerializeField] private List<Button> buttons;
-    private bool menuOpen;
+    [SerializeField] private CanvasGroup buttons;
 
-    public void CloseOtherMenus() {
-        
+    public void BlockButtons() {
+        buttons.interactable = false;
+        buttons.blocksRaycasts = false;
     }
-
-    public void OpenNewMenu() {
-        foreach (var data in buttons) {
-            data.interactable = false;
-        }
+    
+    public void UnblockButtons() {
+        buttons.interactable = true;
+        buttons.blocksRaycasts = true;
     }
-
-    public void CloseMenu() {
-        foreach (var data in buttons) {
-            data.interactable = true;
-        }
-    }
-
-    private void Start() {
-        foreach (var data in buttons) {
-            data.onClick.AddListener(OpenNewMenu);
-        }
-    }
+    
 }

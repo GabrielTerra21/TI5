@@ -9,10 +9,16 @@ Shader "Unlit/Logo"
     }
     SubShader
     {
-        Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType"="Transparent" }
+       Tags {
+            "Queue" = "Transparent"
+            "IgnoreProjector" = "True"
+            "RenderType" = "Transparent"
+            "PreviewType" = "Plane"
+        }
+        Cull Off
         ZWrite Off
         Blend SrcAlpha OneMinusSrcAlpha
-
+        
         Pass
         {
             CGPROGRAM
@@ -51,8 +57,9 @@ Shader "Unlit/Logo"
             fixed4 frag (v2f i) : SV_Target
             {
                 fixed4 mask = tex2D(_MainTex, i.uv);
-                fixed fxCol = tex2D(_FXTex, float2(frac(i.uv.x * 2), frac(i.uv.y - _Time.x))).r;
-                fixed lerpVal = step(1 - i.uv.y + fxCol, 0.5);
+                float2 modUV = float2(frac(i.uv.x * 2), frac(i.uv.y - _Time.x));
+                fixed fxCol = tex2D(_FXTex, modUV);
+                fixed lerpVal = step(1 - (i.uv.y * 2) + fxCol, 0.5);
                 fixed4 finalCol = lerp(_Color1, _Color2, lerpVal);
                 
                 return saturate(finalCol * mask);
