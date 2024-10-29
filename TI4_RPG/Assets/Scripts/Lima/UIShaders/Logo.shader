@@ -9,7 +9,8 @@ Shader "Unlit/Logo"
     }
     SubShader
     {
-        Tags { "Queue" = "Transparent""RenderType"="Transparent" }
+        Tags { "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType"="Transparent" }
+        ZWrite Off
         Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
