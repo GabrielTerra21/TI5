@@ -5,6 +5,7 @@ using TMPro;
 public class DamageText : MonoBehaviour {
     private TMP_Text textComponent;
     [SerializeField] private int damageTook;
+    [SerializeField] private GameObject icon;
     [SerializeField] private float maxTime = 2, timer = 0;
     [SerializeField] private Color weak = Color.gray, strong = Color.red;
     private bool running = false;
@@ -26,11 +27,13 @@ public class DamageText : MonoBehaviour {
     IEnumerator Display() {
         running = true;
         textComponent.enabled = true;
+        icon.SetActive(true);
         while (timer < maxTime) {
             timer += Time.fixedDeltaTime;
             yield return null;
         }
         textComponent.enabled = false;
+        icon.SetActive(false);
         running = false;
         damageTook = 0;
     }

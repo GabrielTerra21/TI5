@@ -34,6 +34,12 @@ public class Player : Character
         gravity.Gravity();
     }
 
+    public override int TakeDamage(int dmg)
+    {
+        if (defenseText != null) defenseText.DisplayDamage(Defense());
+        return base.TakeDamage(dmg);
+    }
+
     // Encerra o estado de combate reseta os status do jogador e loada a cena anterior.
     public override void Die() {
         CombatState cState = GetComponent<CombatState>();
