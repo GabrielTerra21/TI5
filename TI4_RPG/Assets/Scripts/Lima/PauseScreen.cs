@@ -25,6 +25,14 @@ public class PauseScreen : MonoBehaviour {
         }
     }
 
+    // Mesma coisa que o ClosePauseMenu, mas pode ser utilizado por botões como UnityEvent.
+    public void ClosePauseMenu() {
+        GameManager.Instance.ExitUI();
+        pauseScreen.SetActive(false);
+        volumeScreen.SetActive(false);
+        InputManager.Instance.actions["Cancel"].performed -= ClosePauseMenu;
+    }
+
     private void OnEnable() { 
         InputManager.Instance.actions["OpenPauseMenu"].performed += OpenPauseMenu;
     }
