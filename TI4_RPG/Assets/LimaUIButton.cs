@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class LimaUIButton : LimaUILib, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler {
     [SerializeField] private float distanceToMove;
-    private bool moved = false;
+    private bool moved, sized;
     
     public void OnPointerEnter(PointerEventData eventData) {
         Move();
@@ -22,6 +22,12 @@ public class LimaUIButton : LimaUILib, IPointerEnterHandler, IPointerExitHandler
         if (!moved) {
             SmoothTranslateHorizontal(distanceToMove);
             moved = true;
+        }
+    }
+
+    private void Increase() {
+        if (!sized) {
+            
         }
     }
 
