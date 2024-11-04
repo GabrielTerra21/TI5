@@ -11,6 +11,7 @@ public class PauseScreen : MonoBehaviour {
             pauseScreen.SetActive(true);
             volumeScreen.SetActive(false);
             GameManager.Instance.EnterUI();
+            
             InputManager.Instance.actions["Cancel"].performed += ClosePauseMenu;
         }
     }

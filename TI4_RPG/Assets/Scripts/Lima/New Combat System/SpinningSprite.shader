@@ -11,6 +11,7 @@ Shader "Unlit/SpinningSprite"
         _UseHighlight ("Use Highlight Texture", Range(0, 1)) = 0
         _HighlightTex ("Highlight Texture", 2D) = "white" {}
         _HighlightCol ("Highlight Color", Color) = (1, 1, 1, 1)
+        _RotationDir ("Direction of Rotation", Range(-1, 1)) = 1
     }
     SubShader
     {
@@ -57,6 +58,7 @@ Shader "Unlit/SpinningSprite"
             float _FillAmount;
             fixed _UseHighlight;
             sampler2D _HighlightTex;
+            float _RotationDir;
             
 
             v2f vert (appdata v)
@@ -66,13 +68,13 @@ Shader "Unlit/SpinningSprite"
                 float offsetCos = cos(offsetRad);
                 float offsetSin = sin(offsetRad);
 
-                float2x2 fillMatrix = float2x2(offsetCos, - offsetSin,
+                float2x2 fillMatrix = float2x2(offsetCos , - offsetSin,
                                                offsetSin, offsetCos);
 
                 
-                float cosen = cos(_Time.x * _Speed);
-                float sen = sin(_Time.x * _Speed);
-                    
+                float cosen = cos(_Time.x * _Speed * _RotationDir);
+                float sen = sin(_Time.x * _Speed * _RotationDir);
+
                 float2x2 rotMat = float2x2(cosen, -sen,
                                            sen, cosen);
 
