@@ -27,13 +27,13 @@ public class DamageText : MonoBehaviour {
     IEnumerator Display() {
         running = true;
         textComponent.enabled = true;
-        icon.SetActive(true);
+        //icon.SetActive(true);
         while (timer < maxTime) {
             timer += Time.fixedDeltaTime;
             yield return null;
         }
         textComponent.enabled = false;
-        icon.SetActive(false);
+        //icon.SetActive(false);
         running = false;
         damageTook = 0;
     }
