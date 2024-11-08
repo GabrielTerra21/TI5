@@ -37,7 +37,7 @@ public class Chest : MonoBehaviour
             switch (type) {
                 case REWARD.MONEY:
                     GameManager.Instance.GainEcos(amount);
-                    moneyText.text = "$" + amount/10 + amount % 10;
+                    moneyText.text = "" + amount/10 + amount % 10;
                     moneyAnim.SetActive(true);
                     Destroy(moneyAnim, dispawn);
                     break;
