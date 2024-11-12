@@ -5,12 +5,12 @@ public class MainMenuManager : MonoBehaviour {
     [SerializeField] private CanvasGroup buttons;
 
     public void BlockButtons() {
-        buttons.interactable = false;
+        buttons.alpha = 0;
         buttons.blocksRaycasts = false;
     }
     
     public void UnblockButtons() {
-        buttons.interactable = true;
+        buttons.alpha = 1;
         buttons.blocksRaycasts = true;
     }
     
