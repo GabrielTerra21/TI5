@@ -64,6 +64,7 @@ public class StoreItem : MonoBehaviour {
         itemID.text = null;
         priceTag.text = null;
         darkened.SetActive(true);
+        rect.localScale = defaultSize;
     }
 
     public void OnClick() {
