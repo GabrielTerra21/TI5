@@ -6,10 +6,11 @@ public class CrystalEnemy : Enemy
     public Effect effect, deathEffect;
     float countLoop = 0;
     public GameObject particles;
-    public List<Enemy> enemies;
+    public List<Enemy> enemies = new List<Enemy>();
 
     public enum Type {Continuos, Instant}
     public Type type;
+
 
     protected override void Start()
     {
