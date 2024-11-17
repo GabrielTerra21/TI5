@@ -41,7 +41,7 @@ public class StoreItem : MonoBehaviour {
             SetInactive();
         }
         else {
-            Debug.Log("O jogador não possui dinheiro suficiente para efetuar a compra.");
+            StartCoroutine(InvalidOption());
         }
     }
 
@@ -77,16 +77,14 @@ public class StoreItem : MonoBehaviour {
     // Aumenta o tamanho do botão ao botar o mouse sobre o botão
     public void OnHover() {
         if (bought) return;
-        
         StartCoroutine(ChangeSize(defaultSize + growthMod));
         descriptor.text = skill.Description;
     }
 
     // Diminui o tamanho do botão depois de se retirar o mouse do botão
     public void OnExitHover() {
-        if (bought) return;
-        
         StartCoroutine(ChangeSize(defaultSize));
+        if (bought) return;
         descriptor.text = null;
     }
     
@@ -102,5 +100,14 @@ public class StoreItem : MonoBehaviour {
             yield return null;
         }
         rect.localScale = targetSize;
+    }
+
+    IEnumerator InvalidOption(){
+        StartCoroutine(ChangeSize(defaultSize - growthMod));
+        darkened.SetActive(true);
+        descriptor.text = " Parece que você não tem ecos suficientes para isso...";
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(ChangeSize(defaultSize));
+        darkened.SetActive(false);
     }
 }
