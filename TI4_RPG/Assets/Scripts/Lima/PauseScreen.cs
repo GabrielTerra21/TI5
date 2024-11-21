@@ -12,7 +12,6 @@ public class PauseScreen : MonoBehaviour {
             volumeScreen.SetActive(false);
             GameManager.Instance.EnterUI();
             
-            InputManager.Instance.actions["Cancel"].performed += ClosePauseMenu;
         }
     }
 
@@ -21,7 +20,6 @@ public class PauseScreen : MonoBehaviour {
             GameManager.Instance.ExitUI();
             pauseScreen.SetActive(false);
             volumeScreen.SetActive(false);
-            InputManager.Instance.actions["Cancel"].performed -= ClosePauseMenu;
         }
     }
 
@@ -30,7 +28,6 @@ public class PauseScreen : MonoBehaviour {
         GameManager.Instance.ExitUI();
         pauseScreen.SetActive(false);
         volumeScreen.SetActive(false);
-        InputManager.Instance.actions["Cancel"].performed -= ClosePauseMenu;
     }
 
     private void OnEnable() { 
@@ -39,6 +36,5 @@ public class PauseScreen : MonoBehaviour {
 
     public void OnDisable() {
         if(InputManager.Instance)InputManager.Instance.actions["OpenPauseMenu"].performed -= OpenPauseMenu;
-        if(InputManager.Instance)InputManager.Instance.actions["Cancel"].performed -= ClosePauseMenu;
     }
 }

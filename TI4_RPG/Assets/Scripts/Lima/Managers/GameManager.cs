@@ -173,6 +173,7 @@ public class GameManager : MonoBehaviour {
     // Chama a entrada do estado de combate
     public void CallCombatMode() {
         ap.currentValue = 0;
+        actionBar.UpdateBar(ap);
         state = GameState.COMBAT;
         StartCoroutine(EventBuffer(enterCombat));
     }

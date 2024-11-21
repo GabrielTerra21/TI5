@@ -13,7 +13,7 @@ public class FireSplash : SkillDataSO
             if(col.gameObject.TryGetComponent<Character>(out Character character) && character != from)
             {
                 character.TakeDamage(Power);
-                col.GetComponent<Rigidbody>().AddForce(-col.transform.forward.normalized * 6,ForceMode.Impulse);
+                //col.GetComponent<Rigidbody>().AddForce(-col.transform.forward.normalized * 6,ForceMode.Impulse);
             }
         }
     }
