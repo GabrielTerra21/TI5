@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GameManager : MonoBehaviour {
     [Header("Player info")] 
@@ -44,6 +45,10 @@ public class GameManager : MonoBehaviour {
     [Header("Managers Components")]
     public PlayerInput playerInput;
     public DialogueBox DialogueManager;
+
+    [Space(40)][Header("Resource Loading")]
+    public Material chestMaterial;
+    public List<Renderer> chestsRenderers;
     
     public static GameManager Instance;
 
@@ -237,4 +242,5 @@ public class GameManager : MonoBehaviour {
         yield return new WaitUntil(() => !paused);
         nEvent.Invoke();
     }
+
 }
