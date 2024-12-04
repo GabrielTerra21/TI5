@@ -50,11 +50,5 @@ public class PixelationRenderFeature : ScriptableRendererFeature
 }
 
 [Serializable] public class PixelationSettings{
-    public Color color;
-    public Color color2;
-
-    public Texture2D mainTexure, frame, grain;
-
-    [Range(0f, 1f)] public float intensity;
-
+    [Range(1, 256)] public int pixelRange;
 }

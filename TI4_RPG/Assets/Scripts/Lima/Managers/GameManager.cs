@@ -7,8 +7,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
-using System.Linq;
 
 public class GameManager : MonoBehaviour {
     [Header("Player info")] 
@@ -237,9 +235,6 @@ public class GameManager : MonoBehaviour {
     {
         UpdateUI?.Invoke();
     }
-
-    public void EnableOverlay() => overlay = true;
-    public void DisableOverlay() => overlay = false;
     
     // Aguarda até que o jogo não esteja mais em estado de pausa para invocar o evento
     // necessario para que as animações de interface toquem

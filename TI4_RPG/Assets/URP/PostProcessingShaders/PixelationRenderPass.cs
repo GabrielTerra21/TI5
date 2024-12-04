@@ -28,13 +28,7 @@ public class PixelationRenderPass : ScriptableRenderPass{
 
         CommandBuffer cmd = CommandBufferPool.Get();
         using ( new ProfilingScope(cmd, profilingSampler)){
-            material.SetColor("_Color", settings.color);
-            material.SetColor("_Color2", settings.color2);
-            material.SetTexture("_MainTex", settings.mainTexure);
-            material.SetTexture("_Frame", settings.frame);
-            material.SetTexture("_FilmGrain", settings.grain);
-            material.SetFloat("_Intensity", settings.intensity);
-
+            material.SetFloat("_PixelRange", settings.pixelRange);
             Blitter.BlitCameraTexture(cmd, cameraTexture, cameraTexture, material, 0);
         }
         context.ExecuteCommandBuffer(cmd);
