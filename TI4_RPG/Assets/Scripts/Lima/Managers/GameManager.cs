@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour {
     [Space(40)][Header("Resource Loading")]
     public Material chestMaterial;
     public List<Renderer> chestsRenderers;
+
+    public bool overlay = false;
     
     public static GameManager Instance;
 
@@ -235,6 +237,9 @@ public class GameManager : MonoBehaviour {
     {
         UpdateUI?.Invoke();
     }
+
+    public void EnableOverlay() => overlay = true;
+    public void DisableOverlay() => overlay = false;
     
     // Aguarda até que o jogo não esteja mais em estado de pausa para invocar o evento
     // necessario para que as animações de interface toquem

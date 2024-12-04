@@ -1,25 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6960848013642157865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d613f08f173d4dd895bb07b3230baa9, type: 3}
-  m_Name: FullScreenPassRendererFeature
-  m_EditorClassIdentifier: 
-  m_Active: 0
-  injectionPoint: 600
-  fetchColorBuffer: 1
-  requirements: 0
-  passMaterial: {fileID: 2100000, guid: 78a08787ca30045abb69f6f7dd878e09, type: 2}
-  passIndex: 0
-  bindDepthStencilAttachment: 0
-  m_Version: 1
 --- !u!114 &-1878332245247344467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,8 +53,8 @@ MonoBehaviour:
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
-  - {fileID: -6960848013642157865}
-  m_RendererFeatureMap: adc0de57c6d2eee5d730609b9c19669f
+  - {fileID: 6630595204408255097}
+  m_RendererFeatureMap: adc0de57c6d2eee579a22940359b045c
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -117,3 +97,24 @@ MonoBehaviour:
   m_CopyDepthMode: 0
   m_AccurateGbufferNormals: 0
   m_IntermediateTextureMode: 1
+--- !u!114 &6630595204408255097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bade78a9a30093e4bb5ccf28786e88ba, type: 3}
+  m_Name: PixelationRenderFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    color: {r: 0.29411766, g: 0.07450981, b: 0.22752716, a: 1}
+    color2: {r: 0, g: 1, b: 0.12270379, a: 1}
+    mainTexure: {fileID: 2800000, guid: ffe75da45c304674bb007e301fbdda77, type: 3}
+    frame: {fileID: 2800000, guid: 141a6b496ef6e72448e52afce04d6ac8, type: 3}
+    grain: {fileID: 2800000, guid: 5ce4841e3074cdd4f9b51af8fcfac92d, type: 3}
+    intensity: 0.242
+  pixelationShader: {fileID: 4800000, guid: 5842bf2dc21d8e341ac860fa941d3065, type: 3}
