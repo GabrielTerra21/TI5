@@ -7,6 +7,7 @@ public class Enemy : Character {
     public float roamingDistance;
     public float reachingDistance = 0.2f;
     public NavMeshAgent ai;
+    public GameObject amorCrystals;
 
     protected override void Awake() {
         base.Awake();
@@ -37,6 +38,10 @@ public class Enemy : Character {
         Destroy(gameObject);
         GameManager.Instance.GainEcos(5);
     }
+    public void Crystal(bool act)
+    {
+        amorCrystals.SetActive(act);
+    }
 
     /*
     IEnumerator HitStop() {
@@ -45,5 +50,5 @@ public class Enemy : Character {
         GameManager.Instance.UnpauseGame();
     }
     */
-    
+
 }

@@ -20,6 +20,7 @@ public class CrystalEnemy : Enemy
             foreach(Enemy enemy in enemies)
             {
                 effect.DoStuff(enemy);
+                enemy.Crystal(true);
             }
         }
     }
@@ -44,6 +45,7 @@ public class CrystalEnemy : Enemy
         foreach (Enemy enemy in enemies)
         {
             deathEffect.DoStuff(enemy);
+            enemy.Crystal(false);
         }
     }
     public override void Die()

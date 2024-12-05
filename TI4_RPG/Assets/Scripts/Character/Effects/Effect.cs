@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Effect : ScriptableObject 
 {
-    public int interval;
+    public float interval;
     public int duration;
     public int power;
     public abstract void DoStuff(Character character);
