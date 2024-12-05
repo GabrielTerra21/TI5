@@ -14,7 +14,7 @@ public class CutsceneManager : MonoBehaviour
     }
 
     private void Update(){
-        if(Input.GetKey(KeyCode.Escape)) EndCutscene();
+        if(Input.GetKeyDown(KeyCode.Escape)) EndCutscene();
     }
 
     // Inicia Coroutina de carregamento da proxima cena

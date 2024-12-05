@@ -9,11 +9,12 @@ public class LoadScene : MonoBehaviour {
     [SerializeField] private List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
     [SerializeField] private Image loadingBar;
     [SerializeField] private GameObject buttons;
-    public void LoadSceneAsync() {
-        StartCoroutine(LoadStartScene());
-    }
+
+
+    public void LoadSceneAsync() => StartCoroutine(LoadStartScene());
 
     public void LoadFirstScene() => StartCoroutine(LoadFirstCutscene());
+    
 
     IEnumerator LoadFirstCutscene(){
         buttons.SetActive(false);
