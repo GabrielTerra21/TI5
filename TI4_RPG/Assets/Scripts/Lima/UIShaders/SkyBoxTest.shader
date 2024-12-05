@@ -4,6 +4,7 @@ Shader "Unlit/SkyBoxTest"
     {
         _CloudTex1 ("First Cloud Texture", 2D) = "white" {}
         _CloudTex2 ("Seccond Cloud Texture", 2D) = "white" {}
+        _BackgroundTex ("Background Texture", 2D) = "white" {}
         _Color1 ("Top Color", Color) = (1, 1, 1, 1)
         _Color2 ("Bottom Color", Color) = (1, 1, 1, 1)
         _Step ("Cloud Step", Range(0, 1)) = 0
@@ -12,6 +13,7 @@ Shader "Unlit/SkyBoxTest"
     SubShader
     {
         Tags {
+            "RenderPipeline" = "Universal"
             "Queue" = "Background" 
             "RenderType" = "Background"
             "PreviewType" = "Skybox"
@@ -44,6 +46,7 @@ Shader "Unlit/SkyBoxTest"
 
             sampler2D _CloudTex1;
             sampler2D _CloudTex2;
+            sampler2D _BackgroundTex;
             float4 _CloudTex1_ST;
             float4 _CloudTex2_ST;
             float4 _Color1;
@@ -67,10 +70,11 @@ Shader "Unlit/SkyBoxTest"
                 float2 screenUv = i.uv.xy/ i.uv.w; 
                 float4 tex1 = tex2D(_CloudTex1,screenUv + float2(frac(_Time.x * _Speed), 0));
                 float4 tex2 = tex2D(_CloudTex2,screenUv + float2(-frac(_Time.x * _Speed), frac(_Time.x * _Speed)));
+                float4 backdrop = tex2D(_BackgroundTex, screenUv);
                 tex1 /= 2;
                 tex2 /= 2;
                 float4 finalCloud = step(tex1 + tex2, _Step * 0.5 );
-                float4 grad = lerp(_Color2, _Color1, saturate(i.normalizedObjectPos + finalCloud));
+                float4 grad = lerp( backdrop * _Color2, _Color1, saturate(i.normalizedObjectPos + finalCloud));
                 return saturate(grad);
             }
             
