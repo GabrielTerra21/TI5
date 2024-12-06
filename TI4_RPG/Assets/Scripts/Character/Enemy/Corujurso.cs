@@ -2,14 +2,13 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
 
-public class Corujurso : Character
+public class Corujurso : Enemy
 {
     public Transform[] waypoints;
     public Transform jumpArea;
     public GameObject[] spears;
     int spearsCount = 0;
-    public Vector3 homePos = Vector3.zero;
-    public Vector3 jumpPos;
+    public Vector3 jumpPos = new Vector3();
     private int dmgDealt;
 
     protected override void Awake()

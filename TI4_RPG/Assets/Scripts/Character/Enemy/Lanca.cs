@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Lança : Character
+public class Lanca : Enemy
 {
 
     protected override void Awake()

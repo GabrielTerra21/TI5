@@ -7,11 +7,15 @@ public class MultAoESkill : SkillDataSO
     Vector3 pos;
     public override void OnCast(Character from, Character target)
     {
-        for (int i = 0; i < quant; i++)
+        GameObject g = Instantiate(Prefab, target.transform.position, from.transform.rotation, from.transform);
+        AoE aoe = g.GetComponentInChildren<AoE>();
+        from.dependencies.Add(g);
+        aoe.CastAoE(Power + from.Power(), CastTime);
+        for (int i = 0; i < quant - 1; i++)
         {
             pos = new Vector3(Random.Range(from.transform.position.x - Range, from.transform.position.x + Range), from.transform.position.y, Random.Range(from.transform.position.z - Range, from.transform.position.z + Range));
-            GameObject g = Instantiate(Prefab,pos,from.transform.rotation, from.transform);
-            AoE aoe = g.GetComponentInChildren<AoE>();
+            g = Instantiate(Prefab,pos,from.transform.rotation, from.transform);
+            aoe = g.GetComponentInChildren<AoE>();
             from.dependencies.Add(g);
             aoe.CastAoE(Power + from.Power(), CastTime);
         }
