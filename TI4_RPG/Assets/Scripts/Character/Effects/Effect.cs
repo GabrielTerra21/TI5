@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Effect : ScriptableObject 
@@ -7,5 +5,7 @@ public abstract class Effect : ScriptableObject
     public float interval;
     public int duration;
     public int power;
+    public int ID;
+
     public abstract void DoStuff(Character character);
 }

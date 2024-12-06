@@ -11,6 +11,5 @@ public class EsporosEffect : Effect
         {
             GameManager.Instance.LoseAP(power);
         }
-
     }
 }

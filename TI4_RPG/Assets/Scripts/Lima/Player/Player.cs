@@ -10,7 +10,7 @@ public class Player : Character
     [SerializeField] private SkinnedMeshRenderer[] renderers;
     [SerializeField] protected DamageText defenseText;
     public SkillDataSO furia;
-
+    public GameObject veneno, esporos;
     protected override void Awake(){
         if (GameManager.Instance.player != null) Destroy(gameObject);
         else  GameManager.Instance.player = this; 
@@ -85,5 +85,16 @@ public class Player : Character
 
     public void PauseGame() {
         GameManager.Instance.PauseGame();
+    }
+    public void ShowDebuff(bool act, int type)
+    {
+        if (type == 1)
+        {
+            esporos.SetActive(act);
+        }
+        else if(type == 2)
+        {
+            veneno.SetActive(act);
+        }
     }
 }

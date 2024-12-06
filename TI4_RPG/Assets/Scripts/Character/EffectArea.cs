@@ -43,6 +43,10 @@ public class EffectArea : MonoBehaviour
         if (other.TryGetComponent<Character>(out Character c))
         {       
             characters.Add(c);
+            if (c.CompareTag("Player"))
+            {
+                c.GetComponent<Player>().ShowDebuff(true,effect.ID);
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -50,6 +54,10 @@ public class EffectArea : MonoBehaviour
         if (other.TryGetComponent<Character>(out Character c))
         {
             characters.Remove(c);
+            if (c.CompareTag("Player"))
+            {
+                c.GetComponent<Player>().ShowDebuff(false,effect.ID);
+            }
         }
     }
 }
