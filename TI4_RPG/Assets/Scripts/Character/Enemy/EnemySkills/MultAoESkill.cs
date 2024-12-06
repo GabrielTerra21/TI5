@@ -9,7 +9,7 @@ public class MultAoESkill : SkillDataSO
     {
         for (int i = 0; i < quant; i++)
         {
-            pos = new Vector3(Random.Range(from.transform.position.x - Range, from.transform.position.x + Range), 0, Random.Range(from.transform.position.z - Range, from.transform.position.z + Range));
+            pos = new Vector3(Random.Range(from.transform.position.x - Range, from.transform.position.x + Range), from.transform.position.y, Random.Range(from.transform.position.z - Range, from.transform.position.z + Range));
             GameObject g = Instantiate(Prefab,pos,from.transform.rotation, from.transform);
             AoE aoe = g.GetComponentInChildren<AoE>();
             from.dependencies.Add(g);

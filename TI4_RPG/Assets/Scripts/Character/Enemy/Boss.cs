@@ -8,6 +8,7 @@ public class Boss : State
     [Header("Components")]
     [SerializeField] private Character self;
     [SerializeField] private Animator animator;
+    [SerializeField] private Corujurso corujurso;
 
     private enum BEHAVIOUR
     {
@@ -18,12 +19,15 @@ public class Boss : State
     [Space(10)]
     [Header("Info")]
     [SerializeField] private BEHAVIOUR behaviour;
-    [SerializeField] private SkillDataSO primarySkill;
+    [SerializeField] private SkillDataSO[] skills;
+    [SerializeField] private SkillDataSO pulo;
+    private SkillDataSO skillCasted;
     [SerializeField] private Character target;
-    [SerializeField] private int animationPrimeryAttID;
+    [SerializeField] private int animationID;
     [SerializeField] private float iddleTime = 3;
     private float _iddleTimer;
     private float timer;
+    private bool jumping = false;
 
 
     // Adquire referencia da layer de anima??o e componentes
@@ -31,7 +35,6 @@ public class Boss : State
     {
         paused = true;
         gameObject.SetActive(false);
-        animationPrimeryAttID = Animator.StringToHash("IsAttack");
     }
 
     private void OnEnable()
@@ -61,16 +64,28 @@ public class Boss : State
     private void FixedUpdate()
     {
         if (paused) return;
+        transform.LookAt(target.transform.position);
         switch (behaviour)
         {
+            
             // Comportamento de ataque
             case BEHAVIOUR.ATTACK:
-
-                primarySkill.OnCast(self, target);
-                Debug.Log("Cast");
-                _iddleTimer = iddleTime;
-                behaviour = BEHAVIOUR.IDDLE;
-                //animator.SetBool(animationPrimeryAttID, true);
+                if (Random.Range(0,100) > 80)
+                {
+                    corujurso.Jump();
+                    jumping = true;
+                    _iddleTimer = 1;
+                    pulo.OnCast(self, target);
+                    behaviour = BEHAVIOUR.IDDLE;
+                }
+                else
+                {
+                    skillCasted = skills[Random.Range(0,skills.Length)];
+                    skillCasted.OnCast(self, target);
+                    _iddleTimer = iddleTime + skillCasted.CastTime - Random.Range(0,3);
+                    behaviour = BEHAVIOUR.IDDLE;
+                    //animator.SetBool(animationPrimeryAttID, true);
+                }
 
                 break;
 
@@ -79,7 +94,12 @@ public class Boss : State
                 _iddleTimer -= Time.fixedDeltaTime;
                 if (_iddleTimer <= 0)
                 {
+                    if (jumping)
+                    {
+                        corujurso.Fall();
+                    }
                     behaviour = BEHAVIOUR.ATTACK;
+                    jumping = false;                 
                 }
                 break;
         }

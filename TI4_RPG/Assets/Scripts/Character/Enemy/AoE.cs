@@ -54,4 +54,8 @@ public class AoE : MonoBehaviour
             player = false;
         }
     }
+    public void HitBox(bool isIN)
+    {
+        player = isIN;
+    }
 }
