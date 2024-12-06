@@ -11,7 +11,6 @@ public class Player : Character
     [SerializeField] protected DamageText defenseText;
     public SkillDataSO furia;
 
-
     protected override void Awake(){
         if (GameManager.Instance.player != null) Destroy(gameObject);
         else  GameManager.Instance.player = this; 

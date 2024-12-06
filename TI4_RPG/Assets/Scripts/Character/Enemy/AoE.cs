@@ -22,7 +22,10 @@ public class AoE : MonoBehaviour
         {
             if (player)
             {
-                GameManager.Instance.player.TakeDamage(this.power);
+                if (this.power != 0)
+                {
+                    GameManager.Instance.player.TakeDamage(this.power);
+                }
                 GameManager.Instance.LoseAP(aoe.apDamage);
                 player = false;
             }

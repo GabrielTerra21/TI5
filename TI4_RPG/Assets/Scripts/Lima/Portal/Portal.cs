@@ -46,6 +46,19 @@ public class Portal : MonoBehaviour {
             locked = false;
             doorLock.gameObject.SetActive(false);
             TurnOn();
+            /*if (Physics.SphereCast(transform.position, 2f, transform.forward, out RaycastHit hit, Mathf.Infinity,1024))
+            {
+                Debug.Log("hit");
+                if (hit.collider.CompareTag("Player") && GameManager.Instance.state != GameManager.GameState.COMBAT)
+                {
+                    GameManager.Instance.AddClearedRoom(roomID);
+                    StartCoroutine(Loading(hit.collider.GetComponent<Player>()));
+                }
+            }
+            else
+            {
+                Debug.Log("hitno");
+            }*/
         }
     }
     

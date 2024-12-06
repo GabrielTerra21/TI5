@@ -7,7 +7,7 @@ public class CrystalEnemy : Enemy
     float countLoop = 0;
     public GameObject particles;
     public List<Enemy> enemies = new List<Enemy>();
-
+    public int crystalType;
     public enum Type {Continuos, Instant}
     public Type type;
 
@@ -20,8 +20,11 @@ public class CrystalEnemy : Enemy
             foreach(Enemy enemy in enemies)
             {
                 effect.DoStuff(enemy);
-                enemy.Crystal(true);
             }
+        }
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.Crystal(true, crystalType);
         }
     }
     private void FixedUpdate()
@@ -45,12 +48,15 @@ public class CrystalEnemy : Enemy
         foreach (Enemy enemy in enemies)
         {
             deathEffect.DoStuff(enemy);
-            enemy.Crystal(false);
         }
     }
     public override void Die()
     {
-        if(deathEffect != null)
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.Crystal(false, crystalType);
+        }
+        if (deathEffect != null)
         {
             OnDeathEffect();
         }

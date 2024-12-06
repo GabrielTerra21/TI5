@@ -7,7 +7,7 @@ public class Enemy : Character {
     public float roamingDistance;
     public float reachingDistance = 0.2f;
     public NavMeshAgent ai;
-    public GameObject amorCrystals;
+    public GameObject amorCrystals, healCrystals;
 
     protected override void Awake() {
         base.Awake();
@@ -38,9 +38,16 @@ public class Enemy : Character {
         Destroy(gameObject);
         GameManager.Instance.GainEcos(5);
     }
-    public void Crystal(bool act)
+    public void Crystal(bool act,int i)
     {
-        amorCrystals.SetActive(act);
+        if (i == 0)
+        {
+            amorCrystals.SetActive(act);
+        }
+        else
+        {
+            healCrystals.SetActive(act);
+        }
     }
 
     /*
