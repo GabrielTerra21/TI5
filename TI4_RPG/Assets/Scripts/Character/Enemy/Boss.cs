@@ -64,13 +64,14 @@ public class Boss : State
     private void FixedUpdate()
     {
         if (paused) return;
-        transform.LookAt(target.transform.position);
+        
         switch (behaviour)
         {
             
             // Comportamento de ataque
             case BEHAVIOUR.ATTACK:
-                if (Random.Range(0,100) > 80)
+                transform.LookAt(target.transform.position);
+                if (Random.Range(0,100) > 90)
                 {
                     corujurso.Jump();
                     jumping = true;

@@ -7,6 +7,7 @@ public class EffectArea : MonoBehaviour
     public Effect effect;
     float count = 0, countLoop = 0;
     List<Character> characters;
+    private Player player;
     private void Awake()
     {
         characters = new List<Character>();
@@ -35,6 +36,7 @@ public class EffectArea : MonoBehaviour
         }
         else if(!GameManager.Instance.paused && count < 0)
         {
+            if(player != null)player.ShowDebuff(false, effect.ID);
             Destroy(gameObject);
         }
     }
@@ -45,7 +47,8 @@ public class EffectArea : MonoBehaviour
             characters.Add(c);
             if (c.CompareTag("Player"))
             {
-                c.GetComponent<Player>().ShowDebuff(true,effect.ID);
+                player = c.GetComponent<Player>();
+                player.ShowDebuff(true, effect.ID);
             }
         }
     }
@@ -56,7 +59,8 @@ public class EffectArea : MonoBehaviour
             characters.Remove(c);
             if (c.CompareTag("Player"))
             {
-                c.GetComponent<Player>().ShowDebuff(false,effect.ID);
+                player.ShowDebuff(false, effect.ID);
+                player = null;
             }
         }
     }

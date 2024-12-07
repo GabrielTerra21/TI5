@@ -82,6 +82,7 @@ public class Corujurso : Enemy
     public void ShowSpear()
     {
         if(spearsCount < spears.Length) spears[spearsCount].SetActive(true);
+        GameManager.Instance.player.GetComponent<CombatState>().FindEnemys();
     }
     IEnumerator Flash()
     {

@@ -26,7 +26,7 @@ public class Room : MonoBehaviour
         }
         
         if (enemies != null)
-            foreach (var data in enemies) data.gameObject.SetActive(true);
+            foreach (var data in enemies) if (!data.TryGetComponent<Lanca>(out Lanca l)) data.gameObject.SetActive(true);
         if (treasure != null) treasure.SetActive(true);
         if(ev != null) ev.Invoke();
         

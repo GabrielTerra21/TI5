@@ -266,5 +266,15 @@ public class CombatState : State {
             throw new Exception("Numero maximo de skills ja alcançado");
         }
     }
-    
+    public void FindEnemys()
+    {
+        GameObject[] enemyGroup = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemyGroup.Length; i++)
+        {
+            if (!enemies.Contains(enemyGroup[i].GetComponent<Character>()))
+            {
+                enemies.Add(enemyGroup[i].GetComponent<Character>());
+            }          
+        }
+    }
 }

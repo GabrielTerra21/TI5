@@ -31,7 +31,7 @@ public class AoE : MonoBehaviour
             }
             if (aoe.prefab != null)
             {
-                GameObject g = Instantiate(aoe.prefab, transform.position, transform.rotation);
+                GameObject g = Instantiate(aoe.prefab, transform.position, Quaternion.identity);
                 if(aoe.prefabDuration > 0)
                 {
                     Destroy(g, aoe.prefabDuration);

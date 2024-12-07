@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 2166807324106966031}
   - component: {fileID: 5140610063433544167}
   - component: {fileID: 6414063663827607544}
+  - component: {fileID: 4540274929607895212}
   m_Layer: 7
   m_Name: Spear
   m_TagString: Enemy
@@ -278,6 +279,34 @@ MonoBehaviour:
   life: 0
   actionable: 1
   count: 0
+  homePos: {x: 0, y: 0, z: 0}
+  roamingDistance: 0
+  reachingDistance: 0.2
+  ai: {fileID: 4540274929607895212}
+  amorCrystals: {fileID: 0}
+  healCrystals: {fileID: 0}
+--- !u!195 &4540274929607895212
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1888689844051489458}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1944211540996506705
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab9d05f65977733439371f22cbb25254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
+  owner: {fileID: 6414063663827607544}
   barFill: {fileID: 9018322616495150561}
   maxHealth: 0
 --- !u!1 &8556763907891063752

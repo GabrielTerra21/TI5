@@ -6,6 +6,7 @@ public class CrystalEnemy : Enemy
     public Effect effect, deathEffect;
     float countLoop = 0;
     public GameObject particles;
+    public CrystalEnemy[] crystals;
     public List<Enemy> enemies = new List<Enemy>();
     public int crystalType;
     public enum Type {Continuos, Instant}
@@ -52,6 +53,18 @@ public class CrystalEnemy : Enemy
     }
     public override void Die()
     {
+        foreach(CrystalEnemy c in crystals)
+        {
+            if (c.crystalType == this.crystalType)
+            {
+                if (deathEffect != null)
+                {
+                    OnDeathEffect();
+                }
+                base.Die();
+                return;
+            }
+        }
         foreach (Enemy enemy in enemies)
         {
             enemy.Crystal(false, crystalType);
