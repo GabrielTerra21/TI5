@@ -104,6 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3376086238242574989}
+  - component: {fileID: 401221410537107639}
   m_Layer: 0
   m_Name: "Alp\xEDnia 1"
   m_TagString: Untagged
@@ -129,6 +130,27 @@ Transform:
   - {fileID: 4446489911335335155}
   m_Father: {fileID: 615183045520726750}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &401221410537107639
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478166564782923300}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d681d95dfa6da5141a69428817afdbe6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &479812252054777948
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,7 +883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paused: 0
   self: {fileID: 1138036288398741044}
-  animator: {fileID: 0}
+  animator: {fileID: 401221410537107639}
   behaviour: 0
   primarySkill: {fileID: 11400000, guid: dc9af8676394d654b99b9ec885fe03f9, type: 2}
   target: {fileID: 0}
@@ -879,7 +901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a997df0fd8a4ed44f91bd6bc63ece26f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 401221410537107639}
   LockOnTarget: {fileID: 9150961504089803779}
   OnDeath:
     m_PersistentCalls:
