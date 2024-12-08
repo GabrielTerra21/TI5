@@ -13,7 +13,6 @@ Shader "Unlit/SkyBoxTest"
     SubShader
     {
         Tags {
-            "RenderPipeline" = "Universal"
             "Queue" = "Background" 
             "RenderType" = "Background"
             "PreviewType" = "Skybox"
