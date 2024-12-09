@@ -3338,7 +3338,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1035382960}
   - component: {fileID: 1035382959}
-  - component: {fileID: 1035382961}
   m_Layer: 0
   m_Name: Room28
   m_TagString: Untagged
@@ -3401,20 +3400,6 @@ Transform:
   - {fileID: 2044102116}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1035382961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035382958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0c3e81c00ce8340b84a962e2aae9dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadingBar: {fileID: 0}
-  buttons: {fileID: 0}
 --- !u!1001 &1037079952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10787,7 +10772,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5777889293750893831}
-  - component: {fileID: 7580464180516829797}
   - component: {fileID: 7580464180516829794}
   - component: {fileID: 7580464180516829795}
   - component: {fileID: 6495962576730021446}
@@ -10815,19 +10799,7 @@ MonoBehaviour:
   LockOnTarget: {fileID: 6882443460271961242}
   OnDeath:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7580464180516829797}
-        m_TargetAssemblyTypeName: EndGame, Assembly-CSharp
-        m_MethodName: End
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: ThirdScene
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -10916,19 +10888,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7580464180516829797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7580464180516829793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43979928560ffff4aaffb69080564a3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj: {fileID: 0}
 --- !u!4 &7592911935951480317
 Transform:
   m_ObjectHideFlags: 0
