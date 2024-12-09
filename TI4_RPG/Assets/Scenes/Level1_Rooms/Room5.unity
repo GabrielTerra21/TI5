@@ -1669,6 +1669,92 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 508162990}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &529896334
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 827984210}
+    m_Modifications:
+    - target: {fileID: 1868284240819431265, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 140.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868284240819431265, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868284240819431265, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868284240819431265, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868284240819431265, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868284240819431265, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868284240819431265, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868284240819431265, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868284240819431265, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1868284240819431265, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177806162373619846, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+        type: 3}
+      propertyPath: m_Name
+      value: New RatomeloEnemy
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5cbebae4d076bc746b7bb062f4e242d4, type: 3}
+--- !u!114 &529896335 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8529864189987987531, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 529896334}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a997df0fd8a4ed44f91bd6bc63ece26f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &529896336 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1868284240819431265, guid: 5cbebae4d076bc746b7bb062f4e242d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 529896334}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &592990543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2107,6 +2193,7 @@ MonoBehaviour:
   ID: Room5
   enemies:
   - {fileID: 1654511965}
+  - {fileID: 529896335}
   treasure: {fileID: 0}
   ev:
     m_PersistentCalls:
@@ -2128,6 +2215,7 @@ Transform:
   - {fileID: 389054708}
   - {fileID: 1109174210}
   - {fileID: 1654511966}
+  - {fileID: 529896336}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &830950748
