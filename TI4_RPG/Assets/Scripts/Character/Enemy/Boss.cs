@@ -75,7 +75,7 @@ public class Boss : State
                 {
                     corujurso.Jump();
                     jumping = true;
-                    _iddleTimer = 1;
+                    _iddleTimer = 2;
                     pulo.OnCast(self, target);
                     behaviour = BEHAVIOUR.IDDLE;
                 }
@@ -98,9 +98,12 @@ public class Boss : State
                     if (jumping)
                     {
                         corujurso.Fall();
+                        jumping = false;
                     }
-                    behaviour = BEHAVIOUR.ATTACK;
-                    jumping = false;                 
+                    else
+                    {
+                        behaviour = BEHAVIOUR.ATTACK;
+                    }                 
                 }
                 break;
         }

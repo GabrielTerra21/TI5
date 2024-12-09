@@ -325,7 +325,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7e4d43c951bbf934a8ea3098cc8b0c32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 93b22b3c15258e941b8f0125f2ad974d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -769,7 +769,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6df7962d7e03e10449330f2b48f5a160, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 917be708aa40c4a47b13b4b90d5e1bae, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4035,7 +4035,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ccf379ff51d812742b3f15dbec1e26ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 426b26003e0f39741b987b992039bb6d, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -4201,11 +4201,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6576465103274849999}
   - component: {fileID: 6751375293904855819}
-  - component: {fileID: 4886437946136895127}
   - component: {fileID: 8951826591411119660}
+  - component: {fileID: 2611679828740106060}
   m_Layer: 10
   m_Name: Seller
-  m_TagString: Untagged
+  m_TagString: Seller
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -4264,38 +4264,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4886437946136895127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4504353323472484068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d38e5ba11b5fd14584e1a1cec513529, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7209388630160855283}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  oneTime: 1
-  key: {fileID: 7241179500100778040}
-  dialogue:
-  - {fileID: 11400000, guid: 650786601013c7946a58075058d30310, type: 2}
-  counter: 0
 --- !u!135 &8951826591411119660
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4317,6 +4285,27 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.5
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &2611679828740106060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4504353323472484068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7de628a07fd636e4e81140f23342a315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action:
+    m_PersistentCalls:
+      m_Calls: []
+  oneTime: 0
+  key: {fileID: 7241179500100778040}
+  dialogue:
+  - {fileID: 11400000, guid: 650786601013c7946a58075058d30310, type: 2}
+  counter: 0
+  shop: {fileID: 1336649303564370182}
 --- !u!1 &4515299461261172009
 GameObject:
   m_ObjectHideFlags: 0

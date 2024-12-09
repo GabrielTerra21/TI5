@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Events;
+
 
 public class WaitingTrigger : Trigger {
     [SerializeField] private GameObject key;

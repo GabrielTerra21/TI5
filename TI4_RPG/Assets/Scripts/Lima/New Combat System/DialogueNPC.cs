@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DialogueNPC : WaitingTrigger {
     public Dialogue[] dialogue;
-    [SerializeField] private int counter = 0;
+    [SerializeField] protected int counter = 0;
 
     
     // Adiciona ao evento action uma chamada ao DialogueManager para começar o dialogo
