@@ -26,7 +26,7 @@ public class Lanca : Enemy
     {
         Debug.Log("Morri XD");
         OnDeath.Invoke();
-        Destroy(gameObject);
         GameManager.Instance.player.GetComponent<CombatState>().FindEnemys();
+        Destroy(gameObject);
     }
 }

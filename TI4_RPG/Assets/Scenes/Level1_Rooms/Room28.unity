@@ -10772,6 +10772,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5777889293750893831}
+  - component: {fileID: 7580464180516829797}
   - component: {fileID: 7580464180516829794}
   - component: {fileID: 7580464180516829795}
   - component: {fileID: 6495962576730021446}
@@ -10799,7 +10800,19 @@ MonoBehaviour:
   LockOnTarget: {fileID: 6882443460271961242}
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7580464180516829797}
+        m_TargetAssemblyTypeName: EndGame, Assembly-CSharp
+        m_MethodName: End
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ThirdScene
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -10813,6 +10826,7 @@ MonoBehaviour:
   highlightMat: {fileID: 2100000, guid: 8bbf929a96f253841b45684bd8852c5a, type: 2}
   renders:
   - {fileID: 211787087229854679}
+  - {fileID: 0}
   damageText: {fileID: 6970888125462594389}
   data: {fileID: 11400000, guid: 3003b40626745f7438767cf765fc8158, type: 2}
   moveSpeed: 0
@@ -10888,6 +10902,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7580464180516829797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7580464180516829793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30957b55f070f0b47b9d9c1fca1a5f04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7592911935951480317
 Transform:
   m_ObjectHideFlags: 0
