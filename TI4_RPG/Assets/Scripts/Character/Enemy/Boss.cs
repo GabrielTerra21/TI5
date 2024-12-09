@@ -34,6 +34,7 @@ public class Boss : State
     // Adquire referencia da layer de anima??o e componentes
     private void Awake()
     {
+        _iddleTimer = 2f;
         paused = true;
         gameObject.SetActive(false);
     }
