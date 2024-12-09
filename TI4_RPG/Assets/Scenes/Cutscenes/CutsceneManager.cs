@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -6,7 +6,7 @@ public class CutsceneManager : MonoBehaviour
 {
     [SerializeField] private string[] nextScenes;
     [SerializeField] private Scene currentScene;
-    public bool midGameCutscene = false;
+    public bool midGameCutscene = false, endGameCutscene = false;
     private AsyncOperation operation;
 
     private void Awake(){
@@ -31,6 +31,10 @@ public class CutsceneManager : MonoBehaviour
     // Quando a ultima cena listada terminar de ser carregada, a cena atual é descarregada de maneira
     // asincrona.
     IEnumerator LoadNextScene() {
+        if(endGameCutscene){
+            SceneManager.LoadScene(nextScenes[0]);
+            yield break;
+        }
         if(!midGameCutscene){
             foreach(var scene in nextScenes){
                 operation = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);

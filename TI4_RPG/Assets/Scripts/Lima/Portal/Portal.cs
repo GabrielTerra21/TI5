@@ -83,7 +83,7 @@ public class Portal : MonoBehaviour {
 
     IEnumerator Loading(Player player) {
         //GameManager.Instance.state = GameManager.GameState.CINEMATIC;
-	audioSource.Play();
+	    audioSource.Play();
 
         GameManager.Instance.PauseGame();
         GameManager.Instance.vinhette.FadeIn();
