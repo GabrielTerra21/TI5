@@ -269,6 +269,7 @@ public class CombatState : State {
     public void FindEnemys()
     {
         GameObject[] enemyGroup = GameObject.FindGameObjectsWithTag("Enemy");
+        enemies.Clear();
         for (int i = 0; i < enemyGroup.Length; i++)
         {
             if (!enemies.Contains(enemyGroup[i].GetComponent<Character>()))

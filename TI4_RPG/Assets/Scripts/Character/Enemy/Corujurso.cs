@@ -68,7 +68,9 @@ public class Corujurso : Enemy
     }
     public void SpearDestroyd()
     {
+        StartCoroutine(Flash());
         life -= 50;
+        OnDamage.Invoke();
         if (life <= 0)
         {
             life = 0;
@@ -81,7 +83,7 @@ public class Corujurso : Enemy
     }
     public void ShowSpear()
     {
-        if(spearsCount < spears.Length) spears[spearsCount].SetActive(true);
+        if(spearsCount < spears.Length) spears[spearsCount].SetActive(true); spearsCount++;
         GameManager.Instance.player.GetComponent<CombatState>().FindEnemys();
     }
     IEnumerator Flash()
