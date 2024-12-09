@@ -24,12 +24,9 @@ public class Lanca : Enemy
 
     public override void Die()
     {
-        foreach (GameObject g in dependencies)
-        {
-            Destroy(g);
-        }
         Debug.Log("Morri XD");
         OnDeath.Invoke();
         Destroy(gameObject);
+        GameManager.Instance.player.GetComponent<CombatState>().FindEnemys();
     }
 }
