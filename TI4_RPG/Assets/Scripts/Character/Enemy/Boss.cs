@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.AI;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class Boss : State
 {
@@ -107,5 +108,12 @@ public class Boss : State
                 }
                 break;
         }
+    }
+    IEnumerator PlayCutscene(){   
+        GameManager.Instance.PauseGame();
+        AsyncOperation op =  SceneManager.LoadSceneAsync("SecondScene", LoadSceneMode.Additive);
+        yield return new WaitUntil(() => op.isDone);
+        yield return new WaitUntil(() => !GameManager.Instance.inCutscene);
+        GameManager.Instance.UnpauseGame();
     }
 }

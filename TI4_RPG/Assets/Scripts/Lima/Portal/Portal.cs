@@ -29,7 +29,8 @@ public class Portal : MonoBehaviour {
     }
 
     protected void OnEnable() {
-        Destination.gameObject.SetActive(true);
+        try{Destination.gameObject.SetActive(true);}
+        catch{Debug.Log(gameObject.name);}
     }
 
     protected void OnTriggerEnter(Collider other) {

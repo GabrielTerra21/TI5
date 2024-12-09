@@ -6,8 +6,15 @@ public class CutsceneManager : MonoBehaviour
 {
     [SerializeField] private string[] nextScenes;
     [SerializeField] private Scene currentScene;
+    public bool midGameCutscene = false;
     private AsyncOperation operation;
 
+    private void Awake(){
+        try{
+            GameManager.Instance.inCutscene = true;
+        }
+        catch{}
+    }
 
     private void Start(){
         currentScene = gameObject.scene;
@@ -24,10 +31,19 @@ public class CutsceneManager : MonoBehaviour
     // Quando a ultima cena listada terminar de ser carregada, a cena atual é descarregada de maneira
     // asincrona.
     IEnumerator LoadNextScene() {
-        foreach(var scene in nextScenes){
-            operation = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
+        if(!midGameCutscene){
+            foreach(var scene in nextScenes){
+                operation = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
+            }
+            yield return new WaitUntil(() => operation.isDone);
+            SceneManager.UnloadSceneAsync(currentScene);
         }
-        yield return new WaitUntil(() => operation.isDone);
-        SceneManager.UnloadSceneAsync(currentScene);
+        else{
+            try{
+                GameManager.Instance.inCutscene = false;
+                operation = SceneManager.UnloadSceneAsync(currentScene);
+            }
+            catch{}
+        }
     }
 }

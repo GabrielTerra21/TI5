@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField] private string prevActionMap;
     public bool tutorial1 = false;
     public bool shopUnlocked = false;
+    public bool inCutscene;
+    public AudioSource audioSource;
 
     [Header("UI Components")] 
     [SerializeField] private TMP_Text ecosText;
