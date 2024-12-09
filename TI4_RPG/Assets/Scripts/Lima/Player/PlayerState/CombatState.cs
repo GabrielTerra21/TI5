@@ -202,6 +202,12 @@ public class CombatState : State {
 
     // Caso o jogador não possua alvo, automaticamente seleciona um alvo novo
     public void OnTargetDeath() {
+        enemies.Clear();
+        GameObject[] enemyGroup = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemyGroup.Length; i++) {
+            enemies.Add(enemyGroup[i].GetComponent<Character>());
+        }
+
         if (target == null) {
             TargetNext();
         } 
