@@ -39,7 +39,10 @@ public class CrystalEnemy : Enemy
                 countLoop = 0;
                 foreach (Character character in enemies)
                 {
-                    effect.DoStuff(character);
+                    if(character != null)
+                    {
+                        effect.DoStuff(character);
+                    }                    
                 }
                 Instantiate(particles,transform.position,transform.rotation);
             }
@@ -56,7 +59,7 @@ public class CrystalEnemy : Enemy
     {
         foreach(CrystalEnemy c in crystals)
         {
-            if (c.crystalType == this.crystalType)
+            if (c.crystalType == this.crystalType && c.gameObject != this.gameObject)
             {
                 if (deathEffect != null)
                 {

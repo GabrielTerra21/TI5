@@ -15,7 +15,6 @@ public class LoadScene : MonoBehaviour {
 
     public void LoadFirstScene() => StartCoroutine(LoadFirstCutscene());
     
-
     IEnumerator LoadFirstCutscene(){
         buttons.SetActive(false);
         loadingBar.gameObject.SetActive(true);
