@@ -7,6 +7,7 @@ public class AoE : MonoBehaviour
     float count = 0;
     int power;
     public bool player = false;
+    public GameObject areas;
     public void CastAoE(int power, float castTime)
     {
         this.power = power;

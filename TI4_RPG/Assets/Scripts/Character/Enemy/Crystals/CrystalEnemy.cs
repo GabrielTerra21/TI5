@@ -16,6 +16,7 @@ public class CrystalEnemy : Enemy
     protected override void Start()
     {
         base.Start();
+        crystals = FindObjectsByType<CrystalEnemy>(FindObjectsSortMode.None);
         if(type == Type.Instant)
         {
             foreach(Enemy enemy in enemies)
