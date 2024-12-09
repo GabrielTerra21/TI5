@@ -45,6 +45,7 @@ public class CombatState : State {
     private AnimationController animationController;
     [SerializeField] private int animationLayerIndex;
     private RotationBehaviour targetLock;
+    [SerializeField] private AudioSource source;
 
 
     private void Awake()
@@ -98,6 +99,7 @@ public class CombatState : State {
         {
             if (moveDir.magnitude < 0.05f && coolDown >= autoAttack.CoolDown) {
                 autoAttack.OnCast(agent, target);
+                source.Play();
                 //animator.SetTrigger("Attack");
                 coolDown = 0;
             }

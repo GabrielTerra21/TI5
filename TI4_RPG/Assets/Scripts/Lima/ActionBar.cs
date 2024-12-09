@@ -36,7 +36,7 @@ public class ActionBar : MonoBehaviour {
 
     private void HighLight() {
         barFill.color = highlight;
-	audioSource.Play();
+	    audioSource.Play();
         StartCoroutine(ChangeSize(sizeChangeModifier));
     }
 
