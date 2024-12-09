@@ -21,14 +21,12 @@ public class Boss : State
     [Header("Info")]
     [SerializeField] private BEHAVIOUR behaviour;
     [SerializeField] private SkillDataSO[] skills;
-    [SerializeField] private SkillDataSO pulo;
     private SkillDataSO skillCasted;
     [SerializeField] private Character target;
     [SerializeField] private int animationID;
     [SerializeField] private float iddleTime = 3;
     private float _iddleTimer;
     private float timer;
-    private bool jumping = false;
 
 
     // Adquire referencia da layer de anima??o e componentes
@@ -73,39 +71,24 @@ public class Boss : State
             // Comportamento de ataque
             case BEHAVIOUR.ATTACK:
                 transform.LookAt(target.transform.position);
-                if (Random.Range(0,100) > 90)
-                {
-                    corujurso.Jump();
-                    jumping = true;
-                    _iddleTimer = 2;
-                    pulo.OnCast(self, target);
-                    behaviour = BEHAVIOUR.IDDLE;
-                }
-                else
-                {
+   
                     skillCasted = skills[Random.Range(0,skills.Length)];
                     skillCasted.OnCast(self, target);
                     _iddleTimer = iddleTime + skillCasted.CastTime - Random.Range(0,3);
                     behaviour = BEHAVIOUR.IDDLE;
-                    //animator.SetBool(animationPrimeryAttID, true);
-                }
-
+                    animator.SetBool(skillCasted.AnimationID, true);
+                
                 break;
 
             case BEHAVIOUR.IDDLE:
-                //animator.SetBool(animationPrimeryAttID, false);
+                if(skillCasted != null)
+                {
+                    animator.SetBool(skillCasted.AnimationID, false);
+                }
                 _iddleTimer -= Time.fixedDeltaTime;
                 if (_iddleTimer <= 0)
                 {
-                    if (jumping)
-                    {
-                        corujurso.Fall();
-                        jumping = false;
-                    }
-                    else
-                    {
-                        behaviour = BEHAVIOUR.ATTACK;
-                    }                 
+                    behaviour = BEHAVIOUR.ATTACK;
                 }
                 break;
         }

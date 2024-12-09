@@ -13,7 +13,7 @@ public abstract class SkillDataSO : ScriptableObject
     public GameObject Prefab;
     public int Price;
     public RuntimeAnimatorController animationOverride;
-    public int AnimationID;
+    public string AnimationID;
     
     public abstract void OnCast ( Character from, Character target);
 
