@@ -64,4 +64,8 @@ public class EffectArea : MonoBehaviour
             }
         }
     }
+    private void OnDestroy()
+    {
+        GameManager.Instance.player.ShowDebuff(false, effect.ID);
+    }
 }
