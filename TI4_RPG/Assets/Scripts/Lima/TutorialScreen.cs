@@ -6,7 +6,7 @@ public class TutorialScreen : MonoBehaviour {
     [SerializeField] private GameObject tutorialInterface;
 
     private void Start() {
-        if(!GameManager.Instance.tutorial1) GameManager.Instance.enterCombat.AddListener(Open);
+        if(GameManager.Instance.tutorial1 == false) GameManager.Instance.enterCombat.AddListener(Open);
     }
 
     private void OnDisable() {
@@ -14,11 +14,11 @@ public class TutorialScreen : MonoBehaviour {
     }
 
     public void Open() {
+        GameManager.Instance.tutorial1 = true;
         GameManager.Instance.EnterUI();
         tutorialInterface.SetActive(true);
         GameManager.Instance.playerInput.actions["Confirm"].performed += Close;
         GameManager.Instance.enterCombat.RemoveListener(Open);
-        GameManager.Instance.tutorial1 = true;
     }
 
     public void Close(InputAction.CallbackContext context) {
