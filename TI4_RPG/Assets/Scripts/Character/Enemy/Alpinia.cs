@@ -31,7 +31,7 @@ public class Alpinia : State
     {
         paused = true;
         gameObject.SetActive(false);
-        animationPrimeryAttID = Animator.StringToHash("IsAttack");
+        animationPrimeryAttID = Animator.StringToHash("Attack");
     }
 
     private void OnEnable()
@@ -70,12 +70,12 @@ public class Alpinia : State
                 Debug.Log("Cast");
                 _iddleTimer = iddleTime;
                 behaviour = BEHAVIOUR.IDDLE;
-                //animator.SetBool(animationPrimeryAttID, true);
+                animator.SetBool(animationPrimeryAttID, true);
 
                 break;
 
             case BEHAVIOUR.IDDLE:
-                //animator.SetBool(animationPrimeryAttID, false);
+                animator.SetBool(animationPrimeryAttID, false);
                 _iddleTimer -= Time.fixedDeltaTime;
                 if (_iddleTimer <= 0)
                 {

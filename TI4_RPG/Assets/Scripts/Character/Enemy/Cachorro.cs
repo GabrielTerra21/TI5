@@ -21,7 +21,7 @@ public class Cachorro : State
     [SerializeField] private BEHAVIOUR behaviour;
     [SerializeField] private SkillDataSO autoAttack;
     [SerializeField] private Character target;
-    [SerializeField] private int animationMovementID;
+    [SerializeField] private int animationMovementID, animationAttackID;
     [SerializeField] private float iddleTime = 3;
     private float _iddleTimer;
     [SerializeField] private bool moving = false;
@@ -31,7 +31,8 @@ public class Cachorro : State
     private void Awake()
     {
         paused = true;
-        //animationMovementID = Animator.StringToHash("Movement");
+        animationMovementID = Animator.StringToHash("IsMoving");
+        animationAttackID = Animator.StringToHash("IsAttack");
         ai = GetComponent<NavMeshAgent>();
         ai.speed = self.moveSpeed;
         gameObject.SetActive(false);
@@ -83,6 +84,8 @@ public class Cachorro : State
                     if(Random.Range(0,10) > 7)
                     {
                         autoAttack.OnCast(self, target);
+                        animator.SetBool("isMoving", true);
+                        animator.SetBool("isAttack", false);
                     }
                     _iddleTimer = iddleTime;
                     behaviour = BEHAVIOUR.IDDLE;
@@ -91,6 +94,8 @@ public class Cachorro : State
                 // e o agente n�o esteja se movendo, inicia movimento em dire��o ao alvo.
                 else if (!moving)
                 {
+                    animator.SetBool("isAttack", false);
+                    animator.SetBool("isMoving", true);
                     Debug.Log("Starting Movement");
                     StartCoroutine(Movement(autoAttack));
                 }
@@ -99,6 +104,8 @@ public class Cachorro : State
             // Faz uma contagem regressiva para retornar ao estado de ATTACK.
             // Serve unicamente para impedir o que o agente ataque initerruptamente.
             case BEHAVIOUR.IDDLE:
+                animator.SetBool("isAttack", false);
+                animator.SetBool("isMoving", false);
                 _iddleTimer -= Time.fixedDeltaTime;
                 if (_iddleTimer <= 0)
                 {
