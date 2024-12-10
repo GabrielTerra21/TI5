@@ -7,6 +7,7 @@ public class TutorialScreen : MonoBehaviour {
 
     private void Start() {
         if(GameManager.Instance.tutorial1 == false) GameManager.Instance.enterCombat.AddListener(Open);
+        else tutorialInterface.SetActive(false);
     }
 
     private void OnDisable() {
