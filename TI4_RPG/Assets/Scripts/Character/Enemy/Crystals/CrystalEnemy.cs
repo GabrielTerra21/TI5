@@ -59,14 +59,17 @@ public class CrystalEnemy : Enemy
     {
         foreach(CrystalEnemy c in crystals)
         {
-            if (c.crystalType == this.crystalType && c.gameObject != this.gameObject)
+            if (c != null)
             {
-                if (deathEffect != null)
+                if (c.crystalType == this.crystalType && c.gameObject != this.gameObject)
                 {
-                    OnDeathEffect();
+                    if (deathEffect != null)
+                    {
+                        OnDeathEffect();
+                    }
+                    base.Die();
+                    return;
                 }
-                base.Die();
-                return;
             }
         }
         foreach (Enemy enemy in enemies)
