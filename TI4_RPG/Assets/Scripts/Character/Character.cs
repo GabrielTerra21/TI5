@@ -39,6 +39,7 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Awake()
     {
+        
         GetData();
         if (renders == null) {
             renders = GetComponentsInChildren<Renderer>();

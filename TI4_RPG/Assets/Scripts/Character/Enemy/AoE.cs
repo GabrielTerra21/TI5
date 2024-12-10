@@ -8,6 +8,7 @@ public class AoE : MonoBehaviour
     int power;
     public bool player = false;
     public GameObject areas;
+    public Enemy enemy;
     public void CastAoE(int power, float castTime)
     {
         this.power = power;
@@ -33,6 +34,7 @@ public class AoE : MonoBehaviour
             if (aoe.prefab != null)
             {
                 GameObject g = Instantiate(aoe.prefab, transform.position, transform.rotation);
+                enemy.dependencies.Add(g);
                 if(aoe.prefabDuration > 0)
                 {
                     Destroy(g, aoe.prefabDuration);

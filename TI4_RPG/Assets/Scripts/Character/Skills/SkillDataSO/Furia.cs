@@ -8,4 +8,5 @@ public class Furia : SkillDataSO
         from.ApplyBonusAttack(Power);
         //BuffController.instance.ListarBuff(CastTime, "attack", from, Power);
     }
+
 }

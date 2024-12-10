@@ -7,6 +7,7 @@ public class TargetAoE : SkillDataSO
     {
         GameObject g = Instantiate(Prefab, target.transform.position, from.transform.rotation);
         AoE aoe = g.GetComponentInChildren<AoE>();
+        aoe.enemy = from.GetComponent<Enemy>();
         aoe.CastAoE(Power + from.Power(), CastTime);
     }
 }

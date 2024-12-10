@@ -31,7 +31,10 @@ public class Enemy : Character {
     public override void Die() {
         foreach(GameObject g in dependencies)
         {
-            Destroy(g);
+            if(g != null)
+            {
+                Destroy(g);
+            }         
         }
         Debug.Log("Morri XD");
         OnDeath.Invoke();

@@ -9,6 +9,7 @@ public class MultAoESkill : SkillDataSO
     {
         GameObject g = Instantiate(Prefab, target.transform.position, from.transform.rotation, from.transform);
         AoE aoe = g.GetComponentInChildren<AoE>();
+        aoe.enemy = from.GetComponent<Enemy>();
         from.dependencies.Add(g);
         aoe.CastAoE(Power + from.Power(), CastTime);
         for (int i = 0; i < quant - 1; i++)
@@ -17,6 +18,7 @@ public class MultAoESkill : SkillDataSO
             g = Instantiate(Prefab,pos,from.transform.rotation, from.transform);
             aoe = g.GetComponentInChildren<AoE>();
             from.dependencies.Add(g);
+            aoe.enemy = from.GetComponent<Enemy>();
             aoe.CastAoE(Power + from.Power(), CastTime);
         }
     }
